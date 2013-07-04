@@ -61,9 +61,12 @@ namespace Platformer2D
             Content.RootDirectory = "Content";
 
 #if WINDOWS_PHONE
-            graphics.IsFullScreen = true;
             TargetElapsedTime = TimeSpan.FromTicks(333333);
+            graphics.IsFullScreen = true;
 #endif
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 480;
+            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 
             Accelerometer.Initialize();
         }
