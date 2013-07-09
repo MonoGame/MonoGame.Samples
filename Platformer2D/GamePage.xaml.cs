@@ -23,9 +23,15 @@ namespace Platformer2D
             InitializeComponent();
 
             _game = XamlGame<PlatformerGame>.Create("", this);
-
+            
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            _game.Exit();
+            base.OnBackKeyPress(e);
         }
 
         // Sample code for building a localized ApplicationBar
