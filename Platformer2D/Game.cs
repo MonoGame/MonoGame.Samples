@@ -62,8 +62,9 @@ namespace Platformer2D
 
 #if WINDOWS_PHONE
             TargetElapsedTime = TimeSpan.FromTicks(333333);
-            graphics.IsFullScreen = true;
 #endif
+            graphics.IsFullScreen = true;
+
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D-Ouya", "Platformer2D\Platformer2D-Ouya.csproj", "{48BBE7DF-44ED-42DC-B9C5-7E713BAD1496}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platforms\Ouya\Platformer2D.csproj", "{48BBE7DF-44ED-42DC-B9C5-7E713BAD1496}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

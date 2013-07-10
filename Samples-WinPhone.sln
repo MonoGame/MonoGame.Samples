@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D-WP8", "Platformer2D\Platformer2D-WP8.csproj", "{F3222C35-15A9-4289-AABC-162236E94806}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platforms\WindowsPhone\Platformer2D.csproj", "{F3222C35-15A9-4289-AABC-162236E94806}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.Framework.WindowsPhone", "..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsPhone.csproj", "{BAA9A6E4-7690-4DE0-9531-DE0EAEEC9739}"
 EndProject
