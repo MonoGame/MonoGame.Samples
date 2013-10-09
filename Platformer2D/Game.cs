@@ -26,6 +26,7 @@ namespace Platformer2D
         // Resources for drawing.
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+        Vector2 baseScreenSize = new Vector2(800, 480);
 
         // Global content.
         private SpriteFont hudFont;
@@ -65,8 +66,8 @@ namespace Platformer2D
 #endif
             graphics.IsFullScreen = true;
 
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 480;
+            //graphics.PreferredBackBufferWidth = 800;
+            //graphics.PreferredBackBufferHeight = 480;
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 
             Accelerometer.Initialize();
@@ -187,9 +188,14 @@ namespace Platformer2D
         protected override void Draw(GameTime gameTime)
         {
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
+            Vector3 screenScalingFactor;
 
+             float horScaling = (float)GraphicsDevice.PresentationParameters.BackBufferWidth / baseScreenSize.X;
+             float verScaling = (float)GraphicsDevice.PresentationParameters.BackBufferHeight / baseScreenSize.Y;
+             screenScalingFactor = new Vector3(horScaling, verScaling, 1);
+             Matrix globalTransformation = Matrix.CreateScale(screenScalingFactor);
 
-            spriteBatch.Begin();
+             spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null,null, globalTransformation);
 
             level.Draw(gameTime, spriteBatch);
 
@@ -204,8 +210,10 @@ namespace Platformer2D
         {
             Rectangle titleSafeArea = GraphicsDevice.Viewport.TitleSafeArea;
             Vector2 hudLocation = new Vector2(titleSafeArea.X, titleSafeArea.Y);
-            Vector2 center = new Vector2(titleSafeArea.X + titleSafeArea.Width / 2.0f,
-                                         titleSafeArea.Y + titleSafeArea.Height / 2.0f);
+            //Vector2 center = new Vector2(titleSafeArea.X + titleSafeArea.Width / 2.0f,
+            //                             titleSafeArea.Y + titleSafeArea.Height / 2.0f);
+
+            Vector2 center = new Vector2(baseScreenSize.X / 2, baseScreenSize.Y / 2);
 
             // Draw time remaining. Uses modulo division to cause blinking when the
             // player is running out of time.
