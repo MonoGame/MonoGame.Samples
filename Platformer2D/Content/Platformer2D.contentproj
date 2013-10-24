@@ -14,6 +14,8 @@
     <OutputPath>bin\$(MonoGamePlatform)\$(Configuration)</OutputPath>
     <ContentRootDirectory>Content</ContentRootDirectory>
     <PlatformTarget>x86</PlatformTarget>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Windows' ">
     <MonoGamePlatform>Windows</MonoGamePlatform>
@@ -44,7 +46,7 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters" />
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters" />
     <Reference Include="MonoGameContentProcessors">
-      <HintPath>$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGameContentProcessors.dll</HintPath>
+      <HintPath>..\..\packages\MonoGame.ContentProcessors.3.1.0-alpha\lib\net\MonoGameContentProcessors.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +252,9 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <None Include="packages.config">
+      <Name>packages</Name>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\Hud.spritefont">
@@ -296,6 +301,7 @@
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!--
       To modify your build process, add your task inside one of the targets below and uncomment it. 
       Other similar extension points exist, see Microsoft.Common.targets.
