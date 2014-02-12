@@ -10,6 +10,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Platformer2D</RootNamespace>
     <AssemblyName>Platformer2D</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -331,15 +333,15 @@
   <ItemGroup>
     <None Include="monogameicon.png" />
     <None Include="Info.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.iOS.csproj">
-      <Project>{db8508bb-9849-4cc2-bc0f-8eb5dacb3c47}</Project>
-      <Name>MonoGame.Framework.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.iOS.csproj">
-      <Project>{734eaa48-f1ca-481a-b391-0285bc0e8b40}</Project>
-      <Name>Lidgren.Network.iOS</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\MonoGame.Binaries.3.1.4-alpha\build\MonoTouch\MonoGame.Binaries.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MonoGame.Binaries.3.1.4-alpha\build\MonoTouch\MonoGame.Binaries.targets'))" />
+  </Target>
+  <Import Project="..\..\..\packages\MonoGame.Binaries.3.1.4-alpha\build\MonoTouch\MonoGame.Binaries.targets" Condition="Exists('..\..\..\packages\MonoGame.Binaries.3.1.4-alpha\build\MonoTouch\MonoGame.Binaries.targets')" />
 </Project>
