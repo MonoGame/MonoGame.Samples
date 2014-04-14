@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}") = "Platformer2D", "Platformer2D\Platforms\OSX\Platformer2D.csproj", "{DEC435F4-9E84-490B-9890-72E5F514B8D0}"
+EndProject
+Project("{36C538E6-C32A-4A8D-A39C-566173D7118E}") = "MonoGame.Framework.MacOS", "..\MonoGame\MonoGame.Framework\MonoGame.Framework.MacOS.csproj", "{DB8508BB-9849-4CC2-BC0F-8EB5DACB3C47}"
+EndProject
+Project("{AE483C29-042E-4226-BA52-D247CE7676DA}") = "Lidgren.Network.MacOS", "..\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.MacOS.csproj", "{734EAA48-F1CA-481A-B391-0285BC0E8B40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Distribution|Any CPU = Distribution|Any CPU
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		AppStore|Any CPU = AppStore|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36C538E6-C32A-4A8D-A39C-566173D7118E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C538E6-C32A-4A8D-A39C-566173D7118E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C538E6-C32A-4A8D-A39C-566173D7118E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{36C538E6-C32A-4A8D-A39C-566173D7118E}.Debug|x86.Build.0 = Debug|Any CPU
+		{36C538E6-C32A-4A8D-A39C-566173D7118E}.Distribution|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C538E6-C32A-4A8D-A39C-566173D7118E}.Distribution|Any CPU.Build.0 = Debug|Any CPU
+		{36C538E6-C32A-4A8D-A39C-566173D7118E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C538E6-C32A-4A8D-A39C-566173D7118E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C538E6-C32A-4A8D-A39C-566173D7118E}.Release|x86.ActiveCfg = Release|Any CPU
+		{36C538E6-C32A-4A8D-A39C-566173D7118E}.Release|x86.Build.0 = Release|Any CPU
+		{AE483C29-042E-4226-BA52-D247CE7676DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE483C29-042E-4226-BA52-D247CE7676DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE483C29-042E-4226-BA52-D247CE7676DA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AE483C29-042E-4226-BA52-D247CE7676DA}.Debug|x86.Build.0 = Debug|Any CPU
+		{AE483C29-042E-4226-BA52-D247CE7676DA}.Distribution|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE483C29-042E-4226-BA52-D247CE7676DA}.Distribution|Any CPU.Build.0 = Debug|Any CPU
+		{AE483C29-042E-4226-BA52-D247CE7676DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE483C29-042E-4226-BA52-D247CE7676DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE483C29-042E-4226-BA52-D247CE7676DA}.Release|x86.ActiveCfg = Release|Any CPU
+		{AE483C29-042E-4226-BA52-D247CE7676DA}.Release|x86.Build.0 = Release|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.AppStore|Any CPU.Build.0 = AppStore|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Debug|x86.Build.0 = Debug|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Distribution|Any CPU.ActiveCfg = Debug|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Distribution|Any CPU.Build.0 = Debug|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Release|iPhone.Build.0 = Release|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Release|x86.ActiveCfg = Release|Any CPU
+		{A82EAD58-40D7-49BE-8F24-09FEA34F9E55}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Platformer2D\Platforms\OSX\Platformer2D.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 120
+		$1.TabWidth = 4
+		$1.EolMarker = Windows
+		$1.inheritsSet = Mono
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal
+

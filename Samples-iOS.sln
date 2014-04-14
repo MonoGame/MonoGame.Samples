@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platforms\iOS\Platformer2D.csproj", "{DEC435F4-9E84-490B-9890-72E5F514B8D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|Any CPU = Release|Any CPU
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Debug|iPhone.Build.0 = Debug|iPhone
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Release|iPhone.ActiveCfg = Release|iPhone
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Release|iPhone.Build.0 = Release|iPhone
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DEC435F4-9E84-490B-9890-72E5F514B8D0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
