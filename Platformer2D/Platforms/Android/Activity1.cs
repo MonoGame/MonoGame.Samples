@@ -1,6 +1,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Views;
 
 namespace Platformer2D
 {
@@ -17,9 +18,8 @@ namespace Platformer2D
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            PlatformerGame.Activity = this;
             var g = new PlatformerGame();
-            SetContentView(g.Window);
+            SetContentView((View)g.Services.GetService(typeof(View)));
             g.Run();
         }
     }
