@@ -1,10 +1,5 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Resources;
-#if ANDROID
-using Android.App;
-#endif
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -23,6 +18,7 @@ using Android.App;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
+
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
@@ -35,9 +31,3 @@ using Android.App;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: NeutralResourcesLanguageAttribute("en-US")]
-#if ANDROID
-// Add some common permissions, these can be removed if not needed
-[assembly: UsesPermission(Android.Manifest.Permission.Internet)]
-[assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
-#endif
