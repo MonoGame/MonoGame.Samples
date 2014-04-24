@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platforms\Windows\Platformer2D.csproj", "{CAF988BD-5440-405D-95D5-BCAB25FC5240}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platforms\WindowsGL\Platformer2D.csproj", "{CAF988BD-5440-405D-95D5-BCAB25FC5240}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
