@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D355B2D-AA42-4315-AEC2-2E3BCA6B2605}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NeonShooter</RootNamespace>
+    <AssemblyName>NeonShooter</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>93fd0fd0</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\WindowsGL\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\WindowsGL\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Game.cs">
+      <Link>Game.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\Art.cs">
+      <Link>Game\Art.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\BlackHole.cs">
+      <Link>Game\BlackHole.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\BloomComponent.cs">
+      <Link>Game\BloomComponent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\BloomSettings.cs">
+      <Link>Game\BloomSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\Bullet.cs">
+      <Link>Game\Bullet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\ColorUtil.cs">
+      <Link>Game\ColorUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\Enemy.cs">
+      <Link>Game\Enemy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\EnemySpawner.cs">
+      <Link>Game\EnemySpawner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\Entity.cs">
+      <Link>Game\Entity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\EntityManager.cs">
+      <Link>Game\EntityManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\Extensions.cs">
+      <Link>Game\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\Grid.cs">
+      <Link>Game\Grid.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\Input.cs">
+      <Link>Game\Input.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\MathUtil.cs">
+      <Link>Game\MathUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\ParticleManager.cs">
+      <Link>Game\ParticleManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\ParticleState.cs">
+      <Link>Game\ParticleState.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\PlayerShip.cs">
+      <Link>Game\PlayerShip.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\PlayerStatus.cs">
+      <Link>Game\PlayerStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\Sound.cs">
+      <Link>Game\Sound.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Program.cs">
+      <Link>Program.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\Music.wma">
+      <Link>Content\Audio\Music.wma</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Art\Black Hole.xnb">
+      <Link>Content\Art\Black Hole.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Art\Bullet.xnb">
+      <Link>Content\Art\Bullet.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Art\Glow.xnb">
+      <Link>Content\Art\Glow.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Art\Laser.xnb">
+      <Link>Content\Art\Laser.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Art\Player.xnb">
+      <Link>Content\Art\Player.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Art\Pointer.xnb">
+      <Link>Content\Art\Pointer.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Art\Seeker.xnb">
+      <Link>Content\Art\Seeker.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Art\Wanderer.xnb">
+      <Link>Content\Art\Wanderer.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\explosion-01.xnb">
+      <Link>Content\Audio\explosion-01.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\explosion-02.xnb">
+      <Link>Content\Audio\explosion-02.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\explosion-03.xnb">
+      <Link>Content\Audio\explosion-03.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\explosion-04.xnb">
+      <Link>Content\Audio\explosion-04.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\explosion-05.xnb">
+      <Link>Content\Audio\explosion-05.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\explosion-06.xnb">
+      <Link>Content\Audio\explosion-06.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\explosion-07.xnb">
+      <Link>Content\Audio\explosion-07.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\explosion-08.xnb">
+      <Link>Content\Audio\explosion-08.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\Music.xnb">
+      <Link>Content\Audio\Music.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\shoot-01.xnb">
+      <Link>Content\Audio\shoot-01.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\shoot-02.xnb">
+      <Link>Content\Audio\shoot-02.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\shoot-03.xnb">
+      <Link>Content\Audio\shoot-03.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\shoot-04.xnb">
+      <Link>Content\Audio\shoot-04.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\spawn-01.xnb">
+      <Link>Content\Audio\spawn-01.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\spawn-02.xnb">
+      <Link>Content\Audio\spawn-02.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\spawn-03.xnb">
+      <Link>Content\Audio\spawn-03.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\spawn-04.xnb">
+      <Link>Content\Audio\spawn-04.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\spawn-05.xnb">
+      <Link>Content\Audio\spawn-05.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\spawn-06.xnb">
+      <Link>Content\Audio\spawn-06.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\spawn-07.xnb">
+      <Link>Content\Audio\spawn-07.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\spawn-08.xnb">
+      <Link>Content\Audio\spawn-08.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Font.xnb">
+      <Link>Content\Font.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Shaders\BloomCombine.xnb">
+      <Link>Content\Shaders\BloomCombine.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Shaders\BloomExtract.xnb">
+      <Link>Content\Shaders\BloomExtract.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Shaders\GaussianBlur.xnb">
+      <Link>Content\Shaders\GaussianBlur.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\MonoGame.Binaries.3.2.0\build\net40\MonoGame.Binaries.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MonoGame.Binaries.3.2.0\build\net40\MonoGame.Binaries.targets'))" />
+  </Target>
+  <Import Project="..\..\..\packages\MonoGame.Binaries.3.2.0\build\net40\MonoGame.Binaries.targets" Condition="Exists('..\..\..\packages\MonoGame.Binaries.3.2.0\build\net40\MonoGame.Binaries.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
