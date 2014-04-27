@@ -48,7 +48,12 @@
   <ItemGroup>
     <ProjectReference Include="..\Platformer2D\Content\Platformer2D.contentproj">
       <Project>{935F72E1-0493-499D-ABDB-A65808B8D304}</Project>
-      <Name>Platformer2D %28Content%29</Name>
+      <Name>Platformer2D</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
+    <ProjectReference Include="..\SpaceWar\Content\SpaceWar.contentproj">
+      <Project>{C901B318-3A34-4BA7-972F-47903D620E86}</Project>
+      <Name>SpaceWar</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>
