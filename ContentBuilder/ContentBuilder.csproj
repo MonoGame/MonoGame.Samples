@@ -46,6 +46,11 @@
     <Reference Include="mscorlib" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NeonShooter\Content\NeonShooter.contentproj">
+      <Project>{1E2A443A-EB3F-44B2-915A-471C50AF180A}</Project>
+      <Name>NeonShooter</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
     <ProjectReference Include="..\Platformer2D\Content\Platformer2D.contentproj">
       <Project>{935F72E1-0493-499D-ABDB-A65808B8D304}</Project>
       <Name>Platformer2D</Name>

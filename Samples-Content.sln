@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentBuilder", "ContentBuilder\ContentBuilder.csproj", "{7CF308F8-F4F1-48D5-A1A5-533F4A4BBE5D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Content\Platformer2D.contentproj", "{935F72E1-0493-499D-ABDB-A65808B8D304}"
@@ -15,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BF7A10
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWar", "SpaceWar\Content\SpaceWar.contentproj", "{C901B318-3A34-4BA7-972F-47903D620E86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeonShooter", "NeonShooter\Content\NeonShooter.contentproj", "{1E2A443A-EB3F-44B2-915A-471C50AF180A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +55,14 @@ Global
 		{C901B318-3A34-4BA7-972F-47903D620E86}.PSM|Any CPU.ActiveCfg = PSM|Any CPU
 		{C901B318-3A34-4BA7-972F-47903D620E86}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
 		{C901B318-3A34-4BA7-972F-47903D620E86}.Windows8|Any CPU.ActiveCfg = Windows8|Any CPU
+	EndGlobalSection
+		{1E2A443A-EB3F-44B2-915A-471C50AF180A}.Android|Any CPU.ActiveCfg = Android|Any CPU
+		{1E2A443A-EB3F-44B2-915A-471C50AF180A}.iOS|Any CPU.ActiveCfg = iOS|Any CPU
+		{1E2A443A-EB3F-44B2-915A-471C50AF180A}.Linux|Any CPU.ActiveCfg = Linux|Any CPU
+		{1E2A443A-EB3F-44B2-915A-471C50AF180A}.OSX|Any CPU.ActiveCfg = OSX|Any CPU
+		{1E2A443A-EB3F-44B2-915A-471C50AF180A}.PSM|Any CPU.ActiveCfg = PSM|Any CPU
+		{1E2A443A-EB3F-44B2-915A-471C50AF180A}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
+		{1E2A443A-EB3F-44B2-915A-471C50AF180A}.Windows8|Any CPU.ActiveCfg = Windows8|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
