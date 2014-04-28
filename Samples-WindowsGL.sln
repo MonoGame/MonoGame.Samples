@@ -1,10 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platforms\WindowsGL\Platformer2D.csproj", "{CAF988BD-5440-405D-95D5-BCAB25FC5240}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWar", "SpaceWar\Platforms\WindowsGL\SpaceWar.csproj", "{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}"
+EndProject
+Global
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeonShooter", "NeonShooter\Platforms\WindowsGL\NeonShooter.csproj", "{8D355B2D-AA42-4315-AEC2-2E3BCA6B2605}"
 EndProject
 Global
@@ -119,6 +120,70 @@ Global
 		{CAF988BD-5440-405D-95D5-BCAB25FC5240}.Windows8|x64.ActiveCfg = Release|x86
 		{CAF988BD-5440-405D-95D5-BCAB25FC5240}.Windows8|x86.ActiveCfg = Release|x86
 		{CAF988BD-5440-405D-95D5-BCAB25FC5240}.Windows8|x86.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Android|Any CPU.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Android|ARM.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Android|Mixed Platforms.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Android|Mixed Platforms.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Android|x64.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Android|x86.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Android|x86.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Debug|ARM.ActiveCfg = Debug|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Debug|x64.ActiveCfg = Debug|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Debug|x86.ActiveCfg = Debug|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Debug|x86.Build.0 = Debug|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.iOS|Any CPU.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.iOS|ARM.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.iOS|Mixed Platforms.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.iOS|Mixed Platforms.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.iOS|x64.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.iOS|x86.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.iOS|x86.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Linux|Any CPU.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Linux|ARM.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Linux|Mixed Platforms.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Linux|Mixed Platforms.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Linux|x64.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Linux|x86.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Linux|x86.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.OSX|Any CPU.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.OSX|ARM.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.OSX|Mixed Platforms.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.OSX|Mixed Platforms.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.OSX|x64.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.OSX|x86.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.OSX|x86.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.PSM|Any CPU.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.PSM|ARM.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.PSM|Mixed Platforms.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.PSM|Mixed Platforms.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.PSM|x64.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.PSM|x86.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.PSM|x86.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Release|Any CPU.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Release|ARM.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Release|x64.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Release|x86.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Release|x86.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows|Any CPU.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows|ARM.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows|Mixed Platforms.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows|Mixed Platforms.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows|x64.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows|x86.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows|x86.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows8|Any CPU.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows8|ARM.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows8|Mixed Platforms.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows8|Mixed Platforms.Build.0 = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows8|x64.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows8|x86.ActiveCfg = Release|x86
+		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows8|x86.Build.0 = Release|x86
+	EndGlobalSection
 		{8D355B2D-AA42-4315-AEC2-2E3BCA6B2605}.Android|Any CPU.ActiveCfg = Release|x86
 		{8D355B2D-AA42-4315-AEC2-2E3BCA6B2605}.Android|ARM.ActiveCfg = Release|x86
 		{8D355B2D-AA42-4315-AEC2-2E3BCA6B2605}.Android|Mixed Platforms.ActiveCfg = Release|x86

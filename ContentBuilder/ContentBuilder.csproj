@@ -56,6 +56,11 @@
       <Name>Platformer2D</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
+    <ProjectReference Include="..\SpaceWar\Content\SpaceWar.contentproj">
+      <Project>{C901B318-3A34-4BA7-972F-47903D620E86}</Project>
+      <Name>SpaceWar</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
