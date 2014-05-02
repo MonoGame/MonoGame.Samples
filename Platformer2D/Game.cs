@@ -49,6 +49,10 @@ namespace Platformer2D
         private KeyboardState keyboardState;
         private TouchCollection touchState;
         private AccelerometerState accelerometerState;
+
+#if WINDOWS_PHONE || IOS || ANDROID
+        private VirtualGamePad virtualGamePad;
+#endif
         
         // The number of levels in the Levels directory of our content. We assume that
         // levels in our content are 0-based and that all numbers under this constant
@@ -90,6 +94,10 @@ namespace Platformer2D
             loseOverlay = Content.Load<Texture2D>("Overlays/you_lose");
             diedOverlay = Content.Load<Texture2D>("Overlays/you_died");
 
+#if WINDOWS_PHONE || IOS || ANDROID
+            virtualGamePad = new VirtualGamePad(Content.Load<Texture2D>("Sprites/VirtualControlArrow"));
+#endif
+
             //Known issue that you get exceptions if you use Media PLayer while connected to your PC
             //See http://social.msdn.microsoft.com/Forums/en/windowsphone7series/thread/c8a243d2-d360-46b1-96bd-62b1ef268c66
             //Which means its impossible to test this from VS.
@@ -115,7 +123,7 @@ namespace Platformer2D
             HandleInput();
 
             // update our level, passing down the GameTime along with all of our input states
-            level.Update(gameTime, keyboardState, gamePadState, touchState, 
+            level.Update(gameTime, keyboardState, gamePadState, 
                          accelerometerState, Window.CurrentOrientation);
 
             base.Update(gameTime);
@@ -125,10 +133,12 @@ namespace Platformer2D
         {
             // get all of our input states
             keyboardState = Keyboard.GetState();
-#if !WINDOWS_PHONE
+            touchState = TouchPanel.GetState();
+#if WINDOWS_PHONE || ANDROID || IOS
+            gamePadState = virtualGamePad.GetState(touchState);
+#else
             gamePadState = GamePad.GetState(PlayerIndex.One);
 #endif
-            touchState = TouchPanel.GetState();
             accelerometerState = Accelerometer.GetState();
 
             // Exit the game when back is pressed.
@@ -190,12 +200,12 @@ namespace Platformer2D
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
             Vector3 screenScalingFactor;
 
-             float horScaling = (float)GraphicsDevice.PresentationParameters.BackBufferWidth / baseScreenSize.X;
-             float verScaling = (float)GraphicsDevice.PresentationParameters.BackBufferHeight / baseScreenSize.Y;
-             screenScalingFactor = new Vector3(horScaling, verScaling, 1);
-             Matrix globalTransformation = Matrix.CreateScale(screenScalingFactor);
+            float horScaling = (float)GraphicsDevice.PresentationParameters.BackBufferWidth / baseScreenSize.X;
+            float verScaling = (float)GraphicsDevice.PresentationParameters.BackBufferHeight / baseScreenSize.Y;
+            screenScalingFactor = new Vector3(horScaling, verScaling, 1);
+            Matrix globalTransformation = Matrix.CreateScale(screenScalingFactor);
 
-             spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null,null, globalTransformation);
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null,null, globalTransformation);
 
             level.Draw(gameTime, spriteBatch);
 
@@ -259,6 +269,11 @@ namespace Platformer2D
                 Vector2 statusSize = new Vector2(status.Width, status.Height);
                 spriteBatch.Draw(status, center - statusSize / 2, Color.White);
             }
+
+#if WINDOWS_PHONE || IOS || ANDROID
+            virtualGamePad.Draw(spriteBatch);
+#endif
+
         }
 
         private void DrawShadowedString(SpriteFont font, string value, Vector2 position, Color color)

@@ -110,6 +110,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\VirtualGamePad.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -135,6 +136,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Sprites\VirtualControlArrow.xnb">
+      <Link>Content\Sprites\VirtualControlArrow.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
