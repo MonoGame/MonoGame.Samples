@@ -47,7 +47,7 @@ namespace Platformer2D
                         buttonsPressed |= Buttons.DPadLeft;
                     else if (pos.X < 256)
                         buttonsPressed |= Buttons.DPadRight;
-                    else if (pos.X > baseScreenSize.X - 128)
+                    else if (pos.X >= baseScreenSize.X - 128)
                         buttonsPressed |= Buttons.A;
                 }
             }
