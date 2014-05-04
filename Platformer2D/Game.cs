@@ -27,6 +27,7 @@ namespace Platformer2D
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         Vector2 baseScreenSize = new Vector2(800, 480);
+        private Matrix globalTransformation;
 
         // Global content.
         private SpriteFont hudFont;
@@ -94,8 +95,14 @@ namespace Platformer2D
             loseOverlay = Content.Load<Texture2D>("Overlays/you_lose");
             diedOverlay = Content.Load<Texture2D>("Overlays/you_died");
 
+            //Work out how much we need to scale our graphics to fill the screen
+            float horScaling = GraphicsDevice.PresentationParameters.BackBufferWidth / baseScreenSize.X;
+            float verScaling = GraphicsDevice.PresentationParameters.BackBufferHeight / baseScreenSize.Y;
+            Vector3 screenScalingFactor = new Vector3(horScaling, verScaling, 1);
+            globalTransformation = Matrix.CreateScale(screenScalingFactor);
+
 #if WINDOWS_PHONE || IOS || ANDROID
-            virtualGamePad = new VirtualGamePad(Content.Load<Texture2D>("Sprites/VirtualControlArrow"));
+            virtualGamePad = new VirtualGamePad(baseScreenSize, globalTransformation, Content.Load<Texture2D>("Sprites/VirtualControlArrow"));
 #endif
 
             //Known issue that you get exceptions if you use Media PLayer while connected to your PC
@@ -198,12 +205,6 @@ namespace Platformer2D
         protected override void Draw(GameTime gameTime)
         {
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
-            Vector3 screenScalingFactor;
-
-            float horScaling = (float)GraphicsDevice.PresentationParameters.BackBufferWidth / baseScreenSize.X;
-            float verScaling = (float)GraphicsDevice.PresentationParameters.BackBufferHeight / baseScreenSize.Y;
-            screenScalingFactor = new Vector3(horScaling, verScaling, 1);
-            Matrix globalTransformation = Matrix.CreateScale(screenScalingFactor);
 
             spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null,null, globalTransformation);
 
