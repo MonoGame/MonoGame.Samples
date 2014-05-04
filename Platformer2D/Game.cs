@@ -51,7 +51,7 @@ namespace Platformer2D
         private TouchCollection touchState;
         private AccelerometerState accelerometerState;
 
-#if WINDOWS_PHONE || IOS || ANDROID
+#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
         private VirtualGamePad virtualGamePad;
 #endif
         
@@ -101,7 +101,7 @@ namespace Platformer2D
             Vector3 screenScalingFactor = new Vector3(horScaling, verScaling, 1);
             globalTransformation = Matrix.CreateScale(screenScalingFactor);
 
-#if WINDOWS_PHONE || IOS || ANDROID
+#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
             virtualGamePad = new VirtualGamePad(baseScreenSize, globalTransformation, Content.Load<Texture2D>("Sprites/VirtualControlArrow"));
 #endif
 
@@ -141,7 +141,7 @@ namespace Platformer2D
             // get all of our input states
             keyboardState = Keyboard.GetState();
             touchState = TouchPanel.GetState();
-#if WINDOWS_PHONE || ANDROID || IOS
+#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
             gamePadState = virtualGamePad.GetState(touchState);
 #else
             gamePadState = GamePad.GetState(PlayerIndex.One);
@@ -271,7 +271,7 @@ namespace Platformer2D
                 spriteBatch.Draw(status, center - statusSize / 2, Color.White);
             }
 
-#if WINDOWS_PHONE || IOS || ANDROID
+#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
             virtualGamePad.Draw(spriteBatch);
 #endif
 
