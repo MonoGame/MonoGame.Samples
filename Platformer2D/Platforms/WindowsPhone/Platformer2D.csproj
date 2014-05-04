@@ -110,7 +110,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game\VirtualGamePad.cs" />
+    <Compile Include="..\..\Game\VirtualGamePad.cs">
+      <Link>Game\VirtualGamePad.cs</Link>
+    </Compile>
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
