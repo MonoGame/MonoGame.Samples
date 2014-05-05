@@ -127,11 +127,7 @@ namespace Platformer2D
         protected override void Update(GameTime gameTime)
         {
             // Handle polling for our input and handling high-level input
-            HandleInput();
-
-#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
-            virtualGamePad.Update(gameTime);
-#endif
+            HandleInput(gameTime);
 
             // update our level, passing down the GameTime along with all of our input states
             level.Update(gameTime, keyboardState, gamePadState, 
@@ -140,7 +136,7 @@ namespace Platformer2D
             base.Update(gameTime);
         }
 
-        private void HandleInput()
+        private void HandleInput(GameTime gameTime)
         {
             // get all of our input states
             keyboardState = Keyboard.GetState();
@@ -179,6 +175,11 @@ namespace Platformer2D
             }
 
             wasContinuePressed = continuePressed;
+
+
+#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
+            virtualGamePad.Update(gameTime);
+#endif
         }
 
         private void LoadNextLevel()
