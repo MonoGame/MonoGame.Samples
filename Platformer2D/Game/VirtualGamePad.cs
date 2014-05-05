@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -11,6 +12,9 @@ namespace Platformer2D
         private Matrix globalTransformation;
         private readonly Texture2D texture;
 
+        private float secondsSinceLastTouch;
+        private float opacity;
+
         //Create these once only as we don't change them
         readonly GamePadThumbSticks thumbSticks = new GamePadThumbSticks();
         readonly GamePadTriggers triggers = new GamePadTriggers();
@@ -21,14 +25,30 @@ namespace Platformer2D
             this.baseScreenSize = baseScreenSize;
             this.globalTransformation = Matrix.Invert(globalTransformation);
             this.texture = texture;
+            secondsSinceLastTouch = float.MaxValue;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            var secondsElapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            secondsSinceLastTouch += secondsElapsed;
+
+            //If the player is touching, fade the controls out
+            // otherwise, if they haven't touched in 4 seconds, fade the controls back in
+            if (secondsSinceLastTouch < 4)
+                opacity = Math.Max(0, opacity - secondsElapsed * 4);
+            else
+                opacity = Math.Min(1, opacity + secondsElapsed * 2);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             var spriteCenter = new Vector2(64, 64);
-            spriteBatch.Draw(texture, new Vector2(64, baseScreenSize.Y - 64), null, Color.White, -MathHelper.PiOver2, spriteCenter, 1, SpriteEffects.None, 0);
-            spriteBatch.Draw(texture, new Vector2(192, baseScreenSize.Y - 64), null, Color.White, MathHelper.PiOver2, spriteCenter, 1, SpriteEffects.None, 0);
-            spriteBatch.Draw(texture, new Vector2(baseScreenSize.X - 128, baseScreenSize.Y - 128), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+            var color = Color.Multiply(Color.White, opacity);
+
+            spriteBatch.Draw(texture, new Vector2(64, baseScreenSize.Y - 64), null, color, -MathHelper.PiOver2, spriteCenter, 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, new Vector2(192, baseScreenSize.Y - 64), null, color, MathHelper.PiOver2, spriteCenter, 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, new Vector2(baseScreenSize.X - 128, baseScreenSize.Y - 128), null, color, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
         }
 
         public GamePadState GetState(TouchCollection touchState)
@@ -51,6 +71,9 @@ namespace Platformer2D
                         buttonsPressed |= Buttons.A;
                 }
             }
+
+            if (buttonsPressed != 0)
+                secondsSinceLastTouch = 0;
 
             var buttons = new GamePadButtons(buttonsPressed);
 

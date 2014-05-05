@@ -129,6 +129,10 @@ namespace Platformer2D
             // Handle polling for our input and handling high-level input
             HandleInput();
 
+#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
+            virtualGamePad.Update(gameTime);
+#endif
+
             // update our level, passing down the GameTime along with all of our input states
             level.Update(gameTime, keyboardState, gamePadState, 
                          accelerometerState, Window.CurrentOrientation);
