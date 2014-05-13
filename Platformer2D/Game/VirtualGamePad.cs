@@ -12,7 +12,7 @@ namespace Platformer2D
         private Matrix globalTransformation;
         private readonly Texture2D texture;
 
-        private float secondsSinceLastTouch;
+        private float secondsSinceLastInput;
         private float opacity;
 
         public VirtualGamePad(Vector2 baseScreenSize, Matrix globalTransformation, Texture2D texture)
@@ -20,17 +20,22 @@ namespace Platformer2D
             this.baseScreenSize = baseScreenSize;
             this.globalTransformation = Matrix.Invert(globalTransformation);
             this.texture = texture;
-            secondsSinceLastTouch = float.MaxValue;
+            secondsSinceLastInput = float.MaxValue;
+        }
+
+        public void NotifyPlayerIsMoving()
+        {
+            secondsSinceLastInput = 0;
         }
 
         public void Update(GameTime gameTime)
         {
             var secondsElapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            secondsSinceLastTouch += secondsElapsed;
+            secondsSinceLastInput += secondsElapsed;
 
-            //If the player is touching, fade the controls out
-            // otherwise, if they haven't touched in 4 seconds, fade the controls back in
-            if (secondsSinceLastTouch < 4)
+            //If the player is moving, fade the controls out
+            // otherwise, if they haven't moved in 4 seconds, fade the controls back in
+            if (secondsSinceLastInput < 4)
                 opacity = Math.Max(0, opacity - secondsElapsed * 4);
             else
                 opacity = Math.Min(1, opacity + secondsElapsed * 2);
@@ -70,9 +75,6 @@ namespace Platformer2D
                         buttonsPressed |= Buttons.A;
                 }
             }
-
-            if (buttonsPressed != 0)
-                secondsSinceLastTouch = 0;
 
             //Combine the buttons of the real gamepad
             var gpButtons = gpState.Buttons;
