@@ -51,10 +51,8 @@ namespace Platformer2D
         private TouchCollection touchState;
         private AccelerometerState accelerometerState;
 
-#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
         private VirtualGamePad virtualGamePad;
-#endif
-        
+
         // The number of levels in the Levels directory of our content. We assume that
         // levels in our content are 0-based and that all numbers under this constant
         // have a level file present. This allows us to not need to check for the file
@@ -101,9 +99,7 @@ namespace Platformer2D
             Vector3 screenScalingFactor = new Vector3(horScaling, verScaling, 1);
             globalTransformation = Matrix.CreateScale(screenScalingFactor);
 
-#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
             virtualGamePad = new VirtualGamePad(baseScreenSize, globalTransformation, Content.Load<Texture2D>("Sprites/VirtualControlArrow"));
-#endif
 
             //Known issue that you get exceptions if you use Media PLayer while connected to your PC
             //See http://social.msdn.microsoft.com/Forums/en/windowsphone7series/thread/c8a243d2-d360-46b1-96bd-62b1ef268c66
@@ -141,11 +137,7 @@ namespace Platformer2D
             // get all of our input states
             keyboardState = Keyboard.GetState();
             touchState = TouchPanel.GetState();
-#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
-            gamePadState = virtualGamePad.GetState(touchState);
-#else
-            gamePadState = GamePad.GetState(PlayerIndex.One);
-#endif
+            gamePadState = virtualGamePad.GetState(touchState, GamePad.GetState(PlayerIndex.One));
             accelerometerState = Accelerometer.GetState();
 
             // Exit the game when back is pressed.
@@ -176,10 +168,7 @@ namespace Platformer2D
 
             wasContinuePressed = continuePressed;
 
-
-#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
             virtualGamePad.Update(gameTime);
-#endif
         }
 
         private void LoadNextLevel()
@@ -276,10 +265,8 @@ namespace Platformer2D
                 spriteBatch.Draw(status, center - statusSize / 2, Color.White);
             }
 
-#if WINDOWS_PHONE || IPHONE || (ANDROID && !OUYA)
-            virtualGamePad.Draw(spriteBatch);
-#endif
-
+            if (touchState.IsConnected)
+                virtualGamePad.Draw(spriteBatch);
         }
 
         private void DrawShadowedString(SpriteFont font, string value, Vector2 position, Color color)
