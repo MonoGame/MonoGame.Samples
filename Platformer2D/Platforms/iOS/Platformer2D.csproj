@@ -334,6 +334,7 @@
     </Content>
     <Content Include="..\..\..\ContentBuilder\bin\iOS\Content\Sprites\VirtualControlArrow.xnb">
       <Link>Content\Sprites\VirtualControlArrow.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />

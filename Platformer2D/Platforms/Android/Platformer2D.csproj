@@ -92,11 +92,11 @@
     <Compile Include="..\..\Game.cs">
       <Link>Game.cs</Link>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\..\Game\VirtualGamePad.cs">
       <Link>Game\VirtualGamePad.cs</Link>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Activity1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

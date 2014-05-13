@@ -94,6 +94,9 @@
     <Compile Include="..\..\Game.cs">
       <Link>Game.cs</Link>
     </Compile>
+    <Compile Include="..\..\Game\VirtualGamePad.cs">
+      <Link>Game\VirtualGamePad.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
@@ -324,6 +327,10 @@
     </AndroidAsset>
     <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sounds\Music.wma">
       <Link>Content\Sounds\Music.wma</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\VirtualControlArrow.xnb">
+      <Link>Content\Sprites\VirtualControlArrow.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidAsset>
   </ItemGroup>
