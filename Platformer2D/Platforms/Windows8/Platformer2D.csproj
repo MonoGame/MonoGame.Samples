@@ -139,6 +139,9 @@
     <Compile Include="..\..\Game.cs">
       <Link>Game.cs</Link>
     </Compile>
+    <Compile Include="..\..\Game\VirtualGamePad.cs">
+      <Link>Game\VirtualGamePad.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Program.cs">
@@ -345,6 +348,10 @@
     </Content>
     <Content Include="..\..\..\ContentBuilder\bin\Windows8\Content\Sounds\Music.wma">
       <Link>Content\Sounds\Music.wma</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows8\Content\Sprites\VirtualControlArrow.xnb">
+      <Link>Content\Sprites\VirtualControlArrow.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

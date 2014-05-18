@@ -12,7 +12,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace Platformer2D
 {
@@ -177,11 +176,10 @@ namespace Platformer2D
             GameTime gameTime, 
             KeyboardState keyboardState, 
             GamePadState gamePadState, 
-            TouchCollection touchState, 
             AccelerometerState accelState,
             DisplayOrientation orientation)
         {
-            GetInput(keyboardState, gamePadState, touchState, accelState, orientation);
+            GetInput(keyboardState, gamePadState, accelState, orientation);
 
             ApplyPhysics(gameTime);
 
@@ -207,8 +205,7 @@ namespace Platformer2D
         /// </summary>
         private void GetInput(
             KeyboardState keyboardState, 
-            GamePadState gamePadState, 
-            TouchCollection touchState,
+            GamePadState gamePadState,
             AccelerometerState accelState, 
             DisplayOrientation orientation)
         {
@@ -249,8 +246,7 @@ namespace Platformer2D
                 gamePadState.IsButtonDown(JumpButton) ||
                 keyboardState.IsKeyDown(Keys.Space) ||
                 keyboardState.IsKeyDown(Keys.Up) ||
-                keyboardState.IsKeyDown(Keys.W) ||
-                touchState.AnyTouch();
+                keyboardState.IsKeyDown(Keys.W);
         }
 
         /// <summary>

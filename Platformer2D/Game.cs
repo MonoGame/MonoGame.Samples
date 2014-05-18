@@ -27,6 +27,7 @@ namespace Platformer2D
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         Vector2 baseScreenSize = new Vector2(800, 480);
+        private Matrix globalTransformation;
 
         // Global content.
         private SpriteFont hudFont;
@@ -49,7 +50,9 @@ namespace Platformer2D
         private KeyboardState keyboardState;
         private TouchCollection touchState;
         private AccelerometerState accelerometerState;
-        
+
+        private VirtualGamePad virtualGamePad;
+
         // The number of levels in the Levels directory of our content. We assume that
         // levels in our content are 0-based and that all numbers under this constant
         // have a level file present. This allows us to not need to check for the file
@@ -90,6 +93,14 @@ namespace Platformer2D
             loseOverlay = Content.Load<Texture2D>("Overlays/you_lose");
             diedOverlay = Content.Load<Texture2D>("Overlays/you_died");
 
+            //Work out how much we need to scale our graphics to fill the screen
+            float horScaling = GraphicsDevice.PresentationParameters.BackBufferWidth / baseScreenSize.X;
+            float verScaling = GraphicsDevice.PresentationParameters.BackBufferHeight / baseScreenSize.Y;
+            Vector3 screenScalingFactor = new Vector3(horScaling, verScaling, 1);
+            globalTransformation = Matrix.CreateScale(screenScalingFactor);
+
+            virtualGamePad = new VirtualGamePad(baseScreenSize, globalTransformation, Content.Load<Texture2D>("Sprites/VirtualControlArrow"));
+
             //Known issue that you get exceptions if you use Media PLayer while connected to your PC
             //See http://social.msdn.microsoft.com/Forums/en/windowsphone7series/thread/c8a243d2-d360-46b1-96bd-62b1ef268c66
             //Which means its impossible to test this from VS.
@@ -112,23 +123,24 @@ namespace Platformer2D
         protected override void Update(GameTime gameTime)
         {
             // Handle polling for our input and handling high-level input
-            HandleInput();
+            HandleInput(gameTime);
 
             // update our level, passing down the GameTime along with all of our input states
-            level.Update(gameTime, keyboardState, gamePadState, touchState, 
+            level.Update(gameTime, keyboardState, gamePadState, 
                          accelerometerState, Window.CurrentOrientation);
+
+            if (level.Player.Velocity != Vector2.Zero)
+                virtualGamePad.NotifyPlayerIsMoving();
 
             base.Update(gameTime);
         }
 
-        private void HandleInput()
+        private void HandleInput(GameTime gameTime)
         {
             // get all of our input states
             keyboardState = Keyboard.GetState();
-#if !WINDOWS_PHONE
-            gamePadState = GamePad.GetState(PlayerIndex.One);
-#endif
             touchState = TouchPanel.GetState();
+            gamePadState = virtualGamePad.GetState(touchState, GamePad.GetState(PlayerIndex.One));
             accelerometerState = Accelerometer.GetState();
 
             // Exit the game when back is pressed.
@@ -158,6 +170,8 @@ namespace Platformer2D
             }
 
             wasContinuePressed = continuePressed;
+
+            virtualGamePad.Update(gameTime);
         }
 
         private void LoadNextLevel()
@@ -188,14 +202,8 @@ namespace Platformer2D
         protected override void Draw(GameTime gameTime)
         {
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
-            Vector3 screenScalingFactor;
 
-             float horScaling = (float)GraphicsDevice.PresentationParameters.BackBufferWidth / baseScreenSize.X;
-             float verScaling = (float)GraphicsDevice.PresentationParameters.BackBufferHeight / baseScreenSize.Y;
-             screenScalingFactor = new Vector3(horScaling, verScaling, 1);
-             Matrix globalTransformation = Matrix.CreateScale(screenScalingFactor);
-
-             spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null,null, globalTransformation);
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null,null, globalTransformation);
 
             level.Draw(gameTime, spriteBatch);
 
@@ -259,6 +267,9 @@ namespace Platformer2D
                 Vector2 statusSize = new Vector2(status.Width, status.Height);
                 spriteBatch.Draw(status, center - statusSize / 2, Color.White);
             }
+
+            if (touchState.IsConnected)
+                virtualGamePad.Draw(spriteBatch);
         }
 
         private void DrawShadowedString(SpriteFont font, string value, Vector2 position, Color color)

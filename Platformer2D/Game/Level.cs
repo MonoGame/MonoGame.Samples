@@ -14,7 +14,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using System.IO;
-using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Input;
 
 namespace Platformer2D
@@ -376,7 +375,6 @@ namespace Platformer2D
             GameTime gameTime, 
             KeyboardState keyboardState, 
             GamePadState gamePadState, 
-            TouchCollection touchState, 
             AccelerometerState accelState,
             DisplayOrientation orientation)
         {
@@ -397,7 +395,7 @@ namespace Platformer2D
             else
             {
                 timeRemaining -= gameTime.ElapsedGameTime;
-                Player.Update(gameTime, keyboardState, gamePadState, touchState, accelState, orientation);
+                Player.Update(gameTime, keyboardState, gamePadState, accelState, orientation);
                 UpdateGems(gameTime);
 
                 // Falling off the bottom of the level kills the player.
