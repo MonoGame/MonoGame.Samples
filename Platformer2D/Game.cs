@@ -143,10 +143,11 @@ namespace Platformer2D
             gamePadState = virtualGamePad.GetState(touchState, GamePad.GetState(PlayerIndex.One));
             accelerometerState = Accelerometer.GetState();
 
+#if !NETFX_CORE
             // Exit the game when back is pressed.
             if (gamePadState.Buttons.Back == ButtonState.Pressed)
                 Exit();
-
+#endif
             bool continuePressed =
                 keyboardState.IsKeyDown(Keys.Space) ||
                 gamePadState.IsButtonDown(Buttons.A) ||
