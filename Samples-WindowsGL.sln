@@ -1,11 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platforms\WindowsGL\Platformer2D.csproj", "{CAF988BD-5440-405D-95D5-BCAB25FC5240}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWar", "SpaceWar\Platforms\WindowsGL\SpaceWar.csproj", "{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}"
 EndProject
-Global
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeonShooter", "NeonShooter\Platforms\WindowsGL\NeonShooter.csproj", "{8D355B2D-AA42-4315-AEC2-2E3BCA6B2605}"
 EndProject
 Global
@@ -183,7 +184,6 @@ Global
 		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows8|x64.ActiveCfg = Release|x86
 		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows8|x86.ActiveCfg = Release|x86
 		{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}.Windows8|x86.Build.0 = Release|x86
-	EndGlobalSection
 		{8D355B2D-AA42-4315-AEC2-2E3BCA6B2605}.Android|Any CPU.ActiveCfg = Release|x86
 		{8D355B2D-AA42-4315-AEC2-2E3BCA6B2605}.Android|ARM.ActiveCfg = Release|x86
 		{8D355B2D-AA42-4315-AEC2-2E3BCA6B2605}.Android|Mixed Platforms.ActiveCfg = Release|x86

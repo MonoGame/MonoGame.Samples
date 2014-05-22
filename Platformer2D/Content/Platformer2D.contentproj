@@ -46,7 +46,7 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters" />
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters" />
     <Reference Include="MonoGameContentProcessors">
-      <HintPath>..\..\packages\MonoGame.ContentProcessors.3.1.0-alpha\lib\net\MonoGameContentProcessors.dll</HintPath>
+      <HintPath>..\..\packages\MonoGame.ContentProcessors.3.2.1\lib\MonoGameContentProcessors.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

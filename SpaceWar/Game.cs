@@ -221,10 +221,12 @@ namespace Spacewar
                     paused = !paused;
                 }
 
+#if !NETFX_CORE
                 if (gameState == GameState.LogoSplash)
                 {
                     this.Exit();
                 }
+#endif
             }
 
             //Reload settings file?
