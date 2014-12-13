@@ -24,7 +24,8 @@
     <JavaOptions />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <NuGetPackageImportStamp>2d589de7</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>f7f092e7</NuGetPackageImportStamp>
+    <MonoGamePlatform>Android</MonoGamePlatform>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -102,10 +103,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\VirtualControlArrow.xnb">
-      <Link>Content\Sprites\VirtualControlArrow.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
+    <MonoGameContentReference Include="..\..\Content\Platformer2D.mgcb">
+      <Link>Content\Platformer2D.mgcb</Link>
+    </MonoGameContentReference>
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -128,218 +128,17 @@
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Backgrounds\Layer0_0.xnb">
-      <Link>Content\Backgrounds\Layer0_0.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Backgrounds\Layer0_1.xnb">
-      <Link>Content\Backgrounds\Layer0_1.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Backgrounds\Layer0_2.xnb">
-      <Link>Content\Backgrounds\Layer0_2.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Backgrounds\Layer1_0.xnb">
-      <Link>Content\Backgrounds\Layer1_0.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Backgrounds\Layer1_1.xnb">
-      <Link>Content\Backgrounds\Layer1_1.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Backgrounds\Layer1_2.xnb">
-      <Link>Content\Backgrounds\Layer1_2.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Backgrounds\Layer2_0.xnb">
-      <Link>Content\Backgrounds\Layer2_0.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Backgrounds\Layer2_1.xnb">
-      <Link>Content\Backgrounds\Layer2_1.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Backgrounds\Layer2_2.xnb">
-      <Link>Content\Backgrounds\Layer2_2.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Fonts\Hud.xnb">
-      <Link>Content\Fonts\Hud.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Overlays\you_died.xnb">
-      <Link>Content\Overlays\you_died.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Overlays\you_lose.xnb">
-      <Link>Content\Overlays\you_lose.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Overlays\you_win.xnb">
-      <Link>Content\Overlays\you_win.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sounds\ExitReached.xnb">
-      <Link>Content\Sounds\ExitReached.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sounds\GemCollected.xnb">
-      <Link>Content\Sounds\GemCollected.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sounds\MonsterKilled.xnb">
-      <Link>Content\Sounds\MonsterKilled.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sounds\Music.xnb">
-      <Link>Content\Sounds\Music.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sounds\PlayerFall.xnb">
-      <Link>Content\Sounds\PlayerFall.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sounds\PlayerJump.xnb">
-      <Link>Content\Sounds\PlayerJump.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sounds\PlayerKilled.xnb">
-      <Link>Content\Sounds\PlayerKilled.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sounds\Powerup.xnb">
-      <Link>Content\Sounds\Powerup.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\Gem.xnb">
-      <Link>Content\Sprites\Gem.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\MonsterA\Idle.xnb">
-      <Link>Content\Sprites\MonsterA\Idle.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\MonsterA\Run.xnb">
-      <Link>Content\Sprites\MonsterA\Run.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\MonsterB\Idle.xnb">
-      <Link>Content\Sprites\MonsterB\Idle.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\MonsterB\Run.xnb">
-      <Link>Content\Sprites\MonsterB\Run.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\MonsterC\Idle.xnb">
-      <Link>Content\Sprites\MonsterC\Idle.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\MonsterC\Run.xnb">
-      <Link>Content\Sprites\MonsterC\Run.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\MonsterD\Idle.xnb">
-      <Link>Content\Sprites\MonsterD\Idle.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\MonsterD\Run.xnb">
-      <Link>Content\Sprites\MonsterD\Run.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\Player\Celebrate.xnb">
-      <Link>Content\Sprites\Player\Celebrate.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\Player\Die.xnb">
-      <Link>Content\Sprites\Player\Die.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\Player\Idle.xnb">
-      <Link>Content\Sprites\Player\Idle.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\Player\Jump.xnb">
-      <Link>Content\Sprites\Player\Jump.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sprites\Player\Run.xnb">
-      <Link>Content\Sprites\Player\Run.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\BlockA0.xnb">
-      <Link>Content\Tiles\BlockA0.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\BlockA1.xnb">
-      <Link>Content\Tiles\BlockA1.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\BlockA2.xnb">
-      <Link>Content\Tiles\BlockA2.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\BlockA3.xnb">
-      <Link>Content\Tiles\BlockA3.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\BlockA4.xnb">
-      <Link>Content\Tiles\BlockA4.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\BlockA5.xnb">
-      <Link>Content\Tiles\BlockA5.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\BlockA6.xnb">
-      <Link>Content\Tiles\BlockA6.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\BlockB0.xnb">
-      <Link>Content\Tiles\BlockB0.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\BlockB1.xnb">
-      <Link>Content\Tiles\BlockB1.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\Exit.xnb">
-      <Link>Content\Tiles\Exit.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Tiles\Platform.xnb">
-      <Link>Content\Tiles\Platform.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Levels\0.txt">
-      <Link>Content\Levels\0.txt</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Levels\1.txt">
-      <Link>Content\Levels\1.txt</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Levels\2.txt">
-      <Link>Content\Levels\2.txt</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\..\ContentBuilder\bin\Android\Content\Sounds\Music.wma">
-      <Link>Content\Sounds\Music.wma</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-    <Error Condition="!Exists('..\..\..\packages\MonoGame.Binaries.3.2.2-alpha\build\MonoAndroid\MonoGame.Binaries.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MonoGame.Binaries.3.2.2-alpha\build\MonoAndroid\MonoGame.Binaries.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\MonoGame.Binaries.3.2.3-alpha\build\MonoAndroid\MonoGame.Binaries.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MonoGame.Binaries.3.2.3-alpha\build\MonoAndroid\MonoGame.Binaries.targets'))" />
   </Target>
-  <Import Project="..\..\..\packages\MonoGame.Binaries.3.2.2-alpha\build\MonoAndroid\MonoGame.Binaries.targets" Condition="Exists('..\..\..\packages\MonoGame.Binaries.3.2.2-alpha\build\MonoAndroid\MonoGame.Binaries.targets')" />
+  <Import Project="..\..\..\packages\MonoGame.Binaries.3.2.3-alpha\build\MonoAndroid\MonoGame.Binaries.targets" Condition="Exists('..\..\..\packages\MonoGame.Binaries.3.2.3-alpha\build\MonoAndroid\MonoGame.Binaries.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
