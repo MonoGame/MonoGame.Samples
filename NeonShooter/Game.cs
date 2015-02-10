@@ -36,7 +36,6 @@ namespace NeonShooter
 		BloomComponent bloom;
 
 		bool paused = false;
-		bool useBloom = false;
 
 
         
@@ -114,7 +113,7 @@ namespace NeonShooter
             if (Input.WasKeyPressed(Keys.P))
                 paused = !paused;
             if (Input.WasKeyPressed(Keys.B))
-                useBloom = !useBloom;
+                bloom.Visible = !bloom.Visible;
 
             if (!paused)
             {
@@ -135,9 +134,6 @@ namespace NeonShooter
         protected override void Draw(GameTime gameTime)
         {
             bloom.BeginDraw();
-            if (!useBloom)
-                base.Draw(gameTime);
-
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin(SpriteSortMode.Texture, BlendState.Additive);
@@ -148,10 +144,9 @@ namespace NeonShooter
             Grid.Draw(spriteBatch);
             ParticleManager.Draw(spriteBatch);
             spriteBatch.End();
-
-            if (useBloom)
-                base.Draw(gameTime);
-
+	    
+	    base.Draw(gameTime);
+            
             // Draw the user interface without bloom
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
 
