@@ -51,9 +51,9 @@ namespace Spacewar
         private static Color white = Color.White;
         private static Color body = white; //body has texture so don't need material
         private static Color pipes = white; //pipes has texture so don't need material
-        private static Color cockpit1 = new Color((byte)(.529f * 255), 255, 255, 0);
-        private static Color cockpit2 = new Color(255, 255, (byte)(.373f * 255), 0);
-        private static Color engines = new Color((byte)(.925f * 255), (byte)(.529f * 255), 255, 0);
+        private static Color cockpit1 = new Color((byte)(.529f * 255), (byte)255, (byte)255, (byte)0);
+        private static Color cockpit2 = new Color((byte)255, (byte)255, (byte)(.373f * 255), (byte)0);
+        private static Color engines = new Color((byte)(.925f * 255), (byte)(.529f * 255), (byte)255, (byte)0);
 
         private Texture2D texture;
         private int skinNumber;
