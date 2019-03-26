@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
+//using Microsoft.Xna.Framework.Storage;
 #endregion
 
 namespace Spacewar
@@ -165,7 +165,7 @@ namespace Spacewar
             settings = Settings.Load("settings.xml");
 
             //Initialise the sound
-            Sound.Initialize();
+            //Sound.Initialize();
 
             Window.Title = Settings.WindowTitle;
 
@@ -174,7 +174,7 @@ namespace Spacewar
 
         protected override void BeginRun()
         {
-            Sound.PlayCue(Sounds.TitleMusic);
+            //Sound.PlayCue(Sounds.TitleMusic);
 
             //Kick off the game by loading the logo splash screen
             ChangeState(GameState.LogoSplash);
@@ -242,7 +242,7 @@ namespace Spacewar
                 changeState = currentScreen.Update(time, elapsedTime);
 
                 // Update the AudioEngine - MUST call this every frame!!
-                Sound.Update();
+                //Sound.Update();
 
                 //If either player presses start then reset the game
                 if (XInputHelper.GamePads[PlayerIndex.One].StartPressed ||
@@ -301,7 +301,7 @@ namespace Spacewar
             }
             else if (gameState == GameState.LogoSplash && NextState == GameState.ShipSelection)
             {
-                Sound.PlayCue(Sounds.MenuAdvance);
+                //Sound.PlayCue(Sounds.MenuAdvance);
 
                 //This is really where the game starts so setup the player information
                 players = new Player[2] { new Player(), new Player() };
@@ -321,7 +321,7 @@ namespace Spacewar
             }
             else if ((gameState == GameState.ShipSelection || GameState == GameState.ShipUpgrade) && NextState == GameState.PlayEvolved)
             {
-                Sound.PlayCue(Sounds.MenuAdvance);
+                //Sound.PlayCue(Sounds.MenuAdvance);
 
                 currentScreen.Shutdown();
                 currentScreen = new EvolvedScreen(this);

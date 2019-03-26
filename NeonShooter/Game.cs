@@ -36,8 +36,6 @@ namespace NeonShooter
 		BloomComponent bloom;
 
 		bool paused = false;
-		bool useBloom = false;
-
 
         
         public NeonShooterGame()
@@ -46,10 +44,10 @@ namespace NeonShooter
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 
-			graphics.PreferredBackBufferWidth = 800;
-			graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
 
-			bloom = new BloomComponent(this);
+            bloom = new BloomComponent(this);
 			Components.Add(bloom);
 			bloom.Settings = new BloomSettings(null, 0.25f, 4, 2, 1, 1.5f, 1);
 
@@ -114,7 +112,7 @@ namespace NeonShooter
             if (Input.WasKeyPressed(Keys.P))
                 paused = !paused;
             if (Input.WasKeyPressed(Keys.B))
-                useBloom = !useBloom;
+                bloom.Visible = !bloom.Visible;
 
             if (!paused)
             {
@@ -135,8 +133,6 @@ namespace NeonShooter
         protected override void Draw(GameTime gameTime)
         {
             bloom.BeginDraw();
-            if (!useBloom)
-                base.Draw(gameTime);
 
             GraphicsDevice.Clear(Color.Black);
 
@@ -149,15 +145,14 @@ namespace NeonShooter
             ParticleManager.Draw(spriteBatch);
             spriteBatch.End();
 
-            if (useBloom)
-                base.Draw(gameTime);
+            base.Draw(gameTime);
 
             // Draw the user interface without bloom
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
 
-            spriteBatch.DrawString(Art.Font, "Lives: " + PlayerStatus.Lives, new Vector2(5), Color.White);
-            DrawRightAlignedString("Score: " + PlayerStatus.Score, 5);
-            DrawRightAlignedString("Multiplier: " + PlayerStatus.Multiplier, 35);
+            DrawTitleSafeAlignedString("Lives: " + PlayerStatus.Lives, 5);
+            DrawTitleSafeRightAlignedString("Score: " + PlayerStatus.Score, 5);
+            DrawTitleSafeRightAlignedString("Multiplier: " + PlayerStatus.Multiplier, 35);
             // draw the custom mouse cursor
             spriteBatch.Draw(Art.Pointer, Input.MousePosition, Color.White);
 
@@ -178,6 +173,17 @@ namespace NeonShooter
         {
             var textWidth = Art.Font.MeasureString(text).X;
             spriteBatch.DrawString(Art.Font, text, new Vector2(ScreenSize.X - textWidth - 5, y), Color.White);
+        }
+
+        private void DrawTitleSafeAlignedString(string text, int pos)
+        {
+            spriteBatch.DrawString(Art.Font, text, new Vector2(Viewport.TitleSafeViewPort().X + pos), Color.White);
+        }
+
+        private void DrawTitleSafeRightAlignedString(string text, float y)
+        {
+            var textWidth = Art.Font.MeasureString(text).X;
+            spriteBatch.DrawString(Art.Font, text, new Vector2(ScreenSize.X - textWidth - 5 - Viewport.TitleSafeViewPort().X, Viewport.TitleSafeViewPort().Y + y), Color.White);
         }
 
     }
