@@ -43,8 +43,8 @@ namespace NeonShooter
 			Instance = this;
 			graphics = new GraphicsDeviceManager(this);
 
-            graphics.PreferredBackBufferWidth = 1920;
-            graphics.PreferredBackBufferHeight = 1080;
+            //graphics.PreferredBackBufferWidth = 1920;
+            //graphics.PreferredBackBufferHeight = 1080;
 
             bloom = new BloomComponent(this);
 			Components.Add(bloom);
@@ -57,6 +57,7 @@ namespace NeonShooter
 
         protected override void Initialize()
         {
+            this.Content.RootDirectory = "Content";
 
             ParticleManager = new ParticleManager<ParticleState>(1024 * 20, ParticleState.UpdateParticle);
 
@@ -74,8 +75,6 @@ namespace NeonShooter
         /// </summary>
         protected override void LoadContent()
         {
-			Content.RootDirectory = "Content";
-
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 			Art.Load(Content);
 			Sound.Load(Content);
