@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input.Touch;
-
+using Microsoft.Xna.Framework.Content;
 
 namespace Platformer2D
 {
@@ -63,12 +63,11 @@ namespace Platformer2D
         public PlatformerGame()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
 
 #if WINDOWS_PHONE
             TargetElapsedTime = TimeSpan.FromTicks(333333);
 #endif
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
 
             //graphics.PreferredBackBufferWidth = 800;
             //graphics.PreferredBackBufferHeight = 480;
@@ -83,6 +82,8 @@ namespace Platformer2D
         /// </summary>
         protected override void LoadContent()
         {
+            this.Content.RootDirectory = "Content";
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
