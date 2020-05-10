@@ -1,208 +1,73 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <TargetFrameworks>net452</TargetFrameworks>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SpaceWar</RootNamespace>
     <AssemblyName>SpaceWar</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <NuGetPackageImportStamp>f449c6f1</NuGetPackageImportStamp>
-    <MonoGamePlatform>WindowsGL</MonoGamePlatform>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\WindowsGL\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\WindowsGL\Release\</OutputPath>
-    <DefineConstants>TRACE;WINDOWS</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="..\..\Game\Asteroid.cs">
-      <Link>Game\Asteroid.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\camera.cs">
-      <Link>Game\camera.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Common\GamePadHelper.cs">
-      <Link>Game\Common\GamePadHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Common\GamePads.cs">
-      <Link>Game\Common\GamePads.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Common\Keymap.cs">
-      <Link>Game\Common\Keymap.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Common\XInputHelper.cs">
-      <Link>Game\Common\XInputHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Enums.cs">
-      <Link>Game\Enums.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Evolved\BasicEffectShape.cs">
-      <Link>Game\Evolved\BasicEffectShape.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Evolved\EvolvedBackdrop.cs">
-      <Link>Game\Evolved\EvolvedBackdrop.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Evolved\EvolvedScreen.cs">
-      <Link>Game\Evolved\EvolvedScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Evolved\EvolvedShape.cs">
-      <Link>Game\Evolved\EvolvedShape.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Evolved\EvolvedSun.cs">
-      <Link>Game\Evolved\EvolvedSun.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Font.cs">
-      <Link>Game\Font.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Particle.cs">
-      <Link>Game\Particle.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Particles.cs">
-      <Link>Game\Particles.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Player.cs">
-      <Link>Game\Player.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Projectile.cs">
-      <Link>Game\Projectile.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Projectiles.cs">
-      <Link>Game\Projectiles.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Retro\RetroProjectiles.cs">
-      <Link>Game\Retro\RetroProjectiles.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Retro\RetroScreen.cs">
-      <Link>Game\Retro\RetroScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Retro\RetroShip.cs">
-      <Link>Game\Retro\RetroShip.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Retro\RetroStarfield.cs">
-      <Link>Game\Retro\RetroStarfield.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Retro\RetroSun.cs">
-      <Link>Game\Retro\RetroSun.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\SceneGraph\FullScreenSplash.cs">
-      <Link>Game\SceneGraph\FullScreenSplash.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\SceneGraph\SceneItem.cs">
-      <Link>Game\SceneGraph\SceneItem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\SceneGraph\Screen.cs">
-      <Link>Game\SceneGraph\Screen.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\SceneGraph\SpacewarSceneItem.cs">
-      <Link>Game\SceneGraph\SpacewarSceneItem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Screens\SelectionScreen.cs">
-      <Link>Game\Screens\SelectionScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Screens\ShipUpgradeScreen.cs">
-      <Link>Game\Screens\ShipUpgradeScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Screens\SpacewarScreen.cs">
-      <Link>Game\Screens\SpacewarScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Screens\TitleScreen.cs">
-      <Link>Game\Screens\TitleScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Screens\VictoryScreen.cs">
-      <Link>Game\Screens\VictoryScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Settings.cs">
-      <Link>Game\Settings.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Shapes\Shape.cs">
-      <Link>Game\Shapes\Shape.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Shapes\VectorShape.cs">
-      <Link>Game\Shapes\VectorShape.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Ship.cs">
-      <Link>Game\Ship.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Sound.cs">
-      <Link>Game\Sound.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Sun.cs">
-      <Link>Game\Sun.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Common\KeyboardHelper.cs">
-      <Link>Game\Common\KeyboardHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Common\TouchUI.cs">
-      <Link>Game\Common\TouchUI.cs</Link>
-    </Compile>
-    <Content Include="..\..\settings.xml">
-      <Link>settings.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\Game.cs">
-      <Link>Game.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Program.cs">
-      <Link>Program.cs</Link>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.4.0.459, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\MonoGame.Framework.WindowsGL.3.4.0.459\lib\net40\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\MonoGame.Framework.WindowsGL.3.4.0.459\lib\net40\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
+    <Compile Include="..\..\Game\Asteroid.cs" />
+    <Compile Include="..\..\Game\camera.cs" />
+    <Compile Include="..\..\Game\Common\GamePadHelper.cs" />
+    <Compile Include="..\..\Game\Common\GamePads.cs" />
+    <Compile Include="..\..\Game\Common\Keymap.cs" />
+    <Compile Include="..\..\Game\Common\XInputHelper.cs" />
+    <Compile Include="..\..\Game\Enums.cs" />
+    <Compile Include="..\..\Game\Evolved\BasicEffectShape.cs" />
+    <Compile Include="..\..\Game\Evolved\EvolvedBackdrop.cs" />
+    <Compile Include="..\..\Game\Evolved\EvolvedScreen.cs" />
+    <Compile Include="..\..\Game\Evolved\EvolvedShape.cs" />
+    <Compile Include="..\..\Game\Evolved\EvolvedSun.cs" />
+    <Compile Include="..\..\Game\Font.cs" />
+    <Compile Include="..\..\Game\Particle.cs" />
+    <Compile Include="..\..\Game\Particles.cs" />
+    <Compile Include="..\..\Game\Player.cs" />
+    <Compile Include="..\..\Game\Projectile.cs" />
+    <Compile Include="..\..\Game\Projectiles.cs" />
+    <Compile Include="..\..\Game\Retro\RetroProjectiles.cs" />
+    <Compile Include="..\..\Game\Retro\RetroScreen.cs" />
+    <Compile Include="..\..\Game\Retro\RetroShip.cs" />
+    <Compile Include="..\..\Game\Retro\RetroStarfield.cs" />
+    <Compile Include="..\..\Game\Retro\RetroSun.cs" />
+    <Compile Include="..\..\Game\SceneGraph\FullScreenSplash.cs" />
+    <Compile Include="..\..\Game\SceneGraph\SceneItem.cs" />
+    <Compile Include="..\..\Game\SceneGraph\Screen.cs" />
+    <Compile Include="..\..\Game\SceneGraph\SpacewarSceneItem.cs" />
+    <Compile Include="..\..\Game\Screens\SelectionScreen.cs" />
+    <Compile Include="..\..\Game\Screens\ShipUpgradeScreen.cs" />
+    <Compile Include="..\..\Game\Screens\SpacewarScreen.cs" />
+    <Compile Include="..\..\Game\Screens\TitleScreen.cs" />
+    <Compile Include="..\..\Game\Screens\VictoryScreen.cs" />
+    <Compile Include="..\..\Game\Settings.cs" />
+    <Compile Include="..\..\Game\Shapes\Shape.cs" />
+    <Compile Include="..\..\Game\Shapes\VectorShape.cs" />
+    <Compile Include="..\..\Game\Ship.cs" />
+    <Compile Include="..\..\Game\Sound.cs" />
+    <Compile Include="..\..\Game\Sun.cs" />
+    <Compile Include="..\..\Game\Common\KeyboardHelper.cs" />
+    <Compile Include="..\..\Game\Common\TouchUI.cs" />
+    <Compile Include="..\..\Game.cs" />
+    <Compile Include="..\..\Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <Content Include="..\..\settings.xml" />
   </ItemGroup>
+
   <ItemGroup>
-    <MonoGameContentReference Include="..\..\Content\SpaceWar.mgcb">
-      <Link>Content\SpaceWar.mgcb</Link>
-    </MonoGameContentReference>
+    <MonoGameContentReference Include="..\..\Content\SpaceWar.mgcb" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="packages.config" />
+    <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.9" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.7.1.189" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
