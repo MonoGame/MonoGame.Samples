@@ -42,10 +42,9 @@ namespace NeonShooter
         {
 			Instance = this;
 			graphics = new GraphicsDeviceManager(this);
-			Content.RootDirectory = "Content";
 
-            graphics.PreferredBackBufferWidth = 1920;
-            graphics.PreferredBackBufferHeight = 1080;
+            //graphics.PreferredBackBufferWidth = 1920;
+            //graphics.PreferredBackBufferHeight = 1080;
 
             bloom = new BloomComponent(this);
 			Components.Add(bloom);
@@ -58,6 +57,7 @@ namespace NeonShooter
 
         protected override void Initialize()
         {
+            this.Content.RootDirectory = "Content";
 
             ParticleManager = new ParticleManager<ParticleState>(1024 * 20, ParticleState.UpdateParticle);
 
@@ -177,13 +177,13 @@ namespace NeonShooter
 
         private void DrawTitleSafeAlignedString(string text, int pos)
         {
-            spriteBatch.DrawString(Art.Font, text, new Vector2(Viewport.TitleSafeViewPort().X + pos), Color.White);
+            spriteBatch.DrawString(Art.Font, text, new Vector2(Viewport.TitleSafeArea.X + pos), Color.White);
         }
 
         private void DrawTitleSafeRightAlignedString(string text, float y)
         {
             var textWidth = Art.Font.MeasureString(text).X;
-            spriteBatch.DrawString(Art.Font, text, new Vector2(ScreenSize.X - textWidth - 5 - Viewport.TitleSafeViewPort().X, Viewport.TitleSafeViewPort().Y + y), Color.White);
+            spriteBatch.DrawString(Art.Font, text, new Vector2(ScreenSize.X - textWidth - 5 - Viewport.TitleSafeArea.X, Viewport.TitleSafeArea.Y + y), Color.White);
         }
 
     }

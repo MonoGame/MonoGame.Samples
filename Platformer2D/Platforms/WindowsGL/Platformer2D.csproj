@@ -1,120 +1,45 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <TargetFrameworks>net452</TargetFrameworks>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CAF988BD-5440-405D-95D5-BCAB25FC5240}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Platformer2D</RootNamespace>
     <AssemblyName>Platformer2D</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <NuGetPackageImportStamp>8857d1c3</NuGetPackageImportStamp>
-    <MonoGamePlatform>WindowsGL</MonoGamePlatform>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\WindowsGL\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\WindowsGL\Release\</OutputPath>
-    <DefineConstants>TRACE;WINDOWS</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="..\..\Game\Accelerometer.cs">
-      <Link>Game\Accelerometer.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Animation.cs">
-      <Link>Game\Animation.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\AnimationPlayer.cs">
-      <Link>Game\AnimationPlayer.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Circle.cs">
-      <Link>Game\Circle.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Enemy.cs">
-      <Link>Game\Enemy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Gem.cs">
-      <Link>Game\Gem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Level.cs">
-      <Link>Game\Level.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Player.cs">
-      <Link>Game\Player.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\RectangleExtensions.cs">
-      <Link>Game\RectangleExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\Tile.cs">
-      <Link>Game\Tile.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game\TouchCollectionExtensions.cs">
-      <Link>Game\TouchCollectionExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Game.cs">
-      <Link>Game.cs</Link>
-    </Compile>
+    <Compile Include="..\..\Game\Accelerometer.cs" />
+    <Compile Include="..\..\Game\Animation.cs" />
+    <Compile Include="..\..\Game\AnimationPlayer.cs" />
+    <Compile Include="..\..\Game\Circle.cs" />
+    <Compile Include="..\..\Game\Enemy.cs" />
+    <Compile Include="..\..\Game\Gem.cs" />
+    <Compile Include="..\..\Game\Level.cs" />
+    <Compile Include="..\..\Game\Player.cs" />
+    <Compile Include="..\..\Game\RectangleExtensions.cs" />
+    <Compile Include="..\..\Game\Tile.cs" />
+    <Compile Include="..\..\Game\TouchCollectionExtensions.cs" />
+    <Compile Include="..\..\Game.cs" />
+    <Compile Include="..\..\Game\VirtualGamePad.cs" />
+    <Compile Include="..\..\Program.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="..\..\Game\VirtualGamePad.cs">
-      <Link>Game\VirtualGamePad.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Program.cs">
-      <Link>Program.cs</Link>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <MonoGameContentReference Include="..\..\Content\Platformer2D.mgcb" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.4.0.459, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\MonoGame.Framework.WindowsGL.3.4.0.459\lib\net40\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\MonoGame.Framework.WindowsGL.3.4.0.459\lib\net40\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
+
   <ItemGroup>
     <Content Include="Icon.ico" />
   </ItemGroup>
+
   <ItemGroup>
-    <MonoGameContentReference Include="..\..\Content\Platformer2D.mgcb">
-      <Link>Content\Platformer2D.mgcb</Link>
-    </MonoGameContentReference>
+    <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.9" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.7.1.189" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

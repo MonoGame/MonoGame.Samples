@@ -133,8 +133,6 @@ namespace Spacewar
 
         public SpacewarGame()
         {
-            Content.RootDirectory = "Content";
-
 #if XBOX360
             // we might as well use the xbox in all its glory
             preferredWindowWidth = FixedDrawingWidth;
@@ -148,7 +146,7 @@ namespace Spacewar
             this.graphics = new Microsoft.Xna.Framework.GraphicsDeviceManager(this);
             this.graphics.PreferredBackBufferWidth = preferredWindowWidth;
             this.graphics.PreferredBackBufferHeight = preferredWindowHeight;
-            this.graphics.IsFullScreen = true;
+            this.graphics.IsFullScreen = false;
 
             // Game should run as fast as possible.
             IsFixedTimeStep = false;
@@ -353,6 +351,7 @@ namespace Spacewar
         protected override void LoadContent()
         {
             base.LoadContent();
+            Content.RootDirectory = "Content";
 
             contentManager = new ContentManager(Services);
 
