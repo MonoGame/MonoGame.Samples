@@ -55,7 +55,8 @@ namespace Platformer2D
         /// </summary>
         public int FrameCount
         {
-            get { return Texture.Width / FrameWidth; }
+            // Assume square frames.
+            get { return Texture.Width / FrameHeight; }
         }
 
         /// <summary>

@@ -21,7 +21,8 @@
     <PackageCertificateKeyFile>Platformer2D_TemporaryKey.pfx</PackageCertificateKeyFile>
     <MonoGamePlatform>WindowsStoreApp</MonoGamePlatform>
     <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
-    <PackageCertificateThumbprint>9DE51961F17B4FEC9452BAA762DCFCA908189C2D</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>CB0569CADFCAC101DFEC33F714B0232A321C79AB</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>

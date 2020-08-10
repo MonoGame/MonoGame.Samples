@@ -6,15 +6,12 @@
 //-----------------------------------------------------------------------------
 #endregion
 
-using System;
-using System.IO;
+using BloomPostprocess;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Input.Touch;
-using BloomPostprocess;
-
+using System;
 
 namespace NeonShooter
 {
@@ -43,16 +40,13 @@ namespace NeonShooter
 			Instance = this;
 			graphics = new GraphicsDeviceManager(this);
 
-            //graphics.PreferredBackBufferWidth = 1920;
-            //graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
 
             bloom = new BloomComponent(this);
 			Components.Add(bloom);
 			bloom.Settings = new BloomSettings(null, 0.25f, 4, 2, 1, 1.5f, 1);
-
-#if WINDOWS_PHONE
-            TargetElapsedTime = TimeSpan.FromTicks(333333);
-#endif
+            bloom.Visible = false;
         }
 
         protected override void Initialize()
@@ -64,7 +58,6 @@ namespace NeonShooter
             const int maxGridPoints = 1600;
             Vector2 gridSpacing = new Vector2((float)Math.Sqrt(Viewport.Width * Viewport.Height / maxGridPoints));
             Grid = new Grid(Viewport.Bounds, gridSpacing);
-
 
             base.Initialize();
         }
@@ -123,7 +116,6 @@ namespace NeonShooter
                 Grid.Update();
             }
             base.Update(gameTime);
-
         }
 
         /// <summary>
@@ -185,6 +177,5 @@ namespace NeonShooter
             var textWidth = Art.Font.MeasureString(text).X;
             spriteBatch.DrawString(Art.Font, text, new Vector2(ScreenSize.X - textWidth - 5 - Viewport.TitleSafeArea.X, Viewport.TitleSafeArea.Y + y), Color.White);
         }
-
     }
 }

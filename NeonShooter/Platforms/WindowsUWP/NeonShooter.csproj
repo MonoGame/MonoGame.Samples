@@ -21,7 +21,8 @@
     <PackageCertificateKeyFile>NeonShooter_TemporaryKey.pfx</PackageCertificateKeyFile>
     <MonoGamePlatform>WindowsStoreApp</MonoGamePlatform>
     <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
-    <PackageCertificateThumbprint>E9D70AAEB74566B202E8D3AC18BA12476A815382</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>1CB31F4D4B5DBA2C55D70095CF396FB68E995179</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>

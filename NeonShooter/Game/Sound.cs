@@ -31,7 +31,7 @@ namespace NeonShooter
 
 		public static void Load(ContentManager content)
 		{
-			//Music = content.Load<Song>("Audio/Music");
+			Music = content.Load<Song>("Audio/Music");
 
 			// These linq expressions are just a fancy way loading all sounds of each category into an array.
 			explosions = Enumerable.Range(1, 8).Select(x => content.Load<SoundEffect>("Audio/explosion-0" + x)).ToArray();
