@@ -62,7 +62,6 @@ namespace NeonShooter
 		}
 	}
 #else
-	#if !WINDOWS_PHONE
 		/// <summary>
 		/// The main class.
 		/// </summary>
@@ -73,7 +72,7 @@ namespace NeonShooter
 			/// </summary>
 			static void Main()
 			{
-	#if WINDOWS || LINUX || PSM
+	#if WINDOWS || LINUX || PSM || NETCOREAPP
 				using (var game = new NeonShooterGame())
 					game.Run();
 
@@ -83,7 +82,6 @@ namespace NeonShooter
 	#endif
 			}
 		}
-	#endif
 #endif
 
 }
