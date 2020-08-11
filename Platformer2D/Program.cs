@@ -49,20 +49,26 @@ namespace Platformer2D
 	{
 		private PlatformerGame game;
 
-		public override void FinishedLaunching (UIApplication app)
-		{
-			// Fun begins..
-			game = new PlatformerGame();
-			game.Run();
-		}
+        internal static void RunGame()
+        {
+            game = new PlatformerGame();
+            game.Run();
+        }
 
-		static void Main (string [] args)
-		{
-			UIApplication.Main (args,null,"AppDelegate");
-		}
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        static void Main(string[] args)
+        {
+            UIApplication.Main(args, null, "AppDelegate");
+        }
+
+        public override void FinishedLaunching(UIApplication app)
+        {
+            RunGame();
+        }
 	}
 #else
-	#if !WINDOWS_PHONE
 		/// <summary>
 		/// The main class.
 		/// </summary>
@@ -73,7 +79,7 @@ namespace Platformer2D
 			/// </summary>
 			static void Main()
 			{
-	#if WINDOWS || LINUX || PSM
+	#if WINDOWS || LINUX || PSM || NETCOREAPP
 				using (var game = new PlatformerGame())
 					game.Run();
 
@@ -83,7 +89,5 @@ namespace Platformer2D
 	#endif
 			}
 		}
-	#endif
 #endif
-
 }

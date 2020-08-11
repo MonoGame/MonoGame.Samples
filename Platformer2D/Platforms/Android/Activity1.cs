@@ -2,26 +2,33 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
+using Microsoft.Xna.Framework;
 
 namespace Platformer2D
 {
-    [Activity(Label = "Platformer2D"
-        , MainLauncher = true
-        , Icon = "@drawable/icon"
-        , Theme = "@style/Theme.Splash"
-        , AlwaysRetainTaskState = true
-        , LaunchMode = Android.Content.PM.LaunchMode.SingleInstance
-        , ScreenOrientation = ScreenOrientation.SensorLandscape
-        , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
-    public class Activity1 : Microsoft.Xna.Framework.AndroidGameActivity
+    [Activity(
+        Label = "@string/app_name",
+        MainLauncher = true,
+        Icon = "@drawable/icon",
+        AlwaysRetainTaskState = true,
+        LaunchMode = LaunchMode.SingleInstance,
+        ScreenOrientation = ScreenOrientation.FullUser,
+        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize
+    )]
+    public class Activity1 : AndroidGameActivity
     {
+        private Game1 _game;
+        private View _view;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            var g = new PlatformerGame();
-            SetContentView((View)g.Services.GetService(typeof(View)));
-            g.Run();
+
+            _game = new Game1();
+            _view = _game.Services.GetService(typeof(View)) as View;
+
+            SetContentView(_view);
+            _game.Run();
         }
     }
 }
-
