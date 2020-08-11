@@ -1,18 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net452</TargetFrameworks>
-    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
-    <ProductVersion>8.0.30703</ProductVersion>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DX_GameName1</RootNamespace>
-    <AssemblyName>DX-GameName1</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
-
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Game\Accelerometer.cs" />
     <Compile Include="..\..\Game\Animation.cs" />
@@ -28,18 +32,8 @@
     <Compile Include="..\..\Game.cs" />
     <Compile Include="..\..\Game\VirtualGamePad.cs" />
     <Compile Include="..\..\Program.cs" />
-  </ItemGroup>
-
+  </ItemGroup>  
   <ItemGroup>
     <MonoGameContentReference Include="..\..\Content\Platformer2D.mgcb" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Icon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.9" />
-    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.7.1.189" />
   </ItemGroup>
 </Project>
