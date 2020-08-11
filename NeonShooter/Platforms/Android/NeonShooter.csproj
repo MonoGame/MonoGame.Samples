@@ -5,29 +5,31 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{75787324-20FC-4AA7-8E4E-00AE508F4069}</ProjectGuid>
+    <ProjectGuid>{28CBB4E7-FF50-48CF-89CA-0392E5CFFE12}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sample</RootNamespace>
-    <AssemblyName>Sample</AssemblyName>
+    <RootNamespace>NeonShooter</RootNamespace>
+    <AssemblyName>NeonShooter</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
-    <AndroidStoreUncompressedFileExtensions />
-    <MandroidI18n />
-    <TargetFrameworkVersion>v3.1</TargetFrameworkVersion>
+    <AndroidStoreUncompressedFileExtensions>.m4a</AndroidStoreUncompressedFileExtensions>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <JavaMaximumHeapSize />
-    <JavaOptions />
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Android\Debug\</OutputPath>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
     <DefineConstants>DEBUG;TRACE;ANDROID</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,7 +39,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
     <DefineConstants>TRACE;ANDROID</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,53 +47,53 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Android" />
-    <Reference Include="mscorlib" />
-    <Reference Include="OpenTK" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="MonoGame.Framework">
-      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\Android\MonoGame.Framework.dll</HintPath>
-    </Reference>
+    <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Game.cs">
-      <Link>Game.cs</Link>
-    </Compile>  
     <Compile Include="Activity1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+    <ItemGroup>
+    <Compile Include="..\..\Game.cs" />
+    <Compile Include="..\..\Game\Art.cs" />
+    <Compile Include="..\..\Game\BlackHole.cs" />
+    <Compile Include="..\..\Game\BloomComponent.cs" />
+    <Compile Include="..\..\Game\BloomSettings.cs" />
+    <Compile Include="..\..\Game\Bullet.cs" />
+    <Compile Include="..\..\Game\ColorUtil.cs" />
+    <Compile Include="..\..\Game\Enemy.cs" />
+    <Compile Include="..\..\Game\EnemySpawner.cs" />
+    <Compile Include="..\..\Game\Entity.cs" />
+    <Compile Include="..\..\Game\EntityManager.cs" />
+    <Compile Include="..\..\Game\Extensions.cs" />
+    <Compile Include="..\..\Game\Grid.cs" />
+    <Compile Include="..\..\Game\Input.cs" />
+    <Compile Include="..\..\Game\MathUtil.cs" />
+    <Compile Include="..\..\Game\ParticleManager.cs" />
+    <Compile Include="..\..\Game\ParticleState.cs" />
+    <Compile Include="..\..\Game\PlayerShip.cs" />
+    <Compile Include="..\..\Game\PlayerStatus.cs" />
+    <Compile Include="..\..\Game\Sound.cs" />
+    <Compile Include="..\..\Program.cs" />
+  </ItemGroup>  
   <ItemGroup>
-    <None Include="Resources\AboutResources.txt" />
-    <None Include="Assets\AboutAssets.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\Icon.png" />
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Icon.png" />
+    <None Include="..\..\Content\NeonShooter.mgcb" />
+    <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Layout\" />
+    <MonoGameContentReference Include="..\..\Content\NeonShooter.mgcb" Visible="false" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Splash.png" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.0.1641" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Values\Styles.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\AndroidManifest.xml" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-     Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
