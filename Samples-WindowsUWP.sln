@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeonShooter", "NeonShooter\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platforms\WindowsUWP\Platformer2D.csproj", "{44085C95-3581-4C1F-84EE-F8786A745BE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spacewar", "Spacewar\Platforms\WindowsUWP\Spacewar.csproj", "{97A42394-F0A9-43D0-AA2B-67EB673058AE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -54,23 +52,6 @@ Global
 		{44085C95-3581-4C1F-84EE-F8786A745BE7}.Release|x64.Deploy.0 = Release|x64
 		{44085C95-3581-4C1F-84EE-F8786A745BE7}.Release|x86.ActiveCfg = Release|x86
 		{44085C95-3581-4C1F-84EE-F8786A745BE7}.Release|x86.Build.0 = Release|x86
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Debug|ARM.ActiveCfg = Debug|ARM
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Debug|ARM.Build.0 = Debug|ARM
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Debug|ARM.Deploy.0 = Debug|ARM
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Debug|x64.ActiveCfg = Debug|x64
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Debug|x64.Build.0 = Debug|x64
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Debug|x64.Deploy.0 = Debug|x64
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Debug|x86.ActiveCfg = Debug|x86
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Debug|x86.Build.0 = Debug|x86
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Debug|x86.Deploy.0 = Debug|x86
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Release|ARM.ActiveCfg = Release|ARM
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Release|ARM.Build.0 = Release|ARM
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Release|ARM.Deploy.0 = Release|ARM
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Release|x64.ActiveCfg = Release|x64
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Release|x64.Build.0 = Release|x64
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Release|x64.Deploy.0 = Release|x64
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Release|x86.ActiveCfg = Release|x86
-		{97A42394-F0A9-43D0-AA2B-67EB673058AE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
