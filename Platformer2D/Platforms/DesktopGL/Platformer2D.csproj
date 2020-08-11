@@ -1,18 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net452</TargetFrameworks>
-    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
-    <ProductVersion>8.0.30703</ProductVersion>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Platformer2D</RootNamespace>
-    <AssemblyName>Platformer2D</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <UseWindowsForms>true</UseWindowsForms>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
   </PropertyGroup>
-
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Icon.ico" />
+    <None Remove="Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.ico" />
+    <EmbeddedResource Include="Icon.bmp" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Game\Accelerometer.cs" />
     <Compile Include="..\..\Game\Animation.cs" />
@@ -28,18 +32,15 @@
     <Compile Include="..\..\Game.cs" />
     <Compile Include="..\..\Game\VirtualGamePad.cs" />
     <Compile Include="..\..\Program.cs" />
-  </ItemGroup>
-
+  </ItemGroup>  
   <ItemGroup>
     <MonoGameContentReference Include="..\..\Content\Platformer2D.mgcb" />
   </ItemGroup>
-
   <ItemGroup>
-    <Content Include="Icon.ico" />
+    <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.9" />
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.7.1.189" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
   </ItemGroup>
 </Project>
