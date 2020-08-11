@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platforms\iOS\Platformer2D.csproj", "{DEC435F4-9E84-490B-9890-72E5F514B8D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer2D", "Platformer2D\Platforms\iOS\Platformer2D.csproj", "{768BECB0-52BD-4D43-A3EB-6A47822DD59A}"
 EndProject
 Project("{EBE525C1-17D8-49E1-B887-812BCD9F354A}") = "NeonShooter", "NeonShooter\Platforms\iOS\NeonShooter.csproj", "{EBE525C1-17D8-49E1-B887-812BCD9F354A}"
 EndProject
