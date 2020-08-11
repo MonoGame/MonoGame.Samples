@@ -49,17 +49,24 @@ namespace NeonShooter
 	{
 		private NeonShooterGame game;
 
-		public override void FinishedLaunching (UIApplication app)
-		{
-			// Fun begins..
-			game = new NeonShooterGame();
-			game.Run();
-		}
+        internal static void RunGame()
+        {
+            game = new NeonShooterGame();
+            game.Run();
+        }
 
-		static void Main (string [] args)
-		{
-			UIApplication.Main (args,null,"AppDelegate");
-		}
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        static void Main(string[] args)
+        {
+            UIApplication.Main(args, null, "AppDelegate");
+        }
+
+        public override void FinishedLaunching(UIApplication app)
+        {
+            RunGame();
+        }
 	}
 #else
 		/// <summary>
