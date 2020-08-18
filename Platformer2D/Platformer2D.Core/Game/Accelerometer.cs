@@ -8,9 +8,8 @@
 #endregion
 
 #region Using Statements
-using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+using System;
 #endregion
 
 namespace Platformer2D
@@ -21,18 +20,6 @@ namespace Platformer2D
     /// </summary>
     public static class Accelerometer
     {
-#if WINDOWS_PHONE
-        // the accelerometer sensor on the device
-        private static Microsoft.Devices.Sensors.Accelerometer accelerometer = new Microsoft.Devices.Sensors.Accelerometer();
-        
-        // we need an object for locking because the ReadingChanged event is fired
-        // on a different thread than our game
-        private static object threadLock = new object();
-
-        // we use this to keep the last known value from the accelerometer callback
-        private static Vector3 nextValue = new Vector3();
-#endif
-
         // we want to prevent the Accelerometer from being initialized twice.
         private static bool isInitialized = false;
 
@@ -50,43 +37,9 @@ namespace Platformer2D
                 throw new InvalidOperationException("Initialize can only be called once");
             }
 
-#if WINDOWS_PHONE
-            // try to start the sensor only on devices, catching the exception if it fails            
-            if (Microsoft.Devices.Environment.DeviceType == Microsoft.Devices.DeviceType.Device)            
-            {
-                try
-                {
-                    accelerometer.ReadingChanged += new EventHandler<Microsoft.Devices.Sensors.AccelerometerReadingEventArgs>(sensor_ReadingChanged);
-                    accelerometer.Start();
-                    isActive = true;
-                }
-                catch (Microsoft.Devices.Sensors.AccelerometerFailedException)
-                {
-                    isActive = false;
-                }
-            }
-            else
-            {
-                // we always return isActive on emulator because we use the arrow
-                // keys for simulation which is always available.
-                isActive = true;
-            }
-#endif
-
             // remember that we are initialized
             isInitialized = true;
         }
-        
-#if WINDOWS_PHONE
-        private static void sensor_ReadingChanged(object sender, Microsoft.Devices.Sensors.AccelerometerReadingEventArgs e)
-        {
-            // store the accelerometer value in our variable to be used on the next Update
-            lock (threadLock)
-            {
-                nextValue = new Vector3((float)e.X, (float)e.Y, (float)e.Z);
-            }
-        }
-#endif
 
         /// <summary>
         /// Gets the current state of the accelerometer.
@@ -102,40 +55,6 @@ namespace Platformer2D
 
             // create a new value for our state
             Vector3 stateValue = new Vector3();
-
-#if WINDOWS_PHONE
-            // if the accelerometer is active
-            if (isActive)
-            {
-                if (Microsoft.Devices.Environment.DeviceType == Microsoft.Devices.DeviceType.Device)
-                {
-                    // if we're on device, we'll just grab our latest reading from the accelerometer
-                    lock (threadLock)
-                    {
-                        stateValue = nextValue;
-                    }
-                }
-                else
-                {
-                    // if we're in the emulator, we'll generate a fake acceleration value using the arrow keys
-                    // press the pause/break key to toggle keyboard input for the emulator
-                    KeyboardState keyboardState = Keyboard.GetState();
-
-                    stateValue.Z = -1;
-
-                    if (keyboardState.IsKeyDown(Keys.Left))
-                        stateValue.X--;
-                    if (keyboardState.IsKeyDown(Keys.Right))
-                        stateValue.X++;
-                    if (keyboardState.IsKeyDown(Keys.Up))
-                        stateValue.Y++;
-                    if (keyboardState.IsKeyDown(Keys.Down))
-                        stateValue.Y--;
-
-                    stateValue.Normalize();
-                }
-            }
-#endif
 
             return new AccelerometerState(stateValue, isActive);
         }

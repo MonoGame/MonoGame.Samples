@@ -63,7 +63,7 @@ namespace Platformer2D
         }
         Vector2 velocity;
 
-        // Constants for controling horizontal movement
+        // Constants for controlling horizontal movement
         private const float MoveAcceleration = 13000.0f;
         private const float MaxMoveSpeed = 1750.0f;
         private const float GroundDragFactor = 0.48f;

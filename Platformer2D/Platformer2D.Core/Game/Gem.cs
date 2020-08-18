@@ -100,7 +100,7 @@ namespace Platformer2D
         /// </summary>
         /// <param name="collectedBy">
         /// The player who collected this gem. Although currently not used, this parameter would be
-        /// useful for creating special powerup gems. For example, a gem could make the player invincible.
+        /// useful for creating special power-up gems. For example, a gem could make the player invincible.
         /// </param>
         public void OnCollected(Player collectedBy)
         {
