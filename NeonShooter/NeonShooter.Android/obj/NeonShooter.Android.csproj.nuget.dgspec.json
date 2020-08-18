@@ -1,0 +1,128 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Android\\NeonShooter.Android.csproj": {}
+  },
+  "projects": {
+    "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Android\\NeonShooter.Android.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Android\\NeonShooter.Android.csproj",
+        "projectName": "NeonShooter.Android",
+        "projectPath": "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Android\\NeonShooter.Android.csproj",
+        "packagesPath": "E:\\NuGetCache",
+        "outputPath": "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Android\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "E:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\SimonDarksideJ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "monoandroid90"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://teamcity.monogame.net/guestAuth/app/nuget/feed/_Root/default/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "monoandroid90": {
+            "projectReferences": {
+              "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Core\\NeonShooter.Core.csproj": {
+                "projectPath": "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Core\\NeonShooter.Core.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "monoandroid90": {
+          "dependencies": {
+            "MonoGame.Content.Builder.Task": {
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
+            },
+            "MonoGame.Framework.Android": {
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
+            }
+          }
+        }
+      }
+    },
+    "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Core\\NeonShooter.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Core\\NeonShooter.Core.csproj",
+        "projectName": "NeonShooter.Core",
+        "projectPath": "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Core\\NeonShooter.Core.csproj",
+        "packagesPath": "E:\\NuGetCache",
+        "outputPath": "E:\\Development\\Sandbox\\MonoGame\\NeonShooter\\NeonShooter.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\SimonDarksideJ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://teamcity.monogame.net/guestAuth/app/nuget/feed/_Root/default/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "MonoGame.Content.Builder.Task": {
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
+            },
+            "MonoGame.Framework.DesktopGL": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

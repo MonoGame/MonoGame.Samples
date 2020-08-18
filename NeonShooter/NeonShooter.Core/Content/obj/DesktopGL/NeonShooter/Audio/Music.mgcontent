@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>E:/Development/Sandbox/MonoGame/NeonShooter/NeonShooter.Core/Content/Audio/Music.mp3</SourceFile>
+  <SourceTime>2020-08-07T22:29:45.6775059+01:00</SourceTime>
+  <DestFile>E:/Development/Sandbox/MonoGame/NeonShooter/NeonShooter.Core/Content/bin/DesktopGL/NeonShooter/Audio/Music.xnb</DestFile>
+  <DestTime>2020-08-18T19:22:05.0439744+01:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2020-08-10T16:17:54+01:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2020-08-10T16:17:54+01:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>E:/Development/Sandbox/MonoGame/NeonShooter/NeonShooter.Core/Content/bin/DesktopGL/NeonShooter/Audio/Music.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>

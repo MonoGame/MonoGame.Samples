@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>E:/Development/Sandbox/MonoGame/NeonShooter/NeonShooter.Core/Content/Audio/explosion-07.wav</SourceFile>
+  <SourceTime>2020-08-07T22:29:45.7083936+01:00</SourceTime>
+  <DestFile>E:/Development/Sandbox/MonoGame/NeonShooter/NeonShooter.Core/Content/bin/DesktopGL/NeonShooter/Audio/explosion-07.xnb</DestFile>
+  <DestTime>2020-08-18T19:22:00.1412481+01:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2020-08-10T16:17:54+01:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2020-08-10T16:17:54+01:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
