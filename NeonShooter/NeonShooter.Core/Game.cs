@@ -1,11 +1,3 @@
-#region File Description
-//-----------------------------------------------------------------------------
-// <SampleGameName>.cs
-//
-// Description and license
-//-----------------------------------------------------------------------------
-#endregion
-
 using BloomPostprocess;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
