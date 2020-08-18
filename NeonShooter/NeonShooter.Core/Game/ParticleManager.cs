@@ -3,17 +3,13 @@
 // Find the full tutorial at: http://gamedev.tutsplus.com/series/vector-shooter-xna/
 //----------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Threading.Tasks;
+using System;
 
 namespace NeonShooter
 {
-	public class ParticleManager<T>
+    public class ParticleManager<T>
 	{
 		// This delegate will be called for each particle.
 		private Action<Particle> updateParticle;

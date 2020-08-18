@@ -3,16 +3,14 @@
 // Find the full tutorial at: http://gamedev.tutsplus.com/series/vector-shooter-xna/
 //----------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NeonShooter
 {
-	static class EntityManager
+    static class EntityManager
 	{
 		static List<Entity> entities = new List<Entity>();
 		static List<Enemy> enemies = new List<Enemy>();

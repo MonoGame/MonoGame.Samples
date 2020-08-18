@@ -3,15 +3,12 @@
 // Find the full tutorial at: http://gamedev.tutsplus.com/series/vector-shooter-xna/
 //----------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace NeonShooter
 {
-	static class EnemySpawner
+    static class EnemySpawner
 	{
 		static Random rand = new Random();
 		static float inverseSpawnChance = 90;
