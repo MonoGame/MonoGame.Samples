@@ -1,6 +1,0 @@
-E:\Development\Sandbox\MonoGame\NeonShooter\NeonShooter.Android\obj\Debug\90\MonoAndroid,Version=v9.0.AssemblyAttributes.cs
-E:\Development\Sandbox\MonoGame\NeonShooter\NeonShooter.Android\obj\Debug\90\build.props
-E:\Development\Sandbox\MonoGame\NeonShooter\NeonShooter.Android\obj\Debug\90\adb.props
-E:\Development\Sandbox\MonoGame\NeonShooter\NeonShooter.Android\obj\Debug\90\NeonShooter.Android.csprojAssemblyReference.cache
-E:\Development\Sandbox\MonoGame\NeonShooter\NeonShooter.Android\obj\Debug\90\stamp\_BuildLibraryImportsCache.stamp
-E:\Development\Sandbox\MonoGame\NeonShooter\NeonShooter.Android\obj\Debug\90\res.flag
