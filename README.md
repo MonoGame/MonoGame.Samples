@@ -1,34 +1,47 @@
-MonoGame 3.7 Samples
-=======
+# MonoGame 3.8 Samples
+
+<p align="center">
+<br/>
+  <img src="https://raw.githubusercontent.com/Mono-Game/MonoGame.Logo/master/FullColorOnLight/HorizontalLogo_128px.png"/>
+<br/>
+<br/>
+</p>
 
 A number of simple MonoGame samples for all the supported platforms:
 
-1. Platformer 2D (Supported on all platforms)
 
-2. SpaceWar (experimental - Windows only)
+[Platformer 2D Sample](Platformer2D/README.md) | [NeonShooter](NeonShooter/README.md)|
+|-|-|
+Supported on all platforms | Supported on all platforms |
+[![Platformer 2D Sample](Images/Platformer2D-Sample.png)](Platformer2D/README.md) | [![NeonShooter Sample](Images/NeonShooter-Sample.png)](NeonShooter/README.md) |
+The [Platformer 2D](Platformer2D/README.md) sample is a basic 2D platformer pulled from the original XNA samples and upgraded for MonoGame.| [Neon Shooter](NeonShooter/README.md) Is a graphically intensive twin-stick shooter with particle effects and save data from Michael Hoffman |
+|||
 
-3. NeonShooter (Currently being updated for all platforms - should work)
+| [Coming Soon]() | [Coming Soon]() |
+|-|-|
+| Platforms | Platforms |
+| [![MonoGame Sample](Images/MonoGame-Sample.png)]() | [![MonoGame Sample](Images/MonoGame-Sample.png)]() |
+| More samples coming soon | More samples coming soon |
+|||
 
 ## Building the samples
 
-A number of the samples use the pre-release NuGet packages in order to match the latest dev releases on the main MonoGame branch.
+These samples can either be opened and built in Visual Studio for Mac or Windows, alternatively they can be built with the .NET Core tool chain (with the exception of the Windows UWP sample, which is Windows 10 only).
 
->if you wish you can remove the NuGet packages and reference the MonoGame source directly
+For more details on building projects with the .NET Core tools, please see [this guide on the MonoGame documentation site](https://docs.monogame.net/articles/packaging_games.html).
 
-When you are building the samples for the first time you will need to enable "NuGet Package Restore" which will download the latest NuGet release automatically.
+## Supported platforms
 
-To activate "NuGet package restore" just right click the solution and select "Enable NuGet package restore" or right-click the project and select "Manage NuGet Packages".
+The MonoGame samples demonstrate all the public platforms available for use.
 
-Next time you build the project it should build successfully.
+> Platforms such as XBox, Playstation, Switch and Stadia are private platforms which you need developer accounts with their corresponding vendors to access.
 
-## Known issues
+* Windows (Desktop GL, Windows DX, UWP)
+* Mac (Desktop GL)
+* Linux (Desktop GL)
+* Android (Android)
+* iOS (iOS)
 
-Here is a list of the current issues in the develop branch of the samples
+> Note, to build a project for iOS or Mac, you will need a MAC.  They will build on Windows but cannot be published unless built on a Mac.
 
-* SpaceWar uses an XACT (Xbox Audio) definition which the new content doesn't support.  This will be updated to use the source audio files and remove the XACT references from the project.
-
-* SpaceWar uses some advanced shaders which need updating to a later version of DX and removal of some of the native shader code
-
-* NeonShooter has been test across platforms but is running slow, this needs to be updated to be more performant in MonoGame
-
-* Neon Shooter needs the rest of the platforms added to it's project.  No known issues, just time to do it.
+For more details on the platforms supported by MonoGame, please see the [Platforms Guide](https://docs.monogame.net/articles/platforms/0_platforms.html) on the MonoGame Documentation site
