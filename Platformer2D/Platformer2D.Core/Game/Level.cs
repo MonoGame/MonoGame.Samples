@@ -463,7 +463,7 @@ namespace Platformer2D
         /// <param name="collectedBy">The player who collected this gem.</param>
         private void OnGemCollected(Gem gem, Player collectedBy)
         {
-            score += Gem.PointValue;
+            score += gem.PointValue;
 
             gem.OnCollected(collectedBy);
         }
