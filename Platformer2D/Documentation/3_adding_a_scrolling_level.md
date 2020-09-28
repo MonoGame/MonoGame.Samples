@@ -116,7 +116,7 @@ Now, let's go over what just changed. Initially, the first sprite batch draws al
 
 You'll recognize the next chunk of code because it is unchanged from the original implementation. It draws the level elements: tiles, gems, enemies, and the player character. The last batch does nothing in the base implementation of Platformer. It is left in for drawing foreground textures. For example, if a foreground texture (such as trees or bushes) was drawn, it would obscure the player character when he "walked" behind the texture.
 
-Because the scrolling extension draws tiles off-screen, you should be aware that this could impact the frame rate. To avoid any slowdown you'll need to implement a simple culling feature that limits the amount of tiles drawn to only those on the screen at the time. This reduces the drawing load, speeding up the game. 
+Because the scrolling extension draws tiles off-screen, you should be aware that this could impact the frame rate. To avoid any slowdown you'll need to implement a simple culling feature that limits the amount of tiles drawn to only those on the screen at the time. This reduces the drawing load, speeding up the game.
 
 At the beginning of the DrawTiles method, add the following code:
 
