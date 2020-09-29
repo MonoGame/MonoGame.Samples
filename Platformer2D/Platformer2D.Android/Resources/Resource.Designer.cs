@@ -63,7 +63,10 @@ namespace Platformer2D.Android
 		{
 			
 			// aapt resource value: 0x7F020000
-			public const int app_name = 2130837504;
+			public const int ApplicationName = 2130837504;
+			
+			// aapt resource value: 0x7F020001
+			public const int Hello = 2130837505;
 			
 			static String()
 			{
