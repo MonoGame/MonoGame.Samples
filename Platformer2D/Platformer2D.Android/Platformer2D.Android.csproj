@@ -62,7 +62,11 @@
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="..\Platformer2D.Core\Content\Platformer2D.mgcb" />
+    <MonoGameContentReference Include="..\Platformer2D.Core\Content\Platformer2D.mgcb">
+      <Link>Content\Platformer2D.mgcb</Link>
+    </MonoGameContentReference>
+  </ItemGroup>  
+  <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>

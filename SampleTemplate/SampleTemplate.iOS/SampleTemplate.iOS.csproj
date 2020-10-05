@@ -119,6 +119,11 @@
     <BundleResource Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
+    <MonoGameContentReference Include="..\SampleTemplate.Core\Content\SampleTemplate.mgcb">
+      <Link>Content\SampleTemplate.mgcb</Link>
+    </MonoGameContentReference>
+  </ItemGroup>  
+  <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>

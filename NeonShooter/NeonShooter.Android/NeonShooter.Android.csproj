@@ -62,7 +62,11 @@
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="..\NeonShooter.Core\Content\NeonShooter.mgcb" />
+    <MonoGameContentReference Include="..\NeonShooter.Core\Content\NeonShooter.mgcb">
+      <Link>Content\NeonShooter.mgcb</Link>
+    </MonoGameContentReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>

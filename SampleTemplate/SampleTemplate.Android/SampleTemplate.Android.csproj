@@ -62,7 +62,11 @@
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="..\SampleTemplate.Core\Content\SampleTemplate.mgcb" />
+    <MonoGameContentReference Include="..\SampleTemplate.Core\Content\SampleTemplate.mgcb">
+      <Link>Content\SampleTemplate.mgcb</Link>
+    </MonoGameContentReference>
+  </ItemGroup>  
+  <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>

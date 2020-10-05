@@ -11,10 +11,6 @@
     <None Remove="Content\NeonShooter.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\NeonShooter.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
