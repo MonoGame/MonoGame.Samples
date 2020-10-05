@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Content\obj\**" />
+    <EmbeddedResource Remove="Content\obj\**" />
+    <None Remove="Content\obj\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Content\NeonShooter.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Game\" />
+  </ItemGroup>
+</Project>
