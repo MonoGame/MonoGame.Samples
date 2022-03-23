@@ -15,7 +15,7 @@ The design of Platformer should be familiar to all gamers. You must avoid the en
 
 ## Game World
 
-The game world is composed of individual levels where each level is automatically constructed, using several square tile types, from an existing text file. This text file uses a set of symbols to map out the level, locating the start and exit points, enemy starting positions, gem locations and tile locations (including their type). For a complete listing of the level file format, see [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md).
+The game world is composed of individual levels where each level is automatically constructed, using several square tile types, from an existing text file. This text file uses a set of symbols to map out the level, locating the start and exit points, enemy starting positions, gem locations and tile locations (including their type). For a complete listing of the level file format, see [Advanced Platformer Features](3_advanced_platformer_features.md).
 
 Three tile types are implemented by Platformer and represent the ledges and impassable areas of a level.
 
@@ -23,7 +23,7 @@ Three tile types are implemented by Platformer and represent the ledges and impa
 |-|-|
 |Impassable|Players and enemies cannot pass through the tile from any direction.|
 |Passable|Players and enemies can pass through the tile freely. The main purpose of this tile type is to provide decoration to the level – decoration such as jungle foliage, rocks, and other scenery.|
-|Platform|Platform tiles behave like passable tiles except that players and enemies can stand on (or in the case of the player character, fall onto) the top edge of the tile without falling.</br>This is implemented by checking for collision between the character's bounding rectangle and the top edge of the platform tile. If collision occurs, the affected character's Y velocity (that is, the character's speed when falling) is forced to 0. If the character stood, or fell onto, a passable tile, no collision checking is performed. This causes the character to continue falling until the character reaches an impassable tile or passes the bottom edge of the screen. For more information on collision checking and game world physics, see [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md).
+|Platform|Platform tiles behave like passable tiles except that players and enemies can stand on (or in the case of the player character, fall onto) the top edge of the tile without falling.</br>This is implemented by checking for collision between the character's bounding rectangle and the top edge of the platform tile. If collision occurs, the affected character's Y velocity (that is, the character's speed when falling) is forced to 0. If the character stood, or fell onto, a passable tile, no collision checking is performed. This causes the character to continue falling until the character reaches an impassable tile or passes the bottom edge of the screen. For more information on collision checking and game world physics, see [Advanced Platformer Features](3_advanced_platformer_features.md).
 |||
 
 In addition to tiles, there are several special objects that represent special locations or objects in the game world.
@@ -45,7 +45,7 @@ Initially, Platformer implements a single enemy type. This enemy slowly walks ba
 
 ## Exploring the Basic Classes
 
-The Platformer starter kit can be pretty overwhelming the first time you see it. However, it can be broken down into more manageable pieces, based on the complexity of the game object and its usage by the Platformer game. In this section, we'll explore Platformer's basic classes and structures. We'll talk about their purpose and design and point out features that can be modified or expanded on. For information on more complex classes, see [Intermediate Platformer Features](Documentation/2_intermediate_platformer_features.md) and [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md).
+The Platformer starter kit can be pretty overwhelming the first time you see it. However, it can be broken down into more manageable pieces, based on the complexity of the game object and its usage by the Platformer game. In this section, we'll explore Platformer's basic classes and structures. We'll talk about their purpose and design and point out features that can be modified or expanded on. For information on more complex classes, see [Intermediate Platformer Features](2_intermediate_platformer_features.md) and [Advanced Platformer Features](3_advanced_platformer_features.md).
 
 ## Gem Class and Circle Structure
 
@@ -101,8 +101,8 @@ When a gem is collected, the default behavior is to play a "gem collected" sound
 
 ## Exploring the Platformer Starter Kit
 
-* [Basic Platformer Features](Documentation/1_basic_platformer_features.md)</br>Discusses basic features of the Platformer Starter Kit and offers recommendations for making basic modifications to the Platformer game.
+* [Basic Platformer Features](1_basic_platformer_features.md)</br>Discusses basic features of the Platformer Starter Kit and offers recommendations for making basic modifications to the Platformer game.
 
-* [Intermediate Platformer Features](Documentation/2_intermediate_platformer_features.md)</br>Discusses intermediate classes of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
+* [Intermediate Platformer Features](2_intermediate_platformer_features.md)</br>Discusses intermediate classes of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
 
-* [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md)</br>Discusses advanced features of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
+* [Advanced Platformer Features](3_advanced_platformer_features.md)</br>Discusses advanced features of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
