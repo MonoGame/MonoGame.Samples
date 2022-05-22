@@ -10,11 +10,11 @@
 The SpaceWar MonoGame sample for all the supported platforms:
 
 
-[SpaceWar Sample](SpaceWar/README.md) |
+[SpaceWar Sample](SpaceWar) |
 |-|
 Windows only |
-[![SpaceWar Sample](SpaceWar/Content/Textures/Spacewar_Title_FINAL.jpg)](SpaceWar/README.md) |
-The [SpaceWar](SpaceWar/README.md) sample is 2D / 3D ship battle game with gravity and flight physics.|
+[![SpaceWar Sample](SpaceWar/Content/Textures/Spacewar_Title_FINAL.jpg)](SpaceWar/) |
+The [SpaceWar](SpaceWar) sample is 2D / 3D ship battle game with gravity and flight physics.|
 |||
 
 ## Building the samples

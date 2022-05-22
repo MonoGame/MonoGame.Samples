@@ -1,6 +1,6 @@
 # SpaceWar Sample
 
-[![SpaceWar Sample](Content/Textures/Spacewar_Title_FINAL.jpg)
+![SpaceWar Sample](Content/Textures/Spacewar_Title_FINAL.jpg)
 
 This project shows you how to make a Geometry Wars-inspired twin-stick shooter, with neon graphics, crazy particle effects, and awesome music.
 
