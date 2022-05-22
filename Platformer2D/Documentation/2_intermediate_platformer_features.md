@@ -4,7 +4,7 @@
 
 Discusses intermediate classes of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
 
-In this section, we'll explore Platformer's intermediate features and the classes that implement them, such as sprite animation. We'll talk about their purpose and design, and point out features that can be modified or expanded on. For information on basic classes, see [Exploring the Basic Classes](Documentation/1_basic_platformer_features.md). For advanced classes, see [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md).
+In this section, we'll explore Platformer's intermediate features and the classes that implement them, such as sprite animation. We'll talk about their purpose and design, and point out features that can be modified or expanded on. For information on basic classes, see [Exploring the Basic Classes](1_basic_platformer_features.md). For advanced classes, see [Advanced Platformer Features](3_advanced_platformer_features.md).
 
 ## Exploring the Intermediate Classes
 
@@ -54,8 +54,8 @@ A logical expansion for Platformer is the use of power-ups in the game. In this 
 
 ## Exploring the Platformer Starter Kit
 
-* [Basic Platformer Features](Documentation/1_basic_platformer_features.md)</br>Discusses basic features of the Platformer Starter Kit and offers recommendations for making basic modifications to the Platformer game.
+* [Basic Platformer Features](1_basic_platformer_features.md)</br>Discusses basic features of the Platformer Starter Kit and offers recommendations for making basic modifications to the Platformer game.
 
-* [Intermediate Platformer Features](Documentation/2_intermediate_platformer_features.md)</br>Discusses intermediate classes of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
+* [Intermediate Platformer Features](2_intermediate_platformer_features.md)</br>Discusses intermediate classes of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
 
-* [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md)</br>Discusses advanced features of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
+* [Advanced Platformer Features](3_advanced_platformer_features.md)</br>Discusses advanced features of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
