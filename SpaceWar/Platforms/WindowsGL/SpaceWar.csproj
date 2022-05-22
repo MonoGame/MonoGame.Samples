@@ -1,0 +1,73 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>net452</TargetFrameworks>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SpaceWar</RootNamespace>
+    <AssemblyName>SpaceWar</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Game\Asteroid.cs" />
+    <Compile Include="..\..\Game\camera.cs" />
+    <Compile Include="..\..\Game\Common\GamePadHelper.cs" />
+    <Compile Include="..\..\Game\Common\GamePads.cs" />
+    <Compile Include="..\..\Game\Common\Keymap.cs" />
+    <Compile Include="..\..\Game\Common\XInputHelper.cs" />
+    <Compile Include="..\..\Game\Enums.cs" />
+    <Compile Include="..\..\Game\Evolved\BasicEffectShape.cs" />
+    <Compile Include="..\..\Game\Evolved\EvolvedBackdrop.cs" />
+    <Compile Include="..\..\Game\Evolved\EvolvedScreen.cs" />
+    <Compile Include="..\..\Game\Evolved\EvolvedShape.cs" />
+    <Compile Include="..\..\Game\Evolved\EvolvedSun.cs" />
+    <Compile Include="..\..\Game\Font.cs" />
+    <Compile Include="..\..\Game\Particle.cs" />
+    <Compile Include="..\..\Game\Particles.cs" />
+    <Compile Include="..\..\Game\Player.cs" />
+    <Compile Include="..\..\Game\Projectile.cs" />
+    <Compile Include="..\..\Game\Projectiles.cs" />
+    <Compile Include="..\..\Game\Retro\RetroProjectiles.cs" />
+    <Compile Include="..\..\Game\Retro\RetroScreen.cs" />
+    <Compile Include="..\..\Game\Retro\RetroShip.cs" />
+    <Compile Include="..\..\Game\Retro\RetroStarfield.cs" />
+    <Compile Include="..\..\Game\Retro\RetroSun.cs" />
+    <Compile Include="..\..\Game\SceneGraph\FullScreenSplash.cs" />
+    <Compile Include="..\..\Game\SceneGraph\SceneItem.cs" />
+    <Compile Include="..\..\Game\SceneGraph\Screen.cs" />
+    <Compile Include="..\..\Game\SceneGraph\SpacewarSceneItem.cs" />
+    <Compile Include="..\..\Game\Screens\SelectionScreen.cs" />
+    <Compile Include="..\..\Game\Screens\ShipUpgradeScreen.cs" />
+    <Compile Include="..\..\Game\Screens\SpacewarScreen.cs" />
+    <Compile Include="..\..\Game\Screens\TitleScreen.cs" />
+    <Compile Include="..\..\Game\Screens\VictoryScreen.cs" />
+    <Compile Include="..\..\Game\Settings.cs" />
+    <Compile Include="..\..\Game\Shapes\Shape.cs" />
+    <Compile Include="..\..\Game\Shapes\VectorShape.cs" />
+    <Compile Include="..\..\Game\Ship.cs" />
+    <Compile Include="..\..\Game\Sound.cs" />
+    <Compile Include="..\..\Game\Sun.cs" />
+    <Compile Include="..\..\Game\Common\KeyboardHelper.cs" />
+    <Compile Include="..\..\Game\Common\TouchUI.cs" />
+    <Compile Include="..\..\Game.cs" />
+    <Compile Include="..\..\Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+    <Content Include="..\..\settings.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MonoGameContentReference Include="..\..\Content\SpaceWar.mgcb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.9" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.7.1.189" />
+  </ItemGroup>
+</Project>
