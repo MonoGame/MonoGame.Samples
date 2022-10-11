@@ -41,6 +41,12 @@
   <ItemGroup>
     <MonoGameContentReference Include="..\NeonShooter.Core\Content\NeonShooter.mgcb" Link="Content\NeonShooter.mgcb" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\Splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Values\Styles.xml" />
+  </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />
     <Exec Command="dotnet tool restore" />
