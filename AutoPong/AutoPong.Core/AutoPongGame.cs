@@ -20,7 +20,6 @@ namespace AutoPong
         private float BallSpeed = 15.0f;
 
         public Texture2D Texture;
-        private Rectangle DrawRec = new Rectangle(0, 0, 3, 3);
 
         private Random Rand = new Random();
         private byte HitCounter = 0;
@@ -35,10 +34,9 @@ namespace AutoPong
         public AutoPongGame()
         {
             _graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
             _graphics.PreferredBackBufferWidth = GameBounds.X;
             _graphics.PreferredBackBufferHeight = GameBounds.Y;
+            IsMouseVisible = true;
         }
 
         protected override void LoadContent()
