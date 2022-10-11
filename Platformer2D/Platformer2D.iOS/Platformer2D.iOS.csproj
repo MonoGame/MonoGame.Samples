@@ -1,140 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{7FDC81FE-42DC-4166-AA7D-6ACF3E71CF0F}</ProjectGuid>
+    <TargetFramework>net6.0-ios</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Platformer2D.iOS</RootNamespace>
-    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>Platformer2D.iOS</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <MtouchArch>i386, x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchFastDev>true</MtouchFastDev>
-    <MtouchDebug>true</MtouchDebug>
-    <MtouchProfiling>true</MtouchProfiling>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <MtouchArch>i386, x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <MtouchUseSGen>true</MtouchUseSGen>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
-    <DeviceSpecificBuild>true</DeviceSpecificBuild>
-    <MtouchDebug>true</MtouchDebug>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <MtouchProfiling>true</MtouchProfiling>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <SupportedOSPlatformVersion>11.2</SupportedOSPlatformVersion>
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>iPhone Developer</CodesignKey>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
-    <DebugType>none</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <BuildIpa>True</BuildIpa>
-    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
-    <DebugType>none</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
-    <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>Automatic:AppStore</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="Xamarin.iOS" />
+    <Compile Include="..\Platformer2D.Core\Game\Accelerometer.cs" Link="Game\Accelerometer.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Animation.cs" Link="Game\Animation.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\AnimationPlayer.cs" Link="Game\AnimationPlayer.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Circle.cs" Link="Game\Circle.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Enemy.cs" Link="Game\Enemy.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Gem.cs" Link="Game\Gem.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Level.cs" Link="Game\Level.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Player.cs" Link="Game\Player.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\RectangleExtensions.cs" Link="Game\RectangleExtensions.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Tile.cs" Link="Game\Tile.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\TouchCollectionExtensions.cs" Link="Game\TouchCollectionExtensions.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\VirtualGamePad.cs" Link="Game\VirtualGamePad.cs" />
+    <Compile Include="..\Platformer2D.Core\PlatformerGame.cs" Link="PlatformerGame.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+    <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.1.303" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Entitlements.plist" />
-    <None Include="Info.plist" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Default.png" />
-    <BundleResource Include="GameThumbnail.png" />
+    <Folder Include="Content\" />
+    <Folder Include="Game\" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\Platformer2D.Core\Content\Platformer2D.mgcb">
       <Link>Content\Platformer2D.mgcb</Link>
     </MonoGameContentReference>
   </ItemGroup>
-  <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
-    <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.0.1641" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Platformer2D.Core\Platformer2D.Core.csproj">
-      <Project>{2d825dab-0e3b-4eed-a607-b0695e59bca0}</Project>
-      <Name>Platformer2D.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
+    <Message Text="Restoring dotnet tools" Importance="High" />
+    <Exec Command="dotnet tool restore" />
+  </Target>
 </Project>

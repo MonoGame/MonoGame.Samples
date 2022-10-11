@@ -5,7 +5,7 @@ using UIKit;
 namespace Platformer2D.iOS
 {
     [Register("AppDelegate")]
-    class Program : UIApplicationDelegate
+    internal class Program : UIApplicationDelegate
     {
         private static PlatformerGame game;
 
@@ -20,7 +20,7 @@ namespace Platformer2D.iOS
         /// </summary>
         static void Main(string[] args)
         {
-            UIApplication.Main(args, null, "AppDelegate");
+            UIApplication.Main(args, null, typeof(Program));
         }
 
         public override void FinishedLaunching(UIApplication app)
