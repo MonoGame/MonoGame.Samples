@@ -1,11 +1,10 @@
-using System;
-using Foundation;
+﻿using Foundation;
 using UIKit;
 
 namespace NeonShooter.iOS
 {
     [Register("AppDelegate")]
-    class Program : UIApplicationDelegate
+    internal class Program : UIApplicationDelegate
     {
         private static NeonShooterGame game;
 
@@ -20,7 +19,7 @@ namespace NeonShooter.iOS
         /// </summary>
         static void Main(string[] args)
         {
-            UIApplication.Main(args, null, "AppDelegate");
+            UIApplication.Main(args, null, typeof(Program));
         }
 
         public override void FinishedLaunching(UIApplication app)
