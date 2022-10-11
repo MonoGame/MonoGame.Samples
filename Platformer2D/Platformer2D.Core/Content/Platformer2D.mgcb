@@ -1,8 +1,8 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:bin
-/intermediateDir:obj
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
 /platform:WindowsStoreApp
 /config:
 /profile:Reach
