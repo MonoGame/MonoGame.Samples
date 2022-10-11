@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -10,12 +10,12 @@
     <AssemblyName>NeonShooter.WindowsUWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{F2E9F898-5CEA-4267-8FEA-10734D287548}</ProjectGuid>
+    <ProjectGuid>{FFE16C31-111F-4694-9A56-05E17AABD3EF}</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -90,6 +90,69 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\NeonShooter.Core\Game\Art.cs">
+      <Link>Game\Art.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\BlackHole.cs">
+      <Link>Game\BlackHole.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\BloomComponent.cs">
+      <Link>Game\BloomComponent.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\BloomSettings.cs">
+      <Link>Game\BloomSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\Bullet.cs">
+      <Link>Game\Bullet.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\ColorUtil.cs">
+      <Link>Game\ColorUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\Enemy.cs">
+      <Link>Game\Enemy.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\EnemySpawner.cs">
+      <Link>Game\EnemySpawner.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\Entity.cs">
+      <Link>Game\Entity.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\EntityManager.cs">
+      <Link>Game\EntityManager.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\Extensions.cs">
+      <Link>Game\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\GameRoot.cs">
+      <Link>Game\GameRoot.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\Grid.cs">
+      <Link>Game\Grid.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\Input.cs">
+      <Link>Game\Input.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\MathUtil.cs">
+      <Link>Game\MathUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\ParticleManager.cs">
+      <Link>Game\ParticleManager.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\ParticleState.cs">
+      <Link>Game\ParticleState.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\PlayerShip.cs">
+      <Link>Game\PlayerShip.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\PlayerStatus.cs">
+      <Link>Game\PlayerStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\Game\Sound.cs">
+      <Link>Game\Sound.cs</Link>
+    </Compile>
+    <Compile Include="..\NeonShooter.Core\NeonShooterGame.cs">
+      <Link>NeonShooterGame.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -125,21 +188,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.9</Version>
+      <Version>6.2.13</Version>
     </PackageReference>
-    <PackageReference Include="MonoGame.Framework.WindowsUniversal" Version="3.8.0.1641" />
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+    <PackageReference Include="MonoGame.Framework.WindowsUniversal" Version="3.8.1.303" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="..\NeonShooter.Core\Content\NeonShooter.mgcb">
-      <Link>Content\NeonShooter.mgcb</Link>
-    </MonoGameContentReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NeonShooter.Core\NeonShooter.Core.csproj">
-      <Project>{7bbafbe9-43ff-45f4-bfee-20aec87771d9}</Project>
-      <Name>NeonShooter.Core</Name>
-    </ProjectReference>
+    <MonoGameContentReference Include="..\NeonShooter.Core\Content\NeonShooter.mgcb" Link="Content\NeonShooter.mgcb" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
@@ -152,4 +207,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
+    <Message Text="Restoring dotnet tools" Importance="High" />
+    <Exec Command="dotnet tool restore" />
+  </Target>
 </Project>

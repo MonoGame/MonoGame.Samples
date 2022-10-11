@@ -1,26 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="9ad7f3dd-5c3a-47b3-a198-197f8b07b78d" Publisher="CN=MonoGame Team" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="9ad7f3dd-5c3a-47b3-a198-197f8b07b78d" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  IgnorableNamespaces="uap mp">
+
+  <Identity
+    Name="4dfa9039-3fac-47ef-aca5-bc6f8564f920"
+    Publisher="CN=User"
+    Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="4dfa9039-3fac-47ef-aca5-bc6f8564f920" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
   <Properties>
     <DisplayName>NeonShooter</DisplayName>
     <PublisherDisplayName>MonoGame Team</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
+
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.16299.0" MaxVersionTested="10.0.19041.0" />
   </Dependencies>
+
   <Resources>
-    <Resource Language="x-generate" />
+    <Resource Language="x-generate"/>
   </Resources>
+
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="NeonShooter.App">
-      <uap:VisualElements DisplayName="NeonShooter" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="NeonShooter" BackgroundColor="#464646">
+    <Application Id="App"
+      Executable="NeonShooter.WindowsUWP.exe"
+      EntryPoint="NeonShooter.WindowsUWP.App">
+      <uap:VisualElements
+        DisplayName="NeonShooter.WindowsUWP"
+        Square150x150Logo="Assets\Logo.png"
+        Square44x44Logo="Assets\SmallLogo.png"
+        Description="NeonShooter"
+        BackgroundColor="#464646">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#FFFFFF" />
-        <uap:DefaultTile/>
       </uap:VisualElements>
     </Application>
   </Applications>
+
   <Capabilities>
     <Capability Name="internetClient" />
   </Capabilities>
