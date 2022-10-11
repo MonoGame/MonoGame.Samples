@@ -1,83 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B88A3D22-39D5-4AA3-B9E9-1D6588E1E397}</ProjectGuid>
-    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Platformer2D.Android</RootNamespace>
-    <AssemblyName>Platformer2D.Android</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <AndroidApplication>true</AndroidApplication>
-    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
-    <AndroidResgenClass>Resource</AndroidResgenClass>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidStoreUncompressedFileExtensions>.m4a</AndroidStoreUncompressedFileExtensions>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
-    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;ANDROID</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
-    <AndroidLinkMode>None</AndroidLinkMode>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
-    <DefineConstants>TRACE;ANDROID</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <TargetFramework>net6.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
+    <OutputType>Exe</OutputType>
+    <ApplicationId>com.companyname.Platformer2D.Android</ApplicationId>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Mono.Android" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.1.303" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activity1.cs" />
-    <Compile Include="Resources\Resource.Designer.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Icon.png" />
-    <AndroidResource Include="Resources\Values\Strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <MonoGameContentReference Include="..\Platformer2D.Core\Content\Platformer2D.mgcb">
-      <Link>Content\Platformer2D.mgcb</Link>
-    </MonoGameContentReference>
-  </ItemGroup>  
-  <ItemGroup>
-    <None Include="Properties\AndroidManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
-    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.0.1641" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Platformer2D.Core\Platformer2D.Core.csproj">
-      <Project>{4e2da2ea-529f-4db8-b0ab-56e148d2a4e4}</Project>
-      <Name>Platformer2D.Core</Name>
-    </ProjectReference>
+    <Folder Include="Content\" />
+    <Folder Include="Game\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\Splash.png" />
@@ -85,5 +21,28 @@
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Styles.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="..\Platformer2D.Core\Game\Accelerometer.cs" Link="Game\Accelerometer.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Animation.cs" Link="Game\Animation.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\AnimationPlayer.cs" Link="Game\AnimationPlayer.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Circle.cs" Link="Game\Circle.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Enemy.cs" Link="Game\Enemy.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Gem.cs" Link="Game\Gem.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Level.cs" Link="Game\Level.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Player.cs" Link="Game\Player.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\RectangleExtensions.cs" Link="Game\RectangleExtensions.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\Tile.cs" Link="Game\Tile.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\TouchCollectionExtensions.cs" Link="Game\TouchCollectionExtensions.cs" />
+    <Compile Include="..\Platformer2D.Core\Game\VirtualGamePad.cs" Link="Game\VirtualGamePad.cs" />
+    <Compile Include="..\Platformer2D.Core\PlatformerGame.cs" Link="PlatformerGame.cs" />
+  </ItemGroup>  
+  <ItemGroup>
+    <MonoGameContentReference Include="..\Platformer2D.Core\Content\Platformer2D.mgcb">
+      <Link>Content\Platformer2D.mgcb</Link>
+    </MonoGameContentReference>
+  </ItemGroup>  
+  <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
+    <Message Text="Restoring dotnet tools" Importance="High" />
+    <Exec Command="dotnet tool restore" />
+  </Target>
 </Project>
