@@ -2,8 +2,11 @@ using BloomPostprocess;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using System;
+
+#if !__IOS__
+using Microsoft.Xna.Framework.Media;
+#endif
 
 namespace NeonShooter
 {
@@ -66,7 +69,8 @@ namespace NeonShooter
 
             EntityManager.Add(PlayerShip.Instance);
 
- 
+
+#if !__IOS__
             //Known issue that you get exceptions if you use Media PLayer while connected to your PC
             //See http://social.msdn.microsoft.com/Forums/en/windowsphone7series/thread/c8a243d2-d360-46b1-96bd-62b1ef268c66
             //Which means its impossible to test this from VS.
@@ -77,7 +81,7 @@ namespace NeonShooter
                 MediaPlayer.Play(Sound.Music);
             }
             catch { }
-
+#endif
         }
 
         /// <summary>
@@ -90,9 +94,11 @@ namespace NeonShooter
             GameTime = gameTime;
             Input.Update();
 
+#if !__IOS__
             // Allows the game to exit
             if (Input.WasButtonPressed(Buttons.Back) || Input.WasKeyPressed(Keys.Escape))
                 this.Exit();
+#endif
 
             if (Input.WasKeyPressed(Keys.P))
                 paused = !paused;
