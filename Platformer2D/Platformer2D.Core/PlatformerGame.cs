@@ -12,9 +12,12 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Content;
+
+#if !__IOS__
+using Microsoft.Xna.Framework.Media;
+#endif
 
 namespace Platformer2D
 {
@@ -99,6 +102,7 @@ namespace Platformer2D
 
             virtualGamePad = new VirtualGamePad(baseScreenSize, globalTransformation, Content.Load<Texture2D>("Sprites/VirtualControlArrow"));
 
+#if !__IOS__
             //Known issue that you get exceptions if you use Media PLayer while connected to your PC
             //See http://social.msdn.microsoft.com/Forums/en/windowsphone7series/thread/c8a243d2-d360-46b1-96bd-62b1ef268c66
             //Which means its impossible to test this from VS.
@@ -109,7 +113,7 @@ namespace Platformer2D
                 MediaPlayer.Play(Content.Load<Song>("Sounds/Music"));
             }
             catch { }
-
+#endif
             LoadNextLevel();
         }
 
@@ -160,7 +164,7 @@ namespace Platformer2D
             gamePadState = virtualGamePad.GetState(touchState, GamePad.GetState(PlayerIndex.One));
             accelerometerState = Accelerometer.GetState();
 
-#if !NETFX_CORE
+#if !NETFX_CORE && !__IOS__
             // Exit the game when back is pressed.
             if (gamePadState.Buttons.Back == ButtonState.Pressed)
                 Exit();
