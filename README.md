@@ -17,11 +17,11 @@ Supported on all platforms | Supported on all platforms |
 The [Platformer 2D](Platformer2D/README.md) sample is a basic 2D platformer pulled from the original XNA samples and upgraded for MonoGame.| [Neon Shooter](NeonShooter/README.md) Is a graphically intensive twin-stick shooter with particle effects and save data from Michael Hoffman |
 |||
 
-| [Coming Soon]() | [Coming Soon]() |
+| [Auto Pong Sample](AutoPong/README.md) | [Coming Soon]() |
 |-|-|
-| Platforms | Platforms |
-| [![MonoGame Sample](Images/MonoGame-Sample.png)]() | [![MonoGame Sample](Images/MonoGame-Sample.png)]() |
-| More samples coming soon | More samples coming soon |
+| Supported on all platforms | Platforms |
+| [![Auto Pong Sample](Images/AutoPong_1.gif)](AutoPong/README.md) | [![MonoGame Sample](Images/MonoGame-Sample.png)]() |
+| A short [sample project](AutoPong/README.md) showing you how to make the classic game of pong, with generated soundfx, in 300 lines of code. | More samples coming soon |
 |||
 
 ## Building the samples
