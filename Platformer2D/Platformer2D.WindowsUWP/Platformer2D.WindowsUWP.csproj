@@ -90,6 +90,45 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Platformer2D.Core\Game\Accelerometer.cs">
+      <Link>Game\Accelerometer.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\Animation.cs">
+      <Link>Game\Animation.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\AnimationPlayer.cs">
+      <Link>Game\AnimationPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\Circle.cs">
+      <Link>Game\Circle.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\Enemy.cs">
+      <Link>Game\Enemy.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\Gem.cs">
+      <Link>Game\Gem.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\Level.cs">
+      <Link>Game\Level.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\Player.cs">
+      <Link>Game\Player.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\RectangleExtensions.cs">
+      <Link>Game\RectangleExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\Tile.cs">
+      <Link>Game\Tile.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\TouchCollectionExtensions.cs">
+      <Link>Game\TouchCollectionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\Game\VirtualGamePad.cs">
+      <Link>Game\VirtualGamePad.cs</Link>
+    </Compile>
+    <Compile Include="..\Platformer2D.Core\PlatformerGame.cs">
+      <Link>PlatformerGame.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -125,21 +164,15 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.9</Version>
+      <Version>6.2.13</Version>
     </PackageReference>
-    <PackageReference Include="MonoGame.Framework.WindowsUniversal" Version="3.8.0.1641" />
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+    <PackageReference Include="MonoGame.Framework.WindowsUniversal" Version="3.8.1.303" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\Platformer2D.Core\Content\Platformer2D.mgcb">
       <Link>Content\Platformer2D.mgcb</Link>
     </MonoGameContentReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Platformer2D.Core\Platformer2D.Core.csproj">
-      <Project>{7bbafbe9-43ff-45f4-bfee-20aec87771d9}</Project>
-      <Name>Platformer2D.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
