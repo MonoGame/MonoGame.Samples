@@ -104,8 +104,8 @@ technique Color
     pass P0
     {          
 #if SM4
-        VertexShader = compile vs_4_0 MainVS( );
-        PixelShader  = compile ps_4_0 ColorPS( );
+        VertexShader = compile vs_4_0_level_9_1 MainVS( );
+        PixelShader  = compile ps_4_0_level_9_1 ColorPS( );
 #else
         VertexShader = compile vs_3_0 MainVS( );
         PixelShader  = compile ps_3_0 ColorPS( );
@@ -118,8 +118,8 @@ technique ColorTexture
     pass P0
     {          
 #if SM4
-        VertexShader = compile vs_4_0 MainVS( );
-        PixelShader  = compile ps_4_0 ColorTexturePS( );
+        VertexShader = compile vs_4_0_level_9_1 MainVS( );
+        PixelShader  = compile ps_4_0_level_9_1 ColorTexturePS( );
 #else
         VertexShader = compile vs_3_0 MainVS( );
         PixelShader  = compile ps_3_0 ColorTexturePS( );
@@ -132,8 +132,8 @@ technique BlurHorizontal
     pass P0
     {          
 #if SM4
-        VertexShader = compile vs_4_0 MainVS( );
-        PixelShader  = compile ps_4_0 BlurHorizontalPS( );
+        VertexShader = compile vs_4_0_level_9_1 MainVS( );
+        PixelShader  = compile ps_4_0_level_9_1 BlurHorizontalPS( );
 #else
         VertexShader = compile vs_3_0 MainVS( );
         PixelShader  = compile ps_3_0 BlurHorizontalPS( );
@@ -160,8 +160,8 @@ technique BlurHorizontalSplit
     pass P0
     {          
 #if SM4
-        VertexShader = compile vs_4_0 MainVS( );
-        PixelShader  = compile ps_4_0 BlurHorizontalSplitPS( );
+        VertexShader = compile vs_4_0_level_9_1 MainVS( );
+        PixelShader  = compile ps_4_0_level_9_1 BlurHorizontalSplitPS( );
 #else
         VertexShader = compile vs_3_0 MainVS( );
         PixelShader  = compile ps_3_0 BlurHorizontalSplitPS( );
