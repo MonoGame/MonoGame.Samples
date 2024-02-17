@@ -20,8 +20,8 @@ The [Platformer 2D](Platformer2D/README.md) sample is a basic 2D platformer pull
 | [Auto Pong Sample](AutoPong/README.md) | [Coming Soon]() |
 |-|-|
 | Supported on all platforms | Platforms |
-| [![Auto Pong Sample](Images/AutoPong_1.gif)](AutoPong/README.md) | [![MonoGame Sample](Images/MonoGame-Sample.png)]() |
-| A short [sample project](AutoPong/README.md) showing you how to make the classic game of pong, with generated soundfx, in 300 lines of code. | More samples coming soon |
+| [![Auto Pong Sample](Images/AutoPong_1.gif)](AutoPong/README.md) | [![ShipGame 3D Sample](Images/ShipGame.gif)](ShipGame/README.md) |
+| A short [sample project](AutoPong/README.md) showing you how to make the classic game of pong, with generated soundfx, in 300 lines of code. | 3D Ship Game (Descent clone) sample, pulled from the XNA archives and updated for MonoGame |
 |||
 
 ## Building the samples

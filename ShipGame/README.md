@@ -1,5 +1,7 @@
 # Ship Game Starter Kit
 
+![ShipGame 3D Sample](../Images/ShipGame.png)
+
 This topic contains the following sections:
 
 * Introduction to Ship Game
