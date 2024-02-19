@@ -824,7 +824,7 @@ namespace ShipGame
                     viewProjection, 0, camera3rdPerson);
 
                 // draw particle systems
-                //particle.Draw(gd, viewProjection);
+                particle.Draw(gd, viewProjection);
 
                 gd.BlendState = BlendState.Opaque;
                 gd.DepthStencilState = DepthStencilState.Default;

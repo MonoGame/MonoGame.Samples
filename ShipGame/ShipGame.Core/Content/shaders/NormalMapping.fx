@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////
 //                                                                  //
 // Shader altered to compile on both OpenGL projects and DirectX.   //
-// Pixeel shader parameters passed by structure rather than by      //
+// Pixel shader parameters passed by structure rather than by      //
 // individual parameter values.                                     //
 // C.Humphrey  2024-02-19                                           //
 //                                                                  //
@@ -226,6 +226,7 @@ float4 NormalMappingPS(VS_OUTPUT_NM input) : COLOR0
     return color;
 }
 #endif
+
 void ViewMappingVS( 
      in float4 InPosition   : SV_POSITION,
      in float3 InNormal     : NORMAL0,  

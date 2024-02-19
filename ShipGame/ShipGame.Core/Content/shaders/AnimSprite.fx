@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////
+//                                                                  //
+// Shader altered to compile on both OpenGL projects and DirectX.   //
+// C.Humphrey  2024-02-19                                           //
+//                                                                  //
+//////////////////////////////////////////////////////////////////////
+
 #if OPENGL
     #define SV_POSITION POSITION
     #define VS_SHADERMODEL vs_3_0

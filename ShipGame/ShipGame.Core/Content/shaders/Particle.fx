@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////
+//                                                                  //
+// Shader altered to compile on both OpenGL projects and DirectX.   //
+// C.Humphrey  2024-02-19                                           //
+//                                                                  //
+//////////////////////////////////////////////////////////////////////
+
 #if OPENGL
     #define SV_POSITION POSITION
     #define VS_SHADERMODEL vs_3_0
@@ -47,6 +54,11 @@ struct VS_OUTPUT
     float4 OutColor : COLOR0;
     float OutSize : PSIZE;
     float4 OutRotation : COLOR1;
+#ifdef XBOX
+    float2 TexCoord  : SPRITETEXCOORD;
+#else    
+    float2 TexCoord : TEXCOORD0;
+#endif
 };
 
 struct PS_INPUT
@@ -66,6 +78,8 @@ VS_OUTPUT ParticleVS(VS_INPUT input)
     
     // particle time
     float time = ElapsedTime + input.InTexCoord.y * ParticleTime;
+    
+    output.TexCoord = input.InTexCoord;
 
     // particle position
     float4 Pos = input.InPosition;
@@ -127,16 +141,16 @@ VS_OUTPUT ParticleVS(VS_INPUT input)
     return output;
 }
 
-float4 ParticlePS(PS_INPUT input) : COLOR0
+float4 ParticlePS(VS_OUTPUT input) : COLOR0
 {
     // unpack rotation matrix
-    input.Rotation = input.Rotation * 2 - 1;
+    input.OutRotation = input.OutRotation * 2 - 1;
 
     // rotate point sprite texcoord
-    float2 tc = 0.5 + mul(input.TexCoord - 0.5, float2x2(input.Rotation));
+    float2 tc = 0.5 + mul(input.TexCoord - 0.5, float2x2(input.OutRotation));
 
     // return final color
-    return input.Color * tex2D(TextureSampler, tc);
+    return input.OutColor * tex2D(TextureSampler, tc);
 }
 
 Technique Particle
