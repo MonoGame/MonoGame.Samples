@@ -93,22 +93,6 @@ float4 PlainMappingPS( in float2 TexCoord : TEXCOORD0 ) : COLOR0
 {
     return tex2D(TextureSampler, TexCoord);
 }
-struct VS_INPUT_NM
-{
-    float4 InPosition    : SV_POSITION;
-    float2 InTexCoord    : TEXCOORD0;
-    float3 InNormal      : NORMAL0;
-    float3 InBinormal    : BINORMAL0;
-    float3 InTangent     : TANGENT0;
-};
-struct VS_OUTPUT_NM
-{
-    float4 Position : SV_POSITION0;
-    float2 TexCoord : TEXCOORD0;
-    float3 LightDir : NORMAL0; 
-    float3 ViewDir: TEXCOORD1;
-    float3 ReflectDir: NORMAL1;
-};
 
 
 #if OPENGL
@@ -130,9 +114,9 @@ void NormalMappingVS(
 
     float3x3 tangent_space = float3x3(InTangent, InBinormal, InNormal);
     
-    OutLightDir = mul(tangent_space, LightPosition.xyz - InPosition.xyz);
+    OutLightDir = mul(InPosition.xyz - LightPosition.xyz, tangent_space);
    
-    OutViewDir = mul(tangent_space, CameraPosition - InPosition.xyz);
+    OutViewDir = mul(CameraPosition - InPosition.xyz, tangent_space);
     
     OutReflectDir = reflect(InPosition.xyz - CameraPosition, InNormal);
 }
@@ -173,6 +157,24 @@ float4 NormalMappingPS(
     return color;
 }
 #else
+
+struct VS_INPUT_NM
+{
+    float4 InPosition : SV_POSITION;
+    float2 InTexCoord : TEXCOORD0;
+    float3 InNormal : NORMAL0;
+    float3 InBinormal : BINORMAL0;
+    float3 InTangent : TANGENT0;
+};
+struct VS_OUTPUT_NM
+{
+    float4 Position : SV_POSITION0;
+    float2 TexCoord : TEXCOORD0;
+    float3 LightDir : NORMAL0;
+    float3 ViewDir : TEXCOORD1;
+    float3 ReflectDir : NORMAL1;
+};
+
 VS_OUTPUT_NM NormalMappingVS(VS_INPUT_NM input)
 {
     VS_OUTPUT_NM Output;
@@ -183,9 +185,9 @@ VS_OUTPUT_NM NormalMappingVS(VS_INPUT_NM input)
 
     float3x3 tangent_space = float3x3(input.InTangent, input.InBinormal, input.InNormal);
     
-    Output.LightDir = mul(tangent_space, LightPosition.xyz - input.InPosition.xyz);
+    Output.LightDir = mul(input.InPosition.xyz - LightPosition.xyz, tangent_space);
    
-    Output.ViewDir = mul(tangent_space, CameraPosition - input.InPosition.xyz);
+    Output.ViewDir = mul(CameraPosition - input.InPosition.xyz, tangent_space);
     
     Output.ReflectDir = reflect(input.InPosition.xyz - CameraPosition, input.InNormal);
 

@@ -21,20 +21,37 @@ sampler2D TextureSampler = sampler_state
     MipFilter = linear;
 };
 
-void AnimSpriteVS( 
-     in float4 InPosition     : SV_POSITION,
-     in float2 InTexCoord     : TEXCOORD0,
-    out float4 OutPosition    : SV_POSITION,
-    out float2 OutTexCoord    : TEXCOORD0)
+struct VS_INPUT
 {
-    OutPosition = mul(InPosition, ViewProj);
-    OutTexCoord = InTexCoord;
-}
+    float4 InPosition : SV_POSITION;
+    float2 InTexCoord : TEXCOORD0;    
+};
 
-float4 AnimSpritePS( in float2 TexCoord : TEXCOORD0 ) : COLOR0
+struct VS_OUTPUT
 {
-    float2 tx1 = FrameSize * (FrameOffset.xy + TexCoord);
-    float2 tx2 = FrameSize * (FrameOffset.zw + TexCoord);
+    float4 OutPosition : SV_POSITION;
+    float2 OutTexCoord : TEXCOORD0;
+};
+
+struct PS_INPUT
+{
+    float2 TexCoord : TEXCOORD0;
+};
+
+VS_OUTPUT AnimSpriteVS(VS_INPUT input)
+{
+    VS_OUTPUT output;
+    
+    output.OutPosition = mul(input.InPosition, ViewProj);
+    output.OutTexCoord = input.InTexCoord;
+        
+    return output;
+ }
+
+float4 AnimSpritePS(VS_OUTPUT input) : COLOR0
+{
+    float2 tx1 = FrameSize * (FrameOffset.xy + input.OutTexCoord);
+    float2 tx2 = FrameSize * (FrameOffset.zw + input.OutTexCoord);
     
     float4 color1 = tex2D(TextureSampler, tx1);
     float4 color2 = tex2D(TextureSampler, tx2);
@@ -43,6 +60,7 @@ float4 AnimSpritePS( in float2 TexCoord : TEXCOORD0 ) : COLOR0
     blend_color.w *= FrameBlend.y;
     
     return blend_color;
+
 }
 
 Technique AnimSprite
