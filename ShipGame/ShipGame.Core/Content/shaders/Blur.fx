@@ -1,3 +1,18 @@
+﻿//////////////////////////////////////////////////////////////////////
+//                                                                  //
+// Shader altered to compile on both OpenGL projects and DirectX.   //
+// C.Humphrey  2024-02-19                                           //
+//                                                                  //
+//////////////////////////////////////////////////////////////////////
+#if OPENGL
+	#define SV_POSITION POSITION
+	#define VS_SHADERMODEL vs_3_0
+	#define PS_SHADERMODEL ps_3_0
+#else
+	#define VS_SHADERMODEL vs_4_0_level_9_1
+	#define PS_SHADERMODEL ps_4_0_level_9_1
+#endif
+
 float4x4 g_WorldViewProj;
 
 texture g_ColorMap:TEXUNIT0;
@@ -20,12 +35,12 @@ sampler_state
 
 struct VS_OUTPUT
 {
-    float4 Position : POSITION;
+    float4 Position : SV_POSITION0;
     float2 TexCoord : TEXCOORD0;
 };
 
 VS_OUTPUT MainVS( 
-    float4 Pos      : POSITION, 
+    float4 Pos      : SV_POSITION0, 
     float2 TexCoord : TEXCOORD0)
 {
     VS_OUTPUT Output;
@@ -103,13 +118,8 @@ technique Color
 {
     pass P0
     {          
-#if SM4
-        VertexShader = compile vs_4_0_level_9_1 MainVS( );
-        PixelShader  = compile ps_4_0_level_9_1 ColorPS( );
-#else
-        VertexShader = compile vs_3_0 MainVS( );
-        PixelShader  = compile ps_3_0 ColorPS( );
-#endif
+        VertexShader = compile VS_SHADERMODEL MainVS( );
+        PixelShader  = compile PS_SHADERMODEL ColorPS( );
     }
 }
 
@@ -117,13 +127,8 @@ technique ColorTexture
 {
     pass P0
     {          
-#if SM4
-        VertexShader = compile vs_4_0_level_9_1 MainVS( );
-        PixelShader  = compile ps_4_0_level_9_1 ColorTexturePS( );
-#else
-        VertexShader = compile vs_3_0 MainVS( );
-        PixelShader  = compile ps_3_0 ColorTexturePS( );
-#endif
+        VertexShader = compile VS_SHADERMODEL MainVS( );
+        PixelShader  = compile PS_SHADERMODEL ColorTexturePS( );
     }
 }
 
@@ -131,13 +136,8 @@ technique BlurHorizontal
 {
     pass P0
     {          
-#if SM4
-        VertexShader = compile vs_4_0_level_9_1 MainVS( );
-        PixelShader  = compile ps_4_0_level_9_1 BlurHorizontalPS( );
-#else
-        VertexShader = compile vs_3_0 MainVS( );
-        PixelShader  = compile ps_3_0 BlurHorizontalPS( );
-#endif
+        VertexShader = compile VS_SHADERMODEL MainVS( );
+        PixelShader  = compile PS_SHADERMODEL BlurHorizontalPS( );
     }
 }
 
@@ -145,13 +145,8 @@ technique BlurVertical
 {
     pass P0
     {          
-#if SM4
-        VertexShader = compile vs_4_0_level_9_1 MainVS( );
-        PixelShader  = compile ps_4_0_level_9_1 BlurVerticalPS( );
-#else
-        VertexShader = compile vs_3_0 MainVS( );
-        PixelShader  = compile ps_3_0 BlurVerticalPS( );
-#endif
+        VertexShader = compile VS_SHADERMODEL MainVS( );
+        PixelShader  = compile PS_SHADERMODEL BlurVerticalPS( );
     }
 }
 
@@ -159,12 +154,7 @@ technique BlurHorizontalSplit
 {
     pass P0
     {          
-#if SM4
-        VertexShader = compile vs_4_0_level_9_1 MainVS( );
-        PixelShader  = compile ps_4_0_level_9_1 BlurHorizontalSplitPS( );
-#else
-        VertexShader = compile vs_3_0 MainVS( );
-        PixelShader  = compile ps_3_0 BlurHorizontalSplitPS( );
-#endif
+        VertexShader = compile VS_SHADERMODEL MainVS( );
+        PixelShader  = compile PS_SHADERMODEL BlurVerticalPS( );
     }
 }
