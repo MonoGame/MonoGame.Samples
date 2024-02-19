@@ -1,3 +1,12 @@
+#if OPENGL
+    #define SV_POSITION POSITION
+    #define VS_SHADERMODEL vs_3_0
+    #define PS_SHADERMODEL ps_3_0
+#else
+    #define VS_SHADERMODEL vs_4_0_level_9_1
+    #define PS_SHADERMODEL ps_4_0_level_9_1
+#endif
+
 float4x4 ViewProj;
 float4 FrameOffset;
 float2 FrameSize;
@@ -13,9 +22,9 @@ sampler2D TextureSampler = sampler_state
 };
 
 void AnimSpriteVS( 
-     in float4 InPosition     : POSITION0,
+     in float4 InPosition     : SV_POSITION,
      in float2 InTexCoord     : TEXCOORD0,
-    out float4 OutPosition    : POSITION0,
+    out float4 OutPosition    : SV_POSITION,
     out float2 OutTexCoord    : TEXCOORD0)
 {
     OutPosition = mul(InPosition, ViewProj);
@@ -40,13 +49,8 @@ Technique AnimSprite
 {
     Pass
     {
-#if SM4
-        VertexShader = compile vs_4_0_level_9_1 AnimSpriteVS();
-        PixelShader = compile ps_4_0_level_9_1 AnimSpritePS();
-#else
-        VertexShader = compile vs_3_0 AnimSpriteVS();
-        PixelShader = compile ps_3_0 AnimSpritePS();
-#endif
+        VertexShader = compile VS_SHADERMODEL AnimSpriteVS();
+        PixelShader = compile PS_SHADERMODEL AnimSpritePS();
     }
 }
 

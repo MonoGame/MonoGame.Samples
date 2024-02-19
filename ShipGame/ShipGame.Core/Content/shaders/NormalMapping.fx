@@ -1,3 +1,12 @@
+#if OPENGL
+    #define SV_POSITION POSITION
+    #define VS_SHADERMODEL vs_3_0
+    #define PS_SHADERMODEL ps_3_0
+#else
+    #define VS_SHADERMODEL vs_4_0_level_9_1
+    #define PS_SHADERMODEL ps_4_0_level_9_1
+#endif
+
 float4x4 WorldViewProj;
 float4 LightPosition;
 float3 LightColor;
@@ -62,9 +71,9 @@ samplerCUBE ReflectSampler = sampler_state
 };
 
 void PlainMappingVS( 
-     in float4 InPosition    : POSITION0,
+     in float4 InPosition    : SV_POSITION,
      in float2 InTexCoord    : TEXCOORD0,
-    out float4 OutPosition    : POSITION0,
+    out float4 OutPosition    : SV_POSITION,
     out float2 OutTexCoord    : TEXCOORD0 )
 {
     OutPosition = mul(InPosition, WorldViewProj);
@@ -77,12 +86,12 @@ float4 PlainMappingPS( in float2 TexCoord : TEXCOORD0 ) : COLOR0
 }
 
 void NormalMappingVS( 
-     in float4 InPosition    : POSITION0,
+     in float4 InPosition    : SV_POSITION,
      in float2 InTexCoord    : TEXCOORD0,
      in float3 InNormal      : NORMAL0,  
      in float3 InBinormal    : BINORMAL0,
      in float3 InTangent     : TANGENT0,
-    out float4 OutPosition   : POSITION0,
+    out float4 OutPosition   : SV_POSITION,
     out float2 OutTexCoord   : TEXCOORD0,
     out float3 OutLightDir   : TEXCOORD1,
     out float3 OutViewDir    : TEXCOORD2,
@@ -138,9 +147,9 @@ float4 NormalMappingPS(
 }
 
 void ViewMappingVS( 
-     in float4 InPosition   : POSITION0,
+     in float4 InPosition   : SV_POSITION,
      in float3 InNormal     : NORMAL0,  
-    out float4 OutPosition  : POSITION0,
+    out float4 OutPosition  : SV_POSITION,
     out float  OutFacing    : TEXCOORD0 )
 {
     OutPosition = mul(InPosition, WorldViewProj);
@@ -165,13 +174,8 @@ Technique PlainMapping
 {
     Pass
     {
-#if SM4
-        VertexShader = compile vs_4_0_level_9_1 PlainMappingVS();
-        PixelShader = compile ps_4_0_level_9_1 PlainMappingPS();
-#else
-        VertexShader = compile vs_3_0 PlainMappingVS();
-        PixelShader = compile ps_3_0 PlainMappingPS();
-#endif
+        VertexShader = compile VS_SHADERMODEL PlainMappingVS();
+        PixelShader = compile PS_SHADERMODEL PlainMappingPS();
     }
 }
 
@@ -179,13 +183,8 @@ Technique NormalMapping
 {
     Pass
     {
-#if SM4
-        VertexShader = compile vs_4_0_level_9_1 NormalMappingVS();
-        PixelShader = compile ps_4_0_level_9_1 NormalMappingPS();
-#else
-        VertexShader = compile vs_3_0 NormalMappingVS();
-        PixelShader = compile ps_3_0 NormalMappingPS();
-#endif
+        VertexShader = compile VS_SHADERMODEL NormalMappingVS();
+        PixelShader = compile PS_SHADERMODEL NormalMappingPS();
     }
 }
 
@@ -193,13 +192,8 @@ Technique ViewMapping
 {
     Pass
     {
-#if SM4
-        VertexShader = compile vs_4_0_level_9_1 ViewMappingVS();
-        PixelShader = compile ps_4_0_level_9_1 ViewMappingPS();
-#else
-        VertexShader = compile vs_3_0 ViewMappingVS();
-        PixelShader = compile ps_3_0 ViewMappingPS();
-#endif
+        VertexShader = compile VS_SHADERMODEL ViewMappingVS();
+        PixelShader = compile PS_SHADERMODEL ViewMappingPS();
     }
 }
 

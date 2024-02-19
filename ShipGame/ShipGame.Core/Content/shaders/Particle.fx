@@ -1,3 +1,12 @@
+#if OPENGL
+    #define SV_POSITION POSITION
+    #define VS_SHADERMODEL vs_3_0
+    #define PS_SHADERMODEL ps_3_0
+#else
+    #define VS_SHADERMODEL vs_4_0_level_9_1
+    #define PS_SHADERMODEL ps_4_0_level_9_1
+#endif
+
 float4x4 WorldViewProj;
 
 float4 StartColor = float4(1,0,0,1);    // start color and opacity
@@ -26,10 +35,10 @@ sampler2D TextureSampler = sampler_state
 };
 
 void ParticleVS( 
-     in float4 InPosition    : POSITION,
+     in float4 InPosition    : SV_POSITION,
      in float3 InVelocity    : NORMAL,
      in float2 InTexCoord    : TEXCOORD0,
-    out float4 OutPosition   : POSITION,
+    out float4 OutPosition   : SV_POSITION,
     out float4 OutColor      : COLOR0,
     out float  OutSize       : PSIZE,
     out float4 OutRotation   : COLOR1)
@@ -119,13 +128,8 @@ Technique Particle
 {
     Pass
     {
-#if SM4
-        VertexShader = compile vs_4_0_level_9_1 ParticleVS();
-        PixelShader = compile ps_4_0_level_9_1 ParticlePS();
-#else
-        VertexShader = compile vs_3_0 ParticleVS();
-        PixelShader = compile ps_3_0 ParticlePS();
-#endif
+        VertexShader = compile VS_SHADERMODEL ParticleVS();
+        PixelShader = compile PS_SHADERMODEL ParticlePS();
     }
 }
 

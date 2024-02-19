@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+#endregion
 
 namespace ShipGame
 {
@@ -1138,10 +1139,6 @@ namespace ShipGame
 
         /// <summary>
         /// Draw a model using given technique and camera settings
-
-        #endregion
-
-
         /// </summary>
         public void DrawModel(GraphicsDevice gd, Model model,
             RenderTechnique technique, Vector3 cameraPosition,
@@ -1215,12 +1212,12 @@ namespace ShipGame
                             gd.BlendState = BlendState.Opaque;
 
                             // get light effect parameters
-                            EffectParameter effectLightColor =
-                                                effect.Parameters[1];
-                            EffectParameter effectLightAmbient =
-                                                effect.Parameters[2];
                             EffectParameter effectLightPosition =
-                                                effect.Parameters[3];
+                                                effect.Parameters["LightPosition"];
+                            EffectParameter effectLightColor =
+                                                effect.Parameters["LightColor"];
+                            EffectParameter effectLightAmbient =
+                                                effect.Parameters["LightAmbient"];
 
                             // ambient light
                             Vector3 ambient = lights.ambient;
