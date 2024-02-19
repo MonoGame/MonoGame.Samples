@@ -1,3 +1,12 @@
+//////////////////////////////////////////////////////////////////////
+//                                                                  //
+// Shader altered to compile on both OpenGL projects and DirectX.   //
+// Pixeel shader parameters passed by structure rather than by      //
+// individual parameter values.                                     //
+// C.Humphrey  2024-02-19                                           //
+//                                                                  //
+//////////////////////////////////////////////////////////////////////
+
 #if OPENGL
     #define SV_POSITION POSITION
     #define VS_SHADERMODEL vs_3_0
@@ -85,46 +94,50 @@ float4 PlainMappingPS( in float2 TexCoord : TEXCOORD0 ) : COLOR0
     return tex2D(TextureSampler, TexCoord);
 }
 
-void NormalMappingVS( 
+struct VS_OUTPUT_NM
+{
+    float4 Position : SV_POSITION0;
+    float2 TexCoord : TEXCOORD0;
+    float3 LightDir : NORMAL0; 
+    float3 ViewDir: NORMAL1;
+    float3 ReflectDir: NORMAL4;
+};
+
+VS_OUTPUT_NM NormalMappingVS( 
      in float4 InPosition    : SV_POSITION,
      in float2 InTexCoord    : TEXCOORD0,
      in float3 InNormal      : NORMAL0,  
      in float3 InBinormal    : BINORMAL0,
-     in float3 InTangent     : TANGENT0,
-    out float4 OutPosition   : SV_POSITION,
-    out float2 OutTexCoord   : TEXCOORD0,
-    out float3 OutLightDir   : TEXCOORD1,
-    out float3 OutViewDir    : TEXCOORD2,
-    out float3 OutReflectDir : TEXCOORD3 )
+     in float3 InTangent     : TANGENT0 )
 {
-    OutPosition = mul(InPosition, WorldViewProj);
+    VS_OUTPUT_NM Output;
+
+    Output.Position = mul(InPosition, WorldViewProj);
     
-    OutTexCoord = InTexCoord;
+    Output.TexCoord = InTexCoord;
 
     float3x3 tangent_space = float3x3(InTangent, InBinormal, InNormal);
     
-    OutLightDir = mul(tangent_space, LightPosition.xyz - InPosition.xyz);
+    Output.LightDir = mul(tangent_space, LightPosition.xyz - InPosition.xyz);
    
-    OutViewDir = mul(tangent_space, CameraPosition - InPosition.xyz);
+    Output.ViewDir = mul(tangent_space, CameraPosition - InPosition.xyz);
     
-    OutReflectDir = reflect(InPosition.xyz - CameraPosition, InNormal);
+    Output.ReflectDir = reflect(InPosition.xyz - CameraPosition, InNormal);
+
+    return Output;
 }
 
-float4 NormalMappingPS(
-    in float2 TexCoord        : TEXCOORD0,
-    in float3 LightDir        : TEXCOORD1,
-    in float3 ViewDir         : TEXCOORD2,
-    in float3 ReflectDir      : TEXCOORD3 ) : COLOR0
+float4 NormalMappingPS(VS_OUTPUT_NM input) : COLOR0
 {
-    float4 diffuse = tex2D(TextureSampler, TexCoord);
-    float4 specular = tex2D(SpecularSampler, TexCoord);
-    float4 normal = tex2D(NormalSampler, TexCoord);
-    float4 reflect = texCUBE(ReflectSampler, ReflectDir);
-    float4 glow = tex2D(GlowMapSampler, TexCoord);
+    float4 diffuse = tex2D(TextureSampler, input.TexCoord);
+    float4 specular = tex2D(SpecularSampler, input.TexCoord);
+    float4 normal = tex2D(NormalSampler, input.TexCoord);
+    float4 reflect = texCUBE(ReflectSampler, input.ReflectDir);
+    float4 glow = tex2D(GlowMapSampler, input.TexCoord);
     
     float3 n = normalize(normal.xyz - 0.5);
-    float3 l = normalize(LightDir);
-    float3 v = normalize(ViewDir);
+    float3 l = normalize(input.LightDir);
+    float3 v = normalize(input.ViewDir);
     float3 h = normalize(l+v);
     
     float ndotl = saturate(dot(n,l));
