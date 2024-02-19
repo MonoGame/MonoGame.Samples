@@ -3,6 +3,11 @@
 // Shader altered to compile on both OpenGL projects and DirectX.   //
 // C.Humphrey  2024-02-19                                           //
 //                                                                  //
+// Updated pixel shaders to take the output structure of the        //
+// vertex shaders for paramters. In DX the individual parameters    //
+// were not getting set.                                            //
+// C.Humphrey 2023-02-19                                            //
+//                                                                  //
 //////////////////////////////////////////////////////////////////////
 #if OPENGL
 	#define SV_POSITION POSITION
@@ -56,17 +61,17 @@ float4 ColorPS() : COLOR
     return g_Color;
 }
 
-float4 ColorTexturePS(float2 TexCoord : TEXCOORD0) : COLOR
+float4 ColorTexturePS(VS_OUTPUT input): COLOR
 {
-    return g_Color * tex2D(ColorSampler,TexCoord + g_PixelSize);
+    return g_Color * tex2D(ColorSampler,input.TexCoord + g_PixelSize);
 }
 
-float4 BlurHorizontalPS(float2 TexCoord : TEXCOORD0) : COLOR
+float4 BlurHorizontalPS(VS_OUTPUT input) : COLOR
 {
     float4 color = float4(0,0,0,0);
     for( float i=-BLUR_RANGE;i<=BLUR_RANGE;i++ )
     {
-        float2 tc = TexCoord + float2(i*g_PixelSize.x, 0);
+        float2 tc = input.TexCoord + float2(i*g_PixelSize.x, 0);
         
         float4 c = tex2D(ColorSampler, tc);
         
@@ -77,19 +82,19 @@ float4 BlurHorizontalPS(float2 TexCoord : TEXCOORD0) : COLOR
     return color/(2*BLUR_RANGE+1);
 }
 
-float4 BlurHorizontalSplitPS(float2 TexCoord : TEXCOORD0) : COLOR
+float4 BlurHorizontalSplitPS(VS_OUTPUT input) : COLOR
 {
     float4 color = float4(0,0,0,0);
     for( float i=-BLUR_RANGE;i<=BLUR_RANGE;i++ )
     {
-        float2 tc = TexCoord + float2(i*g_PixelSize.x, 0);
+        float2 tc = input.TexCoord + float2(i*g_PixelSize.x, 0);
         float4 c = tex2D(ColorSampler, tc);
         
         c.xyz *= c.w;
         c.w = 1;
         
         const float split = 0.499;
-        if (TexCoord.x >= split)
+        if (input.TexCoord.x >= split)
         {
             if (tc.x >= split)
                 color += c;
@@ -102,12 +107,12 @@ float4 BlurHorizontalSplitPS(float2 TexCoord : TEXCOORD0) : COLOR
     return color/color.w;
 }
 
-float4 BlurVerticalPS(float2 TexCoord : TEXCOORD0) : COLOR
+float4 BlurVerticalPS(VS_OUTPUT input) : COLOR
 {
     float4 color = float4(0,0,0,0);
     for( float i=-BLUR_RANGE;i<=BLUR_RANGE;i++ )
     {
-        float2 tc = TexCoord + float2(0, i*g_PixelSize.y);
+        float2 tc = input.TexCoord + float2(0, i*g_PixelSize.y);
         float4 c = tex2D(ColorSampler, tc);
         color += c;
     }
