@@ -12,10 +12,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;using System;
 using System.Collections.Generic;
-
 #endregion
-
-
 
 namespace ShipGame
 {
@@ -107,7 +104,7 @@ namespace ShipGame
         /// </summary>
         public void Draw(GraphicsDevice gd, Vector3 cameraPos, Vector3 cameraUp,
             Matrix viewProjection, int player, bool camera3rdPerson)
-        {   
+        {
             if (gd == null)
             {
                 throw new ArgumentNullException("gd");
@@ -149,7 +146,7 @@ namespace ShipGame
             // begin effect
             effect.CurrentTechnique.Passes[0].Apply();
 
-           
+
             // for each animated sprite
             vertexBufferPosition = 0;
             foreach (AnimSprite sprite in animatedSprites)

@@ -9,6 +9,7 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework;
+#endregion
 
 namespace ShipGame
 {
@@ -68,10 +69,6 @@ namespace ShipGame
         // how fast boost slows down after finished
         public static float BoostSlowdown = 1000.0f;
         // force to apply forward when using boost
-
-        #endregion
-
-
         public static float BoostForce = 50.0f;
 
         // fadeout time for damage effect

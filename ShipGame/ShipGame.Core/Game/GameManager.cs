@@ -716,7 +716,7 @@ namespace ShipGame
                     // draw missile count
                     font.DrawText(FontType.ArialMedium,
                         players[0].MissileCount.ToString(),
-                        new Vector2(rect.Right - 13, rect.Bottom - 120),
+                        new Vector2(rect.Right - 138, rect.Bottom - 120),
                         Color.LightCyan);
                 }
 

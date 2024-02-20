@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+#endregion
 
 namespace ShipGame
 {
@@ -72,10 +73,6 @@ namespace ShipGame
 
                 // add the number particles created 
                 // (one vertex per particle as we are using point sprites)
-
-                #endregion
-
-
                 vertexCount += count;
             }
         }

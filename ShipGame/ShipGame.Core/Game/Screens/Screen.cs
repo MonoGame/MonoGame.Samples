@@ -9,10 +9,7 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-#endregion
-
-
+using Microsoft.Xna.Framework.Graphics;#endregion
 
 namespace ShipGame
 {

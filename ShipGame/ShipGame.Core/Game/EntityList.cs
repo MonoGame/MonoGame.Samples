@@ -12,10 +12,7 @@ using Microsoft.Xna.Framework;using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-
 #endregion
-
-
 
 namespace ShipGame
 {

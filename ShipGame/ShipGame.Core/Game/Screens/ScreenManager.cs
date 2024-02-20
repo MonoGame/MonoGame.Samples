@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+#endregion
 
 namespace ShipGame
 {
@@ -445,10 +446,6 @@ namespace ShipGame
 
         // starts a transition to a new screen
         // using a 1 sec fade time to black
-
-        #endregion
-
-
         public bool SetNextScreen(ScreenType screenType)
         {
             return SetNextScreen(screenType, Vector4.Zero, 1.0f);

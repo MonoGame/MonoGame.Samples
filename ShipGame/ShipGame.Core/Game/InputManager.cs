@@ -9,10 +9,7 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-#endregion
-
-
+using Microsoft.Xna.Framework.Input;#endregion
 
 namespace ShipGame
 {
