@@ -61,17 +61,6 @@ struct VS_OUTPUT
 #endif
 };
 
-struct PS_INPUT
-{
-    float4 Color : COLOR0;
-    float4 Rotation : COLOR1;
-    #ifdef XBOX
-    float2 TexCoord  : SPRITETEXCOORD;
-    #else    
-    float2 TexCoord : TEXCOORD0;
-    #endif
-};
-
 VS_OUTPUT ParticleVS(VS_INPUT input)
 {
     VS_OUTPUT output;
