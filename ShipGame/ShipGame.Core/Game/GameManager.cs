@@ -716,7 +716,7 @@ namespace ShipGame
                     // draw missile count
                     font.DrawText(FontType.ArialMedium,
                         players[0].MissileCount.ToString(),
-                        new Vector2(rect.Right - 138, rect.Bottom - 120),
+                        new Vector2(rect.Right - 13, rect.Bottom - 120),
                         Color.LightCyan);
                 }
 
@@ -825,6 +825,9 @@ namespace ShipGame
 
                 // draw particle systems
                 particle.Draw(gd, viewProjection);
+
+                gd.BlendState = BlendState.Opaque;
+                gd.DepthStencilState = DepthStencilState.Default;
             }
             else
             {
@@ -1159,7 +1162,7 @@ namespace ShipGame
 
             gd.DepthStencilState = DepthStencilState.DepthRead;
             gd.BlendState = BlendState.Additive;
-
+            gd.RasterizerState = RasterizerState.CullNone;
 
             // for each mesh in model
             foreach (ModelMesh mesh in model.Meshes)

@@ -107,7 +107,7 @@ namespace ShipGame
         /// </summary>
         public void Draw(GraphicsDevice gd, Vector3 cameraPos, Vector3 cameraUp,
             Matrix viewProjection, int player, bool camera3rdPerson)
-        {
+        {   
             if (gd == null)
             {
                 throw new ArgumentNullException("gd");
@@ -149,6 +149,7 @@ namespace ShipGame
             // begin effect
             effect.CurrentTechnique.Passes[0].Apply();
 
+           
             // for each animated sprite
             vertexBufferPosition = 0;
             foreach (AnimSprite sprite in animatedSprites)
@@ -170,7 +171,6 @@ namespace ShipGame
                 //    gd.RenderState.AlphaSourceBlend = Blend.One;
                 //else
                 //    gd.RenderState.AlphaSourceBlend = Blend.Zero;
-
 
                 // draw the sprite quad
                 gd.DrawPrimitives(PrimitiveType.TriangleList, vertexBufferPosition, 2);

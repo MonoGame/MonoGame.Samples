@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////
+//                                                                  //
+// Shader altered to compile on both OpenGL projects and DirectX.   //
+// C.Humphrey  2024-02-19                                           //
+//                                                                  //
+//////////////////////////////////////////////////////////////////////
+
 #if OPENGL
     #define SV_POSITION POSITION
     #define VS_SHADERMODEL vs_3_0
@@ -34,20 +41,37 @@ sampler2D TextureSampler = sampler_state
     AddressV = clamp;
 };
 
-void ParticleVS( 
-     in float4 InPosition    : SV_POSITION,
-     in float3 InVelocity    : NORMAL,
-     in float2 InTexCoord    : TEXCOORD0,
-    out float4 OutPosition   : SV_POSITION,
-    out float4 OutColor      : COLOR0,
-    out float  OutSize       : PSIZE,
-    out float4 OutRotation   : COLOR1)
+struct VS_INPUT
 {
+    float4 InPosition : SV_POSITION;
+    float3 InVelocity : NORMAL;
+    float2 InTexCoord : TEXCOORD0;
+};
+
+struct VS_OUTPUT
+{
+    float4 OutPosition : SV_POSITION;
+    float4 OutColor : COLOR0;
+    float OutSize : PSIZE;
+    float4 OutRotation : COLOR1;
+#ifdef XBOX
+    float2 TexCoord  : SPRITETEXCOORD;
+#else    
+    float2 TexCoord : TEXCOORD0;
+#endif
+};
+
+VS_OUTPUT ParticleVS(VS_INPUT input)
+{
+    VS_OUTPUT output;
+    
     // particle time
-    float time = ElapsedTime + ParticleOffset * ParticleTime;
+    float time = ElapsedTime + input.InTexCoord.y * ParticleTime;
+    
+    output.TexCoord = input.InTexCoord;
 
     // particle position
-    float4 Pos = InPosition;
+    float4 Pos = input.InPosition;
     if (time < 0) // if not yet alive move far away
         Pos.xyz = 1e10;
     
@@ -58,25 +82,25 @@ void ParticleVS(
     float norm_time = time / ParticleTime;
     
     // length of velocity
-    float vel_len = length(InVelocity);
+    float vel_len = length(input.InVelocity);
     
     // itegrate movement
     float integral = vel_len * (norm_time - 0.5 * norm_time * norm_time);
     
     // normalized velocity
-    float3 norm_vel = normalize(InVelocity);
+    float3 norm_vel = normalize(input.InVelocity);
     
     // compute final particle position                     
     Pos.xyz += VelocityScale * norm_vel * integral * ParticleTime;
 
     // output position
-    OutPosition = mul(Pos, WorldViewProj);
+    output.OutPosition = mul(Pos, WorldViewProj);
     
     // compute color inerpolation position
     float color_factor = 1.0 - (1.0 - norm_time)*VelocityScale;
     
     // output color
-    OutColor = lerp(StartColor, EndColor, color_factor);
+    output.OutColor = lerp(StartColor, EndColor, color_factor);
     
     // project velocity in view space and peoject in XY plane
     float2 screen_vel = mul(norm_vel, (float3x3)WorldViewProj).xy;
@@ -91,37 +115,31 @@ void ParticleVS(
     float4 rot = float4(screen_vel.y, -screen_vel.x, screen_vel.x, screen_vel.y);
     
     // output rotation
-    OutRotation = rot * 0.5 + 0.5;
+    output.OutRotation = rot * 0.5 + 0.5;
 
     // compute size
-    float size = lerp(PointSize.x, PointSize.y, ParticleSize);
+    float size = lerp(PointSize.x, PointSize.y, input.InTexCoord.x);
     
     // if in a burst mode (not loop mode) scale particles with angle
     if (TotalTime == ParticleTime)
         size *= angle_scale;
     
     // output size
-    OutSize = size / OutPosition.w * 360;
+    output.OutSize = size / output.OutPosition.w * 360;
+    
+    return output;
 }
 
-float4 ParticlePS( 
-    in float4 Color     : COLOR0,
-    in float4 Rotation  : COLOR1,
-#ifdef XBOX
-    in float2 TexCoord  : SPRITETEXCOORD
-#else
-    in float2 TexCoord  : TEXCOORD0
-#endif
-    ) : COLOR0
+float4 ParticlePS(VS_OUTPUT input) : COLOR0
 {
     // unpack rotation matrix
-    Rotation = Rotation * 2 - 1;
+    input.OutRotation = input.OutRotation * 2 - 1;
 
     // rotate point sprite texcoord
-    float2 tc = 0.5 + mul(TexCoord - 0.5, float2x2(Rotation));
+    float2 tc = 0.5 + mul(input.TexCoord - 0.5, float2x2(input.OutRotation));
 
     // return final color
-    return Color * tex2D(TextureSampler, tc);
+    return input.OutColor * tex2D(TextureSampler, tc);
 }
 
 Technique Particle
