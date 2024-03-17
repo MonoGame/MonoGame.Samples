@@ -8,17 +8,6 @@
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AndroidJavaSource Remove="Game\**" />
-    <AndroidLibrary Remove="Game\**" />
-    <AndroidNativeLibrary Remove="Game\**" />
-    <Compile Remove="Game\**" />
-    <EmbeddedResource Remove="Game\**" />
-    <JavaSourceJar Remove="Game\**" />
-    <None Remove="Game\**" />
-    <ProguardConfiguration Remove="Game\**" />
-    <TransformFile Remove="Game\**" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.Android" Version="3.8.1.303" />
   </ItemGroup>
