@@ -6,17 +6,6 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
-    <AtlasTexture Remove="Game\**" />
-    <Compile Remove="Game\**" />
-    <CoreMLModel Remove="Game\**" />
-    <EmbeddedResource Remove="Game\**" />
-    <ImageAsset Remove="Game\**" />
-    <InterfaceDefinition Remove="Game\**" />
-    <Metal Remove="Game\**" />
-    <None Remove="Game\**" />
-    <SceneKitAsset Remove="Game\**" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.1.303" />
   </ItemGroup>
