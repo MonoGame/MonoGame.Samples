@@ -11,7 +11,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>project.MonoGame.ShipGame.iOS</string>
 	<key>MinimumOSVersion</key>
-	<string>11.0</string>
+	<string>11.2</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
@@ -26,9 +26,9 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIDeviceFamily</key>
-    <array>
-        <integer>1</integer>
-        <integer>2</integer>
-    </array>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
 </dict>
 </plist>
