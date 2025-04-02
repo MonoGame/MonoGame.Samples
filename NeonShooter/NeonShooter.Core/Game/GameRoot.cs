@@ -3,15 +3,12 @@
 // Find the full tutorial at: http://gamedev.tutsplus.com/series/vector-shooter-xna/
 //----------------------------------------------------------------------------------
 
+using System;
 using BloomPostprocess;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-
-#if !__IOS__
 using Microsoft.Xna.Framework.Media;
-#endif
 
 namespace NeonShooter
 {
@@ -58,10 +55,11 @@ namespace NeonShooter
 
 			EntityManager.Add(PlayerShip.Instance);
 
-#if !__IOS__
-			MediaPlayer.IsRepeating = true;
-			MediaPlayer.Play(Sound.Music);
-#endif
+			if (!OperatingSystem.IsIOS())
+			{
+				MediaPlayer.IsRepeating = true;
+				MediaPlayer.Play(Sound.Music);
+			}
 		}
 
 		protected override void LoadContent()
@@ -76,11 +74,12 @@ namespace NeonShooter
 			GameTime = gameTime;
 			Input.Update();
 
-#if !__IOS__
-			// Allows the game to exit
-			if (Input.WasButtonPressed(Buttons.Back) || Input.WasKeyPressed(Keys.Escape))
-				this.Exit();
-#endif
+			if (!OperatingSystem.IsIOS())
+			{
+				// Allows the game to exit
+				if (Input.WasButtonPressed(Buttons.Back) || Input.WasKeyPressed(Keys.Escape))
+					this.Exit();
+			}
 
 			if (Input.WasKeyPressed(Keys.P))
 				paused = !paused;
