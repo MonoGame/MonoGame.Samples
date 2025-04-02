@@ -10,14 +10,11 @@
 using System;
 using System.IO;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
-using Microsoft.Xna.Framework.Content;
-
-#if !__IOS__
 using Microsoft.Xna.Framework.Media;
-#endif
 
 namespace Platformer2D
 {
@@ -102,18 +99,20 @@ namespace Platformer2D
 
             virtualGamePad = new VirtualGamePad(baseScreenSize, globalTransformation, Content.Load<Texture2D>("Sprites/VirtualControlArrow"));
 
-#if !__IOS__
-            //Known issue that you get exceptions if you use Media PLayer while connected to your PC
-            //See http://social.msdn.microsoft.com/Forums/en/windowsphone7series/thread/c8a243d2-d360-46b1-96bd-62b1ef268c66
-            //Which means its impossible to test this from VS.
-            //So we have to catch the exception and throw it away
-            try
+            if (OperatingSystem.IsIOS())
             {
-                MediaPlayer.IsRepeating = true;
-                MediaPlayer.Play(Content.Load<Song>("Sounds/Music"));
+                //Known issue that you get exceptions if you use Media PLayer while connected to your PC
+                //See http://social.msdn.microsoft.com/Forums/en/windowsphone7series/thread/c8a243d2-d360-46b1-96bd-62b1ef268c66
+                //Which means its impossible to test this from VS.
+                //So we have to catch the exception and throw it away
+                try
+                {
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Play(Content.Load<Song>("Sounds/Music"));
+                }
+                catch { }
             }
-            catch { }
-#endif
+
             LoadNextLevel();
         }
 
@@ -164,11 +163,13 @@ namespace Platformer2D
             gamePadState = virtualGamePad.GetState(touchState, GamePad.GetState(PlayerIndex.One));
             accelerometerState = Accelerometer.GetState();
 
-#if !NETFX_CORE && !__IOS__
-            // Exit the game when back is pressed.
-            if (gamePadState.Buttons.Back == ButtonState.Pressed)
-                Exit();
-#endif
+            if (OperatingSystem.IsIOS())
+            {
+                // Exit the game when back is pressed.
+                if (gamePadState.Buttons.Back == ButtonState.Pressed)
+                    Exit();
+            }
+
             bool continuePressed =
                 keyboardState.IsKeyDown(Keys.Space) ||
                 gamePadState.IsButtonDown(Buttons.A) ||
