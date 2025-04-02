@@ -70,7 +70,7 @@ namespace NeonShooter
 
             EntityManager.Add(PlayerShip.Instance);
 
-            if (OperatingSystem.IsIOS())
+            if (!OperatingSystem.IsIOS())
             {
                 //Known issue that you get exceptions if you use Media PLayer while connected to your PC
                 //See http://social.msdn.microsoft.com/Forums/en/windowsphone7series/thread/c8a243d2-d360-46b1-96bd-62b1ef268c66
@@ -95,7 +95,7 @@ namespace NeonShooter
             GameTime = gameTime;
             Input.Update();
 
-            if (OperatingSystem.IsIOS())
+            if (!OperatingSystem.IsIOS())
             {
                 // Allows the game to exit
                 if (Input.WasButtonPressed(Buttons.Back) || Input.WasKeyPressed(Keys.Escape))

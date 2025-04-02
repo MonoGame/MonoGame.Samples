@@ -48,7 +48,7 @@ namespace AutoPong
 
         protected override void Update(GameTime gameTime)
         {
-            if (OperatingSystem.IsIOS())
+            if (!OperatingSystem.IsIOS())
             {
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                     Exit();

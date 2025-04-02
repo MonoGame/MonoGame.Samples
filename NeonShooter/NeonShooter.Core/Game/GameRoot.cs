@@ -55,7 +55,7 @@ namespace NeonShooter
 
 			EntityManager.Add(PlayerShip.Instance);
 
-			if (OperatingSystem.IsIOS())
+			if (!OperatingSystem.IsIOS())
 			{
 				MediaPlayer.IsRepeating = true;
 				MediaPlayer.Play(Sound.Music);
@@ -74,7 +74,7 @@ namespace NeonShooter
 			GameTime = gameTime;
 			Input.Update();
 
-			if (OperatingSystem.IsIOS())
+			if (!OperatingSystem.IsIOS())
 			{
 				// Allows the game to exit
 				if (Input.WasButtonPressed(Buttons.Back) || Input.WasKeyPressed(Keys.Escape))
