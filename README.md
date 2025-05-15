@@ -9,11 +9,11 @@
 
 A number of simple MonoGame samples for all the supported platforms:
 
-[Platformer 2D Sample](Platformer2D/README.md) | [NeonShooter](NeonShooter/README.md)|
+|[Platformer 2D Sample](Platformer2D/README.md) | [NeonShooter](NeonShooter/README.md)|
 |-|-|
-Supported on all platforms | Supported on all platforms |
-[![Platformer 2D Sample](Images/Platformer2D-Sample.png)](Platformer2D/README.md) | [![NeonShooter Sample](Images/NeonShooter-Sample.png)](NeonShooter/README.md) |
-The [Platformer 2D](Platformer2D/README.md) sample is a basic 2D platformer pulled from the original XNA samples and upgraded for MonoGame.| [Neon Shooter](NeonShooter/README.md) Is a graphically intensive twin-stick shooter with particle effects and save data from Michael Hoffman |
+|Supported on all platforms | Supported on all platforms |
+|[![Platformer 2D Sample](Images/Platformer2D-Sample.png)](Platformer2D/README.md) | [![NeonShooter Sample](Images/NeonShooter-Sample.png)](NeonShooter/README.md) |
+|The [Platformer 2D](Platformer2D/README.md) sample is a basic 2D platformer pulled from the original XNA samples and upgraded for MonoGame.| [Neon Shooter](NeonShooter/README.md) Is a graphically intensive twin-stick shooter with particle effects and save data from Michael Hoffman |
 |||
 
 | [Auto Pong Sample](AutoPong/README.md) | [Ship Game 3D](ShipGame/README.md) |
@@ -27,12 +27,12 @@ The [Platformer 2D](Platformer2D/README.md) sample is a basic 2D platformer pull
 
 A new template sample is also available which guides through the building of a MonoGame project from start to finish.
 
-[FuelCell Sample](FuelCell/README.md) | [Coming Soon](https://monogame.net) |
-|-|
-Supported on all platforms | Platforms |
-[![Fuel Sample](Images/FuelCell-Sample.gif)](FuelCell/README.md) | ![MonoGame Sample](Images/MonoGame-Sample.png) |
-A [full featured 3D project](FuelCell/README.md) with full documentation from start to finish for building a 3D style game. | More samples coming soon |
-||
+|[FuelCell Sample](FuelCell/README.md) | [New 2D learn sample](Tutorials/learn-monogame-2d/README.md) |
+|-|-|
+|Supported on all platforms | Platforms |
+|[![Fuel Sample](Images/FuelCell-Sample.gif)](FuelCell/README.md) | ![MonoGame Sample](Images/DungeonSlime.gif) |
+|A [full featured 3D project](FuelCell/README.md) with full documentation from start to finish for building a 3D style game. | The source for the [complete guide to building 2D games with MonoGame](https://docs.monogame.net/articles/tutorials/building_2d_games) tutorial. |
+|||
 
 ## Building the samples
 

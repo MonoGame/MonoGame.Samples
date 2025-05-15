@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "3.8.2" ]
-  pull_request:
-    branches: [ "3.8.2" ]
+    branches-ignore:
+      - '3.8.*'
+
 
 jobs:
   build:
@@ -81,6 +81,16 @@ jobs:
       with:
         name: ShipGame
         path: ShipGame/**
+        include-hidden-files: true
+        
+    - name: Build learn-monogame-2d Binary
+      run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --configuration Release
+
+    - name: Archive Platformer2D
+      uses: actions/upload-artifact@v4
+      with:
+        name: Learn-monogame-2d
+        path: Tutorials/learn-monogame-2d/src/27-Conclusion/**
         include-hidden-files: true
 
   deploy:
