@@ -29,7 +29,7 @@ A new template sample is also available which guides through the building of a M
 
 |[FuelCell Sample](FuelCell/README.md) | [New 2D learn sample](Tutorials/learn-monogame-2d/README.md) |
 |-|-|
-|Supported on all platforms | Platforms |
+|Supported on all platforms | Desktop / Console Platforms |
 |[![Fuel Sample](Images/FuelCell-Sample.gif)](FuelCell/README.md) | ![MonoGame Sample](Images/DungeonSlime.gif) |
 |A [full featured 3D project](FuelCell/README.md) with full documentation from start to finish for building a 3D style game. | The source for the [complete guide to building 2D games with MonoGame](https://docs.monogame.net/articles/tutorials/building_2d_games) tutorial. |
 |||
