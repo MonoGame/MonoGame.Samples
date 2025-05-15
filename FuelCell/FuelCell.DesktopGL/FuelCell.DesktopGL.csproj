@@ -23,9 +23,6 @@
     </MonoGameContentReference>
   </ItemGroup>
   <ItemGroup>
-    <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\FuelCell.Core\FuelCell.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
