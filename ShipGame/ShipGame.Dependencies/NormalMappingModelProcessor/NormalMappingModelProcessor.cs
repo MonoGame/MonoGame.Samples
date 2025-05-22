@@ -60,7 +60,6 @@ namespace NormalMappingProcessor
         private void PreprocessSceneHierarchy(NodeContent input,
             ContentProcessorContext context, string inputName)
         {
-            System.Diagnostics.Debugger.Break();
             MeshContent mesh = input as MeshContent;
             if (mesh != null)
             {
