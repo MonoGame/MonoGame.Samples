@@ -193,8 +193,18 @@ namespace NormalMappingProcessor
                 normalMappingMaterial.Textures.Add(texture.Key, texture.Value);
             }
 
+            // Pass thru texture processing settings.
+            OpaqueDataDictionary opaqueDataDictionary = new OpaqueDataDictionary();
+            opaqueDataDictionary.Add("ColorKeyColor", ColorKeyColor);
+            opaqueDataDictionary.Add("ColorKeyEnabled", ColorKeyEnabled);
+            opaqueDataDictionary.Add("GenerateMipmaps", GenerateMipmaps);
+            opaqueDataDictionary.Add("PremultiplyTextureAlpha", PremultiplyTextureAlpha);
+            opaqueDataDictionary.Add("ResizeTexturesToPowerOfTwo", ResizeTexturesToPowerOfTwo);
+            opaqueDataDictionary.Add("TextureFormat", TextureFormat);
+            opaqueDataDictionary.Add("DefaultEffect", DefaultEffect);
+
             return context.Convert<MaterialContent, MaterialContent>
-                (normalMappingMaterial, typeof(MaterialProcessor).Name);
+                (normalMappingMaterial, typeof(MaterialProcessor).Name, opaqueDataDictionary);
         }
     }
 }
