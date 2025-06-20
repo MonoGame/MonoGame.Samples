@@ -109,9 +109,9 @@ public class AudioController : IDisposable
             if (instance.State == SoundState.Stopped && !instance.IsDisposed)
             {
                 instance.Dispose();
+                _activeSoundEffectInstances.RemoveAt(index);
             }
-
-            _activeSoundEffectInstances.RemoveAt(index);
+            index++;
         }
     }
 
