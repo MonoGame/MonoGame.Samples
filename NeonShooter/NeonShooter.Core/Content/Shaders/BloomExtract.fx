@@ -1,29 +1,30 @@
-// Pixel shader extracts the brighter areas of an image.
-// This is the first step in applying a bloom postprocess.
+///-------------------------------------------------------------------------------------------------
+/// <remarks>   
+///     Charles Humphrey, 12/07/2025. 
+///     Fixes for DX implementation.
+/// </remarks>
+///-------------------------------------------------------------------------------------------------
+#include "PPVertexShader.fxh"
 
 sampler TextureSampler : register(s0);
 
 float BloomThreshold;
 
-
-float4 PixelShaderFunction(float2 texCoord : TEXCOORD0) : COLOR0
+///-------------------------------------------------------------------------------------------------
+/// <summary>   Function now uses correct vertex input structure for both OGL and DX </summary>
+///
+/// <remarks>   Charles Humphrey, 12/07/2025. </remarks>
+///-------------------------------------------------------------------------------------------------
+float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
 {
-    // Look up the original image color.
-    float4 c = tex2D(TextureSampler, texCoord);
-
-    // Adjust it to keep only values brighter than the specified threshold.
+    float4 c = tex2D(TextureSampler, input.TexCoord);
     return saturate((c - BloomThreshold) / (1 - BloomThreshold));
 }
-
 
 technique BloomExtract
 {
     pass Pass1
     {
-#if SM4		
-		PixelShader = compile ps_4_0_level_9_1 PixelShaderFunction();
-#else
-		PixelShader = compile ps_2_0 PixelShaderFunction();
-#endif
+        PixelShader = compile PS_SHADERMODEL PixelShaderFunction();
     }
 }
