@@ -100,6 +100,9 @@ public class Core : Game
 
         // Mouse is visible by default
         IsMouseVisible = true;
+        
+        // Exit on escape is true by default
+        ExitOnEscape = true;
     }
 
     protected override void Initialize()
