@@ -2,7 +2,8 @@
 using Microsoft.Xna.Framework.Media;
 using MonoGameLibrary;
 using MonoGameGum;
-using MonoGameGum.Forms.Controls;
+using Gum.Forms;
+using Gum.Forms.Controls;
 
 namespace DungeonSlime;
 
@@ -33,7 +34,7 @@ public class Game1 : Core
     private void InitializeGum()
     {
         // Initialize the Gum service
-        GumService.Default.Initialize(this);
+        GumService.Default.Initialize(this, DefaultVisualsVersion.V2);
 
         // Tell the Gum service which content manager to use.  We will tell it to
         // use the global content manager from our Core.
