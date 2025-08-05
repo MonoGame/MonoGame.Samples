@@ -1,10 +1,11 @@
 using System;
 using Gum.DataTypes;
 using Gum.DataTypes.Variables;
+using Gum.Forms.Controls;
+using Gum.Forms.DefaultVisuals;
 using Gum.Graphics.Animation;
 using Gum.Managers;
 using Microsoft.Xna.Framework.Input;
-using MonoGameGum.Forms.Controls;
 using MonoGameGum.GueDeriving;
 using MonoGameLibrary.Graphics;
 
@@ -22,27 +23,26 @@ internal class AnimatedButton : Button
     /// <param name="atlas">The texture atlas containing button graphics and animations</param>
     public AnimatedButton(TextureAtlas atlas)
     {
-        // Create the top-level container that will hold all visual elements
+        // Each Forms conrol has a general Visual property that
+        // has properties shared by all control types. This Visual
+        // type matches the Forms type. It can be casted to access
+        // controls-specific properties.
+        ButtonVisual buttonVisual = (ButtonVisual)Visual;
         // Width is relative to children with extra padding, height is fixed
-        ContainerRuntime topLevelContainer = new ContainerRuntime();
-        topLevelContainer.Height = 14f;
-        topLevelContainer.HeightUnits = DimensionUnitType.Absolute;
-        topLevelContainer.Width = 21f;
-        topLevelContainer.WidthUnits = DimensionUnitType.RelativeToChildren;
+        buttonVisual.Height = 14f;
+        buttonVisual.HeightUnits = DimensionUnitType.Absolute;
+        buttonVisual.Width = 21f;
+        buttonVisual.WidthUnits = DimensionUnitType.RelativeToChildren;
 
-        // Create the nine-slice background that will display the button graphics
+        // Get a reference to the nine-slice background to display the button graphics
         // A nine-slice allows the button to stretch while preserving corner appearance
-        NineSliceRuntime nineSliceInstance = new NineSliceRuntime();
-        nineSliceInstance.Height = 0f;
-        nineSliceInstance.Texture = atlas.Texture;
-        nineSliceInstance.TextureAddress = TextureAddress.Custom;
-        nineSliceInstance.Dock(Gum.Wireframe.Dock.Fill);
-        topLevelContainer.Children.Add(nineSliceInstance);
+        NineSliceRuntime background = buttonVisual.Background;
+        background.Texture = atlas.Texture;
+        background.TextureAddress = TextureAddress.Custom;
+        background.Color = Microsoft.Xna.Framework.Color.White;
+        // texture coordinates for the background are set down below
 
-        // Create the text element that will display the button's label
-        TextRuntime textInstance = new TextRuntime();
-        // Name is required so it hooks in to the base Button.Text property
-        textInstance.Name = "TextInstance";
+        TextRuntime textInstance = buttonVisual.TextInstance;
         textInstance.Text = "START";
         textInstance.Blue = 130;
         textInstance.Green = 86;
@@ -53,7 +53,6 @@ internal class AnimatedButton : Button
         textInstance.Anchor(Gum.Wireframe.Anchor.Center);
         textInstance.Width = 0;
         textInstance.WidthUnits = DimensionUnitType.RelativeToChildren;
-        topLevelContainer.Children.Add(textInstance);
 
         // Get the texture region for the unfocused button state from the atlas
         TextureRegion unfocusedTextureRegion = atlas.GetRegion("unfocused-button");
@@ -94,58 +93,47 @@ internal class AnimatedButton : Button
         }
 
         // Assign both animation chains to the nine-slice background
-        nineSliceInstance.AnimationChains = new AnimationChainList
+        background.AnimationChains = new AnimationChainList
         {
             unfocusedAnimation,
             focusedAnimation
         };
 
-        // Create a state category for button states
-        StateSaveCategory category = new StateSaveCategory();
-        category.Name = Button.ButtonCategoryName;
-        topLevelContainer.AddCategory(category);
 
-        // Create the enabled (default/unfocused) state
-        StateSave enabledState = new StateSave();
-        enabledState.Name = FrameworkElement.EnabledStateName;
+        // Reset all state to default so we don't have unexpected variable assignments:
+        buttonVisual.ButtonCategory.ResetAllStates();
+
+        // Get the enabled (default/unfocused) state
+        StateSave enabledState = buttonVisual.States.Enabled;
         enabledState.Apply = () =>
         {
             // When enabled but not focused, use the unfocused animation
-            nineSliceInstance.CurrentChainName = unfocusedAnimation.Name;
+            background.CurrentChainName = unfocusedAnimation.Name;
         };
-        category.States.Add(enabledState);
 
         // Create the focused state
-        StateSave focusedState = new StateSave();
-        focusedState.Name = FrameworkElement.FocusedStateName;
+        StateSave focusedState = buttonVisual.States.Focused;
         focusedState.Apply = () =>
         {
             // When focused, use the focused animation and enable animation playback
-            nineSliceInstance.CurrentChainName = focusedAnimation.Name;
-            nineSliceInstance.Animate = true;
+            background.CurrentChainName = focusedAnimation.Name;
+            background.Animate = true;
         };
-        category.States.Add(focusedState);
 
         // Create the highlighted+focused state (for mouse hover while focused)
-        // by cloning the focused state since they appear the same
-        StateSave highlightedFocused = focusedState.Clone();
-        highlightedFocused.Name = FrameworkElement.HighlightedFocusedStateName;
-        category.States.Add(highlightedFocused);
+        StateSave highlightedFocused = buttonVisual.States.HighlightedFocused;
+        highlightedFocused.Apply = focusedState.Apply;
 
         // Create the highlighted state (for mouse hover)
         // by cloning the enabled state since they appear the same
-        StateSave highlighted = enabledState.Clone();
-        highlighted.Name = FrameworkElement.HighlightedStateName;
-        category.States.Add(highlighted);
+        StateSave highlighted = buttonVisual.States.Highlighted;
+        highlighted.Apply = enabledState.Apply;
 
         // Add event handlers for keyboard input.
         KeyDown += HandleKeyDown;
 
         // Add event handler for mouse hover focus.
-        topLevelContainer.RollOn += HandleRollOn;
-
-        // Assign the configured container as this button's visual
-        Visual = topLevelContainer;
+        buttonVisual.RollOn += HandleRollOn;
     }
 
     /// <summary>
