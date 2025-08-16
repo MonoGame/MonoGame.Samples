@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0-android</TargetFramework>
+        <RootNamespace>TouchExample</RootNamespace>
+        <OutputType>Exe</OutputType>
+        <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
+        <ApplicationId>com.monogame.touchexample</ApplicationId>
+        <ApplicationVersion>1</ApplicationVersion>
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    </PropertyGroup>
+    
+    <ItemGroup>
+		<PackageReference Include="MonoGame.Framework.Android"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Include="..\TouchExample.iOS\Game1.cs">
+        <Link>Game1.cs</Link>
+      </Compile>
+    </ItemGroup>
+    
+</Project>

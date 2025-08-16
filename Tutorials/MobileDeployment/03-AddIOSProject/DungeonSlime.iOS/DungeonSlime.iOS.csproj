@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0-ios</TargetFramework>
+        <SupportedOSPlatformVersion>12.2</SupportedOSPlatformVersion>
+        <BundleIdentifier>com.monogame.dungeonslime</BundleIdentifier>
+        <CFBundleIconName>AppIcon</CFBundleIconName>
+    </PropertyGroup>
+    
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <CodesignKey>iPhone Distribution</CodesignKey>
+        <CodesignEntitlements>EntitlementsProduction.plist</CodesignEntitlements>
+    </PropertyGroup>
+    
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <CodesignKey>iPhone Developer</CodesignKey>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="MonoGame.Content.Builder.Task" />
+        <PackageReference Include="MonoGame.Framework.iOS" />
+        <PackageReference Include="Gum.MonoGame" />
+    </ItemGroup>
+    
+    <Target Name="CompileAssets" BeforeTargets="_CompileAppManifest" Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+        <MakeDir Directories="$(OutputPath)Assets" />
+        <Exec Command="xcrun actool --output-format human-readable-text --notices --warnings --platform iphoneos --minimum-deployment-target 12.2 --app-icon AppIcon --output-partial-info-plist partial-info.plist --compile $(OutputPath)Assets Assets.xcassets " />
+    </Target>
+
+    <ItemGroup Condition=" '$(Configuration)' == 'Release' AND $([MSBuild]::IsOSPlatform('OSX')) ">
+        <BundleResource Include="$(OutputPath)Assets/Assets.car">
+            <LogicalName>Assets.car</LogicalName>
+        </BundleResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MonoGameLibrary\MonoGameLibrary.csproj" />
+    </ItemGroup>
+ 
+    <Target Name="RestoreDotnetTools" BeforeTargets="CollectPackageReferences">
+        <Message Text="Restoring dotnet tools (this might take a while depending on your internet speed and should only happen upon building your project for the first time, or after upgrading MonoGame, or clearing your nuget cache)" Importance="High" />
+        <Exec Command="dotnet tool restore" />
+    </Target>
+        
+</Project>

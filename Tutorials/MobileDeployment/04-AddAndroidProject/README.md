@@ -1,0 +1,30 @@
+# Chapter 4: Add Android Project
+
+This chapter demonstrates how to convert a Windows-only MonoGame project to support Android platforms.
+
+The chapter covers:
+
+* Converting a single-platform project to multi-platform structure.
+* Creating platform-specific project shells for Windows, iOS, and Android.
+* Configuring conditional package references for each platform.
+* Understanding cross-platform project architecture and naming conventions.
+* Updating third-party libraries for cross-platform compatibility.
+
+## Project Structure
+
+This sample includes:
+
+* **DungeonSlime** - Windows desktop project shell
+* **DungeonSlime.Android** - Android mobile project shell
+
+## Prerequisites
+
+* Completed the MonoGame 2D tutorial
+* Development environment set up
+* For Android: Android SDK and development tools
+
+## Key Features Demonstrated
+
+* Multi-targeting framework configuration (`net8.0;net8.0-android`)
+* Platform-specific MonoGame package references
+* Modern .NET project management with Central Package Management

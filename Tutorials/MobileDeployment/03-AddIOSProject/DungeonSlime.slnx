@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="DungeonSlime.iOS/DungeonSlime.iOS.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="DungeonSlime/DungeonSlime.csproj" />
+  <Project Path="MonoGameLibrary/MonoGameLibrary.csproj" />
+</Solution>

@@ -109,3 +109,5 @@ UpgradeLog*.XML
 .vs/
 .user
 .vscode/
+.idea
+.DS_Store
