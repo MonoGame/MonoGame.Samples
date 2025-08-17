@@ -136,10 +136,12 @@ public class Core : Game
         // Update the audio controller.
         Audio.Update();
 
+#if WINDOWS
         if (ExitOnEscape && Input.Keyboard.WasKeyJustPressed(Keys.Escape))
         {
             Exit();
         }
+#endif
 
         // if there is a next scene waiting to be switch to, then transition
         // to that scene
