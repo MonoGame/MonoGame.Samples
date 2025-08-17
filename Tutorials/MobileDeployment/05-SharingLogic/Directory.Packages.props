@@ -2,11 +2,11 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
-	<ItemGroup>
-		<PackageVersion Include="MonoGame.Framework.Android" Version="3.8.5-develop.6" />
-		<PackageVersion Include="MonoGame.Framework.DesktopGL" Version="3.8.5-develop.6" />
-		<PackageVersion Include="MonoGame.Content.Builder.Task" Version="3.8.5-develop.6" />
-		<PackageVersion Include="MonoGame.Framework.iOS" Version="3.8.5-develop.6" />
-		<PackageVersion Include="Gum.MonoGame" Version="2025.8.3.3" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageVersion Include="MonoGame.Framework.Android" Version="3.8.5-develop.8" />
+    <PackageVersion Include="MonoGame.Framework.DesktopGL" Version="3.8.5-develop.8" />
+    <PackageVersion Include="MonoGame.Content.Builder.Task" Version="3.8.5-develop.8" />
+    <PackageVersion Include="MonoGame.Framework.iOS" Version="3.8.5-develop.8" />
+    <PackageVersion Include="Gum.MonoGame" Version="2025.8.3.3" />
+  </ItemGroup>
 </Project>
