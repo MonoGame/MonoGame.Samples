@@ -166,7 +166,7 @@ public class MouseInfo
     /// Returns a value that indicates whether the specified mouse button was just released on the current frame.
     /// </summary>
     /// <param name="button">The mouse button to check.</param>
-    /// <returns>true if the specified mouse button was just released on the current frame; otherwise, false.</returns>F
+    /// <returns>true if the specified mouse button was just released on the current frame; otherwise, false.</returns>
     public bool WasButtonJustReleased(MouseButton button)
     {
         switch (button)

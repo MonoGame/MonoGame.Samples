@@ -58,7 +58,7 @@ public class TextureRegion
     /// </summary>
     /// <param name="texture">The texture to use as the source texture for this texture region.</param>
     /// <param name="x">The x-coordinate position of the upper-left corner of this texture region relative to the upper-left corner of the source texture.</param>
-    /// <param name="y"><The y-coordinate position of the upper-left corner of this texture region relative to the upper-left corner of the source texture./param>
+    /// <param name="y">The y-coordinate position of the upper-left corner of this texture region relative to the upper-left corner of the source texture.</param>
     /// <param name="width">The width, in pixels, of this texture region.</param>
     /// <param name="height">The height, in pixels, of this texture region.</param>
     public TextureRegion(Texture2D texture, int x, int y, int width, int height)

@@ -98,7 +98,7 @@ public class Tilemap
     /// column and row.
     /// </summary>
     /// <param name="column">The column of the tile in this tilemap.</param>
-    /// <param name="row">The row of hte tile in this tilemap.</param>
+    /// <param name="row">The row of the tile in this tilemap.</param>
     /// <returns>The texture region of the tile from this tilemap at the specified column and row.</returns>
     public TextureRegion GetTile(int column, int row)
     {

@@ -102,7 +102,7 @@ public class GamePadInfo
     /// <summary>
     /// Returns a value that indicates whether the specified gamepad button was just pressed on the current frame.
     /// </summary>
-    /// <param name="button"><The gamepad button to check./param>
+    /// <param name="button">The gamepad button to check.</param>
     /// <returns>true if the specified gamepad button was just pressed on the current frame; otherwise, false.</returns>
     public bool WasButtonJustPressed(Buttons button)
     {
@@ -112,7 +112,7 @@ public class GamePadInfo
     /// <summary>
     /// Returns a value that indicates whether the specified gamepad button was just released on the current frame.
     /// </summary>
-    /// <param name="button"><The gamepad button to check./param>
+    /// <param name="button">The gamepad button to check.</param>
     /// <returns>true if the specified gamepad button was just released on the current frame; otherwise, false.</returns>
     public bool WasButtonJustReleased(Buttons button)
     {
