@@ -14,15 +14,12 @@ public class Game1 : Core
 
     public Game1() : base("Dungeon Slime", 1280, 720, false)
     {
-        Console.WriteLine("🚀 MonoGame initialization started");
     }
 
     protected override void Initialize()
     {
         try
         {
-            Console.WriteLine("✅ MonoGame initialisation...");
-
             base.Initialize();
 
             // Start playing the background music
@@ -33,8 +30,6 @@ public class Game1 : Core
 
             // Start the game with the title scene.
             ChangeScene(new TitleScene());
-
-            Console.WriteLine("✅ MonoGame initialisation complete");
         }
         catch (Exception e)
         {
