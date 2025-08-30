@@ -113,9 +113,6 @@ public class Game1 : Core
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 

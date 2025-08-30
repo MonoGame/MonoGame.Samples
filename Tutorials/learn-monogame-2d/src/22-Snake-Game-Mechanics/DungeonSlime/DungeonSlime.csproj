@@ -23,9 +23,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Gum.MonoGame" Version="2025.5.1.1" />
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+    <PackageReference Include="Gum.MonoGame" Version="2025.8.3.3" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.4" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonoGameLibrary\MonoGameLibrary.csproj" />
