@@ -80,6 +80,9 @@ public class Bat
         // Apply the new position
         Position = newPosition;
 
+        // Normalize before reflecting
+        normal.Normalize();
+
         // Apply reflection based on the normal.
         _velocity = Vector2.Reflect(_velocity, normal);
 
