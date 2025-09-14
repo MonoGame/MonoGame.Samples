@@ -12,6 +12,8 @@
 			<string>AppIcon</string>
 		</dict>
 	</dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>CFBundleDisplayName</key>
 	<string>DungeonSlime</string>
 	<key>CFBundleIdentifier</key>
