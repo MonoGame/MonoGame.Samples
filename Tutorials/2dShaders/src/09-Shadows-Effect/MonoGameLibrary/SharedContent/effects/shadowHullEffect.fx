@@ -36,8 +36,14 @@ float2 UnpackVector2FromColor_SNorm(float4 color)
     return float2(x, y);
 }
 
+struct ShadowVertexShaderOutput
+{
+	VertexShaderOutput Default;
+    float DistanceToLight: TEXCOORD1;
+};
+
 float2 LightPosition;
-VertexShaderOutput ShadowHullVS(VertexShaderInput input) 
+ShadowVertexShaderOutput ShadowHullVS(VertexShaderInput input) 
 {   
     VertexShaderInput modified = input;
     float distance = ScreenSize.x + ScreenSize.y;
@@ -67,24 +73,57 @@ VertexShaderOutput ShadowHullVS(VertexShaderInput input)
     float2 b = B + distance * lightRayB;    
     
     int id = input.TexCoord.x + input.TexCoord.y * 2;
+    float clipDist = 1;
     if (id == 0) {        // S --> A
     	pos = A;
     } else if (id == 1) { // D --> a
     	pos = a;
+        clipDist = 0;
     } else if (id == 3) { // F --> b
     	pos = b;
+        clipDist = 0;
     } else if (id == 2) { // G --> B
     	pos = B;
     }
     
     modified.Position.xy = pos;
     VertexShaderOutput output = MainVS(modified);
-    return output;
+
+    ShadowVertexShaderOutput full;
+    full.Default = output;
+    full.DistanceToLight = clipDist;
+    return full;
 }
 
-float4 MainPS(VertexShaderOutput input) : COLOR
+// Bayer 4x4 values normalized
+static const float bayer4x4[16] = {
+    0.0/16.0,  8.0/16.0,  2.0/16.0, 10.0/16.0,
+   12.0/16.0,  4.0/16.0, 14.0/16.0,  6.0/16.0,
+    3.0/16.0, 11.0/16.0,  1.0/16.0,  9.0/16.0,
+   15.0/16.0,  7.0/16.0, 13.0/16.0,  5.0/16.0
+};
+
+
+float4 MainPS(ShadowVertexShaderOutput input) : COLOR
 {
-    clip(input.Color.a);
+    float maxDistance = ScreenSize.x + ScreenSize.y;
+
+    int2 pixel = int2(input.Default.TextureCoordinates * ScreenSize);
+
+    // Tile 4x4
+    int idx = (pixel.x % 4) + (pixel.y % 4) * 4;
+    float ditherValue = bayer4x4[idx];
+
+    float start = (maxDistance-200) / maxDistance;
+    float end = (maxDistance-20) / maxDistance;
+    float fade = saturate((input.DistanceToLight - start) / (end - start));
+    fade = min(fade, .9);
+    
+    if (ditherValue > fade){
+        clip(-1);
+    }
+
+    clip(input.Default.Color.a);
     return float4(0,0,0,1); // return black
 }
 

@@ -113,57 +113,67 @@ public class GameScene : Scene
         {
             Position = new Vector2(260, 100),
             Color = Color.CornflowerBlue,
-            Radius = 500
+            Radius = 600
         });
         // torch 2
-        _lights.Add(new PointLight
-        {
-            Position = new Vector2(520, 100),
-            Color = Color.CornflowerBlue,
-            Radius = 500
-        });
-        // torch 3
-        _lights.Add(new PointLight
-        {
-            Position = new Vector2(740, 100),
-            Color = Color.CornflowerBlue,
-            Radius = 500
-        });
+        // _lights.Add(new PointLight
+        // {
+        //     Position = new Vector2(520, 100),
+        //     Color = Color.CornflowerBlue,
+        //     Radius = 700
+        // });
+        // // torch 3
+        // _lights.Add(new PointLight
+        // {
+        //     Position = new Vector2(740, 100),
+        //     Color = Color.CornflowerBlue,
+        //     Radius = 700
+        // });
         // torch 4
         _lights.Add(new PointLight
         {
             Position = new Vector2(1000, 100),
             Color = Color.CornflowerBlue,
-            Radius = 500
+            Radius = 600
+        });
+        
+        _lights.Add(new PointLight
+        {
+            Position = new Vector2(600, 660),
+            Color = Color.MonoGameOrange,
+            Radius = 1200
         });
         
         // random lights
-        _lights.Add(new PointLight
-        {
-            Position = new Vector2(Random.Shared.Next(50, 400),400),
-            Color = Color.MonoGameOrange,
-            Radius = 500
-        });
-        _lights.Add(new PointLight
-        {
-            Position = new Vector2(Random.Shared.Next(650, 1200),300),
-            Color = Color.MonoGameOrange,
-            Radius = 500
-        });
-        
+        // _lights.Add(new PointLight
+        // {
+        //     Position = new Vector2(100, 700),
+        //     // Position = new Vector2(Random.Shared.Next(50, 400),400),
+        //     Color = Color.DarkRed,
+        //     Radius = 700
+        // });
+        // _lights.Add(new PointLight
+        // {
+        //     // Position = new Vector2(Random.Shared.Next(650, 1200),300),
+        //     Position = new Vector2(1100, 700),
+        //
+        //     Color = Color.Black,
+        //     Radius = 700
+        // });
+        //
         // An inner shadow caster
-        var tileUnit = new Vector2(_tilemap.TileWidth, _tilemap.TileHeight);
-        var size = new Vector2(_tilemap.Columns, _tilemap.Rows);
-        _shadowCasters.Add(new ShadowCaster
-        {
-            Points = new List<Vector2>
-            {
-                tileUnit * new Vector2(1, 1),
-                tileUnit * new Vector2(size.X - 1, 1),
-                tileUnit * new Vector2(size.X - 1, size.Y - 1),
-                tileUnit * new Vector2(1, size.Y - 1),
-            }
-        });
+        // var tileUnit = new Vector2(_tilemap.TileWidth, _tilemap.TileHeight);
+        // var size = new Vector2(_tilemap.Columns, _tilemap.Rows);
+        // _shadowCasters.Add(new ShadowCaster
+        // {
+        //     Points = new List<Vector2>
+        //     {
+        //         tileUnit * new Vector2(1, 1),
+        //         tileUnit * new Vector2(size.X - 1, 1),
+        //         tileUnit * new Vector2(size.X - 1, size.Y - 1),
+        //         tileUnit * new Vector2(1, size.Y - 1),
+        //     }
+        // });
     }
 
     private void InitializeUI()
@@ -353,8 +363,8 @@ public class GameScene : Scene
         var halfWidth = bounds.Width / 2;
         var halfHeight = bounds.Height / 2;
         var center = bounds.Center.ToVector2();
-        _lights[^1].Position = center + new Vector2(halfWidth * MathF.Cos(t), .7f * halfHeight * MathF.Sin(t * 1.1f));
-        _lights[^2].Position = center + new Vector2(halfWidth * MathF.Cos(t + MathHelper.Pi), halfHeight * MathF.Sin(t - MathHelper.Pi));
+        //_lights[^1].Position = center + new Vector2(halfWidth * MathF.Cos(t), .7f * halfHeight * MathF.Sin(t * 1.1f));
+        //_lights[^2].Position = center + new Vector2(halfWidth * MathF.Cos(t + MathHelper.Pi), halfHeight * MathF.Sin(t - MathHelper.Pi));
     }
     
     private void CollisionChecks(GameTime gameTime)
