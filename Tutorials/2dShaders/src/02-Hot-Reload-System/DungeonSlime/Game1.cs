@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Media;
 using MonoGameLibrary;
 using MonoGameGum;
-using MonoGameGum.Forms.Controls;
+using Gum.Forms.Controls;
 
 namespace DungeonSlime;
 
@@ -21,7 +21,7 @@ public class Game1 : Core
         base.Initialize();
 
         // Start playing the background music
-        //Audio.PlaySong(_themeSong); 
+        Audio.PlaySong(_themeSong); 
 
         // Initialize the Gum UI service
         InitializeGum();
@@ -31,6 +31,7 @@ public class Game1 : Core
     }
 
     private void InitializeGum()
+    
     {
         // Initialize the Gum service
         GumService.Default.Initialize(this);

@@ -23,9 +23,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Gum.MonoGame" Version="2025.5.1.1" />
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+    <PackageReference Include="Gum.MonoGame" Version="2025.8.3.3" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.4" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonoGameLibrary\MonoGameLibrary.csproj" />
@@ -34,7 +34,7 @@
 
   <ItemGroup Condition="'$(OnlyWatchContentFiles)'=='true'">
     <!-- Adds .fx files to the `dotnet watch`'s file scope -->
-    <Watch Include="Content/**/*.fx;"/>
+    <Watch Include="Content/**/*.fx;" />
     
     <!-- Removes the .cs files from `dotnet watch`'s compile scope -->
     <Compile Update="**/*.cs" Watch="false" />
@@ -52,20 +52,15 @@
   https://github.com/MonoGame/MonoGame/blob/develop/Tools/MonoGame.Content.Builder.Task/MonoGame.Content.Builder.Task.targets 
   -->
   <Target Name="BuildAndCopyContent" DependsOnTargets="RunContentBuilder">
-    <Message Text="Copying Content..." Importance="High"/>
-    <Copy
-            SourceFiles="%(ExtraContent.Identity)"
-            DestinationFiles="$(OutDir)%(ExtraContent.ContentDir)%(ExtraContent.RecursiveDir)%(ExtraContent.Filename)%(ExtraContent.Extension)"
-            SkipUnchangedFiles="true"
-    />
+    <Message Text="Copying Content..." Importance="High" />
+    <Copy SourceFiles="%(ExtraContent.Identity)" DestinationFiles="$(OutDir)%(ExtraContent.ContentDir)%(ExtraContent.RecursiveDir)%(ExtraContent.Filename)%(ExtraContent.Extension)" SkipUnchangedFiles="true" />
   </Target>
 
   <!--
     A custom target that is meant to be invoked once per work session to track changes to content files  
   -->
   <Target Name="WatchContent">
-    <Exec Command="dotnet watch build --property OnlyWatchContentFiles=true --property AutoRestoreMGCBTool=false  -- --target:BuildAndCopyContent --restore:false"
-          EnvironmentVariables="DOTNET_WATCH_SUPPRESS_EMOJIS=1"/>
+    <Exec Command="dotnet watch build --property OnlyWatchContentFiles=true --property AutoRestoreMGCBTool=false  -- --target:BuildAndCopyContent --restore:false" EnvironmentVariables="DOTNET_WATCH_SUPPRESS_EMOJIS=1" />
   </Target>
   
 </Project>

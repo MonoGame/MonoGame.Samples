@@ -38,7 +38,6 @@ float4 Grayscale(float4 color)
 float4 SwapColors(float4 color)
 {
 	// produce the key location
-	//  note the x-offset by half a texel solves rounding errors.
 	float2 keyUv = float2(color.r , 0);
 	
 	// read the swap color value

@@ -184,7 +184,8 @@ public class Core : Game
         PointLightMaterial = SharedContent.WatchMaterial("effects/pointLightEffect");
         PointLightMaterial.SetParameter("LightBrightness", .25f);
         PointLightMaterial.SetParameter("LightSharpness", .1f);
-
+        PointLightMaterial.IsDebugVisible = true;
+        
         SceneTransitionMaterial = SharedContent.WatchMaterial("effects/sceneTransitionEffect");
         SceneTransitionMaterial.SetParameter("EdgeWidth", .05f);
 

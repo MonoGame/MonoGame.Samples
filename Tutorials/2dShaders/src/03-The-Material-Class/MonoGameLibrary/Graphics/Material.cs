@@ -24,8 +24,6 @@ public class Material
     /// </summary>
     public Effect Effect => Asset.Asset;
 
-    // public bool DebugOverride;
-
     public Material(WatchedAsset<Effect> asset)
     {
         Asset = asset;

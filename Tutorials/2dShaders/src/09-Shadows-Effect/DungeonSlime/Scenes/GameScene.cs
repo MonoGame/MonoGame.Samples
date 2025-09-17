@@ -6,6 +6,7 @@ using ImGuiNET;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoGameGum;
 using MonoGameLibrary;
 using MonoGameLibrary.Content;
@@ -271,8 +272,16 @@ public class GameScene : Scene
         _gameMaterial.SetParameter("NormalMap", _normalAtlas);
     }
 
+    private bool p = false;
     public override void Update(GameTime gameTime)
     {
+        if (Core.Input.Keyboard.WasKeyJustPressed(Keys.P))
+        {
+            p = !p;
+        }
+
+        if (p) return;
+        
         // Ensure the UI is always updated
         _ui.Update(gameTime);
 

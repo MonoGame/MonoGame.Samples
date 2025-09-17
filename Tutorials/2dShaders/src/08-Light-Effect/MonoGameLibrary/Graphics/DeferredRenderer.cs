@@ -147,7 +147,7 @@ public class DeferredRenderer
         // draw a debug border
         Core.SpriteBatch.Draw(Core.Pixel, normalBorderRect, Color.MintCream);
         
-        // draw the light buffer
+        // draw the normal buffer
         Core.SpriteBatch.Draw(NormalBuffer, normalRect, Color.White);
 
         Core.SpriteBatch.End();

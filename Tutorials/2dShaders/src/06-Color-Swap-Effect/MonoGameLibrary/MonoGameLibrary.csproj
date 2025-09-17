@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ImGui.NET" Version="1.91.6.1" />
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*">
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.4">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
