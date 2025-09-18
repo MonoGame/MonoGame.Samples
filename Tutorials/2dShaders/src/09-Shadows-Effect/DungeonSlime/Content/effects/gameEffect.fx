@@ -37,6 +37,8 @@ PixelShaderOutput MainPS(VertexShaderOutput input)
     float4 normal = tex2D(NormalMapSampler,input.TextureCoordinates);
     output.normal = normal;
     
+    if (output.color.a <= 0) clip(-1);
+    
     return output;
 }
 

@@ -57,8 +57,8 @@ ShadowVertexShaderOutput ShadowHullVS(VertexShaderInput input)
 
     // expand the segment by 1 unit in each direction
     float2 direction = normalize(aToB);
-    A -= direction;
-    B += direction;
+    A -= direction*1;
+    B += direction*1;
     
     // cull faces
     float2 normal = float2(-direction.y, direction.x);
@@ -114,10 +114,10 @@ float4 MainPS(ShadowVertexShaderOutput input) : COLOR
     int idx = (pixel.x % 4) + (pixel.y % 4) * 4;
     float ditherValue = bayer4x4[idx];
 
-    float start = (maxDistance-200) / maxDistance;
+    float start = (maxDistance-250) / maxDistance;
     float end = (maxDistance-20) / maxDistance;
     float fade = saturate((input.DistanceToLight - start) / (end - start));
-    fade = min(fade, .9);
+    fade = min(fade, .95);
     
     if (ditherValue > fade){
         clip(-1);

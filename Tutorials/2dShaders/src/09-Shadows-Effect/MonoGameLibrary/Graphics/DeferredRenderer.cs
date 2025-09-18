@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -33,9 +34,16 @@ public class DeferredRenderer
     private DepthStencilState _stencilTest;
     
     /// <summary>
+    /// The state used to prepare the light buffer
+    /// </summary>
+    private DepthStencilState _stencilSetup;
+    
+    /// <summary>
     /// A custom blend state that wont write any color data
     /// </summary>
     private BlendState _shadowBlendState;
+
+    private AlphaTestEffect _alphaTest;
 
 
     public DeferredRenderer()
@@ -72,11 +80,11 @@ public class DeferredRenderer
             StencilEnable = true,
             
             // instruct every fragment to interact with the stencil buffer
-            StencilFunction = CompareFunction.Always,
+            StencilFunction = CompareFunction.GreaterEqual,
             
-            // every operation will replace the current value in the stencil buffer
-            //  with whatever value is in the ReferenceStencil variable
-            StencilPass = StencilOperation.Replace,
+            // every operation will increase the shadow value (up to the max of 255), but only when the original 
+            //  stencil value was greater or equal to '1'. ('1' is the default clear value)
+            StencilPass = StencilOperation.IncrementSaturation,
             
             // this is the value that will be written into the stencil buffer
             ReferenceStencil = 1,
@@ -89,15 +97,33 @@ public class DeferredRenderer
             // instruct MonoGame to use the stencil buffer
             StencilEnable = true,
             
-            // instruct only fragments that have a current value EQUAl to the
+            // instruct only fragments that have a current value greater or equal to the
             //  ReferenceStencil value to interact
-            StencilFunction = CompareFunction.Equal,
+            StencilFunction = CompareFunction.GreaterEqual,
             
-            // shadow hulls wrote `1`, so `0` means "not" shadow. 
-            ReferenceStencil = 0,
+            // '1' is the minimum value for shadow.
+            ReferenceStencil = 1,
             
             // don't change the value of the stencil buffer. KEEP the current value.
             StencilPass = StencilOperation.Keep,
+            
+            // ignore depth from the stencil buffer write/reads
+            DepthBufferEnable = false
+        };
+        
+        _stencilSetup = new DepthStencilState
+        {
+            // instruct MonoGame to use the stencil buffer
+            StencilEnable = true,
+            
+            // in the setup, always set the pixel to '0'
+            StencilFunction = CompareFunction.Always,
+            
+            // Write a '0' anywhere we don't want a shadow to appear
+            ReferenceStencil = 0,
+            
+            // don't change the value of the stencil buffer. KEEP the current value.
+            StencilPass = StencilOperation.Replace,
             
             // ignore depth from the stencil buffer write/reads
             DepthBufferEnable = false
@@ -109,6 +135,7 @@ public class DeferredRenderer
             ColorWriteChannels = ColorWriteChannels.None
         };
 
+        _alphaTest = new AlphaTestEffect(Core.GraphicsDevice);
     }
     
     public void StartColorPhase()
@@ -125,13 +152,94 @@ public class DeferredRenderer
         Core.GraphicsDevice.Clear(Color.Transparent);
     }
 
-    public void DrawLights(List<PointLight> lights, List<ShadowCaster> shadowCasters)
+    public void StartLightStencilPhase()
     {
         Core.GraphicsDevice.SetRenderTarget(LightBuffer);
         Core.GraphicsDevice.Clear(Color.Black);
-        foreach (var light in lights)
+        
+        Core.SpriteBatch.Begin(blendState:_shadowBlendState, depthStencilState: _stencilSetup);
+    }
+
+    public void EndLightStencilPhase()
+    {
+        Core.SpriteBatch.End();
+    }
+    
+    public void DrawLights(List<PointLight> lights, List<ShadowCaster> shadowCasters, Action<BlendState, DepthStencilState> prepareStencil)
+    {
+        
+        
+        _stencilWrite = new DepthStencilState
         {
-            Core.GraphicsDevice.Clear(ClearOptions.Stencil, Color.Black, 0, 0);
+            // instruct MonoGame to use the stencil buffer
+            StencilEnable = true,
+            
+            // instruct every fragment to interact with the stencil buffer
+            StencilFunction = CompareFunction.LessEqual,
+            
+            // every operation will increase the shadow value (up to the max of 255), but only when the original 
+            //  stencil value was greater or equal to '1'. ('1' is the default clear value)
+            StencilPass = StencilOperation.IncrementSaturation,
+
+            // this is the value that will be written into the stencil buffer
+            ReferenceStencil = 1,
+            
+            // ignore depth from the stencil buffer write/reads
+            DepthBufferEnable = false
+        };
+        _stencilTest = new DepthStencilState
+        {
+            // instruct MonoGame to use the stencil buffer
+            StencilEnable = true,
+            
+            // instruct only fragments that have a current value greater or equal to the
+            //  ReferenceStencil value to interact
+            StencilFunction = CompareFunction.GreaterEqual,
+            
+            // '1' is the minimum value for shadow.
+            ReferenceStencil = 1,
+            
+            // don't change the value of the stencil buffer. KEEP the current value.
+            StencilPass = StencilOperation.Keep,
+            
+            // ignore depth from the stencil buffer write/reads
+            DepthBufferEnable = false
+        };
+        
+        _stencilSetup = new DepthStencilState
+        {
+            // instruct MonoGame to use the stencil buffer
+            StencilEnable = true,
+            
+            // in the setup, always set the pixel to '0'
+            StencilFunction = CompareFunction.Always,
+            
+            // Write a '0' anywhere we don't want a shadow to appear
+            ReferenceStencil = 0,
+            
+            // don't change the value of the stencil buffer. KEEP the current value.
+            StencilPass = StencilOperation.Replace,
+            
+            // ignore depth from the stencil buffer write/reads
+            DepthBufferEnable = false
+        };
+        
+        
+        
+        
+        Core.GraphicsDevice.SetRenderTarget(LightBuffer);
+        Core.GraphicsDevice.Clear(Color.Black);
+        // foreach (var light in lights)
+        for (var l = 0 ; l < lights.Count - 0 ; l ++)
+        {
+            var light = lights[l];
+            // initialize the stencil to '1'.
+            Core.GraphicsDevice.Clear(ClearOptions.Stencil, Color.Black, 0, 1);
+            
+            // Anything that draws in this setup will set the stencil back to '0'. This '0' acts as a "don't draw a shadow here". 
+            prepareStencil?.Invoke(_shadowBlendState, _stencilSetup);
+            
+            
             Core.ShadowHullMaterial.SetParameter("LightPosition", light.Position);
             
             Core.SpriteBatch.Begin(
@@ -172,6 +280,8 @@ public class DeferredRenderer
             Core.SpriteBatch.End();
 
         }
+        
+        Core.GraphicsDevice.Clear(ClearOptions.Stencil, Color.Black, 0, 0);
     }
     
 

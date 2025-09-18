@@ -63,11 +63,10 @@ float4 MainPS(LightVertexShaderOutput input) : COLOR
     float3 normalDir = (normal.xyz-.5)*2;
     
     // find the direction the light is travelling at the current pixel
-    float3 lightDir = float3( normalize(.5 - input.TextureCoordinates), 1);
+    float3 lightDir = normalize(float3(.5 - input.TextureCoordinates, 1));
     
     // how much is the normal direction pointing towards the light direction?
     float lightAmount = (dot(normalDir, lightDir));
-   
    
     float4 color = input.Color;
     color.a *= falloff * lightAmount;
