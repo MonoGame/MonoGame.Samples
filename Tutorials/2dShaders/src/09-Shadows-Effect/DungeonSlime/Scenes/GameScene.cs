@@ -551,7 +551,6 @@ public class GameScene : Scene
                 blendState: blend);
             _slime.Draw(_ => {});
             Core.SpriteBatch.End();
-            
         });
         
         // finish the deferred rendering

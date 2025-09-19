@@ -191,7 +191,10 @@ public class Core : Game
         PointLightMaterial.SetParameter("LightSharpness", .1f);
 
         ShadowHullMaterial = SharedContent.WatchMaterial("effects/shadowHullEffect");
-
+        ShadowHullMaterial.SetParameter("ShadowFadeStartDistance", .013f);
+        ShadowHullMaterial.SetParameter("ShadowFadeEndDistance", .13f);
+        ShadowHullMaterial.SetParameter("ShadowIntensity", .85f);
+  
         SceneTransitionMaterial = SharedContent.WatchMaterial("effects/sceneTransitionEffect");
         SceneTransitionMaterial.SetParameter("EdgeWidth", .05f);
 
@@ -242,6 +245,9 @@ public class Core : Game
 
         PointLightMaterial.Update();
         ShadowHullMaterial.Update();
+        
+        DeferredCompositeMaterial.SetParameter("ScreenSize", new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+        DeferredCompositeMaterial.SetParameter("BoxBlurStride", .18f);
         DeferredCompositeMaterial.Update();
         
         base.Update(gameTime);

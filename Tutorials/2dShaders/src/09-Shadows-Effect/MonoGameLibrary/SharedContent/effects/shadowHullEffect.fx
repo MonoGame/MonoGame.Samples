@@ -36,14 +36,8 @@ float2 UnpackVector2FromColor_SNorm(float4 color)
     return float2(x, y);
 }
 
-struct ShadowVertexShaderOutput
-{
-	VertexShaderOutput Default;
-    float DistanceToLight: TEXCOORD1;
-};
-
 float2 LightPosition;
-ShadowVertexShaderOutput ShadowHullVS(VertexShaderInput input) 
+VertexShaderOutput ShadowHullVS(VertexShaderInput input) 
 {   
     VertexShaderInput modified = input;
     float distance = ScreenSize.x + ScreenSize.y;
@@ -73,15 +67,12 @@ ShadowVertexShaderOutput ShadowHullVS(VertexShaderInput input)
     float2 b = B + distance * lightRayB;    
     
     int id = input.TexCoord.x + input.TexCoord.y * 2;
-    float clipDist = 1;
     if (id == 0) {        // S --> A
     	pos = A;
     } else if (id == 1) { // D --> a
     	pos = a;
-        clipDist = 0;
     } else if (id == 3) { // F --> b
     	pos = b;
-        clipDist = 0;
     } else if (id == 2) { // G --> B
     	pos = B;
     }
@@ -89,10 +80,7 @@ ShadowVertexShaderOutput ShadowHullVS(VertexShaderInput input)
     modified.Position.xy = pos;
     VertexShaderOutput output = MainVS(modified);
 
-    ShadowVertexShaderOutput full;
-    full.Default = output;
-    full.DistanceToLight = clipDist;
-    return full;
+    return output;
 }
 
 // Bayer 4x4 values normalized
@@ -103,27 +91,30 @@ static const float bayer4x4[16] = {
    15.0/16.0,  7.0/16.0, 13.0/16.0,  5.0/16.0
 };
 
+float ShadowFadeStartDistance;
+float ShadowFadeEndDistance;
+float ShadowIntensity;
 
-float4 MainPS(ShadowVertexShaderOutput input) : COLOR
+float4 MainPS(VertexShaderOutput input) : COLOR
 {
-    float maxDistance = ScreenSize.x + ScreenSize.y;
 
-    int2 pixel = int2(input.Default.TextureCoordinates * ScreenSize);
-
-    // Tile 4x4
+    // get an ordered dither value
+    int2 pixel = int2(input.TextureCoordinates * ScreenSize);
     int idx = (pixel.x % 4) + (pixel.y % 4) * 4;
     float ditherValue = bayer4x4[idx];
 
-    float start = (maxDistance-250) / maxDistance;
-    float end = (maxDistance-20) / maxDistance;
-    float fade = saturate((input.DistanceToLight - start) / (end - start));
-    fade = min(fade, .95);
+    // produce the fade-out gradient
+    float maxDistance = ScreenSize.x + ScreenSize.y;
+    float endDistance = ShadowFadeEndDistance;
+    float startDistance = ShadowFadeStartDistance;
+    float fade = saturate((input.TextureCoordinates.x - endDistance) / (startDistance - endDistance));
+    fade = min(fade, ShadowIntensity);
     
     if (ditherValue > fade){
         clip(-1);
     }
 
-    clip(input.Default.Color.a);
+    clip(input.Color.a);
     return float4(0,0,0,1); // return black
 }
 
