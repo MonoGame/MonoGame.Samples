@@ -195,6 +195,7 @@ public class Game1 : Core
         // normal.
         if (normal != Vector2.Zero)
         {
+            normal.Normalize();
             _batVelocity = Vector2.Reflect(_batVelocity, normal);
 
             // Play the bounce sound effect
