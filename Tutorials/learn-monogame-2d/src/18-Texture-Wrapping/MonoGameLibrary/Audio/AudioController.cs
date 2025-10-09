@@ -100,18 +100,18 @@ public class AudioController : IDisposable
     /// </summary>
     public void Update()
     {
-        int index = 0;
-
-        while (index < _activeSoundEffectInstances.Count)
+        for (int i = _activeSoundEffectInstances.Count - 1; i >= 0; i--)
         {
-            SoundEffectInstance instance = _activeSoundEffectInstances[index];
+            SoundEffectInstance instance = _activeSoundEffectInstances[i];
 
-            if (instance.State == SoundState.Stopped && !instance.IsDisposed)
+            if (instance.State == SoundState.Stopped)
             {
-                instance.Dispose();
+                if (!instance.IsDisposed)
+                {
+                    instance.Dispose();
+                }
+                _activeSoundEffectInstances.RemoveAt(i);
             }
-
-            _activeSoundEffectInstances.RemoveAt(index);
         }
     }
 

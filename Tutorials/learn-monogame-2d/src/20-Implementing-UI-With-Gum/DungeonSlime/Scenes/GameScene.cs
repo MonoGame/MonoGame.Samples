@@ -1,12 +1,12 @@
 using System;
 using Gum.DataTypes;
+using Gum.Forms.Controls;
 using Gum.Wireframe;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameGum;
-using MonoGameGum.Forms.Controls;
 using MonoGameGum.GueDeriving;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
@@ -300,6 +300,7 @@ public class GameScene : Scene
         // normal.
         if (normal != Vector2.Zero)
         {
+            normal.Normalize();
             _batVelocity = Vector2.Reflect(_batVelocity, normal);
 
             // Play the bounce sound effect
