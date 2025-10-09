@@ -39,7 +39,7 @@ public class Material
         }
         set
         {
-            if (IsDebugVisible)
+            if (!value)
             {
                 s_debugMaterials.Remove(this);
             }
