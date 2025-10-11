@@ -150,5 +150,19 @@ public static class ContentManagerExtensions
                 /* ignore */
             }
         };
+        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+        {
+            try
+            {
+                if (!process.HasExited)
+                {
+                    process.Kill(entireProcessTree: true);
+                }
+            }
+            catch
+            {
+                /* ignore */
+            }
+        };
     }
 }
