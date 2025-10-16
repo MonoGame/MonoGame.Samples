@@ -4,10 +4,15 @@
 name: .NET
 
 on:
+  workflow_dispatch:
   push:
     branches-ignore:
       - '3.8.*'
-
+  pull_request:
+    branches-ignore:
+      - '3.8.*'
+  schedule:
+    - cron: "0 3 * * 1"   # Weekly (Mon) build to keep artifacts fresh
 
 jobs:
   build:
