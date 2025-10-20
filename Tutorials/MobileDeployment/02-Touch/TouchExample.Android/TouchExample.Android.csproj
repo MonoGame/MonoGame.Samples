@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0-android</TargetFramework>
+        <TargetFramework>net9.0-android</TargetFramework>
         <RootNamespace>TouchExample</RootNamespace>
         <OutputType>Exe</OutputType>
         <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>

@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net8.0;net8.0-android</TargetFrameworks>
+		<TargetFrameworks>net9.0;net9.0-android</TargetFrameworks>
 	</PropertyGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='net8.0-android'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net9.0-android'">
 		<PackageReference Include="MonoGame.Framework.Android" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='net8.0'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net9.0'">
 		<PackageReference Include="MonoGame.Framework.DesktopGL" />
 	</ItemGroup>
 </Project>

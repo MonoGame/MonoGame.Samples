@@ -11,7 +11,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.monogame.dungeonslime</string>
 	<key>MinimumOSVersion</key>
-	<string>15.0</string>
+	<string>12.2</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0-ios</TargetFramework>
+        <TargetFramework>net9.0-ios</TargetFramework>
         <OutputType>Exe</OutputType>
-        <SupportedOSPlatformVersion>11.2</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion>12.2</SupportedOSPlatformVersion>
         <CodesignKey>iPhone Developer</CodesignKey>
     </PropertyGroup>
     <ItemGroup>
@@ -15,8 +15,4 @@
     <ItemGroup>
       <ProjectReference Include="..\DungeonSlime.Common\DungeonSlime.Common.csproj" />
     </ItemGroup>
-    <Target Name="RestoreDotnetTools" BeforeTargets="CollectPackageReferences">
-        <Message Text="Restoring dotnet tools (this might take a while depending on your internet speed and should only happen upon building your project for the first time, or after upgrading MonoGame, or clearing your nuget cache)" Importance="High"/>
-        <Exec Command="dotnet tool restore"/>
-    </Target>
 </Project>

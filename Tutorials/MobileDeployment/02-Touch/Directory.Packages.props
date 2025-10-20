@@ -3,8 +3,8 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="MonoGame.Framework.Android" Version="3.8.5-develop.8" />
-    <PackageVersion Include="MonoGame.Content.Builder.Task" Version="3.8.5-develop.8" />
-    <PackageVersion Include="MonoGame.Framework.iOS" Version="3.8.5-develop.8" />
+    <PackageVersion Include="MonoGame.Framework.Android" Version="3.8.4.1" />
+    <PackageVersion Include="MonoGame.Content.Builder.Task" Version="3.8.4.1" />
+    <PackageVersion Include="MonoGame.Framework.iOS" Version="3.8.4.1" />
   </ItemGroup>
 </Project>
