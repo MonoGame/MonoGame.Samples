@@ -15,8 +15,13 @@ The Ship Game Starter Kit is a complete XNA Game Studio game. The project comes 
 
 Ship Game is a 3D spaceship combat game set inside a complex tunnel system. Ship Game features advanced lighting and textures, a full GPU particle system, and advanced physics. Explore the tunnels on your own, or take on a friend head-to-head using split-screen mode.
 
-> Note
+> [!NOTE]
 > This documentation assumes that you have a basic knowledge of programming concepts and the Visual C# environment.
+
+> [!IMPORTANT] 
+> In order to run the project, the `NormalMappingModelProcessor` needs to be built in `Release` mode at least once.  The [dependency path](./ShipGame.Core/Content/ShipGame.mgcb#L13) to the processor dll in the `.mgcb` file is (for the moment) fixed.
+>
+> You can either build for `Release` or change the path to where a built version of the `NormalMappingModelProcessor` dll is located to run the project, else you will get "Processor" errors in the MGCB tool.
 
 ## Features
 
@@ -67,9 +72,10 @@ Within each project, there are the following projects:
 * BoxCollider - a collision library for the project.
 * NormalMappingModelProcessor - A custom [content pipeline](https://monogame.net/articles/content_pipeline/why_content_pipeline.html) processor for the models in the Game.
 
-> **NOTE** in order to run the project, the `NormalMappingModelProcessor` needs to be built in `Debug` mode at least once.  The [dependency path](https://github.com/MonoGame/MonoGame.Samples/blob/9e36bf676a8e825a1c1eb2afc41ba596e4a74720/ShipGame/ShipGame.Core/Content/ShipGame.mgcb#L13) to the processor dll in the `.mgcb` file is (for the moment) fixed.
+> [!IMPORTANT] 
+> In order to run the project, the `NormalMappingModelProcessor` needs to be built in `Release` mode at least once.  The [dependency path](./ShipGame.Core/Content/ShipGame.mgcb#L13) to the processor dll in the `.mgcb` file is (for the moment) fixed.
 >
-> You can either build for `debug` or change the path to where a built version of the `NormalMappingModelProcessor` is located to run the project, else you will get "Processor" errors in the MGCB tool.
+> You can either build for `Release` or change the path to where a built version of the `NormalMappingModelProcessor` dll is located to run the project, else you will get "Processor" errors in the MGCB tool.
 
 The code is split up this way in order to share the same central game code for all platforms.  Each platform initializes the `ShipGameGame` Game class in the core project to run the game.
 
@@ -105,7 +111,7 @@ The Single Player game is your chance to explore the levels in Ship Game before 
 
 In Multiplayer mode, you can go head-to-head with a friend in split-screen mode. Explore the tunnels, collect pickups, and destroy the other player's ship before they destroy you!
 
-> Note
+> [!NOTE]
 > To play Multiplayer mode, you must have either two Xbox 360 controllers plugged in, or an Xbox 360 controller and a keyboard. Two players cannot share a single keyboard to play Ship Game multiplayer.
 
 Before the game starts, each player has a chance to choose the ship they would like to fly, and optionally, invert the Y axis of their controller.
