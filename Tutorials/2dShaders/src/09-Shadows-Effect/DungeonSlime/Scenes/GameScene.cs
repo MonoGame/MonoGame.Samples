@@ -239,15 +239,15 @@ public class GameScene : Scene
         _gameMaterial.SetParameter("NormalMap", _normalAtlas);
     }
 
-    private bool p = false;
+    private bool _debugPause = false;
     public override void Update(GameTime gameTime)
     {
         if (Core.Input.Keyboard.WasKeyJustPressed(Keys.P))
         {
-            p = !p;
+            _debugPause = !_debugPause;
         }
 
-        if (p) return;
+        if (_debugPause) return;
         
         // Ensure the UI is always updated
         _ui.Update(gameTime);

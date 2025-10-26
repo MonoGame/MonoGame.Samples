@@ -38,8 +38,6 @@ VertexShaderOutput MainVS(VertexShaderInput input)
     pos.xz += centerXZ;
     
     output.Position = mul(pos, MatrixTransform);
-    output.Position /= output.Position.w; // re-normalize the position vector.
-    
     output.Color = input.Color;
     output.TextureCoordinates = input.TexCoord;
     return output;
