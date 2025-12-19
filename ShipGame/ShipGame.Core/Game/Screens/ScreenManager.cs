@@ -48,6 +48,9 @@ namespace ShipGame
         Texture2D textureBackground;  // the background texture used on menus
         float backgroundTime = 0.0f;  // time for background animation used on menus
 
+        // TEMPORARY: Auto-skip to gameplay for testing (set to true to enable)
+        private const bool AUTO_SKIP_TO_GAME = false;
+
         // constructor
         public ScreenManager(ShipGameGame shipGame, FontManager font, GameManager game)
         {
@@ -66,9 +69,24 @@ namespace ShipGame
             screens.Add(new ScreenGame(this, game));
             screens.Add(new ScreenEnd(this, game));
 
-            // fade in to intro screen
-            SetNextScreen(ScreenType.ScreenIntro,
-                GameOptions.FadeColor, GameOptions.FadeTime);
+            // TEMPORARY: Skip directly to game for testing
+            if (AUTO_SKIP_TO_GAME)
+            {
+                // Set up single player mode with first ship
+                gameManager.GameMode = GameMode.SinglePlayer;
+                gameManager.SetShips("ship1", null, 0);  // ship1 for player 1, no player 2, no invert Y
+                gameManager.SetLevel("level1");
+
+                // Jump directly to game screen
+                SetNextScreen(ScreenType.ScreenGame,
+                    GameOptions.FadeColor, GameOptions.FadeTime);
+            }
+            else
+            {
+                // Normal flow: fade in to intro screen
+                SetNextScreen(ScreenType.ScreenIntro,
+                    GameOptions.FadeColor, GameOptions.FadeTime);
+            }
             fade = fadeTime * 0.5f;
         }
 
