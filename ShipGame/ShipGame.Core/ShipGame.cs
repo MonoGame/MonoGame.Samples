@@ -9,6 +9,7 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework;
+using System;
 #endregion
 
 namespace ShipGame
@@ -32,13 +33,21 @@ namespace ShipGame
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            Window.Title = "ShipGame"; 
+            Window.Title = "ShipGame";
 
             soundManager = new SoundManager();
             game = new GameManager(soundManager);
 
+            // On desktop, use the preferred resolution from GameOptions
+            // On mobile/consoles, these values will be overridden by the device's native resolution
+#if WINDOWS || WINDOWS_UAP || DESKTOPGL
             graphics.PreferredBackBufferWidth = GameOptions.ScreenWidth;
             graphics.PreferredBackBufferHeight = GameOptions.ScreenHeight;
+#else
+            // On mobile platforms, use native resolution
+            graphics.IsFullScreen = true;
+            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+#endif
 
             IsFixedTimeStep = renderVsync;
             graphics.SynchronizeWithVerticalRetrace = renderVsync;
@@ -54,6 +63,20 @@ namespace ShipGame
         protected override void Initialize()
         {
             base.Initialize();
+
+            // Update GameOptions with actual screen dimensions after device is created
+            // This ensures resolution-dependent code uses the correct values on all platforms
+            GameOptions.ScreenWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
+            GameOptions.ScreenHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
+
+            // Scale glow resolution proportionally for lower-res devices
+            // Keep at 512 for devices with width >= 1280, scale down for smaller screens
+            if (GameOptions.ScreenWidth < 1280)
+            {
+                GameOptions.GlowResolution = (int)(512 * (GameOptions.ScreenWidth / 1280.0f));
+                // Ensure minimum glow resolution of 256 for quality
+                GameOptions.GlowResolution = Math.Max(256, GameOptions.GlowResolution);
+            }
         }
 
 

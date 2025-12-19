@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0-ios</TargetFramework>
     <OutputType>Exe</OutputType>
-    <SupportedOSPlatformVersion>11.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion>12.2</SupportedOSPlatformVersion>
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
@@ -11,6 +11,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="..\ShipGame.Core\Content\ShipGame.mgcb">
       <Link>Content\ShipGame.mgcb</Link>
+      <Platform>iOS</Platform>
     </MonoGameContentReference>
   </ItemGroup>   
   <ItemGroup>

@@ -23,6 +23,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="..\ShipGame.Core\Content\ShipGame.mgcb">
       <Link>Content\ShipGame.mgcb</Link>
+      <Platform>Windows</Platform>
     </MonoGameContentReference>
   </ItemGroup>
   <ItemGroup>
