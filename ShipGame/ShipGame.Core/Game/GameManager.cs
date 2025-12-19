@@ -297,7 +297,7 @@ namespace ShipGame
                             "ships/" + shipFile[i]);
 
                     EntityList ShipEnities = EntityList.Load(
-                            "content/ships/" + shipFile[i] + ".xml");
+                            Path.Combine(content.RootDirectory, "ships", shipFile[i] + ".xml"));
 
                     players[i] = new PlayerShip(this, i,
                         ShipModel, ShipEnities, GameOptions.CollisionBoxRadius);
@@ -307,7 +307,7 @@ namespace ShipGame
 
             // create powerups
             EntityList powerups = EntityList.Load(
-                            "content/levels/" + level + "_powerups.xml");
+                            Path.Combine(content.RootDirectory, "levels", level + "_powerups.xml"));
 
             foreach (Entity entity in powerups.Entities)
             {

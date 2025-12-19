@@ -17,20 +17,21 @@
             "type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "Debug DesktopGL Build",
-			"program": "${workspaceFolder}/ShipGame.DesktopGL/bin/Debug/net8.0/ShipGame.DesktopGL.exe",
+			"program": "${workspaceFolder}/ShipGame.DesktopGL/bin/Debug/net9.0/ShipGame.DesktopGL.exe",
         },
         {
             "name": "iOS Debug",
-            "type": "maui",
+            "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "maui: Build",
+            "preLaunchTask": "Debug iOS Build",
+            "program": "${workspaceFolder}/ShipGame.iOs/bin/Debug/net9.0-ios/ShipGame.iOS.dll",
         },
         {
             "name": "WindowsDX Debug",
             "type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "Debug WindowsDX Build",
-			"program": "${workspaceFolder}/ShipGame.WindowsDX/bin/Debug/net8.0-windows/ShipGame.WindowsDX.exe",
+			"program": "${workspaceFolder}/ShipGame.WindowsDX/bin/Debug/net9.0-windows/ShipGame.WindowsDX.exe",
         }
     ]
 }
