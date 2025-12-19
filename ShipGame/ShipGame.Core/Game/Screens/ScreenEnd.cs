@@ -56,7 +56,7 @@ namespace ShipGame
                 padModel = content.Load<Model>("ships/pad");
                 padHaloModel = content.Load<Model>("ships/pad_halo");
 
-                lights = LightList.Load("content/screens/end_lights.xml");
+                lights = LightList.Load(System.IO.Path.Combine(content.RootDirectory, "screens", "end_lights.xml"));
 
                 textureContinue = content.Load<Texture2D>("screens/continue");
                 if (winner == 0)
