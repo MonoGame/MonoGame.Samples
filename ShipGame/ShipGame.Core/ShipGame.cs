@@ -38,16 +38,23 @@ namespace ShipGame
             soundManager = new SoundManager();
             game = new GameManager(soundManager);
 
+            // Runtime platform detection - works because Core project is shared
             // On desktop, use the preferred resolution from GameOptions
-            // On mobile/consoles, these values will be overridden by the device's native resolution
-#if WINDOWS || WINDOWS_UAP || DESKTOPGL
-            graphics.PreferredBackBufferWidth = GameOptions.ScreenWidth;
-            graphics.PreferredBackBufferHeight = GameOptions.ScreenHeight;
-#else
-            // On mobile platforms, use native resolution
-            graphics.IsFullScreen = true;
-            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
-#endif
+            // On mobile platforms, use native resolution in fullscreen
+            bool isMobile = OperatingSystem.IsAndroid() || OperatingSystem.IsIOS();
+
+            if (isMobile)
+            {
+                // Mobile: Use native resolution in fullscreen landscape mode
+                graphics.IsFullScreen = true;
+                graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            }
+            else
+            {
+                // Desktop: Use preferred resolution from GameOptions
+                graphics.PreferredBackBufferWidth = GameOptions.ScreenWidth;
+                graphics.PreferredBackBufferHeight = GameOptions.ScreenHeight;
+            }
 
             IsFixedTimeStep = renderVsync;
             graphics.SynchronizeWithVerticalRetrace = renderVsync;
