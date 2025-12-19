@@ -13,6 +13,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="..\ShipGame.Core\Content\ShipGame.mgcb">
       <Link>Content\ShipGame.mgcb</Link>
+      <Platform>Android</Platform>
     </MonoGameContentReference>
   </ItemGroup>
   <ItemGroup>
