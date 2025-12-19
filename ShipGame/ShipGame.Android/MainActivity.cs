@@ -10,12 +10,13 @@ namespace ShipGame
         Label = "@string/app_name",
         MainLauncher = true,
         Icon = "@drawable/icon",
+        //Theme = "@style/Theme.Splash",
         AlwaysRetainTaskState = true,
         LaunchMode = LaunchMode.SingleInstance,
-        ScreenOrientation = ScreenOrientation.FullUser,
-        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize
+        ScreenOrientation = ScreenOrientation.SensorLandscape,
+        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden
     )]
-    public class Activity1 : AndroidGameActivity
+    public class MainActivity : AndroidGameActivity
     {
         private ShipGameGame _game;
         private View _view;
