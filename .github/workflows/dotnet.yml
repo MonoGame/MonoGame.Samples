@@ -31,17 +31,17 @@ jobs:
     - name: Archive Tutorial/BasicCameraExample
       uses: actions/upload-artifact@v6
       with:
-        name: BasicCameraExample
+        name: Windows-BasicCameraExample
         path: Tutorials/BasicCameraExample/**
         include-hidden-files: true
 
     - name: Build Windows Binary for AutoPong
       run: dotnet build AutoPong/AutoPong.WindowsDX/AutoPong.WindowsDX.csproj
-  
+
     - name: Archive AutoPong
       uses: actions/upload-artifact@v6
       with:
-        name: AutoPong
+        name: Windows-AutoPong
         path: AutoPong/**
         include-hidden-files: true
 
@@ -51,7 +51,7 @@ jobs:
     - name: Archive FuelCell
       uses: actions/upload-artifact@v6
       with:
-        name: FuelCell
+        name: Windows-FuelCell
         path: FuelCell/**
         include-hidden-files: true
 
@@ -61,7 +61,7 @@ jobs:
     - name: Archive NeonShooter
       uses: actions/upload-artifact@v6
       with:
-        name: NeonShooter
+        name: Windows-NeonShooter
         path: NeonShooter/**
         include-hidden-files: true
 
@@ -71,11 +71,11 @@ jobs:
     - name: Archive Platformer2D
       uses: actions/upload-artifact@v6
       with:
-        name: Platformer2D
+        name: Windows-Platformer2D
         path: Platformer2D/**
         include-hidden-files: true
 
-    - name: Build ShipGame COntent Processor in Release mode
+    - name: Build ShipGame Content Processor in Release mode
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
 
     - name: Build Windows Binary for ShipGame
@@ -84,17 +84,17 @@ jobs:
     - name: Archive ShipGame
       uses: actions/upload-artifact@v6
       with:
-        name: ShipGame
+        name: Windows-ShipGame
         path: ShipGame/**
         include-hidden-files: true
-        
+
     - name: Build learn-monogame-2d Binary
       run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --configuration Release
 
-    - name: Archive Platformer2D
+    - name: Archive learn-monogame-2d
       uses: actions/upload-artifact@v6
       with:
-        name: Learn-monogame-2d
+        name: Windows-Learn-monogame-2d
         path: Tutorials/learn-monogame-2d/src/27-Conclusion/**
         include-hidden-files: true
 
@@ -313,12 +313,40 @@ jobs:
           monopack -r ${{ matrix.runtime }} -o ../../artifacts/${{ matrix.platform }}/ShipGame
         fi
 
-    # Upload artifacts
-    - name: Upload ${{ matrix.platform }} Packages
+    # Upload artifacts - separate per game for clarity
+    - name: Upload ${{ matrix.platform }} AutoPong
       uses: actions/upload-artifact@v6
       with:
-        name: MonoGame-Samples-${{ matrix.platform }}
-        path: artifacts/${{ matrix.platform }}/**
+        name: ${{ matrix.platform }}-AutoPong
+        path: artifacts/${{ matrix.platform }}/AutoPong/**
+        include-hidden-files: true
+
+    - name: Upload ${{ matrix.platform }} FuelCell
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ matrix.platform }}-FuelCell
+        path: artifacts/${{ matrix.platform }}/FuelCell/**
+        include-hidden-files: true
+
+    - name: Upload ${{ matrix.platform }} NeonShooter
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ matrix.platform }}-NeonShooter
+        path: artifacts/${{ matrix.platform }}/NeonShooter/**
+        include-hidden-files: true
+
+    - name: Upload ${{ matrix.platform }} Platformer2D
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ matrix.platform }}-Platformer2D
+        path: artifacts/${{ matrix.platform }}/Platformer2D/**
+        include-hidden-files: true
+
+    - name: Upload ${{ matrix.platform }} ShipGame
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ matrix.platform }}-ShipGame
+        path: artifacts/${{ matrix.platform }}/ShipGame/**
         include-hidden-files: true
 
   deploy:
