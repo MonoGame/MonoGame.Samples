@@ -121,7 +121,9 @@ jobs:
       run: dotnet tool install --global MonoPack
 
     - name: Setup Wine 
-      run: wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
+      run: |
+        brew install --cask xquartz
+        brew install --cask wine-stable
 
     # Build ShipGame content processor first (required dependency)
     - name: Build ShipGame Content Processor
