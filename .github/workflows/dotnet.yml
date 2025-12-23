@@ -122,6 +122,7 @@ jobs:
 
     - name: Setup Wine 
       run: |
+        softwareupdate --install-rosetta --agree-to-license
         brew install --cask xquartz
         brew install --cask wine-stable
 
