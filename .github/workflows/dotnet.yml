@@ -120,6 +120,9 @@ jobs:
     - name: Install MonoPack
       run: dotnet tool install --global MonoPack
 
+    - name: Setup Wine 
+      run: wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
+
     # Build ShipGame content processor first (required dependency)
     - name: Build ShipGame Content Processor
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
