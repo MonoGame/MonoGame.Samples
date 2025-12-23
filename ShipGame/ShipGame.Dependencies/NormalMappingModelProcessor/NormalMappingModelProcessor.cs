@@ -45,7 +45,7 @@ public class NormalMappingModelProcessor : ModelProcessor
         {
             throw new ArgumentNullException("input");
         }
-        context.Logger.LogImportantMessage("processing: " + input.Name);
+        context.Logger.Log("processing: " + input.Name);
         PreprocessSceneHierarchy(input, context, input.Name);
         return base.Process(input, context);
     }
@@ -78,7 +78,7 @@ public class NormalMappingModelProcessor : ModelProcessor
                                     Path.Combine(ProjectDirectory, "null_color.tga")));
                 }
 
-                context.Logger.LogImportantMessage("Color map: " + geometry.Material.Textures[TextureMapKey].Filename);
+                context.Logger.Log("Color map: " + geometry.Material.Textures[TextureMapKey].Filename);
 
                 string colorMap = geometry.Material.Textures[TextureMapKey].Filename;
                 string replace = "_c.";
@@ -94,7 +94,7 @@ public class NormalMappingModelProcessor : ModelProcessor
 
                     geometry.Material.Textures.Add(NormalMapKey, new ExternalReference<TextureContent>(normalMap));
                 }
-                context.Logger.LogImportantMessage("Normal map: " + geometry.Material.Textures[NormalMapKey].Filename);
+                context.Logger.Log("Normal map: " + geometry.Material.Textures[NormalMapKey].Filename);
 
                 // Specular map
                 if (!geometry.Material.Textures.ContainsKey(SpecularMapKey))
@@ -105,7 +105,7 @@ public class NormalMappingModelProcessor : ModelProcessor
 
                     geometry.Material.Textures.Add(SpecularMapKey, new ExternalReference<TextureContent>(specularMap));
                 }
-                context.Logger.LogImportantMessage("Specular map: " + geometry.Material.Textures[SpecularMapKey].Filename);
+                context.Logger.Log("Specular map: " + geometry.Material.Textures[SpecularMapKey].Filename);
 
                 // Glow map
                 if (!geometry.Material.Textures.ContainsKey(GlowMapKey))
@@ -116,7 +116,7 @@ public class NormalMappingModelProcessor : ModelProcessor
 
                     geometry.Material.Textures.Add(GlowMapKey, new ExternalReference<TextureContent>(glowMap));
                 }
-                context.Logger.LogImportantMessage("Glow map: " + geometry.Material.Textures[GlowMapKey].Filename);
+                context.Logger.Log("Glow map: " + geometry.Material.Textures[GlowMapKey].Filename);
             }
         }
 
@@ -187,17 +187,16 @@ public class NormalMappingModelProcessor : ModelProcessor
             normalMappingMaterial.Textures.Add(texture.Key, texture.Value);
         }
 
-        // Pass thru texture processing settings.
-        OpaqueDataDictionary opaqueDataDictionary = new OpaqueDataDictionary();
-        opaqueDataDictionary.Add("ColorKeyColor", ColorKeyColor);
-        opaqueDataDictionary.Add("ColorKeyEnabled", ColorKeyEnabled);
-        opaqueDataDictionary.Add("GenerateMipmaps", GenerateMipmaps);
-        opaqueDataDictionary.Add("PremultiplyTextureAlpha", PremultiplyTextureAlpha);
-        opaqueDataDictionary.Add("ResizeTexturesToPowerOfTwo", ResizeTexturesToPowerOfTwo);
-        opaqueDataDictionary.Add("TextureFormat", TextureFormat);
-        opaqueDataDictionary.Add("DefaultEffect", DefaultEffect);
-
         return context.Convert<MaterialContent, MaterialContent>
-            (normalMappingMaterial, typeof(MaterialProcessor).Name, opaqueDataDictionary);
+            (normalMappingMaterial, new MaterialProcessor()
+            {
+                ColorKeyColor = this.ColorKeyColor,
+                ColorKeyEnabled = this.ColorKeyEnabled,
+                GenerateMipmaps = this.GenerateMipmaps,
+                PremultiplyTextureAlpha = this.PremultiplyTextureAlpha,
+                ResizeTexturesToPowerOfTwo = this.ResizeTexturesToPowerOfTwo,
+                TextureFormat = this.TextureFormat,
+                DefaultEffect = this.DefaultEffect
+            });
     }
 }

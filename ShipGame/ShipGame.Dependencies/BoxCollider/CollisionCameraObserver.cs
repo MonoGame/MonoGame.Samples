@@ -10,7 +10,8 @@
 #region Using Statements
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;using System;
+using Microsoft.Xna.Framework.Input;
+using System;
 
 #endregion
 
@@ -63,7 +64,7 @@ namespace BoxCollider
             float speedBoost = 0.0f;
             if (gamepadState.Buttons.LeftStick == ButtonState.Pressed)
                 speedBoost = 1.0f;
-            if (keyboardState != null && keyboardState.IsKeyDown(Keys.LeftShift))
+            if (keyboardState.IsKeyDown(Keys.LeftShift))
                 speedBoost = 1.0f;
 
             float rotSpeed = 2.0f * timeSeconds;
