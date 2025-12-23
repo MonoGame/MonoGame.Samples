@@ -19,17 +19,17 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 9.0.x
     
     - name: Build Windows Binary for Tutorial/BasicCameraExample
       run: dotnet build Tutorials/BasicCameraExample/BasicCameraExample.sln
 
     - name: Archive Tutorial/BasicCameraExample
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: BasicCameraExample
         path: Tutorials/BasicCameraExample/**
@@ -39,7 +39,7 @@ jobs:
       run: dotnet build AutoPong/AutoPong.WindowsDX/AutoPong.WindowsDX.csproj
   
     - name: Archive AutoPong
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: AutoPong
         path: AutoPong/**
@@ -49,7 +49,7 @@ jobs:
       run: dotnet build FuelCell/FuelCell.WindowsDX/FuelCell.WindowsDX.csproj
 
     - name: Archive FuelCell
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: FuelCell
         path: FuelCell/**
@@ -59,7 +59,7 @@ jobs:
       run: dotnet build NeonShooter/NeonShooter.WindowsDX/NeonShooter.WindowsDX.csproj
 
     - name: Archive NeonShooter
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: NeonShooter
         path: NeonShooter/**
@@ -69,7 +69,7 @@ jobs:
       run: dotnet build Platformer2D/Platformer2D.WindowsDX/Platformer2D.WindowsDX.csproj
 
     - name: Archive Platformer2D
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: Platformer2D
         path: Platformer2D/**
@@ -82,7 +82,7 @@ jobs:
       run: dotnet build ShipGame/ShipGame.WindowsDX/ShipGame.WindowsDX.csproj
 
     - name: Archive ShipGame
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: ShipGame
         path: ShipGame/**
@@ -92,7 +92,7 @@ jobs:
       run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --configuration Release
 
     - name: Archive Platformer2D
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: Learn-monogame-2d
         path: Tutorials/learn-monogame-2d/src/27-Conclusion/**

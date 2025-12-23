@@ -17,7 +17,7 @@
             "type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "Debug DesktopGL Build",
-			"program": "${workspaceFolder}/ShipGame.DesktopGL/bin/Debug/net9.0/ShipGame.DesktopGL",
+			"program": "${workspaceFolder}/ShipGame.DesktopGL/bin/Debug/net9.0/ShipGame.DesktopGL.exe",
         },
         {
             "name": "iOS Debug",
