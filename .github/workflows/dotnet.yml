@@ -98,27 +98,8 @@ jobs:
         path: Tutorials/learn-monogame-2d/src/27-Conclusion/**
         include-hidden-files: true
 
-  build-linux-macos:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          # Linux builds (OpenGL/DesktopGL)
-          - os: ubuntu-latest
-            platform: Linux-x64
-            runtime: linux-x64
-
-          - os: ubuntu-latest
-            platform: Linux-ARM64
-            runtime: linux-arm64
-
-          # macOS builds (OpenGL/DesktopGL) - Universal binary for Intel + Apple Silicon
-          - os: ubuntu-latest
-            platform: macOS
-            runtime: osx-x64
-            runtime2: osx-arm64
-
-    runs-on: ${{ matrix.os }}
+  build-macos:
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v5
@@ -128,153 +109,22 @@ jobs:
       with:
         dotnet-version: 9.0.x
 
-    # Install MonoPack for packaging
+    # Install workloads
+    - name: Install .NET workloads
+      run: |
+        dotnet workload install macos
+        dotnet workload install ios
+        dotnet workload install android
+
+    # Install MonoPack
     - name: Install MonoPack
       run: dotnet tool install --global MonoPack
-
-    # Create Info.plist files for macOS builds
-    - name: Create macOS Info.plist files
-      if: matrix.platform == 'macOS'
-      run: |
-        # AutoPong
-        mkdir -p AutoPong/AutoPong.DesktopGL/macOS
-        cat > AutoPong/AutoPong.DesktopGL/macOS/Info.plist << 'EOF'
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>CFBundleExecutable</key>
-            <string>AutoPong.DesktopGL</string>
-            <key>CFBundleIdentifier</key>
-            <string>com.monogame.autopong</string>
-            <key>CFBundleName</key>
-            <string>AutoPong</string>
-            <key>CFBundleVersion</key>
-            <string>1.0</string>
-            <key>CFBundleShortVersionString</key>
-            <string>1.0</string>
-            <key>LSMinimumSystemVersion</key>
-            <string>10.15</string>
-            <key>NSHighResolutionCapable</key>
-            <true/>
-        </dict>
-        </plist>
-        EOF
-
-        # FuelCell
-        mkdir -p FuelCell/FuelCell.DesktopGL/macOS
-        cat > FuelCell/FuelCell.DesktopGL/macOS/Info.plist << 'EOF'
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>CFBundleExecutable</key>
-            <string>FuelCell.DesktopGL</string>
-            <key>CFBundleIdentifier</key>
-            <string>com.monogame.fuelcell</string>
-            <key>CFBundleName</key>
-            <string>FuelCell</string>
-            <key>CFBundleVersion</key>
-            <string>1.0</string>
-            <key>CFBundleShortVersionString</key>
-            <string>1.0</string>
-            <key>LSMinimumSystemVersion</key>
-            <string>10.15</string>
-            <key>NSHighResolutionCapable</key>
-            <true/>
-        </dict>
-        </plist>
-        EOF
-
-        # NeonShooter
-        mkdir -p NeonShooter/NeonShooter.DesktopGL/macOS
-        cat > NeonShooter/NeonShooter.DesktopGL/macOS/Info.plist << 'EOF'
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>CFBundleExecutable</key>
-            <string>NeonShooter.DesktopGL</string>
-            <key>CFBundleIdentifier</key>
-            <string>com.monogame.neonshooter</string>
-            <key>CFBundleName</key>
-            <string>NeonShooter</string>
-            <key>CFBundleVersion</key>
-            <string>1.0</string>
-            <key>CFBundleShortVersionString</key>
-            <string>1.0</string>
-            <key>LSMinimumSystemVersion</key>
-            <string>10.15</string>
-            <key>NSHighResolutionCapable</key>
-            <true/>
-        </dict>
-        </plist>
-        EOF
-
-        # Platformer2D
-        mkdir -p Platformer2D/Platformer2D.DesktopGL/macOS
-        cat > Platformer2D/Platformer2D.DesktopGL/macOS/Info.plist << 'EOF'
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>CFBundleExecutable</key>
-            <string>Platformer2D.DesktopGL</string>
-            <key>CFBundleIdentifier</key>
-            <string>com.monogame.platformer2d</string>
-            <key>CFBundleName</key>
-            <string>Platformer2D</string>
-            <key>CFBundleVersion</key>
-            <string>1.0</string>
-            <key>CFBundleShortVersionString</key>
-            <string>1.0</string>
-            <key>LSMinimumSystemVersion</key>
-            <string>10.15</string>
-            <key>NSHighResolutionCapable</key>
-            <true/>
-        </dict>
-        </plist>
-        EOF
-
-        # ShipGame
-        mkdir -p ShipGame/ShipGame.DesktopGL/macOS
-        cat > ShipGame/ShipGame.DesktopGL/macOS/Info.plist << 'EOF'
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>CFBundleExecutable</key>
-            <string>ShipGame.DesktopGL</string>
-            <key>CFBundleIdentifier</key>
-            <string>com.monogame.shipgame</string>
-            <key>CFBundleName</key>
-            <string>ShipGame</string>
-            <key>CFBundleVersion</key>
-            <string>1.0</string>
-            <key>CFBundleShortVersionString</key>
-            <string>1.0</string>
-            <key>LSMinimumSystemVersion</key>
-            <string>10.15</string>
-            <key>NSHighResolutionCapable</key>
-            <true/>
-        </dict>
-        </plist>
-        EOF
-
-    # Restore dotnet tools for all projects
-    - name: Restore dotnet tools
-      run: |
-        cd AutoPong/AutoPong.DesktopGL && dotnet tool restore
-        cd ../../FuelCell/FuelCell.DesktopGL && dotnet tool restore
-        cd ../../NeonShooter/NeonShooter.DesktopGL && dotnet tool restore
-        cd ../../Platformer2D/Platformer2D.DesktopGL && dotnet tool restore
-        cd ../../ShipGame/ShipGame.DesktopGL && dotnet tool restore
 
     # Build ShipGame content processor first (required dependency)
     - name: Build ShipGame Content Processor
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
 
-    # Build all projects first to ensure content pipeline is processed
+    # Build all DesktopGL projects (creates binaries for Windows, Linux, macOS)
     - name: Build all DesktopGL projects
       run: |
         dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj
@@ -283,102 +133,66 @@ jobs:
         dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj
         dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj
 
-    # Create artifacts directory structure
-    - name: Create artifacts directories
-      run: |
-        mkdir -p artifacts/${{ matrix.platform }}/AutoPong
-        mkdir -p artifacts/${{ matrix.platform }}/FuelCell
-        mkdir -p artifacts/${{ matrix.platform }}/NeonShooter
-        mkdir -p artifacts/${{ matrix.platform }}/Platformer2D
-        mkdir -p artifacts/${{ matrix.platform }}/ShipGame
-
-    # Package all games with MonoPack
-    # For macOS: builds universal binaries with both x64 and arm64
-    # For Linux: builds single architecture
-    - name: Package AutoPong with MonoPack
+    # Create macOS standalone binaries with MonoPack (universal: Intel + Apple Silicon)
+    - name: Package AutoPong for macOS with MonoPack
       working-directory: AutoPong/AutoPong.DesktopGL
-      run: |
-        if [ "${{ matrix.platform }}" == "macOS" ]; then
-          monopack -r ${{ matrix.runtime }} -r ${{ matrix.runtime2 }} -o ../../artifacts/${{ matrix.platform }}/AutoPong
-        else
-          monopack -r ${{ matrix.runtime }} -o ../../artifacts/${{ matrix.platform }}/AutoPong
-        fi
+      run: monopack -r osx-x64 -r osx-arm64 -o ../../artifacts/macOS/AutoPong
 
-    - name: Package FuelCell with MonoPack
+    - name: Package FuelCell for macOS with MonoPack
       working-directory: FuelCell/FuelCell.DesktopGL
-      run: |
-        if [ "${{ matrix.platform }}" == "macOS" ]; then
-          monopack -r ${{ matrix.runtime }} -r ${{ matrix.runtime2 }} -o ../../artifacts/${{ matrix.platform }}/FuelCell
-        else
-          monopack -r ${{ matrix.runtime }} -o ../../artifacts/${{ matrix.platform }}/FuelCell
-        fi
+      run: monopack -r osx-x64 -r osx-arm64 -o ../../artifacts/macOS/FuelCell
 
-    - name: Package NeonShooter with MonoPack
+    - name: Package NeonShooter for macOS with MonoPack
       working-directory: NeonShooter/NeonShooter.DesktopGL
-      run: |
-        if [ "${{ matrix.platform }}" == "macOS" ]; then
-          monopack -r ${{ matrix.runtime }} -r ${{ matrix.runtime2 }} -o ../../artifacts/${{ matrix.platform }}/NeonShooter
-        else
-          monopack -r ${{ matrix.runtime }} -o ../../artifacts/${{ matrix.platform }}/NeonShooter
-        fi
+      run: monopack -r osx-x64 -r osx-arm64 -o ../../artifacts/macOS/NeonShooter
 
-    - name: Package Platformer2D with MonoPack
+    - name: Package Platformer2D for macOS with MonoPack
       working-directory: Platformer2D/Platformer2D.DesktopGL
-      run: |
-        if [ "${{ matrix.platform }}" == "macOS" ]; then
-          monopack -r ${{ matrix.runtime }} -r ${{ matrix.runtime2 }} -o ../../artifacts/${{ matrix.platform }}/Platformer2D
-        else
-          monopack -r ${{ matrix.runtime }} -o ../../artifacts/${{ matrix.platform }}/Platformer2D
-        fi
+      run: monopack -r osx-x64 -r osx-arm64 -o ../../artifacts/macOS/Platformer2D
 
-    - name: Package ShipGame with MonoPack
+    - name: Package ShipGame for macOS with MonoPack
       working-directory: ShipGame/ShipGame.DesktopGL
-      run: |
-        if [ "${{ matrix.platform }}" == "macOS" ]; then
-          monopack -r ${{ matrix.runtime }} -r ${{ matrix.runtime2 }} -o ../../artifacts/${{ matrix.platform }}/ShipGame
-        else
-          monopack -r ${{ matrix.runtime }} -o ../../artifacts/${{ matrix.platform }}/ShipGame
-        fi
+      run: monopack -r osx-x64 -r osx-arm64 -o ../../artifacts/macOS/ShipGame
 
-    # Upload artifacts - separate per game for clarity
-    - name: Upload ${{ matrix.platform }} AutoPong
+    # Upload macOS artifacts
+    - name: Upload macOS AutoPong
       uses: actions/upload-artifact@v6
       with:
-        name: ${{ matrix.platform }}-AutoPong
-        path: artifacts/${{ matrix.platform }}/AutoPong/**
+        name: macOS-AutoPong
+        path: artifacts/macOS/AutoPong/**
         include-hidden-files: true
 
-    - name: Upload ${{ matrix.platform }} FuelCell
+    - name: Upload macOS FuelCell
       uses: actions/upload-artifact@v6
       with:
-        name: ${{ matrix.platform }}-FuelCell
-        path: artifacts/${{ matrix.platform }}/FuelCell/**
+        name: macOS-FuelCell
+        path: artifacts/macOS/FuelCell/**
         include-hidden-files: true
 
-    - name: Upload ${{ matrix.platform }} NeonShooter
+    - name: Upload macOS NeonShooter
       uses: actions/upload-artifact@v6
       with:
-        name: ${{ matrix.platform }}-NeonShooter
-        path: artifacts/${{ matrix.platform }}/NeonShooter/**
+        name: macOS-NeonShooter
+        path: artifacts/macOS/NeonShooter/**
         include-hidden-files: true
 
-    - name: Upload ${{ matrix.platform }} Platformer2D
+    - name: Upload macOS Platformer2D
       uses: actions/upload-artifact@v6
       with:
-        name: ${{ matrix.platform }}-Platformer2D
-        path: artifacts/${{ matrix.platform }}/Platformer2D/**
+        name: macOS-Platformer2D
+        path: artifacts/macOS/Platformer2D/**
         include-hidden-files: true
 
-    - name: Upload ${{ matrix.platform }} ShipGame
+    - name: Upload macOS ShipGame
       uses: actions/upload-artifact@v6
       with:
-        name: ${{ matrix.platform }}-ShipGame
-        path: artifacts/${{ matrix.platform }}/ShipGame/**
+        name: macOS-ShipGame
+        path: artifacts/macOS/ShipGame/**
         include-hidden-files: true
 
   deploy:
       name: Deploy
-      needs: [ build-windows, build-linux-macos ]
+      needs: [ build-windows, build-macos ]
       runs-on: ubuntu-latest
       if: ${{ github.event_name == 'push' }}
       permissions:
