@@ -261,9 +261,27 @@ jobs:
         </plist>
         EOF
 
+    # Restore dotnet tools for all projects
+    - name: Restore dotnet tools
+      run: |
+        cd AutoPong/AutoPong.DesktopGL && dotnet tool restore
+        cd ../../FuelCell/FuelCell.DesktopGL && dotnet tool restore
+        cd ../../NeonShooter/NeonShooter.DesktopGL && dotnet tool restore
+        cd ../../Platformer2D/Platformer2D.DesktopGL && dotnet tool restore
+        cd ../../ShipGame/ShipGame.DesktopGL && dotnet tool restore
+
     # Build ShipGame content processor first (required dependency)
     - name: Build ShipGame Content Processor
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
+
+    # Build all projects first to ensure content pipeline is processed
+    - name: Build all DesktopGL projects
+      run: |
+        dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj
+        dotnet build FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj
+        dotnet build NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj
+        dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj
+        dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj
 
     # Create artifacts directory structure
     - name: Create artifacts directories
