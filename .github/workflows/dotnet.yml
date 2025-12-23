@@ -265,6 +265,15 @@ jobs:
     - name: Build ShipGame Content Processor
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
 
+    # Create artifacts directory structure
+    - name: Create artifacts directories
+      run: |
+        mkdir -p artifacts/${{ matrix.platform }}/AutoPong
+        mkdir -p artifacts/${{ matrix.platform }}/FuelCell
+        mkdir -p artifacts/${{ matrix.platform }}/NeonShooter
+        mkdir -p artifacts/${{ matrix.platform }}/Platformer2D
+        mkdir -p artifacts/${{ matrix.platform }}/ShipGame
+
     # Package all games with MonoPack
     # For macOS: builds universal binaries with both x64 and arm64
     # For Linux: builds single architecture
