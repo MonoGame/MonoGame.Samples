@@ -150,10 +150,10 @@ public class GameScene : Scene
     {
         _pausePanel = new Panel();
         _pausePanel.Anchor(Anchor.Center);
-        _pausePanel.Visual.WidthUnits = DimensionUnitType.Absolute;
-        _pausePanel.Visual.HeightUnits = DimensionUnitType.Absolute;
-        _pausePanel.Visual.Height = 70;
-        _pausePanel.Visual.Width = 264;
+        _pausePanel.WidthUnits = DimensionUnitType.Absolute;
+        _pausePanel.HeightUnits = DimensionUnitType.Absolute;
+        _pausePanel.Height = 70;
+        _pausePanel.Width = 264;
         _pausePanel.IsVisible = false;
         _pausePanel.AddToRoot();
 
@@ -181,16 +181,16 @@ public class GameScene : Scene
         _resumeButton = new AnimatedButton(_atlas);
         _resumeButton.Text = "RESUME";
         _resumeButton.Anchor(Anchor.BottomLeft);
-        _resumeButton.Visual.X = 9f;
-        _resumeButton.Visual.Y = -9f;
+        _resumeButton.X = 9f;
+        _resumeButton.Y = -9f;
         _resumeButton.Click += HandleResumeButtonClicked;
         _pausePanel.AddChild(_resumeButton);
 
         AnimatedButton quitButton = new AnimatedButton(_atlas);
         quitButton.Text = "QUIT";
         quitButton.Anchor(Anchor.BottomRight);
-        quitButton.Visual.X = -9f;
-        quitButton.Visual.Y = -9f;
+        quitButton.X = -9f;
+        quitButton.Y = -9f;
         quitButton.Click += HandleQuitButtonClicked;
 
         _pausePanel.AddChild(quitButton);

@@ -119,18 +119,18 @@ public class TitleScene : Scene
 
         var startButton = new Button();
         startButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
-        startButton.Visual.X = 50;
-        startButton.Visual.Y = -12;
-        startButton.Visual.Width = 70;
+        startButton.X = 50;
+        startButton.Y = -12;
+        startButton.Width = 70;
         startButton.Text = "Start";
         startButton.Click += HandleStartClicked;
         _titleScreenButtonsPanel.AddChild(startButton);
 
         _optionsButton = new Button();
         _optionsButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
-        _optionsButton.Visual.X = -50;
-        _optionsButton.Visual.Y = -12;
-        _optionsButton.Visual.Width = 70;
+        _optionsButton.X = -50;
+        _optionsButton.Y = -12;
+        _optionsButton.Width = 70;
         _optionsButton.Text = "Options";
         _optionsButton.Click += HandleOptionsClicked;
         _titleScreenButtonsPanel.AddChild(_optionsButton);
@@ -177,7 +177,7 @@ public class TitleScene : Scene
 
         var musicSlider = new Slider();
         musicSlider.Anchor(Gum.Wireframe.Anchor.Top);
-        musicSlider.Visual.Y = 30f;
+        musicSlider.Y = 30f;
         musicSlider.Minimum = 0;
         musicSlider.Maximum = 1;
         musicSlider.Value = Core.Audio.SongVolume;
@@ -189,7 +189,7 @@ public class TitleScene : Scene
 
         var sfxSlider = new Slider();
         sfxSlider.Anchor(Gum.Wireframe.Anchor.Top);
-        sfxSlider.Visual.Y = 93;
+        sfxSlider.Y = 93;
         sfxSlider.Minimum = 0;
         sfxSlider.Maximum = 1;
         sfxSlider.Value = Core.Audio.SoundEffectVolume;

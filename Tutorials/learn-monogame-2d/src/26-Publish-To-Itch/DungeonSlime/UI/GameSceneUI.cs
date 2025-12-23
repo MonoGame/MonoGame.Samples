@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using MonoGameGum;
-using Forms.Controls;
+using Gum.Forms.Controls;
 using MonoGameGum.GueDeriving;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
@@ -106,10 +106,10 @@ public class GameSceneUI : ContainerRuntime
     {
         Panel panel = new Panel();
         panel.Anchor(Gum.Wireframe.Anchor.Center);
-        panel.Visual.WidthUnits = DimensionUnitType.Absolute;
-        panel.Visual.HeightUnits = DimensionUnitType.Absolute;
-        panel.Visual.Width = 264.0f;
-        panel.Visual.Height = 70.0f;
+        panel.WidthUnits = DimensionUnitType.Absolute;
+        panel.HeightUnits = DimensionUnitType.Absolute;
+        panel.Width = 264.0f;
+        panel.Height = 70.0f;
         panel.IsVisible = false;
 
         TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
@@ -136,8 +136,8 @@ public class GameSceneUI : ContainerRuntime
         _resumeButton = new AnimatedButton(atlas);
         _resumeButton.Text = "RESUME";
         _resumeButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
-        _resumeButton.Visual.X = 9.0f;
-        _resumeButton.Visual.Y = -9.0f;
+        _resumeButton.X = 9.0f;
+        _resumeButton.Y = -9.0f;
 
         _resumeButton.Click += OnResumeButtonClicked;
         _resumeButton.GotFocus += OnElementGotFocus;
@@ -147,8 +147,8 @@ public class GameSceneUI : ContainerRuntime
         AnimatedButton quitButton = new AnimatedButton(atlas);
         quitButton.Text = "QUIT";
         quitButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
-        quitButton.Visual.X = -9.0f;
-        quitButton.Visual.Y = -9.0f;
+        quitButton.X = -9.0f;
+        quitButton.Y = -9.0f;
 
         quitButton.Click += OnQuitButtonClicked;
         quitButton.GotFocus += OnElementGotFocus;
@@ -162,10 +162,10 @@ public class GameSceneUI : ContainerRuntime
     {
         Panel panel = new Panel();
         panel.Anchor(Gum.Wireframe.Anchor.Center);
-        panel.Visual.WidthUnits = DimensionUnitType.Absolute;
-        panel.Visual.HeightUnits = DimensionUnitType.Absolute;
-        panel.Visual.Width = 264.0f;
-        panel.Visual.Height = 70.0f;
+        panel.WidthUnits = DimensionUnitType.Absolute;
+        panel.HeightUnits = DimensionUnitType.Absolute;
+        panel.Width = 264.0f;
+        panel.Height = 70.0f;
         panel.IsVisible = false;
 
         TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
@@ -193,8 +193,8 @@ public class GameSceneUI : ContainerRuntime
         _retryButton = new AnimatedButton(atlas);
         _retryButton.Text = "RETRY";
         _retryButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
-        _retryButton.Visual.X = 9.0f;
-        _retryButton.Visual.Y = -9.0f;
+        _retryButton.X = 9.0f;
+        _retryButton.Y = -9.0f;
 
         _retryButton.Click += OnRetryButtonClicked;
         _retryButton.GotFocus += OnElementGotFocus;
@@ -204,8 +204,8 @@ public class GameSceneUI : ContainerRuntime
         AnimatedButton quitButton = new AnimatedButton(atlas);
         quitButton.Text = "QUIT";
         quitButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
-        quitButton.Visual.X = -9.0f;
-        quitButton.Visual.Y = -9.0f;
+        quitButton.X = -9.0f;
+        quitButton.Y = -9.0f;
 
         quitButton.Click += OnQuitButtonClicked;
         quitButton.GotFocus += OnElementGotFocus;
