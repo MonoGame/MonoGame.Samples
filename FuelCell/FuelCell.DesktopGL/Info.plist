@@ -15,7 +15,7 @@
     <key>CFBundleExecutable</key>
     <string>FuelCell.DesktopGL.DesktopGL</string>
     <key>CFBundleIconFile</key>
-    <string>FuelCell.DesktopGL.DesktopGL.icns</string>
+    <string>FuelCell.DesktopGL.icns</string>
     <key>NSHighResolutionCapable</key>
     <true/>
 </dict>
