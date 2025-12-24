@@ -173,9 +173,82 @@ jobs:
         path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/bin/Release/net9.0/**
         include-hidden-files: true
 
+  build-android:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v5
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'microsoft'
+        java-version: '17'
+
+    - name: Install .NET Android workload
+      run: dotnet workload install android
+
+    # Android builds for all projects
+    - name: Build Android Binary for AutoPong
+      run: dotnet build AutoPong/AutoPong.Android/AutoPong.Android.csproj -c Release
+
+    - name: Archive AutoPong Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-AutoPong
+        path: AutoPong/AutoPong.Android/bin/Release/net9.0-android/**
+        include-hidden-files: true
+
+    - name: Build Android Binary for FuelCell
+      run: dotnet build FuelCell/FuelCell.Android/FuelCell.Android.csproj -c Release
+
+    - name: Archive FuelCell Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-FuelCell
+        path: FuelCell/FuelCell.Android/bin/Release/net9.0-android/**
+        include-hidden-files: true
+
+    - name: Build Android Binary for NeonShooter
+      run: dotnet build NeonShooter/NeonShooter.Android/NeonShooter.Android.csproj -c Release
+
+    - name: Archive NeonShooter Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-NeonShooter
+        path: NeonShooter/NeonShooter.Android/bin/Release/net9.0-android/**
+        include-hidden-files: true
+
+    - name: Build Android Binary for Platformer2D
+      run: dotnet build Platformer2D/Platformer2D.Android/Platformer2D.Android.csproj -c Release
+
+    - name: Archive Platformer2D Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-Platformer2D
+        path: Platformer2D/Platformer2D.Android/bin/Release/net9.0-android/**
+        include-hidden-files: true
+
+    - name: Build ShipGame Content Processor in Release mode
+      run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
+
+    - name: Build Android Binary for ShipGame
+      run: dotnet build ShipGame/ShipGame.Android/ShipGame.Android.csproj -c Release
+
+    - name: Archive ShipGame Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-ShipGame
+        path: ShipGame/ShipGame.Android/bin/Release/net9.0-android/**
+        include-hidden-files: true
+
   deploy:
       name: Deploy
-      needs: [ build-windows, build-desktop ]
+      needs: [ build-windows, build-desktop, build-android ]
       runs-on: ubuntu-latest
       if: ${{ github.event_name == 'push' }}
       permissions:
