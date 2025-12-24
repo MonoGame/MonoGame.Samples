@@ -140,36 +140,69 @@ jobs:
         dotnet build FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -c Release
         monopack -p FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -e FuelCell.DesktopGL -o ./artifacts/FuelCell -rids win-x64,linux-x64,osx-x64,osx-arm64 -i FuelCell/FuelCell.DesktopGL/Info.plist -c FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.icns -z -v
 
-    - name: Archive FuelCell
+    - name: Archive FuelCell Windows
       uses: actions/upload-artifact@v6
       with:
-        name: Desktop-FuelCell
-        path: artifacts/FuelCell/**/*.zip
-        include-hidden-files: true
+        name: Desktop-FuelCell-Windows
+        path: artifacts/FuelCell/*-win-x64.zip
+
+    - name: Archive FuelCell Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-FuelCell-Linux
+        path: artifacts/FuelCell/*-linux-x64.zip
+
+    - name: Archive FuelCell macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-FuelCell-macOS
+        path: artifacts/FuelCell/*-osx*.zip
 
     - name: Build and Package NeonShooter
       run: |
         dotnet build NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -c Release
         monopack -p NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -e NeonShooter.DesktopGL -o ./artifacts/NeonShooter -rids win-x64,linux-x64,osx-x64,osx-arm64 -i NeonShooter/NeonShooter.DesktopGL/Info.plist -c NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.icns -z -v
 
-    - name: Archive NeonShooter
+    - name: Archive NeonShooter Windows
       uses: actions/upload-artifact@v6
       with:
-        name: Desktop-NeonShooter
-        path: artifacts/NeonShooter/**/*.zip
-        include-hidden-files: true
+        name: Desktop-NeonShooter-Windows
+        path: artifacts/NeonShooter/*-win-x64.zip
+
+    - name: Archive NeonShooter Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-NeonShooter-Linux
+        path: artifacts/NeonShooter/*-linux-x64.zip
+
+    - name: Archive NeonShooter macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-NeonShooter-macOS
+        path: artifacts/NeonShooter/*-osx*.zip
 
     - name: Build and Package Platformer2D
       run: |
         dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -c Release
         monopack -p Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -e Platformer2D.DesktopGL -o ./artifacts/Platformer2D -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Platformer2D/Platformer2D.DesktopGL/Info.plist -c Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.icns -z -v
 
-    - name: Archive Platformer2D
+    - name: Archive Platformer2D Windows
       uses: actions/upload-artifact@v6
       with:
-        name: Desktop-Platformer2D
-        path: artifacts/Platformer2D/**/*.zip
-        include-hidden-files: true
+        name: Desktop-Platformer2D-Windows
+        path: artifacts/Platformer2D/*-win-x64.zip
+
+    - name: Archive Platformer2D Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-Platformer2D-Linux
+        path: artifacts/Platformer2D/*-linux-x64.zip
+
+    - name: Archive Platformer2D macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-Platformer2D-macOS
+        path: artifacts/Platformer2D/*-osx*.zip
 
     - name: Build ShipGame Content Processor
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
@@ -179,24 +212,40 @@ jobs:
         dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -c Release
         monopack -p ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -e ShipGame.DesktopGL -o ./artifacts/ShipGame -rids win-x64,linux-x64 -z -v
 
-    - name: Archive ShipGame
+    - name: Archive ShipGame Windows
       uses: actions/upload-artifact@v6
       with:
-        name: Desktop-ShipGame
-        path: artifacts/ShipGame/**/*.zip
-        include-hidden-files: true
+        name: Desktop-ShipGame-Windows
+        path: artifacts/ShipGame/*-win-x64.zip
+
+    - name: Archive ShipGame Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-ShipGame-Linux
+        path: artifacts/ShipGame/*-linux-x64.zip
 
     - name: Build and Package learn-monogame-2d
       run: |
         dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj -c Release
         monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj -e DungeonSlime -o ./artifacts/learn-monogame-2d -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Info.plist -c Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.icns -z -v
 
-    - name: Archive learn-monogame-2d
+    - name: Archive learn-monogame-2d Windows
       uses: actions/upload-artifact@v6
       with:
-        name: Desktop-learn-monogame-2d
-        path: artifacts/learn-monogame-2d/**/*.zip
-        include-hidden-files: true
+        name: Desktop-learn-monogame-2d-Windows
+        path: artifacts/learn-monogame-2d/*-win-x64.zip
+
+    - name: Archive learn-monogame-2d Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-learn-monogame-2d-Linux
+        path: artifacts/learn-monogame-2d/*-linux-x64.zip
+
+    - name: Archive learn-monogame-2d macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-learn-monogame-2d-macOS
+        path: artifacts/learn-monogame-2d/*-osx*.zip
 
   build-android:
     runs-on: windows-latest
