@@ -124,7 +124,7 @@ jobs:
     - name: Build and Package AutoPong
       run: |
         dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -c Release
-        monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -e AutoPong.DesktopGL -o ./artifacts/AutoPong -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
+        monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -e AutoPong.DesktopGL -o ./artifacts/AutoPong -r win-x64, linux-x64, osx-x64, osx-arm64 -z -v
 
     - name: Archive AutoPong
       uses: actions/upload-artifact@v6
@@ -136,7 +136,7 @@ jobs:
     - name: Build and Package FuelCell
       run: |
         dotnet build FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -c Release
-        monopack -p FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -e FuelCell.DesktopGL -o ./artifacts/FuelCell -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
+        monopack -p FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -e FuelCell.DesktopGL -o ./artifacts/FuelCell -r win-x64, linux-x64, osx-x64, osx-arm64 -z -v
 
     - name: Archive FuelCell
       uses: actions/upload-artifact@v6
@@ -148,7 +148,7 @@ jobs:
     - name: Build and Package NeonShooter
       run: |
         dotnet build NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -c Release
-        monopack -p NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -e NeonShooter.DesktopGL -o ./artifacts/NeonShooter -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
+        monopack -p NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -e NeonShooter.DesktopGL -o ./artifacts/NeonShooter -r win-x64, linux-x64, osx-x64, osx-arm64 -z -v
 
     - name: Archive NeonShooter
       uses: actions/upload-artifact@v6
@@ -160,7 +160,7 @@ jobs:
     - name: Build and Package Platformer2D
       run: |
         dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -c Release
-        monopack -p Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -e Platformer2D.DesktopGL -o ./artifacts/Platformer2D -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
+        monopack -p Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -e Platformer2D.DesktopGL -o ./artifacts/Platformer2D -r win-x64, linux-x64, osx-x64, osx-arm64 -z -v
 
     - name: Archive Platformer2D
       uses: actions/upload-artifact@v6
@@ -175,7 +175,7 @@ jobs:
     - name: Build and Package ShipGame
       run: |
         dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -c Release
-        monopack -p ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -e ShipGame.DesktopGL -o ./artifacts/ShipGame -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
+        monopack -p ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -e ShipGame.DesktopGL -o ./artifacts/ShipGame -r win-x64, linux-x64, osx-x64, osx-arm64 -z -v
 
     - name: Archive ShipGame
       uses: actions/upload-artifact@v6
@@ -187,7 +187,7 @@ jobs:
     - name: Build and Package learn-monogame-2d
       run: |
         dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj -c Release
-        monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj -e DungeonSlime -o ./artifacts/learn-monogame-2d -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
+        monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj -e DungeonSlime -o ./artifacts/learn-monogame-2d -r win-x64, linux-x64, osx-x64, osx-arm64 -z -v
 
     - name: Archive learn-monogame-2d
       uses: actions/upload-artifact@v6
