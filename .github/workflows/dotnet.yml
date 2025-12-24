@@ -121,17 +121,19 @@ jobs:
       run: dotnet tool install --global MonoPack
 
     # Desktop builds for all projects
-    - name: Build and Package AutoPong
-      run: |
-        dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -c Release
-        monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -e AutoPong.DesktopGL -o ./artifacts/AutoPong -rids win-x64,linux-x64,osx-x64,osx-arm64 -i AutoPong/AutoPong.DesktopGL/Info.plist -c AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.icns -z -v
 
-    - name: Archive AutoPong
-      uses: actions/upload-artifact@v6
-      with:
-        name: Desktop-AutoPong
-        path: artifacts/AutoPong/**/*.zip
-        include-hidden-files: true
+    # AutoPong Desktop build is currently disabled due to issues with packaging process
+    # - name: Build and Package AutoPong
+    #   run: |
+    #     dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -c Release
+    #     monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -e AutoPong.DesktopGL -o ./artifacts/AutoPong -rids win-x64,linux-x64,osx-x64,osx-arm64 -i AutoPong/AutoPong.DesktopGL/Info.plist -c AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.icns -z -v
+
+    # - name: Archive AutoPong
+    #   uses: actions/upload-artifact@v6
+    #   with:
+    #     name: Desktop-AutoPong
+    #     path: artifacts/AutoPong/**/*.zip
+    #     include-hidden-files: true
 
     - name: Build and Package FuelCell
       run: |
