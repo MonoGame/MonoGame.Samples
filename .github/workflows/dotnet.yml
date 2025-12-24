@@ -156,7 +156,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-FuelCell-macOS
-        path: artifacts/FuelCell/*-osx*.zip
+        path: artifacts/FuelCell/*-universal.zip
 
     - name: Build and Package NeonShooter
       run: |
@@ -179,7 +179,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-NeonShooter-macOS
-        path: artifacts/NeonShooter/*-osx*.zip
+        path: artifacts/NeonShooter/*-universal.zip
 
     - name: Build and Package Platformer2D
       run: |
@@ -202,7 +202,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-Platformer2D-macOS
-        path: artifacts/Platformer2D/*-osx*.zip
+        path: artifacts/Platformer2D/*-universal.zip
 
     - name: Build ShipGame Content Processor
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
@@ -228,7 +228,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-ShipGame-macOS
-        path: artifacts/ShipGame/*-osx*.zip
+        path: artifacts/ShipGame/*-universal.zip
 
     - name: Build and Package learn-monogame-2d
       run: |
@@ -251,7 +251,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-learn-monogame-2d-macOS
-        path: artifacts/learn-monogame-2d/*-osx*.zip
+        path: artifacts/learn-monogame-2d/*-universal.zip
 
   build-android:
     runs-on: windows-latest
