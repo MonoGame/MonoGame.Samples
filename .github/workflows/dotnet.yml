@@ -25,12 +25,6 @@ jobs:
       with:
         dotnet-version: 9.0.x
 
-    - name: Install .NET workloads
-      run: |
-        dotnet workload install macos
-        dotnet workload install ios
-        dotnet workload install android
-
     # Windows builds for all projects
     - name: Build Windows Binary for Tutorial/BasicCameraExample
       run: dotnet build Tutorials/BasicCameraExample/BasicCameraExample.sln
@@ -39,7 +33,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Windows-BasicCameraExample
-        path: Tutorials/BasicCameraExample/**
+        path: Tutorials/BasicCameraExample/**/bin/Debug/**
         include-hidden-files: true
 
     - name: Build Windows Binary for AutoPong
@@ -49,7 +43,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Windows-AutoPong
-        path: AutoPong/**
+        path: AutoPong/AutoPong.WindowsDX/bin/Debug/net9.0/**
         include-hidden-files: true
 
     - name: Build Windows Binary for FuelCell
@@ -59,7 +53,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Windows-FuelCell
-        path: FuelCell/**
+        path: FuelCell/FuelCell.WindowsDX/bin/Debug/net9.0/**
         include-hidden-files: true
 
     - name: Build Windows Binary for NeonShooter
@@ -69,7 +63,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Windows-NeonShooter
-        path: NeonShooter/**
+        path: NeonShooter/NeonShooter.WindowsDX/bin/Debug/net9.0/**
         include-hidden-files: true
 
     - name: Build Windows Binary for Platformer2D
@@ -79,7 +73,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Windows-Platformer2D
-        path: Platformer2D/**
+        path: Platformer2D/Platformer2D.WindowsDX/bin/Debug/net9.0/**
         include-hidden-files: true
 
     - name: Build ShipGame Content Processor in Release mode
@@ -92,7 +86,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Windows-ShipGame
-        path: ShipGame/**
+        path: ShipGame/ShipGame.WindowsDX/bin/Debug/net9.0/**
         include-hidden-files: true
 
     - name: Build learn-monogame-2d Binary
@@ -102,8 +96,18 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Windows-Learn-monogame-2d
-        path: Tutorials/learn-monogame-2d/src/27-Conclusion/**
+        path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/bin/Release/net9.0/**
         include-hidden-files: true
+
+  build-desktop:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v5
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: 9.0.x
 
     # Desktop builds for all projects
     - name: Build Desktop Binary for AutoPong
@@ -113,7 +117,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-AutoPong
-        path: AutoPong/**
+        path: AutoPong/AutoPong.DesktopGL/bin/Debug/net9.0/**
         include-hidden-files: true
 
     - name: Build Desktop Binary for FuelCell
@@ -123,7 +127,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-FuelCell
-        path: FuelCell/**
+        path: FuelCell/FuelCell.DesktopGL/bin/Debug/net9.0/**
         include-hidden-files: true
 
     - name: Build Desktop Binary for NeonShooter
@@ -133,7 +137,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-NeonShooter
-        path: NeonShooter/**
+        path: NeonShooter/NeonShooter.DesktopGL/bin/Debug/net9.0/**
         include-hidden-files: true
 
     - name: Build Desktop Binary for Platformer2D
@@ -143,7 +147,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-Platformer2D
-        path: Platformer2D/**
+        path: Platformer2D/Platformer2D.DesktopGL/bin/Debug/net9.0/**
         include-hidden-files: true
 
     - name: Build ShipGame Content Processor in Release mode
@@ -156,7 +160,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-ShipGame
-        path: ShipGame/**
+        path: ShipGame/ShipGame.DesktopGL/bin/Debug/net9.0/**
         include-hidden-files: true
 
     - name: Build learn-monogame-2d Binary
@@ -166,12 +170,12 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-learn-monogame-2d
-        path: Tutorials/learn-monogame-2d/src/27-Conclusion/**
+        path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/bin/Release/net9.0/**
         include-hidden-files: true
 
   deploy:
       name: Deploy
-      needs: [ build-windows ]
+      needs: [ build-windows, build-desktop ]
       runs-on: ubuntu-latest
       if: ${{ github.event_name == 'push' }}
       permissions:
