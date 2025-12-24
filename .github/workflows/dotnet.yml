@@ -24,7 +24,17 @@ jobs:
       uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 9.0.x
-    
+
+    - name: Install .NET workloads
+      run: |
+        dotnet workload install macos
+        dotnet workload install ios
+        dotnet workload install android
+
+    - name: Install MonoPack
+      run: dotnet tool install --global MonoPack
+
+    # Windows builds for all projects
     - name: Build Windows Binary for Tutorial/BasicCameraExample
       run: dotnet build Tutorials/BasicCameraExample/BasicCameraExample.sln
 
@@ -98,110 +108,151 @@ jobs:
         path: Tutorials/learn-monogame-2d/src/27-Conclusion/**
         include-hidden-files: true
 
-  build-macos:
-    runs-on: macos-latest
+    # Desktop builds for all projects
+    - name: Build Desktop Binary for AutoPong
+      run: dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj
 
-    steps:
-    - uses: actions/checkout@v5
+    - name: Package AutoPong for Linux-x64
+      run: monopack AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj --runtime linux-x64 --output artifacts/Linux-x64/AutoPong
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v5
+    - name: Package AutoPong for macOS-Universal
+      run: monopack AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/AutoPong
+
+    - name: Archive AutoPong Linux
+      uses: actions/upload-artifact@v6
       with:
-        dotnet-version: 9.0.x
+        name: Linux-AutoPong
+        path: artifacts/Linux-x64/AutoPong/**
+        include-hidden-files: true
 
-    # Install workloads
-    - name: Install .NET workloads
-      run: |
-        dotnet workload install macos
-        dotnet workload install ios
-        dotnet workload install android
-
-    # Install MonoPack
-    - name: Install MonoPack
-      run: dotnet tool install --global MonoPack
-
-    - name: Setup Wine 
-      run: |
-        softwareupdate --install-rosetta --agree-to-license
-        brew install --cask xquartz
-        brew install --cask wine-stable
-        echo "PATH=/opt/homebrew/bin:$PATH" >> $GITHUB_ENV
-        mkdir -p /Users/runner/.winemonogame
-        WINEPREFIX=/Users/runner/.winemonogame wine64 wineboot 
-
-    # Build ShipGame content processor first (required dependency)
-    - name: Build ShipGame Content Processor
-      run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
-
-    # Build all DesktopGL projects (creates binaries for Windows, Linux, macOS)
-    - name: Build all DesktopGL projects
-      run: |
-        dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj
-        dotnet build FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj
-        dotnet build NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj
-        dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj
-        dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj
-
-    # Create macOS standalone binaries with MonoPack (universal: Intel + Apple Silicon)
-    - name: Package AutoPong for macOS with MonoPack
-      working-directory: AutoPong/AutoPong.DesktopGL
-      run: monopack -r osx-x64 -r osx-arm64 -o ../../artifacts/macOS/AutoPong
-
-    - name: Package FuelCell for macOS with MonoPack
-      working-directory: FuelCell/FuelCell.DesktopGL
-      run: monopack -r osx-x64 -r osx-arm64 -o ../../artifacts/macOS/FuelCell
-
-    - name: Package NeonShooter for macOS with MonoPack
-      working-directory: NeonShooter/NeonShooter.DesktopGL
-      run: monopack -r osx-x64 -r osx-arm64 -o ../../artifacts/macOS/NeonShooter
-
-    - name: Package Platformer2D for macOS with MonoPack
-      working-directory: Platformer2D/Platformer2D.DesktopGL
-      run: monopack -r osx-x64 -r osx-arm64 -o ../../artifacts/macOS/Platformer2D
-
-    - name: Package ShipGame for macOS with MonoPack
-      working-directory: ShipGame/ShipGame.DesktopGL
-      run: monopack -r osx-x64 -r osx-arm64 -o ../../artifacts/macOS/ShipGame
-
-    # Upload macOS artifacts
-    - name: Upload macOS AutoPong
+    - name: Archive AutoPong macOS
       uses: actions/upload-artifact@v6
       with:
         name: macOS-AutoPong
         path: artifacts/macOS/AutoPong/**
         include-hidden-files: true
 
-    - name: Upload macOS FuelCell
+    - name: Build Desktop Binary for FuelCell
+      run: dotnet build FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj
+
+    - name: Package FuelCell for Linux-x64
+      run: monopack FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj --runtime linux-x64 --output artifacts/Linux-x64/FuelCell
+
+    - name: Package FuelCell for macOS-Universal
+      run: monopack FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/FuelCell
+
+    - name: Archive FuelCell Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Linux-FuelCell
+        path: artifacts/Linux-x64/FuelCell/**
+        include-hidden-files: true
+
+    - name: Archive FuelCell macOS
       uses: actions/upload-artifact@v6
       with:
         name: macOS-FuelCell
         path: artifacts/macOS/FuelCell/**
         include-hidden-files: true
 
-    - name: Upload macOS NeonShooter
+    - name: Build Desktop Binary for NeonShooter
+      run: dotnet build NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj
+
+    - name: Package NeonShooter for Linux-x64
+      run: monopack NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj --runtime linux-x64 --output artifacts/Linux-x64/NeonShooter
+
+    - name: Package NeonShooter for macOS-Universal
+      run: monopack NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/NeonShooter
+
+    - name: Archive NeonShooter Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Linux-NeonShooter
+        path: artifacts/Linux-x64/NeonShooter/**
+        include-hidden-files: true
+
+    - name: Archive NeonShooter macOS
       uses: actions/upload-artifact@v6
       with:
         name: macOS-NeonShooter
         path: artifacts/macOS/NeonShooter/**
         include-hidden-files: true
 
-    - name: Upload macOS Platformer2D
+    - name: Build Desktop Binary for Platformer2D
+      run: dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj
+
+    - name: Package Platformer2D for Linux-x64
+      run: monopack Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj --runtime linux-x64 --output artifacts/Linux-x64/Platformer2D
+
+    - name: Package Platformer2D for macOS-Universal
+      run: monopack Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/Platformer2D
+
+    - name: Archive Platformer2D Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Linux-Platformer2D
+        path: artifacts/Linux-x64/Platformer2D/**
+        include-hidden-files: true
+
+    - name: Archive Platformer2D macOS
       uses: actions/upload-artifact@v6
       with:
         name: macOS-Platformer2D
         path: artifacts/macOS/Platformer2D/**
         include-hidden-files: true
 
-    - name: Upload macOS ShipGame
+    - name: Build ShipGame Content Processor in Release mode
+      run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
+
+    - name: Build Desktop Binary for ShipGame
+      run: dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj
+
+    - name: Package ShipGame for Linux-x64
+      run: monopack ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj --runtime linux-x64 --output artifacts/Linux-x64/ShipGame
+
+    - name: Package ShipGame for macOS-Universal
+      run: monopack ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/ShipGame
+
+    - name: Archive ShipGame Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Linux-ShipGame
+        path: artifacts/Linux-x64/ShipGame/**
+        include-hidden-files: true
+
+    - name: Archive ShipGame macOS
       uses: actions/upload-artifact@v6
       with:
         name: macOS-ShipGame
         path: artifacts/macOS/ShipGame/**
         include-hidden-files: true
 
+    - name: Build learn-monogame-2d Binary
+      run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --configuration Release
+
+    - name: Package learn-monogame-2d for Linux-x64
+      run: monopack Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --runtime linux-x64 --output artifacts/Linux-x64/learn-monogame-2d
+
+    - name: Package learn-monogame-2d for macOS-Universal
+      run: monopack Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/learn-monogame-2d
+
+    - name: Archive learn-monogame-2d Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Linux-learn-monogame-2d
+        path: artifacts/Linux-x64/learn-monogame-2d/**
+        include-hidden-files: true
+
+    - name: Archive learn-monogame-2d macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: macOS-learn-monogame-2d
+        path: artifacts/macOS/learn-monogame-2d/**
+        include-hidden-files: true
+
   deploy:
       name: Deploy
-      needs: [ build-windows, build-macos ]
+      needs: [ build-windows ]
       runs-on: ubuntu-latest
       if: ${{ github.event_name == 'push' }}
       permissions:
