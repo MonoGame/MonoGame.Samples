@@ -31,9 +31,6 @@ jobs:
         dotnet workload install ios
         dotnet workload install android
 
-    - name: Install MonoPack
-      run: dotnet tool install --global MonoPack
-
     # Windows builds for all projects
     - name: Build Windows Binary for Tutorial/BasicCameraExample
       run: dotnet build Tutorials/BasicCameraExample/BasicCameraExample.sln
@@ -112,93 +109,41 @@ jobs:
     - name: Build Desktop Binary for AutoPong
       run: dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj
 
-    - name: Package AutoPong for Linux-x64
-      run: monopack AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj --runtime linux-x64 --output artifacts/Linux-x64/AutoPong
-
-    - name: Package AutoPong for macOS-Universal
-      run: monopack AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/AutoPong
-
-    - name: Archive AutoPong Linux
+    - name: Archive AutoPong Desktop
       uses: actions/upload-artifact@v6
       with:
-        name: Linux-AutoPong
-        path: artifacts/Linux-x64/AutoPong/**
-        include-hidden-files: true
-
-    - name: Archive AutoPong macOS
-      uses: actions/upload-artifact@v6
-      with:
-        name: macOS-AutoPong
-        path: artifacts/macOS/AutoPong/**
+        name: Desktop-AutoPong
+        path: AutoPong/**
         include-hidden-files: true
 
     - name: Build Desktop Binary for FuelCell
       run: dotnet build FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj
 
-    - name: Package FuelCell for Linux-x64
-      run: monopack FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj --runtime linux-x64 --output artifacts/Linux-x64/FuelCell
-
-    - name: Package FuelCell for macOS-Universal
-      run: monopack FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/FuelCell
-
-    - name: Archive FuelCell Linux
+    - name: Archive FuelCell Desktop
       uses: actions/upload-artifact@v6
       with:
-        name: Linux-FuelCell
-        path: artifacts/Linux-x64/FuelCell/**
-        include-hidden-files: true
-
-    - name: Archive FuelCell macOS
-      uses: actions/upload-artifact@v6
-      with:
-        name: macOS-FuelCell
-        path: artifacts/macOS/FuelCell/**
+        name: Desktop-FuelCell
+        path: FuelCell/**
         include-hidden-files: true
 
     - name: Build Desktop Binary for NeonShooter
       run: dotnet build NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj
 
-    - name: Package NeonShooter for Linux-x64
-      run: monopack NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj --runtime linux-x64 --output artifacts/Linux-x64/NeonShooter
-
-    - name: Package NeonShooter for macOS-Universal
-      run: monopack NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/NeonShooter
-
-    - name: Archive NeonShooter Linux
+    - name: Archive NeonShooter Desktop
       uses: actions/upload-artifact@v6
       with:
-        name: Linux-NeonShooter
-        path: artifacts/Linux-x64/NeonShooter/**
-        include-hidden-files: true
-
-    - name: Archive NeonShooter macOS
-      uses: actions/upload-artifact@v6
-      with:
-        name: macOS-NeonShooter
-        path: artifacts/macOS/NeonShooter/**
+        name: Desktop-NeonShooter
+        path: NeonShooter/**
         include-hidden-files: true
 
     - name: Build Desktop Binary for Platformer2D
       run: dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj
 
-    - name: Package Platformer2D for Linux-x64
-      run: monopack Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj --runtime linux-x64 --output artifacts/Linux-x64/Platformer2D
-
-    - name: Package Platformer2D for macOS-Universal
-      run: monopack Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/Platformer2D
-
-    - name: Archive Platformer2D Linux
+    - name: Archive Platformer2D Desktop
       uses: actions/upload-artifact@v6
       with:
-        name: Linux-Platformer2D
-        path: artifacts/Linux-x64/Platformer2D/**
-        include-hidden-files: true
-
-    - name: Archive Platformer2D macOS
-      uses: actions/upload-artifact@v6
-      with:
-        name: macOS-Platformer2D
-        path: artifacts/macOS/Platformer2D/**
+        name: Desktop-Platformer2D
+        path: Platformer2D/**
         include-hidden-files: true
 
     - name: Build ShipGame Content Processor in Release mode
@@ -207,47 +152,21 @@ jobs:
     - name: Build Desktop Binary for ShipGame
       run: dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj
 
-    - name: Package ShipGame for Linux-x64
-      run: monopack ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj --runtime linux-x64 --output artifacts/Linux-x64/ShipGame
-
-    - name: Package ShipGame for macOS-Universal
-      run: monopack ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/ShipGame
-
-    - name: Archive ShipGame Linux
+    - name: Archive ShipGame Desktop
       uses: actions/upload-artifact@v6
       with:
-        name: Linux-ShipGame
-        path: artifacts/Linux-x64/ShipGame/**
-        include-hidden-files: true
-
-    - name: Archive ShipGame macOS
-      uses: actions/upload-artifact@v6
-      with:
-        name: macOS-ShipGame
-        path: artifacts/macOS/ShipGame/**
+        name: Desktop-ShipGame
+        path: ShipGame/**
         include-hidden-files: true
 
     - name: Build learn-monogame-2d Binary
       run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --configuration Release
 
-    - name: Package learn-monogame-2d for Linux-x64
-      run: monopack Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --runtime linux-x64 --output artifacts/Linux-x64/learn-monogame-2d
-
-    - name: Package learn-monogame-2d for macOS-Universal
-      run: monopack Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --runtime osx-x64 --runtime osx-arm64 --output artifacts/macOS/learn-monogame-2d
-
-    - name: Archive learn-monogame-2d Linux
+    - name: Archive learn-monogame-2d Desktop
       uses: actions/upload-artifact@v6
       with:
-        name: Linux-learn-monogame-2d
-        path: artifacts/Linux-x64/learn-monogame-2d/**
-        include-hidden-files: true
-
-    - name: Archive learn-monogame-2d macOS
-      uses: actions/upload-artifact@v6
-      with:
-        name: macOS-learn-monogame-2d
-        path: artifacts/macOS/learn-monogame-2d/**
+        name: Desktop-learn-monogame-2d
+        path: Tutorials/learn-monogame-2d/src/27-Conclusion/**
         include-hidden-files: true
 
   deploy:
