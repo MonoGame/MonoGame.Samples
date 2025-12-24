@@ -100,77 +100,100 @@ jobs:
         include-hidden-files: true
 
   build-desktop:
-    runs-on: windows-latest
+    runs-on: macos-latest
+
+    env:
+      MGFXC_WINE_PATH: /Users/runner/.winemonogame
+      DYLD_LIBRARY_PATH: /usr/lib:/usr/local/lib:/opt/homebrew/lib:/usr/local/bin
 
     steps:
     - uses: actions/checkout@v5
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 9.0.x
 
-    # Desktop builds for all projects
-    - name: Build Desktop Binary for AutoPong
-      run: dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj
+    - name: Setup for MonoGame
+      uses: infinitespace-studios/monogame-actions/install-wine@v1.0
 
-    - name: Archive AutoPong Desktop
+    - name: Install MonoPack
+      run: dotnet tool install --global MonoPack
+
+    # Desktop builds for all projects
+    - name: Build and Package AutoPong
+      run: |
+        dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -c Release
+        dotnet monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -e AutoPong.DesktopGL -o ./artifacts/AutoPong -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
+
+    - name: Archive AutoPong
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-AutoPong
-        path: AutoPong/AutoPong.DesktopGL/bin/Debug/net9.0/**
+        path: artifacts/AutoPong/**/*.zip
         include-hidden-files: true
 
-    - name: Build Desktop Binary for FuelCell
-      run: dotnet build FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj
+    - name: Build and Package FuelCell
+      run: |
+        dotnet build FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -c Release
+        dotnet monopack -p FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -e FuelCell.DesktopGL -o ./artifacts/FuelCell -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
 
-    - name: Archive FuelCell Desktop
+    - name: Archive FuelCell
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-FuelCell
-        path: FuelCell/FuelCell.DesktopGL/bin/Debug/net9.0/**
+        path: artifacts/FuelCell/**/*.zip
         include-hidden-files: true
 
-    - name: Build Desktop Binary for NeonShooter
-      run: dotnet build NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj
+    - name: Build and Package NeonShooter
+      run: |
+        dotnet build NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -c Release
+        dotnet monopack -p NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -e NeonShooter.DesktopGL -o ./artifacts/NeonShooter -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
 
-    - name: Archive NeonShooter Desktop
+    - name: Archive NeonShooter
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-NeonShooter
-        path: NeonShooter/NeonShooter.DesktopGL/bin/Debug/net9.0/**
+        path: artifacts/NeonShooter/**/*.zip
         include-hidden-files: true
 
-    - name: Build Desktop Binary for Platformer2D
-      run: dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj
+    - name: Build and Package Platformer2D
+      run: |
+        dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -c Release
+        dotnet monopack -p Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -e Platformer2D.DesktopGL -o ./artifacts/Platformer2D -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
 
-    - name: Archive Platformer2D Desktop
+    - name: Archive Platformer2D
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-Platformer2D
-        path: Platformer2D/Platformer2D.DesktopGL/bin/Debug/net9.0/**
+        path: artifacts/Platformer2D/**/*.zip
         include-hidden-files: true
 
-    - name: Build ShipGame Content Processor in Release mode
+    - name: Build ShipGame Content Processor
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
 
-    - name: Build Desktop Binary for ShipGame
-      run: dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj
+    - name: Build and Package ShipGame
+      run: |
+        dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -c Release
+        dotnet monopack -p ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -e ShipGame.DesktopGL -o ./artifacts/ShipGame -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
 
-    - name: Archive ShipGame Desktop
+    - name: Archive ShipGame
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-ShipGame
-        path: ShipGame/ShipGame.DesktopGL/bin/Debug/net9.0/**
+        path: artifacts/ShipGame/**/*.zip
         include-hidden-files: true
 
-    - name: Build learn-monogame-2d Binary
-      run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --configuration Release
+    - name: Build and Package learn-monogame-2d
+      run: |
+        dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj -c Release
+        dotnet monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj -e DungeonSlime -o ./artifacts/learn-monogame-2d -r win-x64 -r linux-x64 -r osx-x64 -r osx-arm64 -z -v
 
-    - name: Archive learn-monogame-2d Desktop
+    - name: Archive learn-monogame-2d
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-learn-monogame-2d
-        path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/bin/Release/net9.0/**
+        path: artifacts/learn-monogame-2d/**/*.zip
         include-hidden-files: true
 
   build-android:
