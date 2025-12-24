@@ -13,9 +13,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleExecutable</key>
-    <string>FuelCell.DesktopGL.DesktopGL</string>
+    <string>FuelCell.DesktopGL</string>
     <key>CFBundleIconFile</key>
-    <string>FuelCell.DesktopGL.icns</string>
+    <string>FuelCell.DesktopGL.DesktopGL.icns</string>
     <key>NSHighResolutionCapable</key>
     <true/>
 </dict>

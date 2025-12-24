@@ -13,9 +13,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleExecutable</key>
-    <string>AutoPong.DesktopGL.DesktopGL</string>
+    <string>AutoPong.DesktopGL</string>
     <key>CFBundleIconFile</key>
-    <string>AutoPong.DesktopGL.icns</string>
+    <string>AutoPong.DesktopGL.DesktopGL.icns</string>
     <key>NSHighResolutionCapable</key>
     <true/>
 </dict>

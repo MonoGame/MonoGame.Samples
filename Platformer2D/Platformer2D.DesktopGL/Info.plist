@@ -13,9 +13,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleExecutable</key>
-    <string>Platformer2D.DesktopGL.DesktopGL</string>
+    <string>Platformer2D.DesktopGL</string>
     <key>CFBundleIconFile</key>
-    <string>Platformer2D.DesktopGL.icns</string>
+    <string>Platformer2D.DesktopGL.DesktopGL.icns</string>
     <key>NSHighResolutionCapable</key>
     <true/>
 </dict>

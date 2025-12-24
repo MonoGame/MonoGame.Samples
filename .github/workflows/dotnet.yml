@@ -210,7 +210,7 @@ jobs:
     - name: Build and Package ShipGame
       run: |
         dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -c Release
-        monopack -p ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -e ShipGame.DesktopGL -o ./artifacts/ShipGame -rids win-x64,linux-x64 -z -v
+        monopack -p ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -e ShipGame.DesktopGL -o ./artifacts/ShipGame -rids win-x64,linux-x64,osx-x64,osx-arm64 -i ShipGame/ShipGame.DesktopGL/Info.plist -c ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.icns -z -v
 
     - name: Archive ShipGame Windows
       uses: actions/upload-artifact@v6
@@ -223,6 +223,12 @@ jobs:
       with:
         name: Desktop-ShipGame-Linux
         path: artifacts/ShipGame/*-linux-x64.zip
+
+    - name: Archive ShipGame macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-ShipGame-macOS
+        path: artifacts/ShipGame/*-osx*.zip
 
     - name: Build and Package learn-monogame-2d
       run: |
