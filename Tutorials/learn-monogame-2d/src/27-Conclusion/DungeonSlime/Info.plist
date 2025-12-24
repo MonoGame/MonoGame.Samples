@@ -13,9 +13,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleExecutable</key>
-    <string>DungeonSlime.DesktopGL</string>
+    <string>DungeonSlime</string>
     <key>CFBundleIconFile</key>
-    <string>DungeonSlime.DesktopGL.icns</string>
+    <string>DungeonSlime.icns</string>
     <key>NSHighResolutionCapable</key>
     <true/>
 </dict>

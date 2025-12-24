@@ -15,7 +15,7 @@
     <key>CFBundleExecutable</key>
     <string>AutoPong.DesktopGL</string>
     <key>CFBundleIconFile</key>
-    <string>AutoPong.DesktopGL.DesktopGL.icns</string>
+    <string>AutoPong.DesktopGL.icns</string>
     <key>NSHighResolutionCapable</key>
     <true/>
 </dict>

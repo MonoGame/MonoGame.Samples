@@ -15,7 +15,7 @@
     <key>CFBundleExecutable</key>
     <string>NeonShooter.DesktopGL</string>
     <key>CFBundleIconFile</key>
-    <string>NeonShooter.DesktopGL.DesktopGL.icns</string>
+    <string>NeonShooter.DesktopGL.icns</string>
     <key>NSHighResolutionCapable</key>
     <true/>
 </dict>
