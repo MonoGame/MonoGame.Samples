@@ -124,7 +124,7 @@ jobs:
     - name: Build and Package AutoPong
       run: |
         dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -c Release
-        monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -e AutoPong.DesktopGL -o ./artifacts/AutoPong -r win-x64, linux-x64, osx-x64, osx-arm64 -z -v
+        monopack -e AutoPong.DesktopGL -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -z -o ./artifacts/AutoPong -r win-x64, linux-x64, osx-x64, osx-arm64 -i ./Info.plist -c ./AutoPong.DesktopGL.icns -v
 
     - name: Archive AutoPong
       uses: actions/upload-artifact@v6
