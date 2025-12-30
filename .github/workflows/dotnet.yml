@@ -204,6 +204,29 @@ jobs:
         name: Desktop-Platformer2D-macOS
         path: artifacts/Platformer2D/*-universal.zip
 
+    - name: Build and Package DungeonSlime
+      run: |
+        dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -c Release
+        monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -e DungeonSlime -o ./artifacts/learn-monogame-2d -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Info.plist -c Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.icns -v
+
+    - name: Archive DungeonSlime Windows
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-DungeonSlime-Windows
+        path: artifacts/learn-monogame-2d/*-win-x64.zip
+
+    - name: Archive DungeonSlime Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-DungeonSlime-Linux
+        path: artifacts/learn-monogame-2d/*-linux-x64.zip
+
+    - name: Archive DungeonSlime macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-DungeonSlime-macOS
+        path: artifacts/learn-monogame-2d/*-universal.zip
+
     - name: Build ShipGame Content Processor
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
 
@@ -229,29 +252,6 @@ jobs:
       with:
         name: Desktop-ShipGame-macOS
         path: artifacts/ShipGame/*-universal.zip
-
-    - name: Build and Package learn-monogame-2d
-      run: |
-        dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj -c Release
-        monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj -e DungeonSlime -o ./artifacts/learn-monogame-2d -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Info.plist -c Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.icns -v
-
-    - name: Archive learn-monogame-2d Windows
-      uses: actions/upload-artifact@v6
-      with:
-        name: Desktop-learn-monogame-2d-Windows
-        path: artifacts/learn-monogame-2d/*-win-x64.zip
-
-    - name: Archive learn-monogame-2d Linux
-      uses: actions/upload-artifact@v6
-      with:
-        name: Desktop-learn-monogame-2d-Linux
-        path: artifacts/learn-monogame-2d/*-linux-x64.zip
-
-    - name: Archive learn-monogame-2d macOS
-      uses: actions/upload-artifact@v6
-      with:
-        name: Desktop-learn-monogame-2d-macOS
-        path: artifacts/learn-monogame-2d/*-universal.zip
 
   build-android:
     runs-on: windows-latest
@@ -311,6 +311,16 @@ jobs:
       with:
         name: Android-Platformer2D
         path: Platformer2D/Platformer2D.Android/bin/Release/net9.0-android/**
+        include-hidden-files: true
+
+    - name: Build Android Binary for DungeonSlime
+      run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Android/DungeonSlime.csproj -c Release
+
+    - name: Archive DungeonSlime Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-DungeonSlime
+        path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Android/bin/Release/net9.0-android/**
         include-hidden-files: true
 
     - name: Build ShipGame Content Processor in Release mode
