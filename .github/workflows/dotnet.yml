@@ -90,13 +90,13 @@ jobs:
         include-hidden-files: true
 
     - name: Build learn-monogame-2d Binary
-      run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --configuration Release
+      run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj --configuration Release
 
     - name: Archive learn-monogame-2d
       uses: actions/upload-artifact@v6
       with:
         name: Windows-Learn-monogame-2d
-        path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/bin/Release/net9.0/**
+        path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/bin/Release/net9.0/**
         include-hidden-files: true
 
   build-desktop:
@@ -207,7 +207,7 @@ jobs:
     - name: Build and Package DungeonSlime
       run: |
         dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -c Release
-        monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -e DungeonSlime -o ./artifacts/learn-monogame-2d -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Info.plist -c Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.icns -v
+        monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -e DungeonSlime -o ./artifacts/learn-monogame-2d -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/Info.plist -c Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.icns -v
 
     - name: Archive DungeonSlime Windows
       uses: actions/upload-artifact@v6
