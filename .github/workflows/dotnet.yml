@@ -150,7 +150,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-FuelCell-Linux
-        path: artifacts/FuelCell/*-linux-x64.zip
+        path: artifacts/FuelCell/*-linux-x64.tar.gz
 
     - name: Archive FuelCell macOS
       uses: actions/upload-artifact@v6
@@ -173,7 +173,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-NeonShooter-Linux
-        path: artifacts/NeonShooter/*-linux-x64.zip
+        path: artifacts/NeonShooter/*-linux-x64.tar.gz
 
     - name: Archive NeonShooter macOS
       uses: actions/upload-artifact@v6
@@ -196,7 +196,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-Platformer2D-Linux
-        path: artifacts/Platformer2D/*-linux-x64.zip
+        path: artifacts/Platformer2D/*-linux-x64.tar.gz
 
     - name: Archive Platformer2D macOS
       uses: actions/upload-artifact@v6
@@ -219,7 +219,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-DungeonSlime-Linux
-        path: artifacts/learn-monogame-2d/*-linux-x64.zip
+        path: artifacts/learn-monogame-2d/*-linux-x64.tar.gz
 
     - name: Archive DungeonSlime macOS
       uses: actions/upload-artifact@v6
@@ -245,7 +245,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-ShipGame-Linux
-        path: artifacts/ShipGame/*-linux-x64.zip
+        path: artifacts/ShipGame/*-linux-x64.tar.gz 
 
     - name: Archive ShipGame macOS
       uses: actions/upload-artifact@v6
