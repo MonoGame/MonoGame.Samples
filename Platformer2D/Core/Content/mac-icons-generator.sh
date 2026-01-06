@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Declare a constant variables
-readonly top_level_path="../../Platformer2D.Desktop/AppIcon.xcassets"
+readonly top_level_path="../../Desktop/AppIcon.xcassets"
 readonly xcassets_path="$top_level_path/AppIcon.appiconset"
 
 while true; do
@@ -118,3 +118,33 @@ cat > "$xcassets_path/Contents.json" <<EOF
 EOF
 
 echo "macOS Icon Generation Complete!"
+
+# Generate .icns file for MonoPack/Desktop builds
+echo ""
+echo "Generating Platformer2D.icns for Desktop builds"
+
+# Create temporary iconset directory
+iconset_dir="../../Desktop/Platformer2D.iconset"
+mkdir -p "$iconset_dir"
+
+# Generate all required icon sizes for .icns
+sips -Z 16 icon-1024.png -o "$iconset_dir/icon_16x16.png"
+sips -Z 32 icon-1024.png -o "$iconset_dir/icon_16x16@2x.png"
+sips -Z 32 icon-1024.png -o "$iconset_dir/icon_32x32.png"
+sips -Z 64 icon-1024.png -o "$iconset_dir/icon_32x32@2x.png"
+sips -Z 128 icon-1024.png -o "$iconset_dir/icon_128x128.png"
+sips -Z 256 icon-1024.png -o "$iconset_dir/icon_128x128@2x.png"
+sips -Z 256 icon-1024.png -o "$iconset_dir/icon_256x256.png"
+sips -Z 512 icon-1024.png -o "$iconset_dir/icon_256x256@2x.png"
+sips -Z 512 icon-1024.png -o "$iconset_dir/icon_512x512.png"
+sips -Z 1024 icon-1024.png -o "$iconset_dir/icon_512x512@2x.png"
+
+# Create .icns file using iconutil
+iconutil -c icns "$iconset_dir" -o "../../Desktop/Platformer2D.icns"
+
+# Clean up temporary iconset directory
+rm -rf "$iconset_dir"
+
+echo "Platformer2D.icns generated successfully at ../../Desktop/Platformer2D.icns"
+echo ""
+echo "All icon generation complete!"
