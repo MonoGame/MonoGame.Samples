@@ -27,14 +27,13 @@ jobs:
 
     # Windows builds for all projects
     - name: Build Windows Binary for Tutorial/BasicCameraExample
-      run: dotnet build Tutorials/BasicCameraExample/BasicCameraExample.sln
+      run: dotnet publish Tutorials/BasicCameraExample/BasicCameraExample.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:SelfContained=true -o ./artifacts/BasicCameraExample-Windows
 
     - name: Archive Tutorial/BasicCameraExample
       uses: actions/upload-artifact@v6
       with:
         name: Windows-BasicCameraExample
-        path: Tutorials/BasicCameraExample/**/bin/Debug/**
-        include-hidden-files: true
+        path: artifacts/BasicCameraExample-Windows/BasicCameraExample.exe
 
     - name: Build Windows Binary for AutoPong
       run: dotnet publish AutoPong/AutoPong.WindowsDX/AutoPong.WindowsDX.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:SelfContained=true -o ./artifacts/AutoPong-Windows
@@ -84,15 +83,14 @@ jobs:
         name: Windows-ShipGame
         path: artifacts/ShipGame-Windows/ShipGame.WindowsDX.exe
 
-    - name: Build learn-monogame-2d Binary
-      run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj --configuration Release
+    - name: Build Windows Binary for DungeonSlime
+      run: dotnet publish Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Windows/DungeonSlime.WindowsDX.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:SelfContained=true -o ./artifacts/DungeonSlime-Windows
 
-    - name: Archive learn-monogame-2d
+    - name: Archive DungeonSlime
       uses: actions/upload-artifact@v6
       with:
-        name: Windows-Learn-monogame-2d
-        path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/bin/Release/net9.0/**
-        include-hidden-files: true
+        name: Windows-DungeonSlime
+        path: artifacts/DungeonSlime-Windows/DungeonSlime.WindowsDX.exe
 
   build-desktop:
     runs-on: macos-latest
