@@ -37,57 +37,52 @@ jobs:
         include-hidden-files: true
 
     - name: Build Windows Binary for AutoPong
-      run: dotnet build AutoPong/AutoPong.WindowsDX/AutoPong.WindowsDX.csproj
+      run: dotnet publish AutoPong/AutoPong.WindowsDX/AutoPong.WindowsDX.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:SelfContained=true -o ./artifacts/AutoPong-Windows
 
     - name: Archive AutoPong
       uses: actions/upload-artifact@v6
       with:
         name: Windows-AutoPong
-        path: AutoPong/AutoPong.WindowsDX/bin/Debug/net9.0/**
-        include-hidden-files: true
+        path: artifacts/AutoPong-Windows/AutoPong.WindowsDX.exe
 
     - name: Build Windows Binary for FuelCell
-      run: dotnet build FuelCell/FuelCell.WindowsDX/FuelCell.WindowsDX.csproj
+      run: dotnet publish FuelCell/FuelCell.WindowsDX/FuelCell.WindowsDX.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:SelfContained=true -o ./artifacts/FuelCell-Windows
 
     - name: Archive FuelCell
       uses: actions/upload-artifact@v6
       with:
         name: Windows-FuelCell
-        path: FuelCell/FuelCell.WindowsDX/bin/Debug/net9.0/**
-        include-hidden-files: true
+        path: artifacts/FuelCell-Windows/FuelCell.WindowsDX.exe
 
     - name: Build Windows Binary for NeonShooter
-      run: dotnet build NeonShooter/NeonShooter.WindowsDX/NeonShooter.WindowsDX.csproj
+      run: dotnet publish NeonShooter/NeonShooter.WindowsDX/NeonShooter.WindowsDX.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:SelfContained=true -o ./artifacts/NeonShooter-Windows
 
     - name: Archive NeonShooter
       uses: actions/upload-artifact@v6
       with:
         name: Windows-NeonShooter
-        path: NeonShooter/NeonShooter.WindowsDX/bin/Debug/net9.0/**
-        include-hidden-files: true
+        path: artifacts/NeonShooter-Windows/NeonShooter.WindowsDX.exe
 
     - name: Build Windows Binary for Platformer2D
-      run: dotnet build Platformer2D/Platformer2D.WindowsDX/Platformer2D.WindowsDX.csproj
+      run: dotnet publish Platformer2D/Platformer2D.WindowsDX/Platformer2D.WindowsDX.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:SelfContained=true -o ./artifacts/Platformer2D-Windows
 
     - name: Archive Platformer2D
       uses: actions/upload-artifact@v6
       with:
         name: Windows-Platformer2D
-        path: Platformer2D/Platformer2D.WindowsDX/bin/Debug/net9.0/**
-        include-hidden-files: true
+        path: artifacts/Platformer2D-Windows/Platformer2D.WindowsDX.exe
 
     - name: Build ShipGame Content Processor in Release mode
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
 
     - name: Build Windows Binary for ShipGame
-      run: dotnet build ShipGame/ShipGame.WindowsDX/ShipGame.WindowsDX.csproj
+      run: dotnet publish ShipGame/ShipGame.WindowsDX/ShipGame.WindowsDX.csproj -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:SelfContained=true -o ./artifacts/ShipGame-Windows
 
     - name: Archive ShipGame
       uses: actions/upload-artifact@v6
       with:
         name: Windows-ShipGame
-        path: ShipGame/ShipGame.WindowsDX/bin/Debug/net9.0/**
-        include-hidden-files: true
+        path: artifacts/ShipGame-Windows/ShipGame.WindowsDX.exe
 
     - name: Build learn-monogame-2d Binary
       run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj --configuration Release
