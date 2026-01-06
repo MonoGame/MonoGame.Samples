@@ -63,7 +63,7 @@ jobs:
         path: artifacts/NeonShooter-Windows/**
 
     - name: Build Windows Binary for Platformer2D
-      run: dotnet publish Platformer2D/Platformer2D.WindowsDX/Platformer2D.WindowsDX.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/Platformer2D-Windows
+      run: dotnet publish Platformer2D/Windows/Platformer2D.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/Platformer2D-Windows
 
     - name: Archive Platformer2D
       uses: actions/upload-artifact@v6
@@ -187,8 +187,8 @@ jobs:
 
     - name: Build and Package Platformer2D
       run: |
-        dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -c Release
-        monopack -p Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -o ./artifacts/Platformer2D -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Platformer2D/Platformer2D.DesktopGL/Info.plist -c Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.icns -v --macos-universal
+        dotnet build Platformer2D/Desktop/Platformer2D.csproj -c Release
+        monopack -p Platformer2D/Desktop/Platformer2D.csproj -o ./artifacts/Platformer2D -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Platformer2D/Desktop/Info.plist -c Platformer2D/Desktop/Platformer2D.icns -v --macos-universal
 
     - name: Archive Platformer2D Windows
       uses: actions/upload-artifact@v6
@@ -305,13 +305,13 @@ jobs:
         path: NeonShooter/NeonShooter.Android/bin/Release/net9.0-android/**/*-Signed.apk
 
     - name: Build Android Binary for Platformer2D
-      run: dotnet build Platformer2D/Platformer2D.Android/Platformer2D.Android.csproj -c Release
+      run: dotnet build Platformer2D/Android/Platformer2D.csproj -c Release
 
     - name: Archive Platformer2D Android
       uses: actions/upload-artifact@v6
       with:
         name: Android-Platformer2D
-        path: Platformer2D/Platformer2D.Android/bin/Release/net9.0-android/**/*-Signed.apk
+        path: Platformer2D/Android/bin/Release/net9.0-android/**/*-Signed.apk
 
     - name: Build Android Binary for DungeonSlime
       run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Android/DungeonSlime.csproj -c Release
