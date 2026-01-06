@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-android</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DungeonSlime.Android</RootNamespace>
+    <AssemblyName>DungeonSlime</AssemblyName>
+    <AndroidApplication>True</AndroidApplication>
+    <SupportedOSPlatformVersion>28.0</SupportedOSPlatformVersion>
+    <ApplicationId>com.monogame.dungeonslime</ApplicationId>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Gum.MonoGame" Version="2025.12.28.1" />
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.5-preview.2" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.5-preview.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MonoGameLibrary\MonoGameLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Shared game code from root directory (2 levels up) -->
+    <Compile Include="..\..\DungeonSlimeGame.cs" Link="DungeonSlimeGame.cs" />
+    <Compile Include="..\..\GameController.cs" Link="GameController.cs" />
+
+    <!-- GameObjects -->
+    <Compile Include="..\..\GameObjects\*.cs" Link="GameObjects\%(Filename)%(Extension)" />
+
+    <!-- Scenes -->
+    <Compile Include="..\..\Scenes\*.cs" Link="Scenes\%(Filename)%(Extension)" />
+
+    <!-- UI -->
+    <Compile Include="..\..\UI\*.cs" Link="UI\%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Shared Content (2 levels up) -->
+    <MonoGameContentReference Include="..\..\Content\Content.mgcb" />
+  </ItemGroup>
+
+  <Target Name="RestoreDotnetTools" BeforeTargets="CollectPackageReferences">
+    <Message Text="Restoring dotnet tools (this might take a while depending on your internet speed and should only happen upon building your project for the first time, or after upgrading MonoGame, or clearing your nuget cache)" Importance="High" />
+    <Exec Command="dotnet tool restore" />
+  </Target>
+
+</Project>

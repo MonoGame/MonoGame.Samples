@@ -15,7 +15,7 @@ on:
     - cron: "0 3 * * 1"   # Weekly (Mon) build to keep artifacts fresh
 
 jobs:
-  build:
+  build-windows:
     runs-on: windows-latest
 
     steps:
@@ -24,83 +24,319 @@ jobs:
       uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 9.0.x
-    
+
+    # Windows builds for all projects
     - name: Build Windows Binary for Tutorial/BasicCameraExample
-      run: dotnet build Tutorials/BasicCameraExample/BasicCameraExample.sln
+      run: dotnet publish Tutorials/BasicCameraExample/BasicCameraExample.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/BasicCameraExample-Windows
 
     - name: Archive Tutorial/BasicCameraExample
       uses: actions/upload-artifact@v6
       with:
-        name: BasicCameraExample
-        path: Tutorials/BasicCameraExample/**
-        include-hidden-files: true
+        name: Windows-BasicCameraExample
+        path: artifacts/BasicCameraExample-Windows/**
 
     - name: Build Windows Binary for AutoPong
-      run: dotnet build AutoPong/AutoPong.WindowsDX/AutoPong.WindowsDX.csproj
-  
+      run: dotnet publish AutoPong/AutoPong.WindowsDX/AutoPong.WindowsDX.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/AutoPong-Windows
+
     - name: Archive AutoPong
       uses: actions/upload-artifact@v6
       with:
-        name: AutoPong
-        path: AutoPong/**
-        include-hidden-files: true
+        name: Windows-AutoPong
+        path: artifacts/AutoPong-Windows/**
 
     - name: Build Windows Binary for FuelCell
-      run: dotnet build FuelCell/FuelCell.WindowsDX/FuelCell.WindowsDX.csproj
+      run: dotnet publish FuelCell/FuelCell.WindowsDX/FuelCell.WindowsDX.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/FuelCell-Windows
 
     - name: Archive FuelCell
       uses: actions/upload-artifact@v6
       with:
-        name: FuelCell
-        path: FuelCell/**
-        include-hidden-files: true
+        name: Windows-FuelCell
+        path: artifacts/FuelCell-Windows/**
 
     - name: Build Windows Binary for NeonShooter
-      run: dotnet build NeonShooter/NeonShooter.WindowsDX/NeonShooter.WindowsDX.csproj
+      run: dotnet publish NeonShooter/NeonShooter.WindowsDX/NeonShooter.WindowsDX.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/NeonShooter-Windows
 
     - name: Archive NeonShooter
       uses: actions/upload-artifact@v6
       with:
-        name: NeonShooter
-        path: NeonShooter/**
-        include-hidden-files: true
+        name: Windows-NeonShooter
+        path: artifacts/NeonShooter-Windows/**
 
     - name: Build Windows Binary for Platformer2D
-      run: dotnet build Platformer2D/Platformer2D.WindowsDX/Platformer2D.WindowsDX.csproj
+      run: dotnet publish Platformer2D/Platformer2D.WindowsDX/Platformer2D.WindowsDX.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/Platformer2D-Windows
 
     - name: Archive Platformer2D
       uses: actions/upload-artifact@v6
       with:
-        name: Platformer2D
-        path: Platformer2D/**
-        include-hidden-files: true
+        name: Windows-Platformer2D
+        path: artifacts/Platformer2D-Windows/**
 
-    - name: Build ShipGame COntent Processor in Release mode
+    - name: Build ShipGame Content Processor in Release mode
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
 
     - name: Build Windows Binary for ShipGame
-      run: dotnet build ShipGame/ShipGame.WindowsDX/ShipGame.WindowsDX.csproj
+      run: dotnet publish ShipGame/ShipGame.WindowsDX/ShipGame.WindowsDX.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/ShipGame-Windows
 
     - name: Archive ShipGame
       uses: actions/upload-artifact@v6
       with:
-        name: ShipGame
-        path: ShipGame/**
-        include-hidden-files: true
-        
-    - name: Build learn-monogame-2d Binary
-      run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/DungeonSlime.csproj --configuration Release
+        name: Windows-ShipGame
+        path: artifacts/ShipGame-Windows/**
 
-    - name: Archive Platformer2D
+    - name: Build Windows Binary for DungeonSlime
+      run: dotnet publish Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Windows/DungeonSlime.WindowsDX.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/DungeonSlime-Windows
+
+    - name: Archive DungeonSlime
       uses: actions/upload-artifact@v6
       with:
-        name: Learn-monogame-2d
-        path: Tutorials/learn-monogame-2d/src/27-Conclusion/**
-        include-hidden-files: true
+        name: Windows-DungeonSlime
+        path: artifacts/DungeonSlime-Windows/**
+
+  build-desktop:
+    runs-on: macos-latest
+
+    env:
+      MGFXC_WINE_PATH: /Users/runner/.winemonogame
+      DYLD_LIBRARY_PATH: /usr/lib:/usr/local/lib:/opt/homebrew/lib:/usr/local/bin
+
+    steps:
+    - uses: actions/checkout@v5
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Setup for MonoGame
+      uses: infinitespace-studios/monogame-actions/install-wine@v1.0
+
+    - name: Install MonoPack
+      run: dotnet tool install --global MonoPack
+
+    # Desktop builds for all projects
+
+    # AutoPong Desktop build is currently disabled due to issues with packaging process
+    - name: Build and Package AutoPong
+      run: |
+        dotnet build AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -c Release
+        monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -o ./artifacts/AutoPong -rids win-x64,linux-x64,osx-x64,osx-arm64 -i AutoPong/AutoPong.DesktopGL/Info.plist -c AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.icns -v --macos-universal
+
+    - name: Archive AutoPong Windows
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-AutoPong-Windows
+        path: artifacts/AutoPong/*-win-x64.zip
+
+    - name: Archive AutoPong Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-AutoPong-Linux
+        path: artifacts/AutoPong/*-linux-x64.tar.gz
+
+    - name: Archive AutoPong macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-AutoPong-macOS
+        path: artifacts/AutoPong/*-universal.tar.gz
+
+    - name: Build and Package FuelCell
+      run: |
+        dotnet build FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -c Release
+        monopack -p FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -o ./artifacts/FuelCell -rids win-x64,linux-x64,osx-x64,osx-arm64 -i FuelCell/FuelCell.DesktopGL/Info.plist -c FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.icns -v --macos-universal
+
+    - name: Archive FuelCell Windows
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-FuelCell-Windows
+        path: artifacts/FuelCell/*-win-x64.zip
+
+    - name: Archive FuelCell Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-FuelCell-Linux
+        path: artifacts/FuelCell/*-linux-x64.tar.gz
+
+    - name: Archive FuelCell macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-FuelCell-macOS
+        path: artifacts/FuelCell/*-universal.tar.gz
+
+    - name: Build and Package NeonShooter
+      run: |
+        dotnet build NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -c Release
+        monopack -p NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -o ./artifacts/NeonShooter -rids win-x64,linux-x64,osx-x64,osx-arm64 -i NeonShooter/NeonShooter.DesktopGL/Info.plist -c NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.icns -v --macos-universal
+
+    - name: Archive NeonShooter Windows
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-NeonShooter-Windows
+        path: artifacts/NeonShooter/*-win-x64.zip
+
+    - name: Archive NeonShooter Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-NeonShooter-Linux
+        path: artifacts/NeonShooter/*-linux-x64.tar.gz
+
+    - name: Archive NeonShooter macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-NeonShooter-macOS
+        path: artifacts/NeonShooter/*-universal.tar.gz
+
+    - name: Build and Package Platformer2D
+      run: |
+        dotnet build Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -c Release
+        monopack -p Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj -o ./artifacts/Platformer2D -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Platformer2D/Platformer2D.DesktopGL/Info.plist -c Platformer2D/Platformer2D.DesktopGL/Platformer2D.DesktopGL.icns -v --macos-universal
+
+    - name: Archive Platformer2D Windows
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-Platformer2D-Windows
+        path: artifacts/Platformer2D/*-win-x64.zip
+
+    - name: Archive Platformer2D Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-Platformer2D-Linux
+        path: artifacts/Platformer2D/*-linux-x64.tar.gz
+
+    - name: Archive Platformer2D macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-Platformer2D-macOS
+        path: artifacts/Platformer2D/*-universal.tar.gz
+
+    - name: Build and Package DungeonSlime
+      run: |
+        dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -c Release
+        monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -o ./artifacts/learn-monogame-2d -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/Info.plist -c Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.icns -v --macos-universal
+
+    - name: Archive DungeonSlime Windows
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-DungeonSlime-Windows
+        path: artifacts/learn-monogame-2d/*-win-x64.zip
+
+    - name: Archive DungeonSlime Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-DungeonSlime-Linux
+        path: artifacts/learn-monogame-2d/*-linux-x64.tar.gz
+
+    - name: Archive DungeonSlime macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-DungeonSlime-macOS
+        path: artifacts/learn-monogame-2d/*-universal.tar.gz
+
+    - name: Build ShipGame Content Processor
+      run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
+
+    - name: Build and Package ShipGame
+      run: |
+        dotnet build ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -c Release
+        monopack -p ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -o ./artifacts/ShipGame -rids win-x64,linux-x64,osx-x64,osx-arm64 -i ShipGame/ShipGame.DesktopGL/Info.plist -c ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.icns -v --macos-universal
+
+    - name: Archive ShipGame Windows
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-ShipGame-Windows
+        path: artifacts/ShipGame/*-win-x64.zip
+
+    - name: Archive ShipGame Linux
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-ShipGame-Linux
+        path: artifacts/ShipGame/*-linux-x64.tar.gz 
+
+    - name: Archive ShipGame macOS
+      uses: actions/upload-artifact@v6
+      with:
+        name: Desktop-ShipGame-macOS
+        path: artifacts/ShipGame/*-universal.tar.gz
+
+  build-android:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v5
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'microsoft'
+        java-version: '17'
+
+    - name: Install .NET Android workload
+      run: dotnet workload install android
+
+    # Android builds for all projects
+    - name: Build Android Binary for AutoPong
+      run: dotnet build AutoPong/AutoPong.Android/AutoPong.Android.csproj -c Release
+
+    - name: Archive AutoPong Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-AutoPong
+        path: AutoPong/AutoPong.Android/bin/Release/net9.0-android/**/*-Signed.apk
+
+    - name: Build Android Binary for FuelCell
+      run: dotnet build FuelCell/FuelCell.Android/FuelCell.Android.csproj -c Release
+
+    - name: Archive FuelCell Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-FuelCell
+        path: FuelCell/FuelCell.Android/bin/Release/net9.0-android/**/*-Signed.apk
+
+    - name: Build Android Binary for NeonShooter
+      run: dotnet build NeonShooter/NeonShooter.Android/NeonShooter.Android.csproj -c Release
+
+    - name: Archive NeonShooter Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-NeonShooter
+        path: NeonShooter/NeonShooter.Android/bin/Release/net9.0-android/**/*-Signed.apk
+
+    - name: Build Android Binary for Platformer2D
+      run: dotnet build Platformer2D/Platformer2D.Android/Platformer2D.Android.csproj -c Release
+
+    - name: Archive Platformer2D Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-Platformer2D
+        path: Platformer2D/Platformer2D.Android/bin/Release/net9.0-android/**/*-Signed.apk
+
+    - name: Build Android Binary for DungeonSlime
+      run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Android/DungeonSlime.csproj -c Release
+
+    - name: Archive DungeonSlime Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-DungeonSlime
+        path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Android/bin/Release/net9.0-android/**/*-Signed.apk
+
+    - name: Build ShipGame Content Processor in Release mode
+      run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
+
+    - name: Build Android Binary for ShipGame
+      run: dotnet build ShipGame/ShipGame.Android/ShipGame.Android.csproj -c Release
+
+    - name: Archive ShipGame Android
+      uses: actions/upload-artifact@v6
+      with:
+        name: Android-ShipGame
+        path: ShipGame/ShipGame.Android/bin/Release/net9.0-android/**/*-Signed.apk
 
   deploy:
       name: Deploy
-      needs: [ build ]
+      needs: [ build-windows, build-desktop, build-android ]
       runs-on: ubuntu-latest
       if: ${{ github.event_name == 'push' }}
       permissions:
