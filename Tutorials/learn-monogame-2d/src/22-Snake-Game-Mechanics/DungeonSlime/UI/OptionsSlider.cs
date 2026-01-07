@@ -85,7 +85,6 @@ public class OptionsSlider : Slider
         offBackground.TextureWidth = offBackgroundRegion.Width;
         offBackground.Width = 28f;
         offBackground.WidthUnits = DimensionUnitType.Absolute;
-        offBackground.Dock(Gum.Wireframe.Dock.Left);
         innerContainer.AddChild(offBackground);
 
         TextureRegion middleBackgroundRegion = atlas.GetRegion("slider-middle-background");
