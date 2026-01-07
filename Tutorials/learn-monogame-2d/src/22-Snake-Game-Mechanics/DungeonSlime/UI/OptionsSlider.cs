@@ -91,7 +91,6 @@ public class OptionsSlider : Slider
 
         // Create the middle track portion of the slider
         NineSliceRuntime middleBackground = new NineSliceRuntime();
-        middleBackground.Dock(Gum.Wireframe.Dock.FillVertically);
         middleBackground.Texture = middleBackgroundRegion.Texture;
         middleBackground.TextureAddress = TextureAddress.Custom;
         middleBackground.TextureHeight = middleBackgroundRegion.Height;
