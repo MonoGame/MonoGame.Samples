@@ -115,8 +115,9 @@ jobs:
 
     # Desktop builds for all projects
 
-    - name: Build and Package AutoPong - Windows
-      run: monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -o ./artifacts/AutoPong -rids win-x64 -v
+    # AutoPong Desktop build is currently disabled due to issues with packaging process
+    - name: Build and Package AutoPong
+      run: monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -o ./artifacts/AutoPong -rids win-x64,linux-x64,osx-x64,osx-arm64 -i AutoPong/AutoPong.DesktopGL/Info.plist -c AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.icns -v --macos-universal
 
     - name: Archive AutoPong Windows
       uses: actions/upload-artifact@v6
@@ -124,17 +125,11 @@ jobs:
         name: Desktop-AutoPong-Windows
         path: artifacts/AutoPong/*-win-x64.zip
 
-    - name: Build and Package AutoPong - Linux
-      run: monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -o ./artifacts/AutoPong -rids linux-x64 -v
-
     - name: Archive AutoPong Linux
       uses: actions/upload-artifact@v6
       with:
         name: Desktop-AutoPong-Linux
         path: artifacts/AutoPong/*-linux-x64.tar.gz
-
-    - name: Build and Package AutoPong - macOS
-      run: monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -o ./artifacts/AutoPong -rids osx-x64,osx-arm64 -i AutoPong/AutoPong.DesktopGL/Info.plist -c AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.icns -v --macos-universal
 
     - name: Archive AutoPong macOS
       uses: actions/upload-artifact@v6
