@@ -14,6 +14,11 @@ namespace Platformer2D.Core
         public Texture2D Texture;
 
         /// <summary>
+        /// Specifies the color tint to apply to the Texture when drawing.
+        /// </summary>
+        public Color TintColor = Color.White;
+
+        /// <summary>
         /// The type of collision behavior this tile exhibits.
         /// </summary>
         public TileCollision Collision;
