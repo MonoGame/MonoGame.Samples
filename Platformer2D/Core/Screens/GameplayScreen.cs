@@ -252,7 +252,7 @@ partial class GameplayScreen : GameScreen
 
     /// <summary>
     /// Processes player input and updates game state accordingly.
-    /// Handles pausing, level continuation, and player actions.
+    /// Handles pausing, hot level reloading, level continuation, and player actions.
     /// </summary>
     /// <param name="gameTime">Provides a snapshot of timing values.</param>
     /// <param name="inputState">Current input state for all input devices.</param>
@@ -288,6 +288,14 @@ partial class GameplayScreen : GameScreen
         }
         else
         {
+            // Hot level reloading
+#if DEBUG
+            if (inputState.IsNewKeyPress(Keys.F5, null, out PlayerIndex index))
+            {
+                ReloadCurrentLevel();
+            }
+#endif
+
             // update our level, passing down the GameTime along with all of our input states
             level.Update(gameTime,
                 inputState,
