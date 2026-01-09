@@ -34,7 +34,7 @@ public class ScreenManager : DrawableGameComponent
     private bool traceEnabled;
 
     internal const int BASE_BUFFER_WIDTH = 800;
-    internal const int BASE_BUFFER_HEIGHT = 400;
+    internal const int BASE_BUFFER_HEIGHT = 480;
 
     private int backbufferWidth;
     /// <summary>Gets or sets the current backbuffer width.</summary>
@@ -68,7 +68,7 @@ public class ScreenManager : DrawableGameComponent
     /// </summary>
     public bool TraceEnabled { get => traceEnabled; set => traceEnabled = value; }
 
-    Rectangle safeArea = new Rectangle(0, 0, BASE_BUFFER_WIDTH, BASE_BUFFER_HEIGHT);
+    private Rectangle safeArea = new Rectangle(0, 0, BASE_BUFFER_WIDTH, BASE_BUFFER_HEIGHT);
     /// <summary>
     /// Returns the portion of the screen where drawing is safely allowed.
     /// </summary>
@@ -271,12 +271,11 @@ public class ScreenManager : DrawableGameComponent
     /// <param name="alpha">The opacity level of the fade (0 = fully transparent, 1 = fully opaque).</param>
     public void FadeBackBufferToBlack(float alpha)
     {
-        // Draw without transformation to cover the entire backbuffer
-        spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, null);
+        spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, globalTransformation);
 
         spriteBatch.Draw(blankTexture,
-                             new Rectangle(0, 0, backbufferWidth, backbufferHeight),
-                             Color.Black * alpha);
+                         new Rectangle(0, 0, (int)BaseScreenSize.X, (int)BaseScreenSize.Y),
+                         Color.Black * alpha);
 
         spriteBatch.End();
     }
@@ -324,16 +323,18 @@ public class ScreenManager : DrawableGameComponent
             // Taller screen: scale by width
             scalingFactor = backbufferWidth / baseScreenSize.X;
 
-            // Don't center vertically - align to top
-            verticalOffset = -30;
+            // Centre things vertically.
+            verticalOffset = (backbufferHeight - baseScreenSize.Y * scalingFactor) / 2;
         }
 
         // Update the transformation matrix
         globalTransformation = Matrix.CreateScale(scalingFactor) *
-                                Matrix.CreateTranslation(horizontalOffset, verticalOffset, 0);
+                               Matrix.CreateTranslation(horizontalOffset, verticalOffset, 0);
 
         // Update the inputTransformation with the Inverted globalTransformation
         inputState.UpdateInputTransformation(Matrix.Invert(globalTransformation));
 
+        // Debug info
+        Debug.WriteLine($"Screen Size - Width[{backbufferWidth}] Height[{backbufferHeight}] ScalingFactor[{scalingFactor}]");
     }
 }
