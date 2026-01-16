@@ -387,6 +387,12 @@ namespace Platformer2D.Core
                 case 'P':
                     return LoadStartTile(x, y);
 
+                // Background block
+                case ',':
+                    Tile tile = LoadVarietyTile("BlockB", 2, TileCollision.Passable);
+                    tile.TintColor = new Color(120, 130, 150);
+                    return tile;
+
                 // Unknown tile type character
                 default:
                     throw new NotSupportedException(String.Format(Resources.ErrorUnsupportedTileType, tileType, x, y));
@@ -830,8 +836,9 @@ namespace Platformer2D.Core
             int right = (int)(left + screenManager.BaseScreenSize.X / Tile.Width);
             right = Math.Min(right, Width - 1);
 
-            // Reuse a single Vector2 object for tile positions to reduce memory allocations.
+            // Reuse a single Vector2 and Color object for tile positions and tint color to reduce memory allocations.
             var position = new Vector2();
+            var tintColor = Color.White;
 
             // Loop through each tile position within the visible range.
             for (int y = 0; y < Height; ++y)
@@ -845,7 +852,9 @@ namespace Platformer2D.Core
                         position.X = x * Tile.Size.X;
                         position.Y = y * Tile.Size.Y;
 
-                        spriteBatch.Draw(texture, position, Color.White);
+                        tintColor = tiles[x, y].TintColor;
+
+                        spriteBatch.Draw(texture, position, tintColor);
                     }
                 }
             }
