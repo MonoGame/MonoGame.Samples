@@ -117,7 +117,7 @@ jobs:
 
     # AutoPong Desktop build is currently disabled due to issues with packaging process
     - name: Build and Package AutoPong
-      run: monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -o ./artifacts/AutoPong -rids win-x64,linux-x64,osx-x64,osx-arm64 -i AutoPong/AutoPong.DesktopGL/Info.plist -c AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.icns -v --macos-universal
+      run: monopack -p AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj -o ./artifacts/AutoPong -rids win-x64,linux-x64,osx-x64,osx-arm64 -i AutoPong/AutoPong.DesktopGL/Info.plist -c AutoPong/AutoPong.DesktopGL/AutoPong.DesktopGL.icns -v --macos-universal --self-contained
 
     - name: Archive AutoPong Windows
       uses: actions/upload-artifact@v6
@@ -138,7 +138,7 @@ jobs:
         path: artifacts/AutoPong/*-universal.tar.gz
 
     - name: Build and Package FuelCell
-      run: monopack -p FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -o ./artifacts/FuelCell -rids win-x64,linux-x64,osx-x64,osx-arm64 -i FuelCell/FuelCell.DesktopGL/Info.plist -c FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.icns -v --macos-universal
+      run: monopack -p FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj -o ./artifacts/FuelCell -rids win-x64,linux-x64,osx-x64,osx-arm64 -i FuelCell/FuelCell.DesktopGL/Info.plist -c FuelCell/FuelCell.DesktopGL/FuelCell.DesktopGL.icns -v --macos-universal --self-contained
 
     - name: Archive FuelCell Windows
       uses: actions/upload-artifact@v6
@@ -159,7 +159,7 @@ jobs:
         path: artifacts/FuelCell/*-universal.tar.gz
 
     - name: Build and Package NeonShooter
-      run: monopack -p NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -o ./artifacts/NeonShooter -rids win-x64,linux-x64,osx-x64,osx-arm64 -i NeonShooter/NeonShooter.DesktopGL/Info.plist -c NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.icns -v --macos-universal
+      run: monopack -p NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj -o ./artifacts/NeonShooter -rids win-x64,linux-x64,osx-x64,osx-arm64 -i NeonShooter/NeonShooter.DesktopGL/Info.plist -c NeonShooter/NeonShooter.DesktopGL/NeonShooter.DesktopGL.icns -v --macos-universal --self-contained
 
     - name: Archive NeonShooter Windows
       uses: actions/upload-artifact@v6
@@ -180,7 +180,7 @@ jobs:
         path: artifacts/NeonShooter/*-universal.tar.gz
 
     - name: Build and Package Platformer2D
-      run: monopack -p Platformer2D/Desktop/Platformer2D.csproj -o ./artifacts/Platformer2D -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Platformer2D/Desktop/Info.plist -c Platformer2D/Desktop/Platformer2D.icns -v --macos-universal
+      run: monopack -p Platformer2D/Desktop/Platformer2D.csproj -o ./artifacts/Platformer2D -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Platformer2D/Desktop/Info.plist -c Platformer2D/Desktop/Platformer2D.icns -v --macos-universal --self-contained
 
     - name: Archive Platformer2D Windows
       uses: actions/upload-artifact@v6
@@ -201,7 +201,7 @@ jobs:
         path: artifacts/Platformer2D/*-universal.tar.gz
 
     - name: Build and Package DungeonSlime
-      run: monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -o ./artifacts/learn-monogame-2d -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/Info.plist -c Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.icns -v --macos-universal
+      run: monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -o ./artifacts/learn-monogame-2d -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/Info.plist -c Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.icns -v --macos-universal --self-contained
 
     - name: Archive DungeonSlime Windows
       uses: actions/upload-artifact@v6
@@ -225,7 +225,7 @@ jobs:
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
 
     - name: Build and Package ShipGame
-      run: monopack -p ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -o ./artifacts/ShipGame -rids win-x64,linux-x64,osx-x64,osx-arm64 -i ShipGame/ShipGame.DesktopGL/Info.plist -c ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.icns -v --macos-universal
+      run: monopack -p ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj -o ./artifacts/ShipGame -rids win-x64,linux-x64,osx-x64,osx-arm64 -i ShipGame/ShipGame.DesktopGL/Info.plist -c ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.icns -v --macos-universal --self-contained
 
     - name: Archive ShipGame Windows
       uses: actions/upload-artifact@v6
