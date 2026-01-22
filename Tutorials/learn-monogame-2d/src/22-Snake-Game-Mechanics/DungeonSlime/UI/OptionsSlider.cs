@@ -85,14 +85,12 @@ public class OptionsSlider : Slider
         offBackground.TextureWidth = offBackgroundRegion.Width;
         offBackground.Width = 28f;
         offBackground.WidthUnits = DimensionUnitType.Absolute;
-        offBackground.Dock(Gum.Wireframe.Dock.Left);
         innerContainer.AddChild(offBackground);
 
         TextureRegion middleBackgroundRegion = atlas.GetRegion("slider-middle-background");
 
         // Create the middle track portion of the slider
         NineSliceRuntime middleBackground = new NineSliceRuntime();
-        middleBackground.Dock(Gum.Wireframe.Dock.FillVertically);
         middleBackground.Texture = middleBackgroundRegion.Texture;
         middleBackground.TextureAddress = TextureAddress.Custom;
         middleBackground.TextureHeight = middleBackgroundRegion.Height;
