@@ -63,7 +63,7 @@ jobs:
         path: artifacts/NeonShooter-Windows/**
 
     - name: Build Windows Binary for Platformer2D
-      run: dotnet publish Platformer2D/Windows/Platformer2D.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/Platformer2D-Windows
+      run: dotnet publish Platformer2D/Windows/Windows.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/Platformer2D-Windows
 
     - name: Archive Platformer2D
       uses: actions/upload-artifact@v6
@@ -108,7 +108,7 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Setup for MonoGame
-      uses: infinitespace-studios/monogame-actions/install-wine@v1.0
+      uses: monogame/monogame-actions/install-wine@v1
 
     - name: Install MonoPack
       run: dotnet tool install --global MonoPack
@@ -180,7 +180,7 @@ jobs:
         path: artifacts/NeonShooter/*-universal.tar.gz
 
     - name: Build and Package Platformer2D
-      run: monopack -p Platformer2D/Desktop/Platformer2D.csproj -o ./artifacts/Platformer2D -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Platformer2D/Desktop/Info.plist -c Platformer2D/Desktop/Platformer2D.icns -v --macos-universal --publish-args "-p:PublishSingleFile=true"
+      run: monopack -p Platformer2D/Desktop/Desktop.csproj -o ./artifacts/Platformer2D -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Platformer2D/Desktop/Info.plist -c Platformer2D/Desktop/Platformer2D.icns -v --macos-universal --publish-args "-p:PublishSingleFile=true"
 
     - name: Archive Platformer2D Windows
       uses: actions/upload-artifact@v6
@@ -293,7 +293,7 @@ jobs:
         path: NeonShooter/NeonShooter.Android/bin/Release/net9.0-android/**/*-Signed.apk
 
     - name: Build Android Binary for Platformer2D
-      run: dotnet build Platformer2D/Android/Platformer2D.csproj -c Release
+      run: dotnet build Platformer2D/Android/Android.csproj -c Release
 
     - name: Archive Platformer2D Android
       uses: actions/upload-artifact@v6
