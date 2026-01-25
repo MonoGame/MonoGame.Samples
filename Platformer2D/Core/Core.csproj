@@ -5,7 +5,7 @@
     <RootNamespace>Platformer2D.Core</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.Native" Version="3.8.*">
+    <PackageReference Include="MonoGame.Framework.Native" Version="3.8.5-preview.*">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>

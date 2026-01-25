@@ -16,7 +16,7 @@
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
-    <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.*" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.5-preview.*" />
+    <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.5-preview.*" />
   </ItemGroup>
 </Project>
