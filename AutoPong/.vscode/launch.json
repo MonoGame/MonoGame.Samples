@@ -13,11 +13,11 @@
 			"preLaunchTask": "Debug Android Build",
         },
         {
-            "name": "DesktopGL Debug",
+            "name": "Desktop Debug",
             "type": "coreclr",
 			"request": "launch",
-			"preLaunchTask": "Debug DesktopGL Build",
-			"program": "${workspaceFolder}/AutoPong.DesktopGL/bin/Debug/net8.0/AutoPong.DesktopGL.exe",
+			"preLaunchTask": "Debug Desktop Build",
+			"program": "${workspaceFolder}/Desktop/bin/Debug/net9.0/AutoPong",
         },
         {
             "name": "iOS Debug",
@@ -26,11 +26,11 @@
             "preLaunchTask": "maui: Build",
         },
         {
-            "name": "WindowsDX Debug",
+            "name": "Windows Debug",
             "type": "coreclr",
 			"request": "launch",
-			"preLaunchTask": "Debug WindowsDX Build",
-			"program": "${workspaceFolder}/AutoPong.WindowsDX/bin/Debug/net8.0-windows/AutoPong.WindowsDX.exe",
+			"preLaunchTask": "Debug Windows Build",
+			"program": "${workspaceFolder}/Windows/bin/Debug/net9.0-windows/AutoPong.exe",
         }
     ]
 }

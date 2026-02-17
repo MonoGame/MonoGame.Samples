@@ -4,22 +4,22 @@
         {
 			"label": "Debug Android Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/AutoPong.Android/AutoPong.Android.csproj \"/t:Install;_Run\" /p:AndroidAttachDebugger=true /p:AndroidSdbHostPort=10000",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Android/AutoPong.csproj \"/t:Install;_Run\" /p:AndroidAttachDebugger=true /p:AndroidSdbHostPort=10000",
 		},
 		{
-			"label": "Debug DesktopGL Build",
+			"label": "Debug Desktop Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Desktop/AutoPong.csproj"
 		},
         {
 			"label": "Debug iOS Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/AutoPong.iOS/AutoPong.iOS.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/iOS/AutoPong.csproj"
 		},
         {
-			"label": "Debug WindowsDX Build",
+			"label": "Debug Windows Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/AutoPong.WindowsDX/AutoPong.WindowsDX.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Windows/AutoPong.csproj"
 		},
 	]
 }
