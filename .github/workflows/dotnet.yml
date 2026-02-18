@@ -72,7 +72,7 @@ jobs:
         path: artifacts/Platformer2D-Windows/**
 
     - name: Build ShipGame Content Processor in Release mode
-      run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
+      run: dotnet build ShipGame/Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
 
     - name: Build Windows Binary for ShipGame
       run: dotnet publish ShipGame/Windows/ShipGame.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/ShipGame-Windows
@@ -225,7 +225,7 @@ jobs:
       run: dotnet build ShipGame/Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
 
     - name: Build and Package ShipGame
-      run: monopack -p ShipGame/Desktop/ShipGame.csproj -o ./artifacts/ShipGame -rids win-x64,linux-x64,osx-x64,osx-arm64 -i ShipGame/ShipGame.DesktopGL/Info.plist -c ShipGame/ShipGame.DesktopGL/ShipGame.DesktopGL.icns -v --macos-universal
+      run: monopack -p ShipGame/Desktop/ShipGame.csproj -o ./artifacts/ShipGame -rids win-x64,linux-x64,osx-x64,osx-arm64 -i ShipGame/Desktop/Info.plist -c ShipGame/Desktop/ShipGame.icns -v --macos-universal
 
     - name: Archive ShipGame Windows
       uses: actions/upload-artifact@v6
