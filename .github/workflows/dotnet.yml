@@ -180,7 +180,7 @@ jobs:
         path: artifacts/NeonShooter/*-universal.tar.gz
 
     - name: Build and Package Platformer2D
-      run: monopack -p Platformer2D/Desktop/Platformer2D.csproj -o ./artifacts/Platformer2D -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Platformer2D/Desktop/Info.plist -c Platformer2D/Desktop/Platformer2D.icns -v --macos-universal
+      run: monopack -p Platformer2D/Desktop/Platformer2D.csproj -o ./artifacts/Platformer2D -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Platformer2D/Desktop/Info.plist -c Platformer2D/Desktop/Platformer2D.icns -v --macos-universal --publish-args "-p:PublishSingleFile=true"
 
     - name: Archive Platformer2D Windows
       uses: actions/upload-artifact@v6
@@ -201,7 +201,7 @@ jobs:
         path: artifacts/Platformer2D/*-universal.tar.gz
 
     - name: Build and Package DungeonSlime
-      run: monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -o ./artifacts/learn-monogame-2d -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/Info.plist -c Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.icns -v --macos-universal
+      run: monopack -p Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.csproj -o ./artifacts/learn-monogame-2d -rids win-x64,linux-x64,osx-x64,osx-arm64 -i Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/Info.plist -c Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Desktop/DungeonSlime.icns -v --macos-universal --publish-args "-p:PublishSingleFile=true"
 
     - name: Archive DungeonSlime Windows
       uses: actions/upload-artifact@v6
