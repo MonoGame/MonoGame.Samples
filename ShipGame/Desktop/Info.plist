@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>ShipGame.DesktopGL</string>
+    <string>ShipGame</string>
     <key>CFBundleDisplayName</key>
-    <string>ShipGame.DesktopGL</string>
+    <string>ShipGame</string>
     <key>CFBundleIdentifier</key>
     <string>com.monogame.ShipGame</string>
     <key>CFBundleVersion</key>
@@ -13,9 +13,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleExecutable</key>
-    <string>ShipGame.DesktopGL</string>
+    <string>ShipGame</string>
     <key>CFBundleIconFile</key>
-    <string>ShipGame.DesktopGL.icns</string>
+    <string>ShipGame.icns</string>
     <key>NSHighResolutionCapable</key>
     <true/>
 </dict>

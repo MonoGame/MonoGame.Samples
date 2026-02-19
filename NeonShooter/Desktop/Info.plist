@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>NeonShooter.Desktop</string>
+    <string>NeonShooter</string>
     <key>CFBundleDisplayName</key>
-    <string>NeonShooter.Desktop</string>
+    <string>NeonShooter</string>
     <key>CFBundleIdentifier</key>
     <string>com.monogame.NeonShooter</string>
     <key>CFBundleVersion</key>
@@ -13,9 +13,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleExecutable</key>
-    <string>NeonShooter.Desktop</string>
+    <string>NeonShooter</string>
     <key>CFBundleIconFile</key>
-    <string>NeonShooter.Desktop.icns</string>
+    <string>NeonShooter.icns</string>
     <key>NSHighResolutionCapable</key>
     <true/>
 </dict>

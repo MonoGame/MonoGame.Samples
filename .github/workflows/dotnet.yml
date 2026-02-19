@@ -84,7 +84,7 @@ jobs:
         path: artifacts/ShipGame-Windows/**
 
     - name: Build Windows Binary for DungeonSlime
-      run: dotnet publish Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Windows/DungeonSlime.WindowsDX.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/DungeonSlime-Windows
+      run: dotnet publish Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Windows/DungeonSlime.csproj -c Release -r win-x64 --self-contained true -o ./artifacts/DungeonSlime-Windows
 
     - name: Archive DungeonSlime
       uses: actions/upload-artifact@v6
