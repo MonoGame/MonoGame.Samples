@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Android/">
+    <Project Path="Platforms/Android/DungeonSlime.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Desktop/">
+    <Project Path="Platforms/Desktop/DungeonSlime.csproj" />
+  </Folder>
+  <Folder Name="/Windows/">
+    <Project Path="Platforms/Windows/DungeonSlime.csproj" />
+  </Folder>
+  <Project Path="../MonoGameLibrary/MonoGameLibrary.csproj" />
+</Solution>

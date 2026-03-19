@@ -1,0 +1,23 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Folder Name="/Android/">
+    <Project Path="Android/Platformer2D.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Desktop/">
+    <Project Path="Desktop/Platformer2D.csproj" />
+  </Folder>
+  <Folder Name="/iOS/">
+    <Project Path="iOS/Platformer2D.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Windows/">
+    <Project Path="Windows/Platformer2D.csproj" />
+  </Folder>
+  <Project Path="Core/Core.csproj" />
+</Solution>

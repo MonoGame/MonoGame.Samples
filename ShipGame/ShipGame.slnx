@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/Android/">
+    <Project Path="Android/ShipGame.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Dependencies/">
+    <Project Path="Dependencies/BoxCollider/BoxCollider.csproj" />
+    <Project Path="Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj" />
+  </Folder>
+  <Folder Name="/Desktop/">
+    <Project Path="Desktop/ShipGame.csproj" />
+  </Folder>
+  <Folder Name="/iOS/">
+    <Project Path="iOS/ShipGame.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Windows/">
+    <Project Path="Windows/ShipGame.csproj" />
+  </Folder>
+  <Project Path="Core/Core.csproj" />
+</Solution>

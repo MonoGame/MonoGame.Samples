@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/Android/">
+    <Project Path="Android/AutoPong.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Desktop/">
+    <Project Path="Desktop/AutoPong.csproj" />
+  </Folder>
+  <Folder Name="/iOS/">
+    <Project Path="iOS/AutoPong.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Windows/">
+    <Project Path="Windows/AutoPong.csproj" />
+  </Folder>
+  <Project Path="Core/Core.csproj" />
+</Solution>
