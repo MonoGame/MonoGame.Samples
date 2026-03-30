@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <RollForward>Major</RollForward>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunWorkingDirectory>bin/$(Configuration)/$(TargetFramework)</RunWorkingDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Icon.ico" />
+    <None Remove="Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.ico">
+      <LogicalName>Icon.ico</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icon.bmp">
+      <LogicalName>Icon.bmp</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Gum.MonoGame" Version="2025.12.9.1" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.4" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonoGameLibrary\MonoGameLibrary.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <MonoGameContentReference Include="**/*.mgcb;../MonoGameLibrary/**/*.mgcb" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(OnlyWatchContentFiles)'=='true'">
+    <!-- Adds .fx files to the `dotnet watch`'s file scope -->
+    <Watch Include="../**/*.fx;../**/*.fxh" />
+    
+    <!-- Removes the .cs files from `dotnet watch`'s compile scope -->
+    <Compile Update="**/*.cs" Watch="false" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Content\effects" />
+  </ItemGroup>
+  
+  <Target Name="RestoreDotnetTools" BeforeTargets="CollectPackageReferences">
+    <Message Text="Restoring dotnet tools (this might take a while depending on your internet speed and should only happen upon building your project for the first time, or after upgrading MonoGame, or clearing your nuget cache)" Importance="High" />
+    <Exec Command="dotnet tool restore" />
+  </Target>
+
+  <!-- 
+  A custom target that compiles all content, and copies the output .xnb files to the game's output directory.
+  This target depends on a target that is made available through the MonoGame.Content.Builder.Task nuget reference.
+  
+  https://github.com/MonoGame/MonoGame/blob/develop/Tools/MonoGame.Content.Builder.Task/MonoGame.Content.Builder.Task.targets 
+  -->
+  <Target Name="BuildAndCopyContent" DependsOnTargets="RunContentBuilder">
+    <Message Text="Copying Content..." Importance="High" />
+    <Copy SourceFiles="%(ExtraContent.Identity)" DestinationFiles="$(OutDir)%(ExtraContent.ContentDir)%(ExtraContent.RecursiveDir)%(ExtraContent.Filename)%(ExtraContent.Extension)" SkipUnchangedFiles="true" />
+  </Target>
+
+  <!--
+    A custom target that is meant to be invoked once per work session to track changes to content files  
+  -->
+  <Target Name="WatchContent">
+    <Exec Command="dotnet watch build --property OnlyWatchContentFiles=true --property AutoRestoreMGCBTool=false  -- --target:BuildAndCopyContent --restore:false" EnvironmentVariables="DOTNET_WATCH_SUPPRESS_EMOJIS=1" />
+  </Target>
+  
+</Project>
