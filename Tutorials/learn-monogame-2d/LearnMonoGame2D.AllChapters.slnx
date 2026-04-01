@@ -1,0 +1,110 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/src/" />
+  <Folder Name="/src/02-Getting-Started/">
+    <Project Path="src/02-Getting-Started/DungeonSlime/DungeonSlime.csproj" />
+  </Folder>
+  <Folder Name="/src/03-The-Game1-File/">
+    <Project Path="src/03-The-Game1-File/DungeonSlime/DungeonSlime.csproj" />
+  </Folder>
+  <Folder Name="/src/04-Creating-A-Class-Library/">
+    <Project Path="src/04-Creating-A-Class-Library/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/04-Creating-A-Class-Library/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/05-Content-Pipeline/">
+    <Project Path="src/05-Content-Pipeline/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/05-Content-Pipeline/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/06-Working-With-Textures/">
+    <Project Path="src/06-Working-With-Textures/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/06-Working-With-Textures/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/07-Optimize-Texture-Rendering/">
+    <Project Path="src/07-Optimize-Texture-Rendering/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/07-Optimize-Texture-Rendering/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/08-The-Sprite-Class/">
+    <Project Path="src/08-The-Sprite-Class/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/08-The-Sprite-Class/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/09-The-AnimatedSprite-Class/">
+    <Project Path="src/09-The-AnimatedSprite-Class/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/09-The-AnimatedSprite-Class/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/10-Handling-Input/">
+    <Project Path="src/10-Handling-Input/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/10-Handling-Input/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/11-Input-Management/">
+    <Project Path="src/11-Input-Management/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/11-Input-Management/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/12-Collision-Detection/">
+    <Project Path="src/12-Collision-Detection/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/12-Collision-Detection/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/13-Tilemap/">
+    <Project Path="src/13-Tilemap/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/13-Tilemap/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/14-SoundEffects-And-Music/">
+    <Project Path="src/14-SoundEffects-And-Music/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/14-SoundEffects-And-Music/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/15-Audio-Controller/">
+    <Project Path="src/15-Audio-Controller/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/15-Audio-Controller/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/16-Working-With-SpriteFonts/">
+    <Project Path="src/16-Working-With-SpriteFonts/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/16-Working-With-SpriteFonts/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/17-Scenes/">
+    <Project Path="src/17-Scenes/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/17-Scenes/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/18-Texture-Wrapping/">
+    <Project Path="src/18-Texture-Wrapping/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/18-Texture-Wrapping/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/19-User-Interface-Fundamentals/">
+    <Project Path="src/19-User-Interface-Fundamentals/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/19-User-Interface-Fundamentals/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/20-Implementing-UI-With-Gum/">
+    <Project Path="src/20-Implementing-UI-With-Gum/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/20-Implementing-UI-With-Gum/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/21-Customizing-Gum-UI/">
+    <Project Path="src/21-Customizing-Gum-UI/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/21-Customizing-Gum-UI/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/22-Snake-Game-Mechanics/">
+    <Project Path="src/22-Snake-Game-Mechanics/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/22-Snake-Game-Mechanics/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/23-Completing-The-Game/">
+    <Project Path="src/23-Completing-The-Game/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/23-Completing-The-Game/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/24-Shaders/">
+    <Project Path="src/24-Shaders/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/24-Shaders/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/25-Packaging-Game/">
+    <Project Path="src/25-Packaging-Game/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/25-Packaging-Game/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/26-Publish-To-Itch/">
+    <Project Path="src/26-Publish-To-Itch/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/26-Publish-To-Itch/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+  <Folder Name="/src/27-Conclusion/">
+    <Project Path="src/27-Conclusion/DungeonSlime/DungeonSlime.csproj" />
+    <Project Path="src/27-Conclusion/MonoGameLibrary/MonoGameLibrary.csproj" />
+  </Folder>
+</Solution>

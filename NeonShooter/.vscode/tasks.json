@@ -4,22 +4,22 @@
         {
 			"label": "Debug Android Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/NeonShooter.Android/NeonShooter.Android.csproj \"/t:Install;_Run\" /p:AndroidAttachDebugger=true /p:AndroidSdbHostPort=10000"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Android/NeonShooter.csproj \"/t:Install;_Run\" /p:AndroidAttachDebugger=true /p:AndroidSdbHostPort=10000"
 		},
 		{
-			"label": "Debug DesktopGL Build",
+			"label": "Debug Desktop Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Desktop/NeonShooter.csproj"
 		},
         {
 			"label": "Debug iOS Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/NeonShooter.iOS/NeonShooter.iOS.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/iOS/NeonShooter.csproj"
 		},
         {
-			"label": "Debug WindowsDX Build",
+			"label": "Debug Windows Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/NeonShooter.WindowsDX/NeonShooter.WindowsDX.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Windows/NeonShooter.csproj"
 		},
 	]
 }

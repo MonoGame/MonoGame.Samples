@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/Android/">
+    <Project Path="Android/NeonShooter.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Desktop/">
+    <Project Path="Desktop/NeonShooter.csproj" />
+  </Folder>
+  <Folder Name="/iOS/">
+    <Project Path="iOS/NeonShooter.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Windows/">
+    <Project Path="Windows/NeonShooter.csproj" />
+  </Folder>
+  <Project Path="Core/Core.csproj" />
+</Solution>

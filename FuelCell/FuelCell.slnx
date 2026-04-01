@@ -1,0 +1,25 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Folder Name="/Android/">
+    <Project Path="Android/FuelCell.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Desktop/">
+    <Project Path="Desktop/FuelCell.csproj" />
+  </Folder>
+  <Folder Name="/iOS/">
+    <Project Path="iOS/FuelCell.csproj">
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/Windows/">
+    <Project Path="Windows/FuelCell.csproj" />
+  </Folder>
+  <Project Path="Core/Core.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+</Solution>

@@ -4,22 +4,22 @@
         {
 			"label": "Debug Android Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.Android/ShipGame.Android.csproj \"/t:Install;_Run\" /p:AndroidAttachDebugger=true /p:AndroidSdbHostPort=10000"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Android/ShipGame.csproj \"/t:Install;_Run\" /p:AndroidAttachDebugger=true /p:AndroidSdbHostPort=10000"
 		},
 		{
-			"label": "Debug DesktopGL Build",
+			"label": "Debug Desktop Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Desktop/ShipGame.csproj"
 		},
         {
 			"label": "Debug iOS Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.iOS/ShipGame.iOS.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/iOS/ShipGame.csproj"
 		},
         {
-			"label": "Debug WindowsDX Build",
+			"label": "Debug Windows Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.WindowsDX/ShipGame.WindowsDX.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Windows/ShipGame.csproj"
 		},
 	]
 }
