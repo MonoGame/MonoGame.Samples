@@ -1,62 +1,55 @@
-# Platformer 2D Sample
+# Trabalho Prático 01 - Técnicas de Desenvolvimento de Videojogos
+## Análise de Implementação: Platformer 2D (MonoGame)
 
-![Platformer 2D Sample](../Images/Platformer2D-Sample.png)
+**Grupo:**
+* Diogo Fernandes - 34988
+* Tiago Martins - 34986
+* Vitor Ferreira - (Nº a definir)
 
-The Platformer Starter Kit is a near-complete, self-contained game solution that includes both game code and game assets. The game is a standard 2D platformer with levels, enemies, and collectable gems.
+---
 
-This starter kit is intentionally incomplete. Several nonessential features and systems are not finished. This makes it easier and quicker to understand the structure of the game, and how the pieces fit together to provide a rich gaming experience. The Platformer Starter Kit includes the following features:
+## 1. Descrição do Jogo
+O projeto escolhido é o **Platformer 2D**, um "Starter Kit" oficial da equipa do MonoGame. Trata-se de um jogo de plataformas clássico onde o jogador controla uma personagem que deve navegar por níveis, recolher gemas, evitar inimigos e alcançar a saída dentro de um tempo limite. O jogo serve como demonstração de físicas básicas (gravidade e saltos), animação de sprites e gestão de estados de jogo.
 
-* Cross-platform support for Windows, Android, iOS, Linux and Windows 10
-* Control of the player character using either the keyboard, gamepad and virtual gamepad (for touchscreens).
-* Simple physics modeling (falling and jumping) and dynamic collision checking.
-* Production-level sprite sheets, sound effects, and other game assets.
-* High and low resolution assets, and an additional content project containing audio assets.
-* Features from MonoGame, such as the simple sound API and a unified content project that builds for each target platform.
+## 2. Instruções de Instalação e Execução
+Para compilar e correr este projeto, é necessário ter instalado o ambiente de desenvolvimento **Visual Studio** com a extensão do MonoGame ou o **.NET SDK** instalado.
 
-## Player Controls
+1. Clone o repositório para a sua máquina local.
+2. Abra o ficheiro de solução (`.sln`) no Visual Studio.
+3. Certifique-se de que o **MonoGame Content Builder (MGCB) Editor** está instalado para processar os assets.
+4. Compile (Build) e execute (F5) o projeto.
 
-The player character is controlled using either the keyboard, gamepad or virtual gamepad .
+**Controlos:**
+* **Mover:** Teclas `A` e `D` ou Setas.
+* **Saltar:** Tecla `Espaço`, `W` ou Seta Cima.
 
-|Action|Keyboard|Gamepad|Touchscreen|
-|-|-|-|-|
-|Run left, Run right|A, D|Left thumbstick or analog D-pad| Left hand touch Screen horizontal arrows|
-|Jump|Space|A|Right hand touch screen up arrow|
-|||||
+## 3. Organização do Projeto e Pastas
+O projeto apresenta uma estrutura organizada e modular, seguindo as convenções padrão do ecossistema MonoGame:
 
-## PLATFORMER CODE ARCHITECTURE
+* **Pasta Raiz:** Contém os ficheiros de código fonte (`.cs`) e a definição do projeto.
+* **Pasta `Content/`:** É o coração dos assets do jogo. Utiliza o Content Pipeline do MonoGame para converter imagens (PNG), sons (WAV) e fontes em ficheiros `.xnb` otimizados.
+    * `Backgrounds/`: Camadas de fundo para efeito de parallax.
+    * `Sprites/`: Folhas de sprites (Player, Enemy, Gem).
+    * `Sounds/`: Efeitos sonoros e música.
+    * `Fonts/`: Ficheiros de definição de texto para o HUD.
+* **Organização do Código:** Os ficheiros estão nomeados de acordo com a classe que representam (ex: `Player.cs`, `Level.cs`), o que facilita a navegação e manutenção do código.
 
-The following is a list of classes shipped with the Platformer starter kit. The file containing the implementation for each class shares the name of the class. For example, Gem.cs contains the Gem class implementation.
+## 4. Análise da Arquitetura e Implementação
+A lógica do jogo assenta no ciclo de vida fundamental do MonoGame: **Initialize -> LoadContent -> Update -> Draw**.
 
-|Name|Description|
-|-|-|
-|Gem|Implements a floating gem in the game. Gems are collectable by the player, and are worth a set amount of points.</br>Gems are used to load, draw, and update a gem. For more information, see [Basic Platformer Features](Documentation/1_basic_platformer_features.md).|
-|Circle (structure)|Implements a bounding circle for checking collision against gem objects. For more information, see [Basic Platformer Features](Documentation/1_basic_platformer_features.md).|
-|Tile (structure)|Stores basic information about a game tile. For more information, see [Basic Platformer Features](Documentation/1_basic_platformer_features.md).|
-|TileCollision (enumeration)|Stores the different collision types a tile can have: Passable, Impassable, Platform. For more information, see [Basic Platformer Features](Documentation/1_basic_platformer_features.md).|
-|AnimationPlayer (structure)|Implements playback of the animation stored by Animation.</br>For more information, see [Intermediate Platformer Features](Documentation/2_intermediate_platformer_features.md).|
-|Animation|Stores an animated texture. Used to animate the player character and enemy sprite sheets.</br>For more information, see [Intermediate Platformer Features](Documentation/2_intermediate_platformer_features.md).|
-|Enemy|Implements an enemy in the game. Used to load, draw, and update an enemy.</br>For more information, see [Intermediate Platformer Features](Documentation/2_intermediate_platformer_features.md).|
-|FaceDirection (enumeration)|Stores the different directions an enemy can face. For more information, see [Intermediate Platformer Features](Documentation/2_intermediate_platformer_features.md).|
-|PlatformerGame (game.cs)|Implements major game components such as content and level loading, HUD management and display, and game object updating.</br>For more information, see [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md).|
-|Level|Implements a level in the game. A Level object contains a multi-dimensional array of tiles, a player character, a start and end location, point total, remaining level time, a list of gems, and a list of enemies.</br>For more information, see [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md).|
-|Player|Implements the player character. Used to load, draw, and update the character.</br>For more information, see [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md).|
-|RectangleExtensions|Implements an extension to the standard MonoGame Framework structure Rectangle. For more information, see [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md).|
-|||
+### Ciclo Principal (PlatformerGame.cs)
+A classe principal gere o estado global do jogo. É responsável por carregar os níveis e alternar entre o estado de jogo ativo, vitória ou derrota. O método `Update` coordena a lógica temporal, enquanto o `Draw` renderiza o nível e a interface de utilizador (HUD).
 
-## Execution Flow
+### Gestão de Níveis (Level.cs)
+A classe `Level` é central na arquitetura. Ela lê ficheiros de texto para carregar o mapa. Cada caractere no ficheiro `.txt` é mapeado para um tipo de `Tile` (Passável, Impassável ou Plataforma). Esta classe também gere a lista de entidades ativas (inimigos e gemas).
 
-Think of the execution flow of Platformer as follows:
+### Física e Colisões (Player.cs)
+A movimentação do jogador utiliza vetores de velocidade e aceleração.
+* **Gravidade:** Aplicada constantemente no eixo Y quando o jogador não está sobre uma superfície sólida.
+* **Colisões:** O jogo utiliza *AABB (Axis-Aligned Bounding Boxes)*. O código verifica os tiles adjacentes à posição do jogador para impedir a passagem por paredes ou para permitir que o jogador "pouse" em plataformas.
 
-1. The next level is loaded. Important methods are PlatformerGame.LoadContent and PlatformerGame.LoadNextLevel.
+### Animações (AnimationPlayer.cs)
+O sistema de animação é desacoplado. A estrutura `Animation` guarda os dados da textura, enquanto a `AnimationPlayer` gere o tempo de cada frame e a origem da origem da renderização (Flip horizontal para mudar de direção).
 
-2. The game is updated using PlatformerGame.Update and Level.Update. If the player is dead or if time has expired, input is ignored and the game is in a pause state. If the player has reached the exit, the remaining time is converted to points. If there is still time and the player hasn't reached the exit location, the time remaining is decremented and all level objects are updated (player character, enemies, gems, and so on) using their Update methods. At this time, checks are also made for the player reaching the exit and falling off the edge of the screen.
-
-3. The gameplay screen is drawn using PlatformerGame.Draw. This method, in turn, calls Level.Draw and PlatformerGame.DrawHud.</br>Level.Draw is responsible for drawing the tiles, player character, gems and enemies using calls to the Draw method of each previously-mentioned game object.
-
-## Exploring the Platformer Starter Kit
-
-* [Basic Platformer Features](Documentation/1_basic_platformer_features.md)</br>Discusses basic features of the Platformer Starter Kit and offers recommendations for making basic modifications to the Platformer game.
-
-* [Intermediate Platformer Features](Documentation/2_intermediate_platformer_features.md)</br>Discusses intermediate classes of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
-
-* [Advanced Platformer Features](Documentation/3_advanced_platformer_features.md)</br>Discusses advanced features of the Platformer Starter Kit, and offers recommendations for modifying or extending Platformer features.
+## 5. Decisões Tomadas
+A escolha deste projeto deveu-se à sua clareza pedagógica. Sendo um projeto desenvolvido em C# com MonoGame, demonstra de forma explícita como separar a lógica de negócio (física e regras) da camada de apresentação (assets e renderização). 
