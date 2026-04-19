@@ -49,7 +49,6 @@ A movimentação do jogador utiliza vetores de velocidade e aceleração.
 * **Colisões:** O jogo utiliza *AABB (Axis-Aligned Bounding Boxes)*. O código verifica os tiles adjacentes à posição do jogador para impedir a passagem por paredes ou para permitir que o jogador "pouse" em plataformas.
 
 ### Animações (AnimationPlayer.cs)
-O sistema de animação é desacoplado. A estrutura `Animation` guarda os dados da textura, enquanto a `AnimationPlayer` gere o tempo de cada frame e a origem da origem da renderização (Flip horizontal para mudar de direção).
+O sistema de animação é separado. A estrutura `Animation` guarda os dados da textura, enquanto a `AnimationPlayer` gere o tempo de cada frame e a origem da origem da renderização (Flip horizontal para mudar de direção).
 
-## 5. Decisões Tomadas
-A escolha deste projeto deveu-se à sua clareza pedagógica. Sendo um projeto desenvolvido em C# com MonoGame, demonstra de forma explícita como separar a lógica de negócio (física e regras) da camada de apresentação (assets e renderização). 
+
