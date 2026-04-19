@@ -38,7 +38,7 @@ O projeto apresenta uma estrutura organizada e modular, seguindo as convenções
 A lógica do jogo assenta no ciclo de vida fundamental do MonoGame: **Initialize -> LoadContent -> Update -> Draw**.
 
 ### Ciclo Principal (PlatformerGame.cs)
-A classe principal gere o estado global do jogo. É responsável por carregar os níveis e alternar entre o estado de jogo ativo, vitória ou derrota. O método `Update` coordena a lógica temporal, enquanto o `Draw` renderiza o nível e a interface de utilizador (HUD).
+A classe principal gere o estado global do jogo. É responsável por carregar os níveis e alternar entre o estado de jogo ativo, vitória ou derrota. O método `Update` coordena a sua lógica temporal, enquanto o `Draw` renderiza o nível e a interface de utilizador (HUD).
 
 ### Gestão de Níveis (Level.cs)
 A classe `Level` é central na arquitetura. Ela lê ficheiros de texto para carregar o mapa. Cada caractere no ficheiro `.txt` é mapeado para um tipo de `Tile` (Passável, Impassável ou Plataforma). Esta classe também gere a lista de entidades ativas (inimigos e gemas).
