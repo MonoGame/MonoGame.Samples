@@ -253,7 +253,7 @@ public class GameScene : Scene
         KeyboardInfo keyboard = Core.Input.Keyboard;
 
         // If the escape key is pressed, return to the title screen
-        if (Core.Input.Keyboard.WasKeyJustPressed(Keys.Escape))
+        if (keyboard.WasKeyJustPressed(Keys.Escape))
         {
             Core.ChangeScene(new TitleScene());
         }
