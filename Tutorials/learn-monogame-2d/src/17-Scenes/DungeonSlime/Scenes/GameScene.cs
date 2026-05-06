@@ -249,7 +249,7 @@ public class GameScene : Scene
 
     private void CheckKeyboardInput()
     {
-        // Get a reference to the keyboard inof
+        // Get a reference to the keyboard info
         KeyboardInfo keyboard = Core.Input.Keyboard;
 
         // If the escape key is pressed, return to the title screen
