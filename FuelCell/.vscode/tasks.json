@@ -11,6 +11,11 @@
 			"type": "shell",
 			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/FuelCell.DesktopGL/FuelCell.DesktopGL.csproj"
 		},
+		{
+			"label": "Debug DesktopVK Build",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/FuelCell.DesktopVK/FuelCell.DesktopVK.csproj"
+		},
         {
 			"label": "Debug iOS Build",
 			"type": "shell",
@@ -20,6 +25,11 @@
 			"label": "Debug WindowsDX Build",
 			"type": "shell",
 			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/FuelCell.WindowsDX/FuelCell.WindowsDX.csproj"
+		},
+        {
+			"label": "Debug WindowsDX12 Build",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/FuelCell.WindowsDX12/FuelCell.WindowsDX12.csproj"
 		},
 	]
 }

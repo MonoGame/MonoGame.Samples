@@ -17,7 +17,14 @@
             "type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "Debug DesktopGL Build",
-			"program": "${workspaceFolder}/FuelCell.DesktopGL/bin/Debug/net8.0/FuelCell.DesktopGL.exe",
+			"program": "${workspaceFolder}/FuelCell.DesktopGL/bin/Debug/net10.0/FuelCell.DesktopGL.exe",
+        },
+        {
+            "name": "DesktopVK Debug",
+            "type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "Debug DesktopVK Build",
+			"program": "${workspaceFolder}/FuelCell.DesktopVK/bin/Debug/net10.0/FuelCell.DesktopVK.exe",
         },
         {
             "name": "iOS Debug",
@@ -30,7 +37,14 @@
             "type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "Debug WindowsDX Build",
-			"program": "${workspaceFolder}/FuelCell.WindowsDX/bin/Debug/net8.0-windows/FuelCell.WindowsDX.exe",
+			"program": "${workspaceFolder}/FuelCell.WindowsDX/bin/Debug/net10.0-windows/FuelCell.WindowsDX.exe",
+        },
+        {
+            "name": "WindowsDX12 Debug",
+            "type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "Debug WindowsDX12 Build",
+			"program": "${workspaceFolder}/FuelCell.WindowsDX12/bin/Debug/net10.0-windows/FuelCell.WindowsDX12.exe",
         }
     ]
 }
