@@ -5,12 +5,20 @@
 /// </remarks>
 ///-------------------------------------------------------------------------------------------------
 #include "PPVertexShader.fxh"
+#include "Macros.hlsl"
 
 // Pixel shader applies a one dimensional gaussian blur filter.
 // This is used twice by the bloom postprocess, first to
 // blur horizontally, and then again to blur vertically.
 
-sampler TextureSampler : register(s0);
+DECLARE_TEXTURE(TextureSampler, 0)
+{
+    MinFilter = linear;
+    MagFilter = linear;
+    MipFilter = linear;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
 
 #define SAMPLE_COUNT 15
 
@@ -23,7 +31,7 @@ float SampleWeights[SAMPLE_COUNT];
 ///
 /// <remarks>   Charles Humphrey, 12/07/2025. </remarks>
 ///-------------------------------------------------------------------------------------------------
-float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
+float4 PixelShaderFunction(VertexShaderOutput input) : SV_TARGET0
 {
     float4 c = 0;
     
@@ -32,7 +40,7 @@ float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
     {
         // Charles Humphrey, altered this to give a better effect with the blur. Was too heavy before.
         // This should really be done where the offsets and weights are calculated.
-        c += tex2D(TextureSampler, input.TexCoord + SampleOffsets[i] * .0125) * SampleWeights[i] * 5;        
+        c += SAMPLE_TEXTURE(TextureSampler, input.TexCoord + SampleOffsets[i] * .0125) * SampleWeights[i] * 5;        
         
         // Was:
         //c += tex2D(TextureSampler, input.TexCoord + SampleOffsets[i]) * SampleWeights[i];

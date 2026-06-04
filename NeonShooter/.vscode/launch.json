@@ -17,7 +17,14 @@
             "type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "Debug DesktopGL Build",
-			"program": "${workspaceFolder}/NeonShooter.DesktopGL/bin/Debug/net8.0/NeonShooter.DesktopGL.exe",
+			"program": "${workspaceFolder}/NeonShooter.DesktopGL/bin/Debug/net10.0/NeonShooter.DesktopGL.exe",
+        },
+        {
+            "name": "DesktopVK Debug",
+            "type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "Debug DesktopVK Build",
+			"program": "${workspaceFolder}/NeonShooter.DesktopVK/bin/Debug/net10.0/NeonShooter.DesktopVK.exe",
         },
         {
             "name": "iOS Debug",
@@ -30,7 +37,14 @@
             "type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "Debug WindowsDX Build",
-			"program": "${workspaceFolder}/NeonShooter.WindowsDX/bin/Debug/net8.0-windows/NeonShooter.WindowsDX.exe",
+			"program": "${workspaceFolder}/NeonShooter.WindowsDX/bin/Debug/net10.0-windows/NeonShooter.WindowsDX.exe",
+        },
+        {
+            "name": "WindowsDX12 Debug",
+            "type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "Debug WindowsDX12 Build",
+			"program": "${workspaceFolder}/NeonShooter.WindowsDX12/bin/Debug/net10.0-windows/NeonShooter.WindowsDX12.exe",
         }
     ]
 }
