@@ -2,24 +2,51 @@
 	"version": "2.0.0",
 	"tasks": [
         {
+			"label": "Build NormalMappingModelProcessor (Release)",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Release ${workspaceFolder}/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj"
+		},
+        {
 			"label": "Debug Android Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.Android/ShipGame.Android.csproj \"/t:Install;_Run\" /p:AndroidAttachDebugger=true /p:AndroidSdbHostPort=10000"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.Android/ShipGame.Android.csproj \"/t:Install;_Run\" /p:AndroidAttachDebugger=true /p:AndroidSdbHostPort=10000",
+			"dependsOn": "Build NormalMappingModelProcessor (Release)",
+			"dependsOrder": "sequence"
 		},
 		{
 			"label": "Debug DesktopGL Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.DesktopGL/ShipGame.DesktopGL.csproj",
+			"dependsOn": "Build NormalMappingModelProcessor (Release)",
+			"dependsOrder": "sequence"
+		},
+		{
+			"label": "Debug DesktopVK Build",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.DesktopVK/ShipGame.DesktopVK.csproj",
+			"dependsOn": "Build NormalMappingModelProcessor (Release)",
+			"dependsOrder": "sequence"
 		},
         {
 			"label": "Debug iOS Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.iOS/ShipGame.iOS.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.iOS/ShipGame.iOS.csproj",
+			"dependsOn": "Build NormalMappingModelProcessor (Release)",
+			"dependsOrder": "sequence"
 		},
         {
 			"label": "Debug WindowsDX Build",
 			"type": "shell",
-			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.WindowsDX/ShipGame.WindowsDX.csproj"
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.WindowsDX/ShipGame.WindowsDX.csproj",
+			"dependsOn": "Build NormalMappingModelProcessor (Release)",
+			"dependsOrder": "sequence"
 		},
+        {
+			"label": "Debug WindowsDX12 Build",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/ShipGame.WindowsDX12/ShipGame.WindowsDX12.csproj",
+			"dependsOn": "Build NormalMappingModelProcessor (Release)",
+			"dependsOrder": "sequence"
+		}
 	]
 }

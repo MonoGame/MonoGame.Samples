@@ -5,24 +5,21 @@
 //                                                                  //
 //////////////////////////////////////////////////////////////////////
 
-#if OPENGL
-    #define SV_POSITION POSITION
-    #define VS_SHADERMODEL vs_3_0
-    #define PS_SHADERMODEL ps_3_0
-#else
-    #define VS_SHADERMODEL vs_4_0_level_9_1
-    #define PS_SHADERMODEL ps_4_0_level_9_1
-#endif
+#include "Macros.hlsl"
+
+BEGIN_CONSTANTS
 
 float4x4 WorldViewProj;
 
-float4 StartColor = float4(1,0,0,1);    // start color and opacity
-float4 EndColor = float4(1,1,0,0);      // end color and opacity
+float4 StartColor;    // start color and opacity
+float4 EndColor;      // end color and opacity
 
 float2 PointSize;        // min and max point sizes
 float VelocityScale;     // velocity multiplier
 
 float3 Times;            // elapsed time and particle time
+
+END_CONSTANTS
 
 #define ElapsedTime      Times.x
 #define ParticleTime     Times.y
@@ -30,10 +27,9 @@ float3 Times;            // elapsed time and particle time
 #define ParticleSize     InTexCoord.x
 #define ParticleOffset   InTexCoord.y
 
-texture2D Texture;
-sampler2D TextureSampler = sampler_state
+DECLARE_TEXTURE(TextureSampler, 0)
 {
-    Texture = <Texture>;
+    Texture = <TextureSampler>;
     MinFilter = linear;
     MagFilter = linear;
     MipFilter = point;
@@ -43,7 +39,7 @@ sampler2D TextureSampler = sampler_state
 
 struct VS_INPUT
 {
-    float4 InPosition : SV_POSITION;
+    float4 InPosition : POSITION;
     float3 InVelocity : NORMAL;
     float2 InTexCoord : TEXCOORD0;
 };
@@ -54,11 +50,7 @@ struct VS_OUTPUT
     float4 OutColor : COLOR0;
     float OutSize : PSIZE;
     float4 OutRotation : COLOR1;
-#ifdef XBOX
-    float2 TexCoord  : SPRITETEXCOORD;
-#else    
     float2 TexCoord : TEXCOORD0;
-#endif
 };
 
 VS_OUTPUT ParticleVS(VS_INPUT input)
@@ -130,7 +122,7 @@ VS_OUTPUT ParticleVS(VS_INPUT input)
     return output;
 }
 
-float4 ParticlePS(VS_OUTPUT input) : COLOR0
+float4 ParticlePS(VS_OUTPUT input) : SV_TARGET0
 {
     // unpack rotation matrix
     input.OutRotation = input.OutRotation * 2 - 1;
@@ -139,7 +131,7 @@ float4 ParticlePS(VS_OUTPUT input) : COLOR0
     float2 tc = 0.5 + mul(input.TexCoord - 0.5, float2x2(input.OutRotation));
 
     // return final color
-    return input.OutColor * tex2D(TextureSampler, tc);
+    return input.OutColor * SAMPLE_TEXTURE(TextureSampler, tc);
 }
 
 Technique Particle
@@ -150,4 +142,3 @@ Technique Particle
         PixelShader = compile PS_SHADERMODEL ParticlePS();
     }
 }
-

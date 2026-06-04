@@ -5,27 +5,22 @@
 //                                                                  //
 //////////////////////////////////////////////////////////////////////
 
-#if OPENGL
-    #define SV_POSITION POSITION
-    #define VS_SHADERMODEL vs_3_0
-    #define PS_SHADERMODEL ps_3_0
-#else
-    #define VS_SHADERMODEL vs_4_0_level_9_1
-    #define PS_SHADERMODEL ps_4_0_level_9_1
-#endif
+#include "Macros.hlsl"
 
+BEGIN_CONSTANTS
 float4x4 ViewProj;
 float4 FrameOffset;
 float2 FrameSize;
 float2 FrameBlend;
+END_CONSTANTS
 
-texture2D Texture;
-sampler2D TextureSampler = sampler_state
+DECLARE_TEXTURE(Texture, 0)
 {
-    Texture = <Texture>;
-    MinFilter = linear;
-    MagFilter = linear;
-    MipFilter = linear;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    AddressU = Clamp;
+    AddressV = Clamp;
 };
 
 struct VS_INPUT
@@ -55,13 +50,13 @@ VS_OUTPUT AnimSpriteVS(VS_INPUT input)
     return output;
  }
 
-float4 AnimSpritePS(VS_OUTPUT input) : COLOR0
+float4 AnimSpritePS(VS_OUTPUT input) : SV_TARGET0
 {
     float2 tx1 = FrameSize * (FrameOffset.xy + input.OutTexCoord);
     float2 tx2 = FrameSize * (FrameOffset.zw + input.OutTexCoord);
     
-    float4 color1 = tex2D(TextureSampler, tx1);
-    float4 color2 = tex2D(TextureSampler, tx2);
+    float4 color1 = SAMPLE_TEXTURE(Texture, tx1);
+    float4 color2 = SAMPLE_TEXTURE(Texture, tx2);
     
     float4 blend_color = lerp(color1, color2, FrameBlend.x);
     blend_color.w *= FrameBlend.y;

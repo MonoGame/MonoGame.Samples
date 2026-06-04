@@ -5,6 +5,7 @@
     <RollForward>Major</RollForward>
     <PublishReadyToRun>false</PublishReadyToRun>
     <TieredCompilation>false</TieredCompilation>
+    <MonoGamePlatform>DesktopVK</MonoGamePlatform>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -16,11 +17,12 @@
   <ItemGroup>
     <MonoGameContentReference Include="..\ShipGame.Core\Content\ShipGame.mgcb">
       <Link>Content\ShipGame.mgcb</Link>
-      <Platform>DesktopGL</Platform>
+      <Platform>DesktopVK</Platform>
     </MonoGameContentReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.Native" Version="3.8.5-preview.*" />
+    <PackageReference Include="MonoGame.Runtime.Windows.Vulkan" Version="3.8.5-preview.*" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.5-preview.*" />
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.5-preview.*" />
   </ItemGroup>
 </Project>
