@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <RollForward>Major</RollForward>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MonoGamePlatform>WindowsDX12</MonoGamePlatform>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="..\NeonShooter.Core\Content\NeonShooter.mgcb" Link="Content\NeonShooter.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NeonShooter.Core\NeonShooter.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.Native" Version="3.8.5-preview.*" />
+    <PackageReference Include="MonoGame.Runtime.Windows.DX12" Version="3.8.5-preview.*" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.5-preview.*" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>../Core/Content/Icon.ico</ApplicationIcon>
+    <AssemblyName>Platformer2D</AssemblyName>
+    <AssemblyTitle>Platformer2D</AssemblyTitle>
+    <MonoGamePlatform>DesktopVK</MonoGamePlatform>
+  </PropertyGroup>
+  <PropertyGroup
+    Condition="'$(RuntimeIdentifier)' == 'osx-arm64' OR '$(RuntimeIdentifier)' == 'osx-x64'">
+    <UseAppHost>true</UseAppHost>
+  </PropertyGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="..\Core\Content\Platformer2D.mgcb">
+      <Link>Content\Platformer2D.mgcb</Link>
+    </MonoGameContentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.Native" Version="3.8.5-preview.*" />
+    <PackageReference Include="MonoGame.Runtime.Windows.Vulkan" Version="3.8.5-preview.*" />
+  </ItemGroup>
+  <Import Project="..\Content\BuildContent.targets" />
+</Project>

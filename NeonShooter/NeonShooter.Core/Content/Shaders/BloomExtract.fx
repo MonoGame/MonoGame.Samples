@@ -5,8 +5,16 @@
 /// </remarks>
 ///-------------------------------------------------------------------------------------------------
 #include "PPVertexShader.fxh"
+#include "Macros.hlsl"
 
-sampler TextureSampler : register(s0);
+DECLARE_TEXTURE(TextureSampler, 0)
+{
+    MinFilter = linear;
+    MagFilter = linear;
+    MipFilter = linear;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
 
 float BloomThreshold;
 
@@ -15,9 +23,9 @@ float BloomThreshold;
 ///
 /// <remarks>   Charles Humphrey, 12/07/2025. </remarks>
 ///-------------------------------------------------------------------------------------------------
-float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
+float4 PixelShaderFunction(VertexShaderOutput input) : SV_TARGET0
 {
-    float4 c = tex2D(TextureSampler, input.TexCoord);
+    float4 c = SAMPLE_TEXTURE(TextureSampler, input.TexCoord);
     return saturate((c - BloomThreshold) / (1 - BloomThreshold));
 }
 

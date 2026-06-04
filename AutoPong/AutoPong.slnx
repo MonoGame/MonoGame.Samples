@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Platforms/">
+    <Project Path="AutoPong.Android/AutoPong.Android.csproj"/>
+    <Project Path="AutoPong.DesktopGL/AutoPong.DesktopGL.csproj" />
+    <Project Path="AutoPong.DesktopVK/AutoPong.DesktopVK.csproj" />
+    <Project Path="AutoPong.iOS/AutoPong.iOS.csproj"/>
+    <Project Path="AutoPong.WindowsDX/AutoPong.WindowsDX.csproj" />
+  </Folder>
+  <Project Path="AutoPong.Core/AutoPong.Core.csproj" />
+</Solution>

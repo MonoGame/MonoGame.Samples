@@ -11,6 +11,11 @@
 			"type": "shell",
 			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj"
 		},
+		{
+			"label": "Debug DesktopVK Build",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/NeonShooter.DesktopVK/NeonShooter.DesktopVK.csproj"
+		},
         {
 			"label": "Debug iOS Build",
 			"type": "shell",
@@ -20,6 +25,11 @@
 			"label": "Debug WindowsDX Build",
 			"type": "shell",
 			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/NeonShooter.WindowsDX/NeonShooter.WindowsDX.csproj"
+		},
+        {
+			"label": "Debug WindowsDX12 Build",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/NeonShooter.WindowsDX12/NeonShooter.WindowsDX12.csproj"
 		},
 	]
 }

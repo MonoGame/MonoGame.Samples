@@ -5,13 +5,29 @@
 /// </remarks>
 ///-------------------------------------------------------------------------------------------------
 #include "PPVertexShader.fxh"
+#include "Macros.hlsl"
 
 // Pixel shader combines the bloom image with the original
 // scene, using tweakable intensity levels and saturation.
 // This is the final step in applying a bloom postprocess.
 
-sampler BloomSampler : register(s0);
-sampler BaseSampler : register(s1);
+DECLARE_TEXTURE(BloomTexture, 0)
+{
+    MipFilter = NONE;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
+
+DECLARE_TEXTURE(BaseTexture, 1)
+{
+    MipFilter = NONE;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
 
 float BloomIntensity;
 float BaseIntensity;
@@ -36,11 +52,11 @@ float4 AdjustSaturation(float4 color, float saturation)
 /// <remarks>   Charles Humphrey, 12/07/2025. </remarks>
 ///-------------------------------------------------------------------------------------------------
 
-float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
+float4 PixelShaderFunction(VertexShaderOutput input) : SV_TARGET0
 {
     // Look up the bloom and original base image colors.
-    float4 bloom = tex2D(BloomSampler, input.TexCoord);
-    float4 base = tex2D(BaseSampler, input.TexCoord);
+    float4 bloom = SAMPLE_TEXTURE(BloomTexture, input.TexCoord);
+    float4 base = SAMPLE_TEXTURE(BaseTexture, input.TexCoord);
     
     // Adjust color saturation and intensity.
     bloom = AdjustSaturation(bloom, BloomSaturation) * BloomIntensity;

@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Platforms/">
+    <Project Path="FuelCell.Android/FuelCell.Android.csproj" />
+    <Project Path="FuelCell.DesktopGL/FuelCell.DesktopGL.csproj" />
+    <Project Path="FuelCell.DesktopVK/FuelCell.DesktopVK.csproj" />
+    <Project Path="FuelCell.iOS/FuelCell.iOS.csproj" />
+    <Project Path="FuelCell.WindowsDX/FuelCell.WindowsDX.csproj" />
+    <Project Path="FuelCell.WindowsDX12/FuelCell.WindowsDX12.csproj" />
+  </Folder>
+  <Project Path="FuelCell.Core/FuelCell.Core.csproj" />
+</Solution>

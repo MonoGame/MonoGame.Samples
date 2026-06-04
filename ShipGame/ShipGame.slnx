@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/Dependencies/">
+    <Project Path="ShipGame.Dependencies/BoxCollider/BoxCollider.csproj" />
+    <Project Path="ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj" />
+  </Folder>
+  <Folder Name="/Platforms/">
+    <Project Path="ShipGame.Android/ShipGame.Android.csproj" />
+    <Project Path="ShipGame.DesktopGL/ShipGame.DesktopGL.csproj" />
+    <Project Path="ShipGame.DesktopVK/ShipGame.DesktopVK.csproj" />
+    <Project Path="ShipGame.iOS/ShipGame.iOS.csproj" />
+    <Project Path="ShipGame.WindowsDX/ShipGame.WindowsDX.csproj" />
+    <Project Path="ShipGame.WindowsDX12/ShipGame.WindowsDX12.csproj" />
+  </Folder>
+  <Project Path="ShipGame.Core/ShipGame.Core.csproj" />
+</Solution>

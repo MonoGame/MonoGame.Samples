@@ -1,38 +1,47 @@
-//////////////////////////////////////////////////////////////////////
-//                                                                  //
-// Shader altered to compile on both OpenGL projects and DirectX.   //
-// Pixel shader parameters passed by structure rather than by      //
-// individual parameter values.                                     //
-// C.Humphrey  2024-02-19                                           //
-//                                                                  //
-//////////////////////////////////////////////////////////////////////
+// MonoGame - Copyright (C) The MonoGame Team
+// This file is subject to the terms and conditions defined in
+// file 'LICENSE.txt', which is part of this source code package.
 
-#if OPENGL
-    #define SV_POSITION POSITION
-    #define VS_SHADERMODEL vs_3_0
-    #define PS_SHADERMODEL ps_3_0
-#else
-    #define VS_SHADERMODEL vs_4_0_level_9_1
-    #define PS_SHADERMODEL ps_4_0_level_9_1
-#endif
+#include "Macros.hlsl"
+#include "ShadowMap.hlsl"
+
+#define EDITOR 1
+
+BEGIN_CONSTANTS
 
 float4x4 WorldViewProj;
-float4 LightPosition;
-float3 LightColor;
+float4x4 World;
+float4x4 View;
 float3 LightAmbient;
-float3 CameraPosition;
+float3 CameraPosition; // World Space!
+float4 ClusterInfo;
 
-texture2D Texture;
-sampler2D TextureSampler = sampler_state
+// Development features.
+#if EDITOR
+bool ShowDiffuse = false;
+bool ShowNormals = false;
+bool ShowRoughness = false;
+bool ShowMetalness = false;
+bool ShowOcclusion = false;
+bool ShowLighting = false;
+bool ShowDetailLighting = false;
+#endif
+
+END_CONSTANTS
+
+
+DECLARE_TEXTURE(Texture, 0)
 {
-    Texture = <Texture>;
     MinFilter = linear;
     MagFilter = linear;
     MipFilter = linear;
+    AddressU = wrap;
+    AddressV = wrap;
+    AddressW = wrap;
 };
-sampler2D TextureSamplerClamp = sampler_state
+
+DECLARE_TEXTURE(TextureSamplerClamp, 1)
 {
-    Texture = <Texture>;
     MinFilter = linear;
     MagFilter = linear;
     MipFilter = linear;
@@ -40,309 +49,453 @@ sampler2D TextureSamplerClamp = sampler_state
     AddressV = clamp;
 };
 
-texture2D Bump0;
-sampler2D NormalSampler = sampler_state
+DECLARE_TEXTURE(Bump0, 2)
 {
-    Texture = <Bump0>;
     MinFilter = linear;
     MagFilter = linear;
     MipFilter = linear;
+    AddressU = wrap;
+    AddressV = wrap;
+    AddressW = wrap;
 };
 
-texture2D Specular0;
-sampler2D SpecularSampler = sampler_state
+DECLARE_TEXTURE(SpecularOrRMA0, 3)
 {
-    Texture = <Specular0>;
     MinFilter = linear;
     MagFilter = linear;
     MipFilter = linear;
+    AddressU = wrap;
+    AddressV = wrap;
+    AddressW = wrap;
 };
 
-texture2D Emissive0;
-sampler2D GlowMapSampler = sampler_state
+DECLARE_TEXTURE(Emissive0, 4)
 {
-    Texture = <Emissive0>;
     MinFilter = linear;
     MagFilter = linear;
     MipFilter = linear;
+    AddressU = wrap;
+    AddressV = wrap;
+    AddressW = wrap;
 };
 
-textureCUBE Reflect;
-samplerCUBE ReflectSampler = sampler_state
+DECLARE_CUBEMAP(Reflect, 5)
 {
-    Texture = <Reflect>;
     MinFilter = linear;
     MagFilter = linear;
     MipFilter = linear;
+    AddressU = wrap;
+    AddressV = wrap;
+    AddressW = wrap;
+};
+
+DECLARE_TEXTURE_FORMAT(ClusterTexture, half2, 6)
+{
+    MinFilter = point;
+    MagFilter = point;
+    MipFilter = point;
     AddressU = clamp;
     AddressV = clamp;
     AddressW = clamp;
 };
 
-
-#if OPENGL
-
-void PlainMappingVS( 
-     in float4 InPosition    : SV_POSITION,
-     in float2 InTexCoord    : TEXCOORD0,
-    out float4 OutPosition    : SV_POSITION,
-    out float2 OutTexCoord    : TEXCOORD0 )
+DECLARE_TEXTURE_FORMAT(LightListTexture, half2, 7)
 {
-    OutPosition = mul(InPosition, WorldViewProj);
-    OutTexCoord = InTexCoord;
-}
+    MinFilter = point;
+    MagFilter = point;
+    MipFilter = point;
+    AddressU = clamp;
+    AddressV = clamp;
+    AddressW = clamp;
+};
 
-float4 PlainMappingPS( in float2 TexCoord : TEXCOORD0 ) : COLOR0
+DECLARE_TEXTURE(LightInfoTexture, 8)
 {
-    return tex2D(TextureSampler, TexCoord);
-}
-
-void NormalMappingVS( 
-     in float4 InPosition    : SV_POSITION,
-     in float2 InTexCoord    : TEXCOORD0,
-     in float3 InNormal      : NORMAL0,  
-     in float3 InBinormal    : BINORMAL0,
-     in float3 InTangent     : TANGENT0,
-    out float4 OutPosition   : SV_POSITION,
-    out float2 OutTexCoord   : TEXCOORD0,
-    out float3 OutLightDir   : TEXCOORD1,
-    out float3 OutViewDir    : TEXCOORD2,
-    out float3 OutReflectDir : TEXCOORD3 )
-{
-    OutPosition = mul(InPosition, WorldViewProj);
-    
-    OutTexCoord = InTexCoord;
-
-    float3x3 tangent_space = float3x3(InTangent, InBinormal, InNormal);
-    
-    OutLightDir = mul(tangent_space, LightPosition.xyz - InPosition.xyz);
-   
-    OutViewDir = mul(tangent_space, CameraPosition - InPosition.xyz);
-    
-    OutReflectDir = reflect(InPosition.xyz - CameraPosition, InNormal);
-}
-
-float4 NormalMappingPS(
-    in float2 TexCoord        : TEXCOORD0,
-    in float3 LightDir        : TEXCOORD1,
-    in float3 ViewDir         : TEXCOORD2,
-    in float3 ReflectDir      : TEXCOORD3 ) : COLOR0
-{
-    float4 diffuse = tex2D(TextureSampler, TexCoord);
-    float4 specular = tex2D(SpecularSampler, TexCoord);
-    float4 normal = tex2D(NormalSampler, TexCoord);
-    float4 reflect = texCUBE(ReflectSampler, ReflectDir);
-    float4 glow = tex2D(GlowMapSampler, TexCoord);
-    
-    float3 n = normalize(normal.xyz - 0.5);
-    float3 l = normalize(LightDir);
-    float3 v = normalize(ViewDir);
-    float3 h = normalize(l+v);
-    
-    float ndotl = saturate(dot(n,l));
-    float ndoth = saturate(dot(n,h));
-    if (ndotl == 0)    ndoth = 0;
-    
-    float3 ambient = LightAmbient * diffuse.xyz;
-    
-    specular.xyz *= LightColor * pow(ndoth, specular.w * 255);
-    diffuse.xyz *= LightColor * ndotl;
-    reflect *= 1 - normal.w;
-
-    float glow_intensity = saturate(dot(glow.xyz, 1.0) + dot(specular.xyz, 1.0));
-
-    float4 color;
-    color.xyz = ambient + glow.xyz + diffuse.xyz + specular.xyz + reflect.xyz;
-    color.w = glow_intensity;
-    
-    return color;
-}
-
-void ViewMappingVS( 
-     in float4 InPosition   : SV_POSITION,
-     in float3 InNormal     : NORMAL0,  
-    out float4 OutPosition  : SV_POSITION,
-    out float  OutFacing    : TEXCOORD0 )
-{
-    OutPosition = mul(InPosition, WorldViewProj);
-    
-    float3 view = normalize(CameraPosition - InPosition.xyz);
-    
-    OutFacing = saturate(dot(view, InNormal));
-}
-
-float4 ViewMappingPS(in float Facing : TEXCOORD0) : COLOR0
-{
-    Facing *= Facing;
-    Facing *= Facing;
-    
-    float4 tex = tex2D(TextureSamplerClamp, float2(Facing, 0));
-    tex.w = 1.0f;
-
-    return tex;
-}
-
-#else
+    MinFilter = point;
+    MagFilter = point;
+    MipFilter = point;
+    AddressU = clamp;
+    AddressV = clamp;
+    AddressW = clamp;
+};
 
 struct VS_INPUT_NM
 {
-    float4 InPosition : SV_POSITION;
+    float4 InPosition : POSITION;
     float2 InTexCoord : TEXCOORD0;
-    float3 InNormal : NORMAL0;
-    float3 InBinormal : BINORMAL0;
-    float3 InTangent : TANGENT0;
+    float3 InNormal : NORMAL;
+    float3 InBinormal : BINORMAL;
+    float3 InTangent : TANGENT;
 };
+
 struct VS_OUTPUT_NM
 {
     float4 Position : SV_POSITION0;
+
     float2 TexCoord : TEXCOORD0;
-    float3 LightDir : NORMAL0;
-    float3 ViewDir : TEXCOORD1;
-    float3 ReflectDir : NORMAL1;
-};
-
-struct VS_INPUT_PM
-{
-    float4 InPosition    : SV_POSITION;
-    float2 InTexCoord    : TEXCOORD0;
-    float4 OutPosition    : SV_POSITION;
-    float2 OutTexCoord    : TEXCOORD0;
-};
-
-struct VS_OUTPUT_PM
-{
-    float4 OutPosition    : SV_POSITION;
-    float2 OutTexCoord    : TEXCOORD0;
-};
-
-
-struct VS_INPUT_VM
-{
-    float4 InPosition   : SV_POSITION;
-    float3 InNormal     : NORMAL0;
-};
-
-struct VS_OUTPUT_VM
-{
-    float4 OutPosition  : SV_POSITION;
-    float  OutFacing    : TEXCOORD0;
-};
-
-VS_OUTPUT_VM ViewMappingVS(VS_INPUT_VM input)
-{
-    VS_OUTPUT_VM output;
-
-    output.OutPosition = mul(input.InPosition, WorldViewProj);
+    float3 ReflectDir : TEXCOORD1;
+    float3 WPosition : TEXCOORD2;
+    float ViewZ : TEXCOORD3;
     
-    float3 view = normalize(CameraPosition - input.InPosition.xyz);
-    
-    output.OutFacing = saturate(dot(view, input.InNormal));
+    // TODO: MojoShader does not like TANGENT, NORMAL, BINORMAL
+    // in the input to the pixel shader for some reason and will 
+    // produce non-compiling glsl code.
+    //
+    // We need to fix this for 3.8.5.
+    //    
+   
+    float3 Tangent : TEXCOORD4;
+    float3 Binormal : TEXCOORD5;
+    float3 Normal : TEXCOORD6;
+};
 
-    return output;
-}
 
-float4 ViewMappingPS(VS_OUTPUT_VM input) : COLOR0
-{
-    input.OutFacing *= input.OutFacing;
-    input.OutFacing *= input.OutFacing;
-    
-    float4 tex = tex2D(TextureSamplerClamp, float2(input.OutFacing, 0));
-    tex.w = 1.0f;
-
-    return tex;
-}
-
-VS_OUTPUT_PM PlainMappingVS(VS_INPUT_PM input )
-{
-    VS_OUTPUT_PM output;
-
-    output.OutPosition = mul(input.InPosition, WorldViewProj);
-    output.OutTexCoord = input.InTexCoord;
-
-    return output;
-}
-
-float4 PlainMappingPS( VS_OUTPUT_PM input ) : COLOR0
-{
-    return tex2D(TextureSampler, input.OutTexCoord);
-}
-
-VS_OUTPUT_NM NormalMappingVS(VS_INPUT_NM input)
+VS_OUTPUT_NM Default_VS(VS_INPUT_NM input)
 {
     VS_OUTPUT_NM Output;
 
     Output.Position = mul(input.InPosition, WorldViewProj);
+
+    // Pass the world space position of the mesh.
+    Output.WPosition = mul(float4(input.InPosition.xyz, 1), World).xyz;
+    
+    Output.ViewZ = abs(mul(float4(Output.WPosition.xyz, 1), View).z);
     
     Output.TexCoord = input.InTexCoord;
 
-    float3x3 tangent_space = float3x3(input.InTangent, input.InBinormal, input.InNormal);
-    
-    Output.LightDir = mul(tangent_space, LightPosition.xyz - input.InPosition.xyz);
-   
-    Output.ViewDir = mul(tangent_space, CameraPosition - input.InPosition.xyz);
-    
-    Output.ReflectDir = reflect(input.InPosition.xyz - CameraPosition, input.InNormal);
+    Output.Tangent = normalize(mul(input.InTangent, (float3x3) World));
+    Output.Normal = normalize(mul(input.InNormal, (float3x3) World));
+    Output.Binormal = normalize(mul(input.InBinormal, (float3x3) World));
+
+    Output.ReflectDir = reflect(Output.WPosition.xyz - CameraPosition, Output.Normal);
 
     return Output;
 }
 
-float4 NormalMappingPS(VS_OUTPUT_NM input) : COLOR0
-{
-    float4 diffuse = tex2D(TextureSampler, input.TexCoord);
-    float4 specular = tex2D(SpecularSampler, input.TexCoord);
-    float4 normal = tex2D(NormalSampler, input.TexCoord);
-    float4 reflect = texCUBE(ReflectSampler, input.ReflectDir);
-    float4 glow = tex2D(GlowMapSampler, input.TexCoord);
+
+#define MAX_LIGHTS 512.0
+#define LIGHT_Y_OFFSET (1.0 / MAX_LIGHTS)
+
+float3 ProcessLight(int index, float4 normal, float3 viewDir, float3 position, float3x3 tangentSpace, float4 diffuse, float4 specular, float4 reflect)
+{   
+    float lightIndex = ((float)index + 0.5) * LIGHT_Y_OFFSET;    
+    float4 lightPositionAndRadius   = SAMPLE_TEXTURE(LightInfoTexture, float2(0.0, lightIndex));
+    float4 lightColorAndIntensity   = SAMPLE_TEXTURE(LightInfoTexture, float2(0.5, lightIndex));
+    float4 lightShadowLookup        = SAMPLE_TEXTURE(LightInfoTexture, float2(1.0, lightIndex));
     
-    float3 n = normalize(normal.xyz - .5);
-    float3 l = normalize(input.LightDir);
-    float3 v = normalize(input.ViewDir);
-    float3 h = normalize(l+v);
+    float3 color = 0;
     
-    float ndotl = saturate(dot(n,l));
-    float ndoth = saturate(dot(n,h));
-    if (ndotl == 0)    ndoth = 0;
+    float3 lightPosition = lightPositionAndRadius.xyz;   
+    float oneOverLightRadius = lightPositionAndRadius.w;
+    float3 lightColor = lightColorAndIntensity.xyz * lightColorAndIntensity.w;
     
-    float3 ambient = LightAmbient * diffuse.xyz * 1;
+    float3 shadowIndex = float3(
+        lightShadowLookup.x * SHADOW_FACE_MIN_SIZE,
+        lightShadowLookup.y * SHADOW_FACE_MIN_SIZE,
+        lightShadowLookup.z * SHADOW_FACE_MIN_SIZE);
     
-    specular.xyz *= LightColor * pow(ndoth, specular.w * 255);
-    diffuse.xyz *= LightColor * ndotl;
+    float3 lightDir = lightPosition - position;
+    
+    float3 l = normalize(lightDir);
+    float3 h = normalize(l + viewDir);
+    float ndotl = saturate(dot(normal.xyz, l));
+    float ndoth = saturate(dot(normal.xyz, h));
+    if (ndotl <= 0)    
+        return float3(0, 0, 0);
+    
+    float atten = 1.0 - saturate(length(lightDir) * oneOverLightRadius);
+    
+    specular.xyz *= lightColor * pow(ndoth, specular.w * 255) * atten;
+    diffuse.xyz *= (lightColor * ndotl) * atten;
     reflect *= 1 - normal.w;
-
-    float glow_intensity = saturate(dot(glow.xyz, 1.0) + dot(specular.xyz, 1.0));
-
-    float4 color;
-    color.xyz = ambient + glow.xyz + diffuse.xyz + specular.xyz + reflect.xyz;
-    color.w = glow_intensity;
+    
+    color.xyz = diffuse.xyz + specular.xyz + reflect.xyz;
+    
+    float3 debugColor;
+    
+    // Sample the shadow.
+    float shadow = Shadow_Sample(shadowIndex, position, lightPosition, oneOverLightRadius, debugColor);
+   
+    color.xyz = lerp(color.xyz, float3(0, 0, 0), shadow);
     
     return color;
 }
-#endif
 
-Technique PlainMapping
+
+#define PI 3.14159265358979323846
+
+float3 FresnelSchlick(float cosTheta, float3 F0)
 {
-    Pass
+    return F0 + (1.0 - F0) * pow(1.0 - cosTheta, 5.0);
+}
+
+float DistributionGGX(float3 N, float3 H, float alpha)
+{
+    float NoH = saturate(dot(N, H));
+    float a2 = alpha * alpha;
+    float d = (NoH * NoH) * (a2 - 1.0) + 1.0;
+    return a2 / (PI * d * d);
+}
+
+float GeometrySchlickGGX(float NoV, float alpha)
+{
+    float k = (alpha + 1.0) * (alpha + 1.0) / 8.0;
+    return NoV / (NoV * (1.0 - k) + k);
+}
+
+float GeometrySmith(float3 N, float3 V, float3 L, float alpha)
+{
+    float NoV = saturate(dot(N, V));
+    float NoL = saturate(dot(N, L));
+    float ggx1 = GeometrySchlickGGX(NoV, alpha);
+    float ggx2 = GeometrySchlickGGX(NoL, alpha);
+    return ggx1 * ggx2;
+}
+
+float3 ProcessLight_RMA(int index, float4 normal, float3 viewDir, float3 position, float3x3 tangentSpace, float4 diffuse, float4 rma, float4 reflect)
+{
+    float lightIndex = ((float) index + 0.5) * LIGHT_Y_OFFSET;
+    float4 lightPositionAndRadius = SAMPLE_TEXTURE(LightInfoTexture, float2(0.0, lightIndex));
+    float4 lightColorAndIntensity = SAMPLE_TEXTURE(LightInfoTexture, float2(0.5, lightIndex));
+    float4 lightShadowLookup = SAMPLE_TEXTURE(LightInfoTexture, float2(1.0, lightIndex));
+    
+    float3 color = 0;
+    
+    float3 lightPosition = lightPositionAndRadius.xyz;
+    float oneOverLightRadius = lightPositionAndRadius.w;
+    float3 lightColor = lightColorAndIntensity.xyz;
+    
+    float3 shadowIndex = float3(
+        lightShadowLookup.x * SHADOW_FACE_MIN_SIZE,
+        lightShadowLookup.y * SHADOW_FACE_MIN_SIZE,
+        lightShadowLookup.z * SHADOW_FACE_MIN_SIZE);
+    
+    float3 lightDir = lightPosition - position;
+    
+    float ndotl = max(dot(normal.xyz, normalize(lightDir)), 0.0);
+    if (ndotl < 0.0001)    
+        return float3(0, 0, 0);
+    
+    float3 l = normalize(lightDir);
+    float3 h = normalize(l + viewDir);
+    float vdoth = saturate(dot(viewDir, h));
+    
+    float3 ndotv = max(dot(normal.xyz, viewDir), 0.0);
+    
+    float dist = length(lightDir);
+    float atten = 1.0 - saturate(dist * oneOverLightRadius);
+    //atten *= atten; // smoother falloff
+    
+    float lightIntensity = lightColorAndIntensity.w / max(0.001, 4.0 * PI * dist * dist);
+    
+    float roughness = rma.y;
+    float metallic = rma.z;
+    
+    float3 term = float3(0.04, 0.04, 0.04); // ???
+    
+    float3 f0 = lerp(term, diffuse.xyz, metallic);
+
+    float3 F = FresnelSchlick(vdoth, f0);
+    float D = DistributionGGX(normal.xyz, h, roughness);
+    float G = GeometrySmith(normal.xyz, viewDir, l, roughness);
+    
+    float3 numerator = D * G * F;
+    float denominator = 4.0 * ndotv * ndotl + 0.001;
+    float3 specular = numerator / denominator;
+    
+    float3 kD = (1.0 - F) * (1.0 - metallic); // metals have no diffuse
+    
+    diffuse.xyz = kD * diffuse.xyz / PI;
+    
+    float3 radiance = lightColor * lightIntensity * atten;
+    color.xyz = (diffuse.xyz + specular.xyz) * radiance * ndotl;
+    
+    float3 debugColor;
+    
+    // Sample the shadow.
+    float shadow = Shadow_Sample(shadowIndex, position, lightPosition, oneOverLightRadius, debugColor);
+   
+    color.xyz = lerp(color.xyz, float3(0, 0, 0), shadow);
+    
+    return color;
+}
+
+
+float GetLuminance(float3 color)
+{
+    return dot(color, float3(0.2126, 0.7152, 0.0722));
+}
+
+#define CLUSTERS_X  16
+#define CLUSTERS_Y  8
+#define CLUSTERS_Z  24
+#define MAX_CLUSTERS (CLUSTERS_X * CLUSTERS_Y * CLUSTERS_Z)
+#define MAX_LIGHTS_PER_CLUSTER  16
+
+#define TO_INT2(x) int2(x * 65535.0f + 0.5f)
+
+int3 Light_GetClusterIndex3(float4 svPosition, float viewZ)
+{
+    int clusterX = min((int)(svPosition.x * ClusterInfo.x), CLUSTERS_X - 1);
+    int clusterY = min((int)(svPosition.y * ClusterInfo.y), CLUSTERS_Y - 1);
+
+    float zNorm = saturate((viewZ - ClusterInfo.z) * ClusterInfo.w);
+    int clusterZ = min((int)(zNorm * CLUSTERS_Z), CLUSTERS_Z - 1);
+    
+    return int3(clusterX, clusterY, clusterZ);
+}
+
+int Light_GetClusterIndex(float4 svPosition, float viewZ)
+{
+    int3 index = Light_GetClusterIndex3(svPosition, viewZ);
+   
+    return index.x + (index.y * CLUSTERS_X) + (index.z * CLUSTERS_X * CLUSTERS_Y);
+}
+
+float4 NormalMapping_PS(VS_OUTPUT_NM input) : SV_TARGET0
+{
+    float4 diffuse = SAMPLE_TEXTURE(Texture, input.TexCoord);   
+    float4 specular = SAMPLE_TEXTURE(SpecularOrRMA0, input.TexCoord);
+    float4 normal = SAMPLE_TEXTURE(Bump0, input.TexCoord);
+    float4 glow = SAMPLE_TEXTURE(Emissive0, input.TexCoord);
+    float4 reflect = SAMPLE_CUBEMAP(Reflect, input.ReflectDir);
+    
+    float3x3 tangent_space = float3x3(  normalize(input.Tangent),
+                                        normalize(input.Binormal),
+                                        normalize(input.Normal));
+
+    // Development stuff.
+#if EDITOR    
+    if (ShowLighting)
+        normal.rgb = float3(0.5, 0.5, 1);
+    if (ShowLighting || ShowDetailLighting)
+        diffuse = float4(1, 1, 1, diffuse.a);
+#endif
+    
+    float3 tn = normalize(normal.xyz * 2.0 - 1.0);
+    
+    float4 n = float4(mul(tn, tangent_space), normal.w);
+    float3 v = normalize(CameraPosition - input.WPosition.xyz);
+    
+    // Development stuff.
+#if EDITOR
+    if (ShowDiffuse)
+        return float4(diffuse.rgb, 0);
+    if (ShowNormals)
+        return float4(normal.xyz, 0);
+#endif
+    
+    // Prepare the final color.
+    float4 color;
+    color.rgb = diffuse.xyz * LightAmbient;
+    
+    // Look up the cluster for this pixel.
+    int clusterIndex = Light_GetClusterIndex(input.Position, input.ViewZ);      
+    int2 cluster = TO_INT2(LOAD_TEXTURE(ClusterTexture, int3(clusterIndex, 0, 0)).xy);
+    
+    // Accumulate the lighting.
+    for (int i = 0; i < MAX_LIGHTS_PER_CLUSTER; i++)
     {
-        VertexShader = compile VS_SHADERMODEL PlainMappingVS();
-        PixelShader = compile PS_SHADERMODEL PlainMappingPS();
+        if (i >= cluster.x)
+            break;
+        
+        int2 lightList = TO_INT2(LOAD_TEXTURE(LightListTexture, int3(i, cluster.y, 0)).xy);
+        color.rgb += ProcessLight(lightList.x, n, v, input.WPosition, tangent_space, diffuse, specular, reflect);
     }
+    
+    // Apply the emissive elements of the material.
+    color.xyz += glow.xyz * 5.5;
+    
+    color.w = GetLuminance(color.rgb) * 0.5;
+    
+    return color;
 }
 
 Technique NormalMapping
 {
     Pass
     {
-        VertexShader = compile VS_SHADERMODEL NormalMappingVS();
-        PixelShader = compile PS_SHADERMODEL NormalMappingPS();
+        VertexShader = compile VS_SHADERMODEL Default_VS();
+        PixelShader = compile PS_SHADERMODEL NormalMapping_PS();
     }
 }
 
-Technique ViewMapping
+
+float4 RMA_PS(VS_OUTPUT_NM input) : SV_TARGET0
+{
+    // RMA texture is:
+    // R - Ambient occulusion
+    // G - Roughness
+    // B - Metallic
+    // 
+    
+    float4 diffuse = SAMPLE_TEXTURE(Texture, input.TexCoord);
+    float4 rma = SAMPLE_TEXTURE(SpecularOrRMA0, input.TexCoord);
+    float4 normal = SAMPLE_TEXTURE(Bump0, input.TexCoord);
+    float4 glow = SAMPLE_TEXTURE(Emissive0, input.TexCoord);
+    float4 reflect = float4(1, 1, 1, 1); //SAMPLE_CUBEMAP(Reflect, input.ReflectDir);
+    
+    float3x3 tangent_space = float3x3(  normalize(input.Tangent),
+                                        normalize(input.Binormal),
+                                        normalize(input.Normal));
+
+    // Development stuff.
+#if EDITOR    
+    if (ShowLighting)
+        normal.rgb = float3(0.5, 0.5, 1);
+    if (ShowLighting || ShowDetailLighting)
+        diffuse = float4(1, 1, 1, diffuse.a);
+#endif
+    
+    float3 tn = normalize(normal.xyz * 2.0 - 1.0);
+    
+    float4 n = float4(normalize(mul(tn, tangent_space)), normal.w);
+    float3 v = normalize(CameraPosition - input.WPosition.xyz);
+    
+    // Development stuff.
+#if EDITOR     
+    if (ShowDiffuse)
+        return float4(diffuse.rgb, 0);
+    if (ShowNormals)
+        return float4(normal.xyz, 0);
+    if (ShowRoughness)
+        return float4(rma.ggg, 0);
+    if (ShowMetalness)
+        return float4(rma.bbb, 0);
+    if (ShowOcclusion)
+        return float4(rma.rrr, 0);
+#endif
+    
+    float4 color;
+    color.rgb = diffuse.xyz * LightAmbient * rma.r;
+    
+    // Look up the cluster for this pixel.
+    int clusterIndex = Light_GetClusterIndex(input.Position, input.ViewZ);
+    int2 cluster = TO_INT2(LOAD_TEXTURE(ClusterTexture, int3(clusterIndex, 0, 0)).xy);
+    
+    // Accumulate the lighting.
+    for (int i = 0; i < MAX_LIGHTS_PER_CLUSTER; i++)
+    {
+        if (i >= cluster.x)
+            break;
+        
+        int2 lightList = TO_INT2(LOAD_TEXTURE(LightListTexture, int3(i, cluster.y, 0)).xy);
+        color.rgb += ProcessLight_RMA(lightList.x, n, v, input.WPosition, tangent_space, diffuse, rma, reflect);
+    }
+    
+    // Apply the emissive elements of the material.
+    color.xyz += glow.xyz * 5.5;
+    
+    color.w = GetLuminance(color.rgb) * 0.5;
+    
+    return color;
+}
+
+Technique RMA
 {
     Pass
     {
-        VertexShader = compile VS_SHADERMODEL ViewMappingVS();
-        PixelShader = compile PS_SHADERMODEL ViewMappingPS();
+        VertexShader = compile VS_SHADERMODEL Default_VS();
+        PixelShader = compile PS_SHADERMODEL RMA_PS();
     }
 }
-
