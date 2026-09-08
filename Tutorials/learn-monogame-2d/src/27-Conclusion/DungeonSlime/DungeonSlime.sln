@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonSlime.Desktop", "Platforms\Desktop\DungeonSlime.csproj", "{ED6B5FFA-0E1C-4BCE-D08B-69CC2DE9576F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonSlime.WindowsDX", "Platforms\Windows\DungeonSlime.WindowsDX.csproj", "{3DC6288C-3FD4-4C67-BCFC-F27C4CA9C809}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonSlime.WindowsDX", "Platforms\Windows\DungeonSlime.WindowsDX.csproj", "{A1B2C3D4-5E6F-7A8B-9C0D-1E2F3A4B5C6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonSlime", "Platforms\Desktop\DungeonSlime.csproj", "{5CE56A0D-2362-4BF2-9A05-91542AA0D8BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonSlime.Android", "Platforms\Android\DungeonSlime.csproj", "{8A9B5A3C-2D4E-4F1B-9C3D-7E8F6A9B5C4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonSlime", "Platforms\Android\DungeonSlime.csproj", "{D92C079F-906C-435B-8E6F-AB12B89C8484}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,18 +14,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ED6B5FFA-0E1C-4BCE-D08B-69CC2DE9576F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED6B5FFA-0E1C-4BCE-D08B-69CC2DE9576F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED6B5FFA-0E1C-4BCE-D08B-69CC2DE9576F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED6B5FFA-0E1C-4BCE-D08B-69CC2DE9576F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1B2C3D4-5E6F-7A8B-9C0D-1E2F3A4B5C6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1B2C3D4-5E6F-7A8B-9C0D-1E2F3A4B5C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1B2C3D4-5E6F-7A8B-9C0D-1E2F3A4B5C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1B2C3D4-5E6F-7A8B-9C0D-1E2F3A4B5C6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A9B5A3C-2D4E-4F1B-9C3D-7E8F6A9B5C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A9B5A3C-2D4E-4F1B-9C3D-7E8F6A9B5C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A9B5A3C-2D4E-4F1B-9C3D-7E8F6A9B5C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A9B5A3C-2D4E-4F1B-9C3D-7E8F6A9B5C4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DC6288C-3FD4-4C67-BCFC-F27C4CA9C809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC6288C-3FD4-4C67-BCFC-F27C4CA9C809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC6288C-3FD4-4C67-BCFC-F27C4CA9C809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DC6288C-3FD4-4C67-BCFC-F27C4CA9C809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CE56A0D-2362-4BF2-9A05-91542AA0D8BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CE56A0D-2362-4BF2-9A05-91542AA0D8BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CE56A0D-2362-4BF2-9A05-91542AA0D8BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CE56A0D-2362-4BF2-9A05-91542AA0D8BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D92C079F-906C-435B-8E6F-AB12B89C8484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D92C079F-906C-435B-8E6F-AB12B89C8484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D92C079F-906C-435B-8E6F-AB12B89C8484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D92C079F-906C-435B-8E6F-AB12B89C8484}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

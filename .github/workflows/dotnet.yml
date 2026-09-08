@@ -272,7 +272,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Android-AutoPong
-        path: AutoPong/AutoPong.Android/bin/Release/net9.0-android/**/*-Signed.apk
+        path: AutoPong/AutoPong.Android/bin/Release/net10.0-android/**/*-Signed.apk
 
     - name: Build Android Binary for FuelCell
       run: dotnet build FuelCell/FuelCell.Android/FuelCell.Android.csproj -c Release
@@ -281,7 +281,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Android-FuelCell
-        path: FuelCell/FuelCell.Android/bin/Release/net9.0-android/**/*-Signed.apk
+        path: FuelCell/FuelCell.Android/bin/Release/net10.0-android/**/*-Signed.apk
 
     - name: Build Android Binary for NeonShooter
       run: dotnet build NeonShooter/NeonShooter.Android/NeonShooter.Android.csproj -c Release
@@ -290,7 +290,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Android-NeonShooter
-        path: NeonShooter/NeonShooter.Android/bin/Release/net9.0-android/**/*-Signed.apk
+        path: NeonShooter/NeonShooter.Android/bin/Release/net10.0-android/**/*-Signed.apk
 
     - name: Build Android Binary for Platformer2D
       run: dotnet build Platformer2D/Android/Platformer2D.csproj -c Release
@@ -299,7 +299,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Android-Platformer2D
-        path: Platformer2D/Android/bin/Release/net9.0-android/**/*-Signed.apk
+        path: Platformer2D/Android/bin/Release/net10.0-android/**/*-Signed.apk
 
     - name: Build Android Binary for DungeonSlime
       run: dotnet build Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Android/DungeonSlime.csproj -c Release
@@ -308,7 +308,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Android-DungeonSlime
-        path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Android/bin/Release/net9.0-android/**/*-Signed.apk
+        path: Tutorials/learn-monogame-2d/src/27-Conclusion/DungeonSlime/Platforms/Android/bin/Release/net10.0-android/**/*-Signed.apk
 
     - name: Build ShipGame Content Processor in Release mode
       run: dotnet build ShipGame/ShipGame.Dependencies/NormalMappingModelProcessor/NormalMappingModelProcessor.csproj --configuration Release
@@ -320,7 +320,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: Android-ShipGame
-        path: ShipGame/ShipGame.Android/bin/Release/net9.0-android/**/*-Signed.apk
+        path: ShipGame/ShipGame.Android/bin/Release/net10.0-android/**/*-Signed.apk
 
   deploy:
       name: Deploy
