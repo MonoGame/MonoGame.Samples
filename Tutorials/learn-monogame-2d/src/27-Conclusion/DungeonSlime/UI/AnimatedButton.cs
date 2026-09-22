@@ -15,7 +15,7 @@ namespace DungeonSlime.UI;
 /// A custom button implementation that inherits from Gum's Button class to provide
 /// animated visual feedback when focused.
 /// </summary>
-internal class AnimatedButton : Button
+public class AnimatedButton : Button
 {
     /// <summary>
     /// Creates a new AnimatedButton instance using graphics from the specified texture atlas.
