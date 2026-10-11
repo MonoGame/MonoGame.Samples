@@ -1,0 +1,28 @@
+<Project>
+  <Target Name="BuildContent" BeforeTargets="BeforeCompile">
+    <PropertyGroup>
+      <ContentOutput>$(ProjectDir)$(OutputPath)</ContentOutput>
+      <ContentTemp>$(ProjectDir)$(IntermediateOutputPath)</ContentTemp>
+      <ContentArgs>build -p $(MonoGamePlatform) -s Content/Assets -o $(ContentOutput) -i $(ContentTemp)</ContentArgs>
+      <ContentCommand>$(MSBuildThisFileDirectory)bin\Debug\Content</ContentCommand>
+    </PropertyGroup>
+    <MSBuild Projects="$(MSBuildThisFileDirectory)Content.csproj" Targets="Build" RemoveProperties="Configuration;TargetFramework;RuntimeIdentifier;RuntimeIdentifiers" />
+    <Exec Command="$(ContentCommand) $(ContentArgs)" WorkingDirectory="$(MSBuildThisFileDirectory)..\" CustomErrorRegularExpression="\[E\] .+" CustomWarningRegularExpression="\[W\] .+" />
+   </Target>
+  <Target Name="AddGeneratedContentAssets"
+    AfterTargets="BuildContent">
+    <ItemGroup>
+      <GeneratedAsset Include="$(ProjectDir)$(OutputPath)Content\**\*" />
+
+      <AndroidAsset Include="@(GeneratedAsset)"
+        Condition="'$(MonoGamePlatform)' == 'Android'">
+        <Link>Content\%(GeneratedAsset.RecursiveDir)%(GeneratedAsset.Filename)%(GeneratedAsset.Extension)</Link>
+      </AndroidAsset>
+
+      <BundledResource Include="@(GeneratedAsset)"
+        Condition="'$(MonoGamePlatform)' == 'MacOSX' Or '$(MonoGamePlatform)' == 'iOS'">
+        <Link>Content\%(GeneratedAsset.RecursiveDir)%(GeneratedAsset.Filename)%(GeneratedAsset.Extension)</Link>
+      </BundledResource>
+    </ItemGroup>
+  </Target>
+</Project>

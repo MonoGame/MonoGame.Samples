@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Platforms/">
+    <Project Path="NeonShooter.Android/NeonShooter.Android.csproj" />
+    <Project Path="NeonShooter.DesktopGL/NeonShooter.DesktopGL.csproj" />
+    <Project Path="NeonShooter.DesktopVK/NeonShooter.DesktopVK.csproj" />
+    <Project Path="NeonShooter.iOS/NeonShooter.iOS.csproj" />
+    <Project Path="NeonShooter.WindowsDX/NeonShooter.WindowsDX.csproj" />
+    <Project Path="NeonShooter.WindowsDX12/NeonShooter.WindowsDX12.csproj" />
+  </Folder>
+  <Project Path="NeonShooter.Core/NeonShooter.Core.csproj" />
+</Solution>

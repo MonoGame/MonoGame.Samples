@@ -9,28 +9,19 @@
 // C.Humphrey 2023-02-19                                            //
 //                                                                  //
 //////////////////////////////////////////////////////////////////////
-#if OPENGL
-	#define SV_POSITION POSITION
-	#define VS_SHADERMODEL vs_3_0
-	#define PS_SHADERMODEL ps_3_0
-#else
-	#define VS_SHADERMODEL vs_4_0_level_9_1
-	#define PS_SHADERMODEL ps_4_0_level_9_1
-#endif
 
+#include "Macros.hlsl"
+
+BEGIN_CONSTANTS
 float4x4 g_WorldViewProj;
-
-texture g_ColorMap:TEXUNIT0;
-
 float4 g_Color;
 float2 g_PixelSize;
+END_CONSTANTS
 
 #define BLUR_RANGE 5
 
-sampler ColorSampler = 
-sampler_state
+DECLARE_TEXTURE(ScreenTexture, 0)
 {
-    Texture = <g_ColorMap>;
     MipFilter = NONE;
     MinFilter = LINEAR;
     MagFilter = LINEAR;
@@ -56,24 +47,24 @@ VS_OUTPUT MainVS(
     return Output;
 }
 
-float4 ColorPS() : COLOR
+float4 ColorPS() : SV_TARGET0
 {
     return g_Color;
 }
 
-float4 ColorTexturePS(VS_OUTPUT input): COLOR
+float4 ColorTexturePS(VS_OUTPUT input): SV_TARGET0
 {
-    return g_Color * tex2D(ColorSampler,input.TexCoord + g_PixelSize);
+    return g_Color * SAMPLE_TEXTURE(ScreenTexture, input.TexCoord + g_PixelSize);
 }
 
-float4 BlurHorizontalPS(VS_OUTPUT input) : COLOR
+float4 BlurHorizontalPS(VS_OUTPUT input) : SV_TARGET0
 {
     float4 color = float4(0,0,0,0);
     for( float i=-BLUR_RANGE;i<=BLUR_RANGE;i++ )
     {
         float2 tc = input.TexCoord + float2(i*g_PixelSize.x, 0);
         
-        float4 c = tex2D(ColorSampler, tc);
+        float4 c = SAMPLE_TEXTURE(ScreenTexture, tc);
         
         c.xyz *= c.w;
         
@@ -82,13 +73,13 @@ float4 BlurHorizontalPS(VS_OUTPUT input) : COLOR
     return color/(2*BLUR_RANGE+1);
 }
 
-float4 BlurHorizontalSplitPS(VS_OUTPUT input) : COLOR
+float4 BlurHorizontalSplitPS(VS_OUTPUT input) : SV_TARGET0
 {
     float4 color = float4(0,0,0,0);
     for( float i=-BLUR_RANGE;i<=BLUR_RANGE;i++ )
     {
         float2 tc = input.TexCoord + float2(i*g_PixelSize.x, 0);
-        float4 c = tex2D(ColorSampler, tc);
+        float4 c = SAMPLE_TEXTURE(ScreenTexture, tc);
         
         c.xyz *= c.w;
         c.w = 1;
@@ -107,13 +98,13 @@ float4 BlurHorizontalSplitPS(VS_OUTPUT input) : COLOR
     return color/color.w;
 }
 
-float4 BlurVerticalPS(VS_OUTPUT input) : COLOR
+float4 BlurVerticalPS(VS_OUTPUT input) : SV_TARGET0
 {
     float4 color = float4(0,0,0,0);
     for( float i=-BLUR_RANGE;i<=BLUR_RANGE;i++ )
     {
         float2 tc = input.TexCoord + float2(0, i*g_PixelSize.y);
-        float4 c = tex2D(ColorSampler, tc);
+        float4 c = SAMPLE_TEXTURE(ScreenTexture, tc);
         color += c;
     }
     return color/(2*BLUR_RANGE+1);
@@ -160,6 +151,6 @@ technique BlurHorizontalSplit
     pass P0
     {          
         VertexShader = compile VS_SHADERMODEL MainVS( );
-        PixelShader  = compile PS_SHADERMODEL BlurVerticalPS( );
+        PixelShader  = compile PS_SHADERMODEL BlurHorizontalSplitPS( );
     }
 }

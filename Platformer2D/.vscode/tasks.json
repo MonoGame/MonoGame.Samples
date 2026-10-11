@@ -11,6 +11,11 @@
 			"type": "shell",
 			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Platformer2D.DesktopGL/Platformer2D.DesktopGL.csproj"
 		},
+		{
+			"label": "Debug DesktopVK Build",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Platformer2D.DesktopVK/Platformer2D.DesktopVK.csproj"
+		},
         {
 			"label": "Debug iOS Build",
 			"type": "shell",
@@ -20,6 +25,11 @@
 			"label": "Debug WindowsDX Build",
 			"type": "shell",
 			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Platformer2D.WindowsDX/Platformer2D.WindowsDX.csproj"
+		},
+        {
+			"label": "Debug WindowsDX12 Build",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/Platformer2D.WindowsDX12/Platformer2D.WindowsDX12.csproj"
 		},
 	]
 }

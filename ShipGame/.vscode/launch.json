@@ -17,21 +17,35 @@
             "type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "Debug DesktopGL Build",
-			"program": "${workspaceFolder}/ShipGame.DesktopGL/bin/Debug/net9.0/ShipGame.DesktopGL",
+			"program": "${workspaceFolder}/ShipGame.DesktopGL/bin/Debug/net10.0/ShipGame.DesktopGL",
+        },
+        {
+            "name": "DesktopVK Debug",
+            "type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "Debug DesktopVK Build",
+			"program": "${workspaceFolder}/ShipGame.DesktopVK/bin/Debug/net10.0/ShipGame.DesktopVK",
         },
         {
             "name": "iOS Debug",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "Debug iOS Build",
-            "program": "${workspaceFolder}/ShipGame.iOs/bin/Debug/net9.0-ios/ShipGame.iOS.dll",
+            "program": "${workspaceFolder}/ShipGame.iOs/bin/Debug/net10.0-ios/ShipGame.iOS.dll",
         },
         {
             "name": "WindowsDX Debug",
             "type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "Debug WindowsDX Build",
-			"program": "${workspaceFolder}/ShipGame.WindowsDX/bin/Debug/net9.0-windows/ShipGame.WindowsDX.exe",
+			"program": "${workspaceFolder}/ShipGame.WindowsDX/bin/Debug/net10.0-windows/ShipGame.WindowsDX.exe",
+        },
+        {
+            "name": "WindowsDX12 Debug",
+            "type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "Debug WindowsDX12 Build",
+			"program": "${workspaceFolder}/ShipGame.WindowsDX12/bin/Debug/net10.0-windows/ShipGame.WindowsDX12.exe",
         }
     ]
 }

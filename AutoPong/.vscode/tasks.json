@@ -11,6 +11,11 @@
 			"type": "shell",
 			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/AutoPong.DesktopGL/AutoPong.DesktopGL.csproj"
 		},
+		{
+			"label": "Debug DesktopVK Build",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/AutoPong.DesktopVK/AutoPong.DesktopVK.csproj"
+		},
         {
 			"label": "Debug iOS Build",
 			"type": "shell",
@@ -20,6 +25,11 @@
 			"label": "Debug WindowsDX Build",
 			"type": "shell",
 			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/AutoPong.WindowsDX/AutoPong.WindowsDX.csproj"
+		},
+        {
+			"label": "Debug WindowsDX12 Build",
+			"type": "shell",
+			"command": "dotnet build -p:Configuration=Debug ${workspaceFolder}/AutoPong.WindowsDX12/AutoPong.WindowsDX12.csproj"
 		},
 	]
 }
