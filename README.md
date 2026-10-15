@@ -1,4 +1,4 @@
-# MonoGame 3.8.4 Samples
+# MonoGame 3.8.5 Samples
 
 <p align="center">
 <br/>
@@ -23,16 +23,15 @@ A number of simple MonoGame samples for all the supported platforms:
 | A short [sample project](AutoPong/README.md) showing you how to make the classic game of pong, with generated soundfx, in 300 lines of code. | 3D Ship Game (Descent clone) sample, pulled from the XNA archives and updated for MonoGame |
 |||
 
-## New multi-platform sample template and getting started guide
+## Tutorial projects
 
-A new template sample is also available which guides through the building of a MonoGame project from start to finish.
+The samples repository is also home to the source for each of the tutorial series:
 
-|[FuelCell Sample](FuelCell/README.md) | [New 2D learn sample](Tutorials/learn-monogame-2d/README.md) |
-|-|-|
-|Supported on all platforms | Desktop / Console Platforms |
-|[![Fuel Sample](Images/FuelCell-Sample.gif)](FuelCell/README.md) | ![MonoGame Sample](Images/DungeonSlime.gif) |
-|A [full featured 3D project](FuelCell/README.md) with full documentation from start to finish for building a 3D style game. | The source for the [complete guide to building 2D games with MonoGame](https://docs.monogame.net/articles/tutorials/building_2d_games) tutorial. |
-|||
+|Tutorial|Documentation|Source|
+|-|-|-|
+|Building 2D Games|[Link](https://docs.monogame.net/articles/tutorials/building_2d_games/index.html)|[Link](Tutorials/learn-monogame-2d/README.md)|
+|Advanced 2D Shaders|[Link](https://docs.monogame.net/articles/tutorials/advanced/2d_shaders/index.html)|[Link](Tutorials/2dShaders/README.md)|
+|FuelCell 3D|[Link](FuelCell/README.md)|[Link](FuelCell/README.md)|
 
 ## Building the samples
 
