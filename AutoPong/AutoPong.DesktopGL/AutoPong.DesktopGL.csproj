@@ -22,6 +22,6 @@
     <ProjectReference Include="..\AutoPong.Core\AutoPong.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.5-preview.*" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.5" />
   </ItemGroup>
 </Project>
