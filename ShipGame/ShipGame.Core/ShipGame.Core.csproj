@@ -10,6 +10,6 @@
   </ItemGroup>  
   <ItemGroup>
     <ProjectReference Include="..\ShipGame.Dependencies\BoxCollider\BoxCollider.csproj" />
-    <ProjectReference Include="..\ShipGame.Dependencies\NormalMappingModelProcessor\NormalMappingModelProcessor.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\ShipGame.Dependencies\NormalMappingModelProcessor\NormalMappingModelProcessor.csproj" ReferenceOutputAssembly="false" SetConfiguration="Configuration=Release" />
   </ItemGroup>
 </Project>
