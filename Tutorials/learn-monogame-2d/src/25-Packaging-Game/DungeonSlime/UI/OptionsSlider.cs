@@ -43,7 +43,7 @@ public class OptionsSlider : Slider
         TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
 
         // Create the background panel that contains everything
-        NineSliceRuntime background = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime background = new Gum.GueDeriving.NineSliceRuntime();
         background.Texture = atlas.Texture;
         background.TextureAddress = TextureAddress.Custom;
         background.TextureHeight = backgroundRegion.Height;
@@ -75,7 +75,7 @@ public class OptionsSlider : Slider
         TextureRegion offBackgroundRegion = atlas.GetRegion("slider-off-background");
 
         // Create the "OFF" side of the slider (left end)
-        NineSliceRuntime offBackground = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime offBackground = new Gum.GueDeriving.NineSliceRuntime();
         offBackground.Dock(Gum.Wireframe.Dock.Left);
         offBackground.Texture = atlas.Texture;
         offBackground.TextureAddress = TextureAddress.Custom;
@@ -90,7 +90,7 @@ public class OptionsSlider : Slider
         TextureRegion middleBackgroundRegion = atlas.GetRegion("slider-middle-background");
 
         // Create the middle track portion of the slider
-        NineSliceRuntime middleBackground = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime middleBackground = new Gum.GueDeriving.NineSliceRuntime();
         middleBackground.Texture = middleBackgroundRegion.Texture;
         middleBackground.TextureAddress = TextureAddress.Custom;
         middleBackground.TextureHeight = middleBackgroundRegion.Height;
@@ -106,7 +106,7 @@ public class OptionsSlider : Slider
         TextureRegion maxBackgroundRegion = atlas.GetRegion("slider-max-background");
 
         // Create the "MAX" side of the slider (right end)
-        NineSliceRuntime maxBackground = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime maxBackground = new Gum.GueDeriving.NineSliceRuntime();
         maxBackground.Texture = maxBackgroundRegion.Texture;
         maxBackground.TextureAddress = TextureAddress.Custom;
         maxBackground.TextureHeight = maxBackgroundRegion.Height;

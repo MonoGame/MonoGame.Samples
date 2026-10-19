@@ -114,7 +114,7 @@ public class GameSceneUI : Gum.GueDeriving.ContainerRuntime
 
         TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
 
-        NineSliceRuntime background = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime background = new Gum.GueDeriving.NineSliceRuntime();
         background.Dock(Gum.Wireframe.Dock.Fill);
         background.Texture = backgroundRegion.Texture;
         background.TextureAddress = TextureAddress.Custom;
@@ -170,7 +170,7 @@ public class GameSceneUI : Gum.GueDeriving.ContainerRuntime
 
         TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
 
-        NineSliceRuntime background = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime background = new Gum.GueDeriving.NineSliceRuntime();
         background.Dock(Gum.Wireframe.Dock.Fill);
         background.Texture = backgroundRegion.Texture;
         background.TextureAddress = TextureAddress.Custom;

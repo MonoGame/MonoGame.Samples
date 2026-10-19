@@ -36,7 +36,7 @@ public class AnimatedButton : Button
 
         // Get a reference to the nine-slice background to display the button graphics
         // A nine-slice allows the button to stretch while preserving corner appearance
-        NineSliceRuntime background = buttonVisual.Background;
+        Gum.GueDeriving.NineSliceRuntime background = buttonVisual.Background;
         background.Texture = atlas.Texture;
         background.TextureAddress = TextureAddress.Custom;
         background.Color = Microsoft.Xna.Framework.Color.White;

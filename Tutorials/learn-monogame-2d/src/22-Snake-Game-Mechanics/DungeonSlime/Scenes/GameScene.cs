@@ -159,7 +159,7 @@ public class GameScene : Scene
 
         TextureRegion backgroundRegion = _atlas.GetRegion("panel-background");
 
-        NineSliceRuntime background = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime background = new Gum.GueDeriving.NineSliceRuntime();
         background.Dock(Dock.Fill);
         background.Texture = backgroundRegion.Texture;
         background.TextureAddress = TextureAddress.Custom;
