@@ -169,7 +169,7 @@ public class GameScene : Scene
         background.TextureWidth = backgroundRegion.Width;
         _pausePanel.AddChild(background);
 
-        TextRuntime textInstance = new TextRuntime();
+        Gum.GueDeriving.TextRuntime textInstance = new Gum.GueDeriving.TextRuntime();
         textInstance.Text = "PAUSED";
         textInstance.CustomFontFile = @"fonts/04b_30.fnt";
         textInstance.UseCustomFont = true;
@@ -216,7 +216,7 @@ public class GameScene : Scene
 
     private void InitializeUI()
     {
-        GumService.Default.Root.Children.Clear();
+        Gum.GumService.Default.Root.Children.Clear();
 
         CreatePausePanel();
     }
@@ -224,7 +224,7 @@ public class GameScene : Scene
     public override void Update(GameTime gameTime)
     {
         // Ensure the UI is always updated
-        GumService.Default.Update(gameTime);
+        Gum.GumService.Default.Update(gameTime);
 
         // If the game is paused, do not continue
         if (_pausePanel.IsVisible)
@@ -524,6 +524,6 @@ public class GameScene : Scene
         Core.SpriteBatch.End();
 
         // Draw the Gum UI
-        GumService.Default.Draw();
+        Gum.GumService.Default.Draw();
     }
 }

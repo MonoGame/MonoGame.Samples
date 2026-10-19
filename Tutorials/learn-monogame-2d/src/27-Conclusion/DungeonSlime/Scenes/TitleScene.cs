@@ -182,7 +182,7 @@ public class TitleScene : Scene
         _optionsPanel.IsVisible = false;
         _optionsPanel.AddToRoot();
 
-        TextRuntime optionsText = new TextRuntime();
+        Gum.GueDeriving.TextRuntime optionsText = new Gum.GueDeriving.TextRuntime();
         optionsText.X = 10;
         optionsText.Y = 10;
         optionsText.Text = "OPTIONS";
@@ -286,10 +286,10 @@ public class TitleScene : Scene
     {
         // Clear out any previous UI in case we came here from
         // a different screen:
-        GumService.Default.Root.Children.Clear();
+        Gum.GumService.Default.Root.Children.Clear();
 
-        GumService.Default.CanvasWidth = VirtualWidth / 4f;
-        GumService.Default.CanvasHeight = VirtualHeight / 4f;
+        Gum.GumService.Default.CanvasWidth = VirtualWidth / 4f;
+        Gum.GumService.Default.CanvasHeight = VirtualHeight / 4f;
 
         CreateTitlePanel();
         CreateOptionsPanel();
@@ -312,18 +312,18 @@ public class TitleScene : Scene
 
         _viewport = CalculateViewport();
 
-        GumService.Default.Renderer.Camera.ClientWidth = _viewport.Width / 4;
-        GumService.Default.Renderer.Camera.ClientHeight = _viewport.Height / 4;
+        Gum.GumService.Default.Renderer.Camera.ClientWidth = _viewport.Width / 4;
+        Gum.GumService.Default.Renderer.Camera.ClientHeight = _viewport.Height / 4;
 
         float zoom = Math.Max(
-            _viewport.Height / GumService.Default.CanvasHeight,
-            _viewport.Width / GumService.Default.CanvasWidth);
-        GumService.Default.Renderer.Camera.Zoom = zoom;
+            _viewport.Height / Gum.GumService.Default.CanvasHeight,
+            _viewport.Width / Gum.GumService.Default.CanvasWidth);
+        Gum.GumService.Default.Renderer.Camera.Zoom = zoom;
 
-        GumService.Default.Cursor.TransformMatrix =
+        Gum.GumService.Default.Cursor.TransformMatrix =
             Matrix.CreateTranslation(_viewport.X, _viewport.Y, 0);
 
-        GumService.Default.Update(gameTime);
+        Gum.GumService.Default.Update(gameTime);
     }
 
     public override void Draw(GameTime gameTime)
@@ -365,7 +365,7 @@ public class TitleScene : Scene
             Core.SpriteBatch.End();
         }
 
-        GumService.Default.Draw();
+        Gum.GumService.Default.Draw();
     }
 
     private Rectangle CalculateViewport()

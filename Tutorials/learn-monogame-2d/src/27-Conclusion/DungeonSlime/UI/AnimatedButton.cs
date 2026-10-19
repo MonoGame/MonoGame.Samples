@@ -42,7 +42,7 @@ public class AnimatedButton : Button
         background.Color = Microsoft.Xna.Framework.Color.White;
         // texture coordinates for the background are set by AnimationChains below
 
-        TextRuntime textInstance = buttonVisual.TextInstance;
+        Gum.GueDeriving.TextRuntime textInstance = buttonVisual.TextInstance;
         textInstance.Text = "START";
         textInstance.Blue = 130;
         textInstance.Green = 86;

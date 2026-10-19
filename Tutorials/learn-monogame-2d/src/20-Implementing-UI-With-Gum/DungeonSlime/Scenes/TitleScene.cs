@@ -169,7 +169,7 @@ public class TitleScene : Scene
         _optionsPanel.IsVisible = false;
         _optionsPanel.AddToRoot();
 
-        var optionsText = new TextRuntime();
+        var optionsText = new Gum.GueDeriving.TextRuntime();
         optionsText.X = 10;
         optionsText.Y = 10;
         optionsText.Text = "OPTIONS";
@@ -266,7 +266,7 @@ public class TitleScene : Scene
     {
         // Clear out any previous UI in case we came here from
         // a different screen:
-        GumService.Default.Root.Children.Clear();
+        Gum.GumService.Default.Root.Children.Clear();
 
         CreateTitlePanel();
         CreateOptionsPanel();
@@ -285,7 +285,7 @@ public class TitleScene : Scene
         _backgroundOffset.X %= _backgroundPattern.Width;
         _backgroundOffset.Y %= _backgroundPattern.Height;
 
-        GumService.Default.Update(gameTime);
+        Gum.GumService.Default.Update(gameTime);
     }
 
     public override void Draw(GameTime gameTime)
@@ -323,6 +323,6 @@ public class TitleScene : Scene
             Core.SpriteBatch.End();
         }
 
-        GumService.Default.Draw();
+        Gum.GumService.Default.Draw();
     }
 }

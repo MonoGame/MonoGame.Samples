@@ -151,12 +151,12 @@ public class GameScene : Scene
         _pausePanel.IsVisible = false;
         _pausePanel.AddToRoot();
 
-        var background = new ColoredRectangleRuntime();
+        var background = new Gum.GueDeriving.ColoredRectangleRuntime();
         background.Dock(Dock.Fill);
         background.Color = Color.DarkBlue;
         _pausePanel.AddChild(background);
 
-        var textInstance = new TextRuntime();
+        var textInstance = new Gum.GueDeriving.TextRuntime();
         textInstance.Text = "PAUSED";
         textInstance.X = 10f;
         textInstance.Y = 10f;
@@ -202,7 +202,7 @@ public class GameScene : Scene
 
     private void InitializeUI()
     {
-        GumService.Default.Root.Children.Clear();
+        Gum.GumService.Default.Root.Children.Clear();
 
         CreatePausePanel();
     }
@@ -210,7 +210,7 @@ public class GameScene : Scene
     public override void Update(GameTime gameTime)
     {
         // Ensure the UI is always updated
-        GumService.Default.Update(gameTime);
+        Gum.GumService.Default.Update(gameTime);
 
         // If the game is paused, do not continue
         if (_pausePanel.IsVisible)
@@ -510,6 +510,6 @@ public class GameScene : Scene
         Core.SpriteBatch.End();
 
         // Draw the Gum UI
-        GumService.Default.Draw();
+        Gum.GumService.Default.Draw();
     }
 }

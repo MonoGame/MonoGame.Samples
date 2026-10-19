@@ -73,7 +73,7 @@ public class GameScene : Scene
 
         // Create any UI elements from the root element created in previous
         // scenes
-        GumService.Default.Root.Children.Clear();
+        Gum.GumService.Default.Root.Children.Clear();
 
         _viewport = CalculateViewport();
 
@@ -88,7 +88,7 @@ public class GameScene : Scene
     {
         // Clear out any previous UI element incase we came here
         // from a different scene.
-        GumService.Default.Root.Children.Clear();
+        Gum.GumService.Default.Root.Children.Clear();
 
         // Create the game scene ui instance.
         _ui = new GameSceneUI();
@@ -176,15 +176,15 @@ public class GameScene : Scene
     {
         _viewport = CalculateViewport();
 
-        GumService.Default.Renderer.Camera.ClientWidth = _viewport.Width / 4;
-        GumService.Default.Renderer.Camera.ClientHeight = _viewport.Height / 4;
+        Gum.GumService.Default.Renderer.Camera.ClientWidth = _viewport.Width / 4;
+        Gum.GumService.Default.Renderer.Camera.ClientHeight = _viewport.Height / 4;
 
         float zoom = Math.Max(
-            _viewport.Height / GumService.Default.CanvasHeight,
-            _viewport.Width / GumService.Default.CanvasWidth);
-        GumService.Default.Renderer.Camera.Zoom = zoom;
+            _viewport.Height / Gum.GumService.Default.CanvasHeight,
+            _viewport.Width / Gum.GumService.Default.CanvasWidth);
+        Gum.GumService.Default.Renderer.Camera.Zoom = zoom;
 
-        GumService.Default.Cursor.TransformMatrix =
+        Gum.GumService.Default.Cursor.TransformMatrix =
             Matrix.CreateTranslation(_viewport.X, _viewport.Y, 0);
 
         _ui.Update(gameTime);
