@@ -8,8 +8,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationManifest>..\Desktop\app.manifest</ApplicationManifest>
+    <ApplicationIcon>..\Desktop\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Gum.MonoGame" Version="2026.10.1.1" />
