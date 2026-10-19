@@ -28,6 +28,10 @@
 		<ProjectReference Include="..\MonoGameLibrary\MonoGameLibrary.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <MonoGameContentReference Include="..\..\Content\Content.mgcb" />
+    </ItemGroup>
+
     <Target Name="CompileAssets" BeforeTargets="_CompileAppManifest" Condition="$([MSBuild]::IsOSPlatform('OSX'))">
         <MakeDir Directories="$(OutputPath)Assets" />
         <Exec Command="xcrun actool --output-format human-readable-text --notices --warnings --platform iphoneos --minimum-deployment-target 12.2 --app-icon AppIcon --output-partial-info-plist partial-info.plist --compile $(OutputPath)Assets Assets.xcassets " />
