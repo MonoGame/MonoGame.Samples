@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
@@ -13,6 +14,8 @@ public static class GameController
 {
     private static KeyboardInfo s_keyboard => Core.Input.Keyboard;
     private static GamePadInfo s_gamePad => Core.Input.GamePads[(int)PlayerIndex.One];
+    private static TouchInfo s_touch => Core.Input.Touch;
+    private const float TOUCH_MOVEMENT_THRESHOLD = 20.0f;
 
     /// <summary>
     /// Returns true if the player has triggered the "move up" action.
@@ -22,7 +25,8 @@ public static class GameController
         return s_keyboard.WasKeyJustPressed(Keys.Up) ||
                s_keyboard.WasKeyJustPressed(Keys.W) ||
                s_gamePad.WasButtonJustPressed(Buttons.DPadUp) ||
-               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickUp);
+               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickUp) ||
+               IsTouchSwipeUp();
     }
 
     /// <summary>
@@ -33,7 +37,8 @@ public static class GameController
         return s_keyboard.WasKeyJustPressed(Keys.Down) ||
                s_keyboard.WasKeyJustPressed(Keys.S) ||
                s_gamePad.WasButtonJustPressed(Buttons.DPadDown) ||
-               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickDown);
+               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickDown) ||
+               IsTouchSwipeDown();
     }
 
     /// <summary>
@@ -44,7 +49,8 @@ public static class GameController
         return s_keyboard.WasKeyJustPressed(Keys.Left) ||
                s_keyboard.WasKeyJustPressed(Keys.A) ||
                s_gamePad.WasButtonJustPressed(Buttons.DPadLeft) ||
-               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickLeft);
+               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickLeft) ||
+               IsTouchSwipeLeft();
     }
 
     /// <summary>
@@ -55,7 +61,8 @@ public static class GameController
         return s_keyboard.WasKeyJustPressed(Keys.Right) ||
                s_keyboard.WasKeyJustPressed(Keys.D) ||
                s_gamePad.WasButtonJustPressed(Buttons.DPadRight) ||
-               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickRight);
+               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickRight) ||
+               IsTouchSwipeRight();
     }
 
     /// <summary>
@@ -74,6 +81,51 @@ public static class GameController
     public static bool Action()
     {
         return s_keyboard.WasKeyJustPressed(Keys.Enter) ||
-               s_gamePad.WasButtonJustPressed(Buttons.A);
+               s_gamePad.WasButtonJustPressed(Buttons.A) ||
+               s_touch.WasTouchJustPressed();
+    }
+
+    private static bool IsTouchSwipeUp()
+    {
+        if (!s_touch.HasTouches)
+        {
+            return false;
+        }
+
+        var delta = s_touch.GetPrimaryTouchDelta();
+        return delta.Y < -TOUCH_MOVEMENT_THRESHOLD && Math.Abs(delta.X) < Math.Abs(delta.Y);
+    }
+
+    private static bool IsTouchSwipeDown()
+    {
+        if (!s_touch.HasTouches)
+        {
+            return false;
+        }
+
+        var delta = s_touch.GetPrimaryTouchDelta();
+        return delta.Y > TOUCH_MOVEMENT_THRESHOLD && Math.Abs(delta.X) < Math.Abs(delta.Y);
+    }
+
+    private static bool IsTouchSwipeLeft()
+    {
+        if (!s_touch.HasTouches)
+        {
+            return false;
+        }
+
+        var delta = s_touch.GetPrimaryTouchDelta();
+        return delta.X < -TOUCH_MOVEMENT_THRESHOLD && Math.Abs(delta.Y) < Math.Abs(delta.X);
+    }
+
+    private static bool IsTouchSwipeRight()
+    {
+        if (!s_touch.HasTouches)
+        {
+            return false;
+        }
+
+        var delta = s_touch.GetPrimaryTouchDelta();
+        return delta.X > TOUCH_MOVEMENT_THRESHOLD && Math.Abs(delta.Y) < Math.Abs(delta.X);
     }
 }

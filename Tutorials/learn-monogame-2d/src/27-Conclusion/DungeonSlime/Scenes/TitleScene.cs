@@ -3,7 +3,6 @@ using DungeonSlime.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGameGum;
 using Gum.Forms.Controls;
 using MonoGameGum.GueDeriving;
@@ -18,6 +17,8 @@ public class TitleScene : Scene
     private const string DUNGEON_TEXT = "Dungeon";
     private const string SLIME_TEXT = "Slime";
     private const string PRESS_ENTER_TEXT = "Press Enter To Start";
+    private const int VirtualWidth = 1280;
+    private const int VirtualHeight = 720;
 
     // The font to use to render normal text.
     private SpriteFont _font;
@@ -70,6 +71,8 @@ public class TitleScene : Scene
     // are created.
     private TextureAtlas _atlas;
 
+    private Rectangle _viewport;
+
     public override void Initialize()
     {
         // LoadContent is called during base.Initialize().
@@ -99,7 +102,7 @@ public class TitleScene : Scene
 
         // Set the background pattern destination rectangle to fill the entire
         // screen background
-        _backgroundDestination = Core.GraphicsDevice.PresentationParameters.Bounds;
+        _backgroundDestination = new Rectangle(0, 0, VirtualWidth, VirtualHeight);
 
         InitializeUI();
     }
@@ -285,8 +288,13 @@ public class TitleScene : Scene
         // a different screen:
         GumService.Default.Root.Children.Clear();
 
+        GumService.Default.CanvasWidth = VirtualWidth / 4f;
+        GumService.Default.CanvasHeight = VirtualHeight / 4f;
+
         CreateTitlePanel();
         CreateOptionsPanel();
+
+        _viewport = CalculateViewport();
     }
 
     public override void Update(GameTime gameTime)
@@ -302,6 +310,19 @@ public class TitleScene : Scene
         _backgroundOffset.X %= _backgroundPattern.Width;
         _backgroundOffset.Y %= _backgroundPattern.Height;
 
+        _viewport = CalculateViewport();
+
+        GumService.Default.Renderer.Camera.ClientWidth = _viewport.Width / 4;
+        GumService.Default.Renderer.Camera.ClientHeight = _viewport.Height / 4;
+
+        float zoom = Math.Max(
+            _viewport.Height / GumService.Default.CanvasHeight,
+            _viewport.Width / GumService.Default.CanvasWidth);
+        GumService.Default.Renderer.Camera.Zoom = zoom;
+
+        GumService.Default.Cursor.TransformMatrix =
+            Matrix.CreateTranslation(_viewport.X, _viewport.Y, 0);
+
         GumService.Default.Update(gameTime);
     }
 
@@ -310,14 +331,18 @@ public class TitleScene : Scene
         Core.GraphicsDevice.Clear(new Color(32, 40, 78, 255));
 
         // Draw the background pattern first using the PointWrap sampler state.
-        Core.SpriteBatch.Begin(samplerState: SamplerState.PointWrap);
+        Core.SpriteBatch.Begin(
+            samplerState: SamplerState.PointWrap,
+            transformMatrix: CreateViewportScaleMatrix());
         Core.SpriteBatch.Draw(_backgroundPattern, _backgroundDestination, new Rectangle(_backgroundOffset.ToPoint(), _backgroundDestination.Size), Color.White * 0.5f);
         Core.SpriteBatch.End();
 
         if (_titleScreenButtonsPanel.IsVisible)
         {
             // Begin the sprite batch to prepare for rendering.
-            Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            Core.SpriteBatch.Begin(
+                samplerState: SamplerState.PointClamp,
+                transformMatrix: CreateViewportScaleMatrix());
 
             // The color to use for the drop shadow text.
             Color dropShadowColor = Color.Black * 0.5f;
@@ -341,5 +366,34 @@ public class TitleScene : Scene
         }
 
         GumService.Default.Draw();
+    }
+
+    private Rectangle CalculateViewport()
+    {
+        int backBufferWidth = Core.GraphicsDevice.PresentationParameters.BackBufferWidth;
+        int backBufferHeight = Core.GraphicsDevice.PresentationParameters.BackBufferHeight;
+
+        float targetAspectRatio = VirtualWidth / (float)VirtualHeight;
+        float currentAspectRatio = backBufferWidth / (float)backBufferHeight;
+
+        if (currentAspectRatio > targetAspectRatio)
+        {
+            int viewportWidth = (int)(backBufferHeight * targetAspectRatio);
+            int x = (backBufferWidth - viewportWidth) / 2;
+            return new Rectangle(x, 0, viewportWidth, backBufferHeight);
+        }
+
+        int viewportHeight = (int)(backBufferWidth / targetAspectRatio);
+        int y = (backBufferHeight - viewportHeight) / 2;
+        return new Rectangle(0, y, backBufferWidth, viewportHeight);
+    }
+
+    private Matrix CreateViewportScaleMatrix()
+    {
+        float scaleX = _viewport.Width / (float)VirtualWidth;
+        float scaleY = _viewport.Height / (float)VirtualHeight;
+
+        return Matrix.CreateScale(scaleX, scaleY, 1.0f) *
+               Matrix.CreateTranslation(_viewport.X, _viewport.Y, 0);
     }
 }
