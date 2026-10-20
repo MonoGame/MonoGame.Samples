@@ -4,7 +4,7 @@ using Gum.DataTypes.Variables;
 using Gum.Forms.Controls;
 using Gum.Managers;
 using Microsoft.Xna.Framework;
-using MonoGameGum.GueDeriving;
+using Gum.GueDeriving;
 using MonoGameLibrary.Graphics;
 
 namespace DungeonSlime.UI;
