@@ -19,9 +19,7 @@ Ship Game is a 3D spaceship combat game set inside a complex tunnel system. Ship
 > This documentation assumes that you have a basic knowledge of programming concepts and the Visual C# environment.
 
 > [!IMPORTANT] 
-> In order to run the project, the `NormalMappingModelProcessor` needs to be built in `Release` mode at least once.  The [dependency path](./ShipGame.Core/Content/ShipGame.mgcb#L13) to the processor dll in the `.mgcb` file is (for the moment) fixed.
->
-> You can either build for `Release` or change the path to where a built version of the `NormalMappingModelProcessor` dll is located to run the project, else you will get "Processor" errors in the MGCB tool.
+> The content pipeline references the `NormalMappingModelProcessor` assembly from its `Release` output path. The core project now forces this processor dependency to build with `Release` configuration so DesktopGL builds can find it automatically.
 
 ## Features
 
@@ -73,9 +71,7 @@ Within each project, there are the following projects:
 * NormalMappingModelProcessor - A custom [content pipeline](https://monogame.net/articles/content_pipeline/why_content_pipeline.html) processor for the models in the Game.
 
 > [!IMPORTANT] 
-> In order to run the project, the `NormalMappingModelProcessor` needs to be built in `Release` mode at least once.  The [dependency path](./ShipGame.Core/Content/ShipGame.mgcb#L13) to the processor dll in the `.mgcb` file is (for the moment) fixed.
->
-> You can either build for `Release` or change the path to where a built version of the `NormalMappingModelProcessor` dll is located to run the project, else you will get "Processor" errors in the MGCB tool.
+> The content pipeline references the `NormalMappingModelProcessor` assembly from its `Release` output path. The core project now forces this processor dependency to build with `Release` configuration so DesktopGL builds can find it automatically.
 
 The code is split up this way in order to share the same central game code for all platforms.  Each platform initializes the `ShipGameGame` Game class in the core project to run the game.
 

@@ -64,7 +64,7 @@ public class GameScene : Scene
 
         // Create any UI elements from the root element created in previous
         // scenes
-        GumService.Default.Root.Children.Clear();
+        Gum.GumService.Default.Root.Children.Clear();
 
         // Initialize the user interface for the game scene.
         InitializeUI();
@@ -77,7 +77,7 @@ public class GameScene : Scene
     {
         // Clear out any previous UI element incase we came here
         // from a different scene.
-        GumService.Default.Root.Children.Clear();
+        Gum.GumService.Default.Root.Children.Clear();
 
         // Create the game scene ui instance.
         _ui = new GameSceneUI();

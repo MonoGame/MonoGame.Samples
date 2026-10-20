@@ -4,7 +4,7 @@ using Gum.DataTypes.Variables;
 using Gum.Managers;
 using Microsoft.Xna.Framework;
 using Gum.Forms.Controls;
-using MonoGameGum.GueDeriving;
+using Gum.GueDeriving;
 using MonoGameLibrary.Graphics;
 
 namespace DungeonSlime.UI;
@@ -15,10 +15,10 @@ namespace DungeonSlime.UI;
 public class OptionsSlider : Slider
 {
     // Reference to the text label that displays the slider's title
-    private TextRuntime _textInstance;
+    private Gum.GueDeriving.TextRuntime _textInstance;
 
     // Reference to the rectangle that visually represents the current value
-    private ColoredRectangleRuntime _fillRectangle;
+    private Gum.GueDeriving.ColoredRectangleRuntime _fillRectangle;
 
     /// <summary>
     /// Gets or sets the text label for this slider.
@@ -36,14 +36,14 @@ public class OptionsSlider : Slider
     public OptionsSlider(TextureAtlas atlas)
     {
         // Create the top-level container for all visual elements
-        ContainerRuntime topLevelContainer = new ContainerRuntime();
+        Gum.GueDeriving.ContainerRuntime topLevelContainer = new Gum.GueDeriving.ContainerRuntime();
         topLevelContainer.Height = 55f;
         topLevelContainer.Width = 264f;
 
         TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
 
         // Create the background panel that contains everything
-        NineSliceRuntime background = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime background = new Gum.GueDeriving.NineSliceRuntime();
         background.Texture = atlas.Texture;
         background.TextureAddress = TextureAddress.Custom;
         background.TextureHeight = backgroundRegion.Height;
@@ -54,7 +54,7 @@ public class OptionsSlider : Slider
         topLevelContainer.AddChild(background);
 
         // Create the title text element
-        _textInstance = new TextRuntime();
+        _textInstance = new Gum.GueDeriving.TextRuntime();
         _textInstance.CustomFontFile = @"fonts/04b_30.fnt";
         _textInstance.UseCustomFont = true;
         _textInstance.FontScale = 0.5f;
@@ -65,7 +65,7 @@ public class OptionsSlider : Slider
         topLevelContainer.AddChild(_textInstance);
 
         // Create the container for the slider track and decorative elements
-        ContainerRuntime innerContainer = new ContainerRuntime();
+        Gum.GueDeriving.ContainerRuntime innerContainer = new Gum.GueDeriving.ContainerRuntime();
         innerContainer.Height = 13f;
         innerContainer.Width = 241f;
         innerContainer.X = 10f;
@@ -75,7 +75,7 @@ public class OptionsSlider : Slider
         TextureRegion offBackgroundRegion = atlas.GetRegion("slider-off-background");
 
         // Create the "OFF" side of the slider (left end)
-        NineSliceRuntime offBackground = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime offBackground = new Gum.GueDeriving.NineSliceRuntime();
         offBackground.Dock(Gum.Wireframe.Dock.Left);
         offBackground.Texture = atlas.Texture;
         offBackground.TextureAddress = TextureAddress.Custom;
@@ -90,7 +90,7 @@ public class OptionsSlider : Slider
         TextureRegion middleBackgroundRegion = atlas.GetRegion("slider-middle-background");
 
         // Create the middle track portion of the slider
-        NineSliceRuntime middleBackground = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime middleBackground = new Gum.GueDeriving.NineSliceRuntime();
         middleBackground.Texture = middleBackgroundRegion.Texture;
         middleBackground.TextureAddress = TextureAddress.Custom;
         middleBackground.TextureHeight = middleBackgroundRegion.Height;
@@ -106,7 +106,7 @@ public class OptionsSlider : Slider
         TextureRegion maxBackgroundRegion = atlas.GetRegion("slider-max-background");
 
         // Create the "MAX" side of the slider (right end)
-        NineSliceRuntime maxBackground = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime maxBackground = new Gum.GueDeriving.NineSliceRuntime();
         maxBackground.Texture = maxBackgroundRegion.Texture;
         maxBackground.TextureAddress = TextureAddress.Custom;
         maxBackground.TextureHeight = maxBackgroundRegion.Height;
@@ -120,7 +120,7 @@ public class OptionsSlider : Slider
 
         // Create the interactive track that responds to clicks
         // The special name "TrackInstance" is required for Slider functionality
-        ContainerRuntime trackInstance = new ContainerRuntime();
+        Gum.GueDeriving.ContainerRuntime trackInstance = new Gum.GueDeriving.ContainerRuntime();
         trackInstance.Name = "TrackInstance";
         trackInstance.Dock(Gum.Wireframe.Dock.Fill);
         trackInstance.Height = -2f;
@@ -128,14 +128,14 @@ public class OptionsSlider : Slider
         middleBackground.AddChild(trackInstance);
 
         // Create the fill rectangle that visually displays the current value
-        _fillRectangle = new ColoredRectangleRuntime();
+        _fillRectangle = new Gum.GueDeriving.ColoredRectangleRuntime();
         _fillRectangle.Dock(Gum.Wireframe.Dock.Left);
         _fillRectangle.Width = 90f; // Default to 90% - will be updated by value changes
         _fillRectangle.WidthUnits = DimensionUnitType.PercentageOfParent;
         trackInstance.AddChild(_fillRectangle);
 
         // Add "OFF" text to the left end
-        TextRuntime offText = new TextRuntime();
+        Gum.GueDeriving.TextRuntime offText = new Gum.GueDeriving.TextRuntime();
         offText.Red = 70;
         offText.Green = 86;
         offText.Blue = 130;
@@ -147,7 +147,7 @@ public class OptionsSlider : Slider
         offBackground.AddChild(offText);
 
         // Add "MAX" text to the right end
-        TextRuntime maxText = new TextRuntime();
+        Gum.GueDeriving.TextRuntime maxText = new Gum.GueDeriving.TextRuntime();
         maxText.Red = 70;
         maxText.Green = 86;
         maxText.Blue = 130;

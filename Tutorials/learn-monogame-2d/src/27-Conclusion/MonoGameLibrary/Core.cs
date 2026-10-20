@@ -29,6 +29,8 @@ public class Core : Game
     /// </summary>
     public static GraphicsDeviceManager Graphics { get; private set; }
 
+    public static GameWindow GameWindow { get; private set; }
+
     /// <summary>
     /// Gets the graphics device used to create graphical resources and perform primitive rendering.
     /// </summary>
@@ -83,7 +85,11 @@ public class Core : Game
         // Set the graphics defaults
         Graphics.PreferredBackBufferWidth = width;
         Graphics.PreferredBackBufferHeight = height;
-        Graphics.IsFullScreen = fullScreen;
+
+        if (OperatingSystem.IsMacOS() || OperatingSystem.IsLinux() || OperatingSystem.IsWindows())
+        {
+            Graphics.IsFullScreen = fullScreen;
+        }
 
         // Apply the graphic presentation changes
         Graphics.ApplyChanges();
@@ -112,6 +118,7 @@ public class Core : Game
         // Set the core's graphics device to a reference of the base Game's
         // graphics device.
         GraphicsDevice = base.GraphicsDevice;
+        GameWindow = base.Window;
 
         // Create the sprite batch instance.
         SpriteBatch = new SpriteBatch(GraphicsDevice);
@@ -139,7 +146,9 @@ public class Core : Game
         // Update the audio controller.
         Audio.Update();
 
-        if (ExitOnEscape && Input.Keyboard.WasKeyJustPressed(Keys.Escape))
+        if (!OperatingSystem.IsIOS() &&
+            ExitOnEscape &&
+            Input.Keyboard.WasKeyJustPressed(Keys.Escape))
         {
             Exit();
         }

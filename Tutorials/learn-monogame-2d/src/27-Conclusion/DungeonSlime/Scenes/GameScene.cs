@@ -51,6 +51,10 @@ public class GameScene : Scene
     // The speed of the fade to grayscale effect.
     private const float FADE_SPEED = 0.02f;
 
+    private const int VirtualWidth = 1280;
+    private const int VirtualHeight = 720;
+    private Rectangle _viewport;
+
     public override void Initialize()
     {
         // LoadContent is called during base.Initialize().
@@ -60,11 +64,7 @@ public class GameScene : Scene
         // the escape key will be used to return back to the title screen
         Core.ExitOnEscape = false;
 
-        // Create the room bounds by getting the bounds of the screen then
-        // using the Inflate method to "Deflate" the bounds by the width and
-        // height of a tile so that the bounds only covers the inside room of
-        // the dungeon tilemap.
-        _roomBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
+        _roomBounds = new Rectangle(0, 0, VirtualWidth, VirtualHeight);
         _roomBounds.Inflate(-_tilemap.TileWidth, -_tilemap.TileHeight);
 
         // Subscribe to the slime's BodyCollision event so that a game over
@@ -73,7 +73,9 @@ public class GameScene : Scene
 
         // Create any UI elements from the root element created in previous
         // scenes
-        GumService.Default.Root.Children.Clear();
+        Gum.GumService.Default.Root.Children.Clear();
+
+        _viewport = CalculateViewport();
 
         // Initialize the user interface for the game scene.
         InitializeUI();
@@ -86,7 +88,7 @@ public class GameScene : Scene
     {
         // Clear out any previous UI element incase we came here
         // from a different scene.
-        GumService.Default.Root.Children.Clear();
+        Gum.GumService.Default.Root.Children.Clear();
 
         // Create the game scene ui instance.
         _ui = new GameSceneUI();
@@ -172,7 +174,19 @@ public class GameScene : Scene
 
     public override void Update(GameTime gameTime)
     {
-        // Ensure the UI is always updated
+        _viewport = CalculateViewport();
+
+        Gum.GumService.Default.Renderer.Camera.ClientWidth = _viewport.Width / 4;
+        Gum.GumService.Default.Renderer.Camera.ClientHeight = _viewport.Height / 4;
+
+        float zoom = Math.Max(
+            _viewport.Height / Gum.GumService.Default.CanvasHeight,
+            _viewport.Width / Gum.GumService.Default.CanvasWidth);
+        Gum.GumService.Default.Renderer.Camera.Zoom = zoom;
+
+        Gum.GumService.Default.Cursor.TransformMatrix =
+            Matrix.CreateTranslation(_viewport.X, _viewport.Y, 0);
+
         _ui.Update(gameTime);
 
         if (_state != GameState.Playing)
@@ -394,7 +408,7 @@ public class GameScene : Scene
     public override void Draw(GameTime gameTime)
     {
         // Clear the back buffer.
-        Core.GraphicsDevice.Clear(Color.CornflowerBlue);
+        Core.GraphicsDevice.Clear(Color.Black);
 
         if (_state != GameState.Playing)
         {
@@ -402,12 +416,17 @@ public class GameScene : Scene
             _grayscaleEffect.Parameters["Saturation"].SetValue(_saturation);
 
             // And begin the sprite batch using the grayscale effect.
-            Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _grayscaleEffect);
+            Core.SpriteBatch.Begin(
+                samplerState: SamplerState.PointClamp,
+                effect: _grayscaleEffect,
+                transformMatrix: CreateViewportScaleMatrix());
         }
         else
         {
             // Otherwise, just begin the sprite batch as normal.
-            Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            Core.SpriteBatch.Begin(
+                samplerState: SamplerState.PointClamp,
+                transformMatrix: CreateViewportScaleMatrix());
         }
 
         // Draw the tilemap
@@ -424,5 +443,34 @@ public class GameScene : Scene
 
         // Draw the UI
         _ui.Draw();
+    }
+
+    private Rectangle CalculateViewport()
+    {
+        int backBufferWidth = Core.GraphicsDevice.PresentationParameters.BackBufferWidth;
+        int backBufferHeight = Core.GraphicsDevice.PresentationParameters.BackBufferHeight;
+
+        float targetAspectRatio = VirtualWidth / (float)VirtualHeight;
+        float currentAspectRatio = backBufferWidth / (float)backBufferHeight;
+
+        if (currentAspectRatio > targetAspectRatio)
+        {
+            int viewportWidth = (int)(backBufferHeight * targetAspectRatio);
+            int x = (backBufferWidth - viewportWidth) / 2;
+            return new Rectangle(x, 0, viewportWidth, backBufferHeight);
+        }
+
+        int viewportHeight = (int)(backBufferWidth / targetAspectRatio);
+        int y = (backBufferHeight - viewportHeight) / 2;
+        return new Rectangle(0, y, backBufferWidth, viewportHeight);
+    }
+
+    private Matrix CreateViewportScaleMatrix()
+    {
+        float scaleX = _viewport.Width / (float)VirtualWidth;
+        float scaleY = _viewport.Height / (float)VirtualHeight;
+
+        return Matrix.CreateScale(scaleX, scaleY, 1.0f) *
+               Matrix.CreateTranslation(_viewport.X, _viewport.Y, 0);
     }
 }
