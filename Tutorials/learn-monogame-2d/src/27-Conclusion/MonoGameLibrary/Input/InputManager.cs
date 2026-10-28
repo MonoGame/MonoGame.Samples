@@ -20,6 +20,11 @@ public class InputManager
     public GamePadInfo[] GamePads { get; private set; }
 
     /// <summary>
+    /// Gets the state information of touch input.
+    /// </summary>
+    public TouchInfo Touch { get; private set; }
+
+    /// <summary>
     /// Creates a new InputManager.
     /// </summary>
     /// <param name="game">The game this input manager belongs to.</param>
@@ -27,6 +32,7 @@ public class InputManager
     {
         Keyboard = new KeyboardInfo();
         Mouse = new MouseInfo();
+        Touch = new TouchInfo();
 
         GamePads = new GamePadInfo[4];
         for (int i = 0; i < 4; i++)
@@ -36,13 +42,14 @@ public class InputManager
     }
 
     /// <summary>
-    /// Updates the state information for the keyboard, mouse, and gamepad inputs.
+    /// Updates the state information for the keyboard, mouse, touch, and gamepad inputs.
     /// </summary>
     /// <param name="gameTime">A snapshot of the timing values for the current frame.</param>
     public void Update(GameTime gameTime)
     {
         Keyboard.Update();
         Mouse.Update();
+        Touch.Update();
 
         for (int i = 0; i < 4; i++)
         {

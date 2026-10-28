@@ -6,7 +6,7 @@ using Gum.Forms.DefaultVisuals.V3;
 using Gum.Graphics.Animation;
 using Gum.Managers;
 using Microsoft.Xna.Framework.Input;
-using MonoGameGum.GueDeriving;
+using Gum.GueDeriving;
 using MonoGameLibrary.Graphics;
 
 namespace DungeonSlime.UI;
@@ -36,13 +36,13 @@ public class AnimatedButton : Button
 
         // Get a reference to the nine-slice background to display the button graphics
         // A nine-slice allows the button to stretch while preserving corner appearance
-        NineSliceRuntime background = buttonVisual.Background;
+        Gum.GueDeriving.NineSliceRuntime background = buttonVisual.Background;
         background.Texture = atlas.Texture;
         background.TextureAddress = TextureAddress.Custom;
         background.Color = Microsoft.Xna.Framework.Color.White;
         // texture coordinates for the background are set by AnimationChains below
 
-        TextRuntime textInstance = buttonVisual.TextInstance;
+        Gum.GueDeriving.TextRuntime textInstance = buttonVisual.TextInstance;
         textInstance.Text = "START";
         textInstance.Blue = 130;
         textInstance.Green = 86;
@@ -141,12 +141,12 @@ public class AnimatedButton : Button
     /// </summary>
     private void HandleKeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key == Keys.Left)
+        if (e.Key == Gum.Forms.Input.Keys.Left)
         {
             // Left arrow navigates to previous control
             HandleTab(TabDirection.Up, loop: true);
         }
-        if (e.Key == Keys.Right)
+        if (e.Key == Gum.Forms.Input.Keys.Right)
         {
             // Right arrow navigates to next control
             HandleTab(TabDirection.Down, loop: true);

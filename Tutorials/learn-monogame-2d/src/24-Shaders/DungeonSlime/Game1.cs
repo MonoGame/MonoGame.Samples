@@ -34,17 +34,17 @@ public class Game1 : Core
     private void InitializeGum()
     {
         // Initialize the Gum service
-        GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
+        Gum.GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
 
         // Tell the Gum service which content manager to use.  We will tell it to
         // use the global content manager from our Core.
-        GumService.Default.ContentLoader.XnaContentManager = Core.Content;
+        Gum.GumService.Default.ContentLoader.XnaContentManager = Core.Content;
 
         // Register keyboard input for UI control.
-        FrameworkElement.KeyboardsForUiControl.Add(GumService.Default.Keyboard);
+        FrameworkElement.KeyboardsForUiControl.Add(Gum.GumService.Default.Keyboard);
 
         // Register gamepad input for Ui control.
-        FrameworkElement.GamePadsForUiControl.AddRange(GumService.Default.Gamepads);
+        FrameworkElement.GamePadsForUiControl.AddRange(Gum.GumService.Default.Gamepads);
 
         // Customize the tab reverse UI navigation to also trigger when the keyboard
         // Up arrow key is pushed.
@@ -59,9 +59,9 @@ public class Game1 : Core
         // The assets created for the UI were done so at 1/4th the size to keep the size of the
         // texture atlas small.  So we will set the default canvas size to be 1/4th the size of
         // the game's resolution then tell gum to zoom in by a factor of 4.
-        GumService.Default.CanvasWidth = GraphicsDevice.PresentationParameters.BackBufferWidth / 4.0f;
-        GumService.Default.CanvasHeight = GraphicsDevice.PresentationParameters.BackBufferHeight / 4.0f;
-        GumService.Default.Renderer.Camera.Zoom = 4.0f;
+        Gum.GumService.Default.CanvasWidth = GraphicsDevice.PresentationParameters.BackBufferWidth / 4.0f;
+        Gum.GumService.Default.CanvasHeight = GraphicsDevice.PresentationParameters.BackBufferHeight / 4.0f;
+        Gum.GumService.Default.Renderer.Camera.Zoom = 4.0f;
     }
 
     protected override void LoadContent()

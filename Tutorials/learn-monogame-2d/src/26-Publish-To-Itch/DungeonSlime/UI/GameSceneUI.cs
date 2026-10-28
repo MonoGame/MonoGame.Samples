@@ -6,13 +6,13 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using MonoGameGum;
 using Gum.Forms.Controls;
-using MonoGameGum.GueDeriving;
+using Gum.GueDeriving;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 
 namespace DungeonSlime.UI;
 
-public class GameSceneUI : ContainerRuntime
+public class GameSceneUI : Gum.GueDeriving.ContainerRuntime
 {
     // The string format to use when updating the text for the score display.
     private static readonly string s_scoreFormat = "SCORE: {0:D6}";
@@ -35,7 +35,7 @@ public class GameSceneUI : ContainerRuntime
     private AnimatedButton _retryButton;
 
     // The text runtime used to display the players score on the game screen.
-    private TextRuntime _scoreText;
+    private Gum.GueDeriving.TextRuntime _scoreText;
 
     /// <summary>
     /// Event invoked when the Resume button on the Pause panel is clicked.
@@ -55,7 +55,7 @@ public class GameSceneUI : ContainerRuntime
 
     public GameSceneUI()
     {
-        // The game scene UI inherits from ContainerRuntime, so we set its
+        // The game scene UI inherits from Gum.GueDeriving.ContainerRuntime, so we set its
         // doc to fill so it fills the entire screen.
         Dock(Gum.Wireframe.Dock.Fill);
 
@@ -63,8 +63,8 @@ public class GameSceneUI : ContainerRuntime
         this.AddToRoot();
 
         // Get a reference to the content manager that was registered with the
-        // GumService when it was original initialized.
-        ContentManager content = GumService.Default.ContentLoader.XnaContentManager;
+        // Gum.GumService when it was original initialized.
+        ContentManager content = Gum.GumService.Default.ContentLoader.XnaContentManager;
 
         // Use that content manager to load the sound effect and atlas for the
         // user interface elements
@@ -87,9 +87,9 @@ public class GameSceneUI : ContainerRuntime
         AddChild(_gameOverPanel.Visual);
     }
 
-    private TextRuntime CreateScoreText()
+    private Gum.GueDeriving.TextRuntime CreateScoreText()
     {
-        TextRuntime text = new TextRuntime();
+        Gum.GueDeriving.TextRuntime text = new Gum.GueDeriving.TextRuntime();
         text.Anchor(Gum.Wireframe.Anchor.TopLeft);
         text.WidthUnits = DimensionUnitType.RelativeToChildren;
         text.X = 20.0f;
@@ -114,7 +114,7 @@ public class GameSceneUI : ContainerRuntime
 
         TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
 
-        NineSliceRuntime background = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime background = new Gum.GueDeriving.NineSliceRuntime();
         background.Dock(Gum.Wireframe.Dock.Fill);
         background.Texture = backgroundRegion.Texture;
         background.TextureAddress = TextureAddress.Custom;
@@ -124,7 +124,7 @@ public class GameSceneUI : ContainerRuntime
         background.TextureLeft = backgroundRegion.SourceRectangle.Left;
         panel.AddChild(background);
 
-        TextRuntime text = new TextRuntime();
+        Gum.GueDeriving.TextRuntime text = new Gum.GueDeriving.TextRuntime();
         text.Text = "PAUSED";
         text.UseCustomFont = true;
         text.CustomFontFile = "fonts/04b_30.fnt";
@@ -170,7 +170,7 @@ public class GameSceneUI : ContainerRuntime
 
         TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
 
-        NineSliceRuntime background = new NineSliceRuntime();
+        Gum.GueDeriving.NineSliceRuntime background = new Gum.GueDeriving.NineSliceRuntime();
         background.Dock(Gum.Wireframe.Dock.Fill);
         background.Texture = backgroundRegion.Texture;
         background.TextureAddress = TextureAddress.Custom;
@@ -180,7 +180,7 @@ public class GameSceneUI : ContainerRuntime
         background.TextureLeft = backgroundRegion.SourceRectangle.Left;
         panel.AddChild(background);
 
-        TextRuntime text = new TextRuntime();
+        Gum.GueDeriving.TextRuntime text = new Gum.GueDeriving.TextRuntime();
         text.Text = "GAME OVER";
         text.WidthUnits = DimensionUnitType.RelativeToChildren;
         text.UseCustomFont = true;
@@ -327,7 +327,7 @@ public class GameSceneUI : ContainerRuntime
     /// <param name="gameTime">A snapshot of the timing values for the current update cycle.</param>
     public void Update(GameTime gameTime)
     {
-        GumService.Default.Update(gameTime);
+        Gum.GumService.Default.Update(gameTime);
     }
 
     /// <summary>
@@ -335,6 +335,6 @@ public class GameSceneUI : ContainerRuntime
     /// </summary>
     public void Draw()
     {
-        GumService.Default.Draw();
+        Gum.GumService.Default.Draw();
     }
 }
