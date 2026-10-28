@@ -109,3 +109,6 @@ UpgradeLog*.XML
 .vs/
 .user
 .vscode/
+
+# macOS
+.DS_Store
