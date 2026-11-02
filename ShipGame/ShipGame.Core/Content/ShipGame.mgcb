@@ -251,7 +251,7 @@
 /processorParam:RotationX=-90
 /processorParam:RotationY=0
 /processorParam:RotationZ=0
-/processorParam:Scale=1
+/processorParam:Scale=2.54
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
 /build:powerups/energy.fbx
@@ -270,7 +270,7 @@
 /processorParam:RotationX=-90
 /processorParam:RotationY=0
 /processorParam:RotationZ=0
-/processorParam:Scale=1
+/processorParam:Scale=2.54
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
 /build:powerups/missile.fbx
@@ -289,7 +289,7 @@
 /processorParam:RotationX=0
 /processorParam:RotationY=0
 /processorParam:RotationZ=0
-/processorParam:Scale=1
+/processorParam:Scale=2.54
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
 /build:projectiles/blaster.x
@@ -308,7 +308,7 @@
 /processorParam:RotationX=-90
 /processorParam:RotationY=0
 /processorParam:RotationZ=0
-/processorParam:Scale=1
+/processorParam:Scale=2.54
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
 /build:projectiles/missile.fbx
@@ -854,7 +854,7 @@
 /processorParam:RotationX=-90
 /processorParam:RotationY=0
 /processorParam:RotationZ=0
-/processorParam:Scale=1
+/processorParam:Scale=2.54
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
 /build:ships/pad_halo.fbx
@@ -873,7 +873,7 @@
 /processorParam:RotationX=-90
 /processorParam:RotationY=0
 /processorParam:RotationZ=0
-/processorParam:Scale=1
+/processorParam:Scale=2.54
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
 /build:ships/pad_select.fbx
@@ -892,7 +892,7 @@
 /processorParam:RotationX=-90
 /processorParam:RotationY=0
 /processorParam:RotationZ=0
-/processorParam:Scale=1
+/processorParam:Scale=2.54
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
 /build:ships/pad.fbx
@@ -911,7 +911,7 @@
 /processorParam:RotationX=-90
 /processorParam:RotationY=0
 /processorParam:RotationZ=0
-/processorParam:Scale=1
+/processorParam:Scale=2.54
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
 /build:ships/ship1.fbx
@@ -933,7 +933,7 @@
 /processorParam:RotationX=-90
 /processorParam:RotationY=0
 /processorParam:RotationZ=0
-/processorParam:Scale=1
+/processorParam:Scale=2.54
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
 /build:ships/ship2.fbx
