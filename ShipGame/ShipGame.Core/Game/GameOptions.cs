@@ -68,8 +68,8 @@ namespace ShipGame
         public static float BoostRecharge = 8.0f;
         // how fast boost slows down after finished
         public static float BoostSlowdown = 1000.0f;
-        // force to apply forward when using boost
-        public static float BoostForce = 50.0f;
+        // force to apply forward when using boost (per second; was 50 per frame, 3000 at 60 fps)
+        public static float BoostForce = 3000.0f;
 
         // fadeout time for damage effect
         public static float DamageFadeout = 0.5f;
@@ -112,7 +112,7 @@ namespace ShipGame
         // up/down powerup movement distance
         public static float PowerupMoveDistance = 4.0f;
         // time for powerup respawn afetr picked up
-        public static float PowerupRespawnTime = 5.0f;
+        public static float PowerupRespawnTime = 17.0f;
 
         // max ship velocity
         public static float MovementVelocity = 700;

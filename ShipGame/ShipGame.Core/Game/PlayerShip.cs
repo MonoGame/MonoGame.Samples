@@ -629,8 +629,8 @@ namespace ShipGame
             {
                 // increase ship maximum velocity
                 movement.maxVelocity = GameOptions.MovementVelocityBoost;
-                // apply impulse force forward
-                AddImpulseForce(transform.Forward * GameOptions.BoostForce);
+                // apply impulse force forward (scaled by time so boost is the same at any frame rate)
+                AddImpulseForce(transform.Forward * GameOptions.BoostForce * elapsedTime);
 
                 // set particle system velocity scale
                 particleBoost.VelocityScale = Math.Min(1.0f,
