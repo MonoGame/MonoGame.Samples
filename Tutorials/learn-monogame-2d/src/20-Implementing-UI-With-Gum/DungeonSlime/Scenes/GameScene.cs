@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGameGum;
 using Gum.GueDeriving;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
@@ -151,9 +150,11 @@ public class GameScene : Scene
         _pausePanel.IsVisible = false;
         _pausePanel.AddToRoot();
 
-        var background = new Gum.GueDeriving.ColoredRectangleRuntime();
+        var background = new Gum.GueDeriving.RectangleRuntime();
+        background.IsFilled = true;
+        background.StrokeWidth = 0;
         background.Dock(Dock.Fill);
-        background.Color = Color.DarkBlue;
+        background.FillColor = Color.DarkBlue;
         _pausePanel.AddChild(background);
 
         var textInstance = new Gum.GueDeriving.TextRuntime();

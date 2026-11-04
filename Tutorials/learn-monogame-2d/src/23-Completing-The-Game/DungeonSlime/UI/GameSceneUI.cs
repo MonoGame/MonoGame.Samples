@@ -5,7 +5,6 @@ using Gum.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using MonoGameGum;
 using Gum.GueDeriving;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
