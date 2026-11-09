@@ -6,7 +6,7 @@ using Gum.Forms.DefaultVisuals.V3;
 using Gum.Graphics.Animation;
 using Gum.Managers;
 using Microsoft.Xna.Framework.Input;
-using MonoGameGum.GueDeriving;
+using Gum.GueDeriving;
 using MonoGameLibrary.Graphics;
 
 namespace DungeonSlime.UI;
@@ -141,12 +141,12 @@ public class AnimatedButton : Button
     /// </summary>
     private void HandleKeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key == Keys.Left)
+        if (e.Key == Gum.Forms.Input.Keys.Left)
         {
             // Left arrow navigates to previous control
             HandleTab(TabDirection.Up, loop: true);
         }
-        if (e.Key == Keys.Right)
+        if (e.Key == Gum.Forms.Input.Keys.Right)
         {
             // Right arrow navigates to next control
             HandleTab(TabDirection.Down, loop: true);

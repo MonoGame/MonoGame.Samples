@@ -4,7 +4,7 @@ using Gum.DataTypes.Variables;
 using Gum.Forms.Controls;
 using Gum.Managers;
 using Microsoft.Xna.Framework;
-using MonoGameGum.GueDeriving;
+using Gum.GueDeriving;
 using MonoGameLibrary.Graphics;
 
 namespace DungeonSlime.UI;
@@ -18,7 +18,7 @@ public class OptionsSlider : Slider
     private TextRuntime _textInstance;
 
     // Reference to the rectangle that visually represents the current value
-    private ColoredRectangleRuntime _fillRectangle;
+    private RectangleRuntime _fillRectangle;
 
     /// <summary>
     /// Gets or sets the text label for this slider.
@@ -128,7 +128,9 @@ public class OptionsSlider : Slider
         middleBackground.AddChild(trackInstance);
 
         // Create the fill rectangle that visually displays the current value
-        _fillRectangle = new ColoredRectangleRuntime();
+        _fillRectangle = new RectangleRuntime();
+        _fillRectangle.IsFilled = true;
+        _fillRectangle.StrokeWidth = 0;
         _fillRectangle.Dock(Gum.Wireframe.Dock.Left);
         _fillRectangle.Width = 90f; // Default to 90% - will be updated by value changes
         _fillRectangle.WidthUnits = DimensionUnitType.PercentageOfParent;
@@ -178,7 +180,7 @@ public class OptionsSlider : Slider
             offBackground.Color = unfocusedColor;
             middleBackground.Color = unfocusedColor;
             maxBackground.Color = unfocusedColor;
-            _fillRectangle.Color = unfocusedColor;
+            _fillRectangle.FillColor = unfocusedColor;
         };
         sliderCategory.States.Add(enabled);
 
@@ -193,7 +195,7 @@ public class OptionsSlider : Slider
             offBackground.Color = focusedColor;
             middleBackground.Color = focusedColor;
             maxBackground.Color = focusedColor;
-            _fillRectangle.Color = focusedColor;
+            _fillRectangle.FillColor = focusedColor;
         };
         sliderCategory.States.Add(focused);
 

@@ -5,8 +5,7 @@ using Gum.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using MonoGameGum;
-using MonoGameGum.GueDeriving;
+using Gum.GueDeriving;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 
@@ -63,8 +62,8 @@ public class GameSceneUI : ContainerRuntime
         this.AddToRoot();
 
         // Get a reference to the content manager that was registered with the
-        // GumService when it was original initialized.
-        ContentManager content = GumService.Default.ContentLoader.XnaContentManager;
+        // Gum.GumService when it was original initialized.
+        ContentManager content = Gum.GumService.Default.ContentLoader.XnaContentManager;
 
         // Use that content manager to load the sound effect and atlas for the
         // user interface elements
@@ -327,7 +326,7 @@ public class GameSceneUI : ContainerRuntime
     /// <param name="gameTime">A snapshot of the timing values for the current update cycle.</param>
     public void Update(GameTime gameTime)
     {
-        GumService.Default.Update(gameTime);
+        Gum.GumService.Default.Update(gameTime);
     }
 
     /// <summary>
@@ -335,6 +334,6 @@ public class GameSceneUI : ContainerRuntime
     /// </summary>
     public void Draw()
     {
-        GumService.Default.Draw();
+        Gum.GumService.Default.Draw();
     }
 }
